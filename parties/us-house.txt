@@ -1,0 +1,27 @@
+title: United States House of Representatives
+Communist Party, 4, #8B0F1F
+Party for Socialism and Liberation, 3, #B3263E
+Democratic Socialist Party, 37, #C43D63
+Green Party, 57, #38965A
+Animal Welfare Party, 6, #78A942
+Progressive Party, 168, #E15B86
+Cannabis Reform Party, 5, #62AD3F
+Democratic Party, 296, #3168C6
+Democratic Union Party, 102, #72A9DC
+Forward Party, 82, #8064B3
+Pirate Party, 5, #59428C
+Hawaiʻi Party, 2, #D9A441
+Independents, 34, #969BA1
+Alaska Party, 2, #66A0B3
+Seniors Party, 8, #B28A61
+American Solidarity Party, 14, #C28A30
+Farmers & Rural Party, 10, #8C7036
+Veterans Party, 6, #586D78
+Conservative Party, 116, #58758E
+Libertarian Party, 65, #E2B72E
+Western States Party, 4, #A46E32
+Taxpayers Party, 5, #D28C2D
+Republican Party, 302, #C83B3E
+Patriot Party, 174, #8D2635
+Constitution Party, 14, #684A39
+Right to Life Party, 6, #75435B
