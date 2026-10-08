@@ -1,27 +1,27 @@
 title: United States House of Representatives
-Communist Party, 4, #8B0F1F
-Party for Socialism and Liberation, 3, #B3263E
-Democratic Socialist Party, 37, #C43D63
-Green Party, 57, #38965A
+Communist Party, 4, #8B0000
+Party for Socialism and Liberation, 3, #C8102E
+Democratic Socialist Party, 40, #EC1F27
+Green Party, 35, #00A95C
 Animal Welfare Party, 6, #78A942
-Progressive Party, 168, #E15B86
-Democratic Party, 296, #3168C6
+Progressive Party, 178, #F4563B
+Democratic Party, 301, #3333FF
 Democratic Union Party, 102, #72A9DC
-Forward Party, 82, #8064B3
-American Solidarity Party, 14, #C28A30
+Forward Party, 86, #480D67
+American Solidarity Party, 14, #FF7F00
 Conservative Party, 116, #58758E
-Libertarian Party, 65, #E2B72E
-Taxpayers Party, 5, #D28C2D
-Republican Party, 302, #C83B3E
+Libertarian Party, 65, #FED000
+Taxpayers Party, 5, #B8860B
+Republican Party, 302, #E81B23
 Patriot Party, 174, #8D2635
-Right to Life Party, 6, #75435B
-Constitution Party, 14, #684A39
-Pirate Party, 5, #333333
-Cannabis Reform Party, 5, #62AD3F
-Seniors Party, 8, #B28A61
-Farmers & Rural Party, 10, #8C7036
-Veterans Party, 6, #586D78
-Western States Party, 4, #A46E32
-Alaska Party, 2, #66A0B3
-Hawaiʻi Party, 2, #D9A441
-Independents, 34, #B8B8B8
+Right to Life Party, 6, #FFC0CB
+Constitution Party, 14, #A356DE
+Pirate Party, 5, #572B85
+Cannabis Reform Party, 5, #7DDF64
+Seniors Party, 8, #8A8A8A
+Farmers & Rural Party, 10, #6B7D2A
+Veterans Party, 6, #515A8A
+Western States Party, 4, #B56A3A
+Alaska Party, 2, #1F4E79
+Hawaiʻi Party, 2, #D4A017
+Independents, 34, #DCDCDC

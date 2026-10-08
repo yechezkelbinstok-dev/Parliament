@@ -1,4 +1,4 @@
 title: United States House of Representatives: Political Blocs
-Democratic-led Bloc, 671, #3168C6
-Unaligned, 174, #B8B8B8
-Republican-led Bloc, 682, #C83B3E
+Democratic-aligned bloc, 667, #3333FF
+Unaligned, 178, #B8B8B8
+Republican-aligned bloc, 682, #E81B23
