@@ -25,10 +25,9 @@ languages: 9
 | leaders_seat1 = [[Louisiana's 1st congressional district|Greater New Orleans]]
 | last_election1 = 220 seats
 | seats1 = 302
-| seat_change1 = Not directly comparable
+| seat_change1 = {{Increase}} 82
 | popular_vote1 = 35,880,162
 | percentage1 = 19.77%
-| swing1 = Not directly comparable
 | image2 = person:Hakeem Jeffries
 | colour2 = 3333FF
 | leader2 = [[Hakeem Jeffries]]
@@ -36,10 +35,9 @@ languages: 9
 | leaders_seat2 = [[New York's 8th congressional district|Central Brooklyn]]
 | last_election2 = 215 seats
 | seats2 = 301
-| seat_change2 = Not directly comparable
+| seat_change2 = {{Increase}} 86
 | popular_vote2 = 35,626,079
 | percentage2 = 19.63%
-| swing2 = Not directly comparable
 | image3 = person:Alexandria Ocasio-Cortez
 | colour3 = F4563B
 | leader3 = [[Alexandria Ocasio-Cortez]]
@@ -47,10 +45,8 @@ languages: 9
 | leaders_seat3 = [[New York's 14th congressional district|East Bronx–North Queens]]
 | last_election3 = ''New party''
 | seats3 = 178
-| seat_change3 = New
 | popular_vote3 = 21,724,104
 | percentage3 = 11.97%
-| swing3 = New
 | image4 = person:Jim Jordan
 | colour4 = 8D2635
 | leader4 = [[Jim Jordan]]
@@ -58,10 +54,8 @@ languages: 9
 | leaders_seat4 = [[Ohio's 4th congressional district|West-Central Ohio]]
 | last_election4 = ''New party''
 | seats4 = 174
-| seat_change4 = New
 | popular_vote4 = 20,544,433
 | percentage4 = 11.32%
-| swing4 = New
 | image5 = person:David Valadao
 | colour5 = 58758E
 | leader5 = [[David Valadao]]
@@ -69,10 +63,8 @@ languages: 9
 | leaders_seat5 = [[California's 22nd congressional district|South San Joaquin Valley]]
 | last_election5 = ''New party''
 | seats5 = 116
-| seat_change5 = New
 | popular_vote5 = 13,593,445
 | percentage5 = 7.49%
-| swing5 = New
 | image6 = person:Marie Gluesenkamp Perez
 | colour6 = 72A9DC
 | leader6 = [[Marie Gluesenkamp Perez]]
@@ -80,10 +72,8 @@ languages: 9
 | leaders_seat6 = [[Washington's 3rd congressional district|Southwest Washington]]
 | last_election6 = ''New party''
 | seats6 = 102
-| seat_change6 = New
 | popular_vote6 = 11,978,203
 | percentage6 = 6.60%
-| swing6 = New
 | image7 = person:Andrew Yang
 | colour7 = 480D67
 | leader7 = [[Andrew Yang]]
@@ -94,7 +84,6 @@ languages: 9
 | seat_change7 = {{Increase}} 86
 | popular_vote7 = 10,108,877
 | percentage7 = 5.57%
-| swing7 = Not directly comparable
 | image8 = person:Justin Amash
 | colour8 = FED000
 | leader8 = [[Justin Amash]]
@@ -105,7 +94,6 @@ languages: 9
 | seat_change8 = {{Increase}} 65
 | popular_vote8 = 7,676,939
 | percentage8 = 4.23%
-| swing8 = Not directly comparable
 | image9 = person:Rashida Tlaib
 | colour9 = EC1F27
 | leader9 = [[Rashida Tlaib]]
@@ -113,10 +101,8 @@ languages: 9
 | leaders_seat9 = [[Michigan's 12th congressional district|Detroit–Dearborn]]
 | last_election9 = ''New party''
 | seats9 = 40
-| seat_change9 = New
 | popular_vote9 = 4,990,918
 | percentage9 = 2.75%
-| swing9 = New
 | map_image = diagrams/us-house-plain.svg
 | map_size = 400px
 | map_caption = Composition of the House after the election
