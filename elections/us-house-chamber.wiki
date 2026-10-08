@@ -21,10 +21,20 @@ languages: 138
 | leader1_type = [[Speaker of the United States House of Representatives|Speaker]]
 | leader1 = [[Hakeem Jeffries]]
 | party1 = ([[Democratic Party (United States)|D]])
+| election1 = January 3, 2027
+| leader2_type = [[Party leaders of the United States House of Representatives|Majority Leader]]
+| leader2 = [[Katherine Clark]]
+| party2 = ([[Democratic Party (United States)|D]])
+| election2 = January 3, 2027
+| leader3_type = [[Party leaders of the United States House of Representatives#Minority Leader|Minority Leader]]
+| leader3 = [[Steve Scalise]]
+| party3 = ([[Republican Party (United States)|R]])
+| election3 = January 3, 2027
 | members = 1,527 members<br />764 for a majority
 | structure1 = [[File:diagrams/us-house-plain.svg|250px]]
 | structure1_res = 250px
 | political_groups1 = '''Majority (766)'''
+''Democratic-aligned bloc (656)''
 * {{nowrap|{{Color box|#3333FF|border=darkgray}} [[Democratic Party (United States)|Democratic]] (280)}}
 * {{nowrap|{{Color box|#F4563B|border=darkgray}} [[Progressive Party|Progressive]] (158)}}
 * {{nowrap|{{Color box|#72A9DC|border=darkgray}} [[Democratic Union Party|Democratic Union]] (98)}}
@@ -33,6 +43,7 @@ languages: 138
 * {{nowrap|{{Color box|#A6192E|border=darkgray}} [[Air|Labor]] (24)}}
 * {{nowrap|{{Color box|#328DE0|border=darkgray}} [[Women's Equality Party|Women's Equality]] (14)}}
 * {{nowrap|{{Color box|#00897B|border=darkgray}} [[Moon|Housing & Tenants]] (8)}}
+''Supporting parties (110)''
 * {{nowrap|{{Color box|#480D67|border=darkgray}} [[Forward Party (United States)|Forward]] (60)}}
 * {{nowrap|{{Color box|#FF7F00|border=darkgray}} [[American Solidarity Party|American Solidarity]] (18)}}
 * {{nowrap|{{Color box|#8A8A8A|border=darkgray}} [[Sun|Seniors]] (11)}}
@@ -41,7 +52,8 @@ languages: 138
 * {{nowrap|{{Color box|#78A942|border=darkgray}} [[Animal Welfare Party|Animal Welfare]] (4)}}
 * {{nowrap|{{Color box|#1F4E79|border=darkgray}} [[Fire|Alaska]] (3)}}
 * {{nowrap|{{Color box|#D4A017|border=darkgray}} [[Earth|Hawaiʻi]] (3)}}
-'''Minority (761)'''
+'''Minority (761)'''<br />
+''Republican-aligned bloc (682)''
 * {{nowrap|{{Color box|#E81B23|border=darkgray}} [[Republican Party (United States)|Republican]] (302)}}
 * {{nowrap|{{Color box|#8D2635|border=darkgray}} [[Patriot Party|Patriot]] (174)}}
 * {{nowrap|{{Color box|#58758E|border=darkgray}} [[Conservative Party|Conservative]] (116)}}
@@ -49,6 +61,7 @@ languages: 138
 * {{nowrap|{{Color box|#A356DE|border=darkgray}} [[Constitution Party (United States)|Constitution]] (14)}}
 * {{nowrap|{{Color box|#FFC0CB|border=darkgray}} [[New York State Right to Life Party|Right to Life]] (6)}}
 * {{nowrap|{{Color box|#B8860B|border=darkgray}} [[River|Taxpayers]] (5)}}
+''Other parties (79)''
 * {{nowrap|{{Color box|#DCDCDC|border=darkgray}} [[Water|Independent]] (44)}}
 * {{nowrap|{{Color box|#6B7D2A|border=darkgray}} [[Earth|Farmers & Rural]] (13)}}
 * {{nowrap|{{Color box|#515A8A|border=darkgray}} [[Rain|Veterans]] (8)}}
@@ -56,15 +69,17 @@ languages: 138
 * {{nowrap|{{Color box|#B56A3A|border=darkgray}} [[Water|Western States]] (5)}}
 * {{nowrap|{{Color box|#C8102E|border=darkgray}} [[Party for Socialism and Liberation]] (4)}}
 | term_length = 2 years
+| voting_system1 = [[Single transferable vote]] in multi-member constituencies
 | last_election1 = [[2026 United States House of Representatives elections|November 3, 2026]]
 | next_election1 = November 7, 2028
+| redistricting = Seats apportioned among the states by population
 | session_room = United States House of Representatives chamber.jpg
 | meeting_place = House of Representatives Chamber<br />[[United States Capitol]]<br />[[Washington, D.C.]]<br />United States
 | constitution = [[United States Constitution]]
 | website = {{URL|https://house.gov}}
 }}
 
-The '''United States House of Representatives''' is the [[lower house]] of the [[United States Congress]]. It has 1,527 members, elected every two years. After the [[2026 United States House of Representatives elections|November 3, 2026 elections]] no party held a majority on its own. The Democratic-aligned bloc and eight unaligned parties, 766 members in all, form the majority, and [[Hakeem Jeffries]] is [[Speaker of the United States House of Representatives|Speaker]].
+The '''United States House of Representatives''' is the [[lower house]] of the [[United States Congress]]. It has 1,527 members, elected every two years. After the [[2026 United States House of Representatives elections|November 3, 2026 elections]] no party held a majority on its own. Members are elected by [[single transferable vote]] in multi-member constituencies, with seats apportioned among the states by population. The Democratic-aligned bloc and eight supporting parties, 766 members in all, form the majority, with [[Hakeem Jeffries]] as [[Speaker of the United States House of Representatives|Speaker]]; [[Steve Scalise]] of the Republican-aligned bloc is [[Party leaders of the United States House of Representatives|Minority Leader]].
 
 == History ==
 
