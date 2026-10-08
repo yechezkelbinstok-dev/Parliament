@@ -1,10 +1,12 @@
 # Parliament diagrams and Wikipedia election pages
 
-Two tools for simulated elections:
+Tools for simulated elections:
 
 - [`parliament.py`](#parliament-diagrams): seating diagrams from a list of parties
 - [`wikishot.py`](#wikipedia-election-pages): Wikipedia article screenshots
   (desktop and mobile) with a real election infobox
+- [`chamber.py`](#an-enlarged-house-chamber): 3D renders of an enlarged House of
+  Representatives chamber
 
 ## Setup
 
@@ -210,3 +212,45 @@ party unlinked rather than red.
 --scale N               pixel density (default 2 for desktop, 3 for mobile, like a phone)
 -o DIR                  output directory (default screenshots/)
 ```
+
+## An enlarged House chamber
+
+`chamber.py` designs a House chamber big enough for the 1,527 members in
+`parties/us-house.txt` and renders it in 3D, made to look like today's Hall of the House.
+
+```sh
+python chamber.py                      # print the seat counts and render every view
+python chamber.py --report             # just the seat counts
+python chamber.py --views gallery-view --size 1280x720   # one quick preview
+```
+
+![Gallery view](chamber/chamber-gallery-view.png)
+
+The room and its fittings are today's: the three-tier walnut rostrum, the marble
+frontispiece with its black columns, flag, fasces and clock, the portraits of
+Washington and Lafayette, leaded-glass doors, the gilt Greek-key frieze, blue
+damask upper walls, the coffered ceiling with its laylight, the blue carpet with
+gold rosettes, and curved benches with leather seats and walnut backs.
+
+The difference is the wall between the floor and the galleries. It is gone, so
+the members' benches rise in one continuous bowl from the well up through the
+old gallery space, and the public sits in a few curved rows around the top,
+behind a walnut rail. The press gallery stays where it is, above the rostrum.
+
+| | |
+| --- | --- |
+| Room | 57.6 x 36.0 m, 11.0 m high (today's 139 x 93 ft floor plus the galleries) |
+| Members | 24 tiers of benches, 1,542 places for 1,527 members (15 spare) |
+| Public | 342 seats in 3 rows at the top |
+| Total | 1,884 seats |
+
+The galleries' depth isn't published; the model assumes 25 ft on the east, west
+and north sides, which matches photos of today's chamber.
+
+Views (in `chamber/`): `gallery-view` (from the top of the bowl, facing the
+rostrum), `side-view`, `floor-view` (from a leadership table), `speaker-view` (from
+the rostrum) and `party-seating` (from above, members' seats in their party
+colours, left-wing parties on the Speaker's right as Democrats sit today).
+
+Rendering uses [three.js](https://threejs.org/) in the same headless Chromium
+as `wikishot.py`; the first run downloads three.js into `.cache/`.
