@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="360.0" height="297.0">
+    <g transform="translate(0.00,24)">
+    <!-- Created with parliamentarch (https://github.com/Gouvernathor/parliamentarch/) -->
+    <text x="180" y="175.0"
+          style="font-size:36px;font-weight:bold;text-align:center;text-anchor:middle;font-family:sans-serif">120</text>
+    <g style="fill:#1e3f8f"
+       id="0-Democrats">
+        <title>Democrats</title>
+        <circle cx="13.14" cy="172.05" r="6.36"/>
+        <circle cx="29.07" cy="172.05" r="6.36"/>
+        <circle cx="45.01" cy="172.05" r="6.36"/>
+        <circle cx="60.95" cy="172.05" r="6.36"/>
+        <circle cx="76.90" cy="172.05" r="6.36"/>
+        <circle cx="92.86" cy="172.05" r="6.36"/>
+        <circle cx="15.35" cy="151.82" r="6.36"/>
+        <circle cx="31.43" cy="152.25" r="6.36"/>
+        <circle cx="47.74" cy="151.80" r="6.36"/>
+    </g>
+    <g style="fill:#2b5fd9"
+       id="1-Yashar">
+        <title>Yashar</title>
+        <circle cx="63.93" cy="152.35" r="6.36"/>
+        <circle cx="80.51" cy="151.80" r="6.36"/>
+        <circle cx="19.99" cy="132.02" r="6.36"/>
+        <circle cx="36.38" cy="132.93" r="6.36"/>
+        <circle cx="96.91" cy="152.58" r="6.36"/>
+        <circle cx="53.50" cy="132.21" r="6.36"/>
+        <circle cx="70.15" cy="133.43" r="6.36"/>
+        <circle cx="27.01" cy="112.92" r="6.36"/>
+        <circle cx="43.82" cy="114.44" r="6.36"/>
+        <circle cx="88.06" cy="132.68" r="6.36"/>
+        <circle cx="62.14" cy="113.70" r="6.36"/>
+        <circle cx="36.30" cy="94.83" r="6.36"/>
+        <circle cx="105.24" cy="134.54" r="6.36"/>
+        <circle cx="79.42" cy="115.81" r="6.36"/>
+        <circle cx="53.64" cy="97.08" r="6.36"/>
+        <circle cx="47.72" cy="77.99" r="6.36"/>
+        <circle cx="73.47" cy="96.70" r="6.36"/>
+        <circle cx="99.24" cy="115.42" r="6.36"/>
+        <circle cx="65.65" cy="81.17" r="6.36"/>
+        <circle cx="91.50" cy="99.97" r="6.36"/>
+        <circle cx="117.43" cy="118.84" r="6.36"/>
+        <circle cx="61.10" cy="62.67" r="6.36"/>
+    </g>
+    <g style="fill:#6fa8f5"
+       id="2-Together">
+        <title>Together</title>
+        <circle cx="87.23" cy="81.61" r="6.36"/>
+        <circle cx="79.66" cy="66.98" r="6.36"/>
+        <circle cx="113.61" cy="100.72" r="6.36"/>
+        <circle cx="76.24" cy="49.09" r="6.36"/>
+        <circle cx="106.05" cy="86.36" r="6.36"/>
+        <circle cx="103.11" cy="68.76" r="6.36"/>
+        <circle cx="95.41" cy="54.76" r="6.36"/>
+        <circle cx="132.85" cy="106.29" r="6.36"/>
+        <circle cx="92.92" cy="37.44" r="6.36"/>
+        <circle cx="122.65" cy="75.37" r="6.36"/>
+        <circle cx="130.61" cy="89.15" r="6.36"/>
+        <circle cx="112.63" cy="44.71" r="6.36"/>
+    </g>
+    <g style="fill:#4fc3d9"
+       id="3-Yisrael-Beiteinu">
+        <title>Yisrael Beiteinu</title>
+        <circle cx="120.75" cy="58.45" r="6.36"/>
+        <circle cx="110.90" cy="27.92" r="6.36"/>
+        <circle cx="150.70" cy="97.55" r="6.36"/>
+        <circle cx="140.86" cy="67.28" r="6.36"/>
+        <circle cx="131.02" cy="37.02" r="6.36"/>
+        <circle cx="129.90" cy="20.65" r="6.36"/>
+        <circle cx="139.73" cy="50.91" r="6.36"/>
+        <circle cx="149.56" cy="81.17" r="6.36"/>
+        <circle cx="150.27" cy="31.82" r="6.36"/>
+    </g>
+    <g style="fill:#2e8b57"
+       id="4-Joint-List">
+        <title>Joint List</title>
+        <circle cx="149.64" cy="15.74" r="6.36"/>
+        <circle cx="160.15" cy="62.34" r="6.36"/>
+        <circle cx="159.63" cy="46.32" r="6.36"/>
+        <circle cx="170.06" cy="93.07" r="6.36"/>
+        <circle cx="169.72" cy="77.10" r="6.36"/>
+        <circle cx="170.03" cy="29.19" r="6.36"/>
+        <circle cx="169.83" cy="13.26" r="6.36"/>
+        <circle cx="180.00" cy="60.68" r="6.36"/>
+        <circle cx="180.00" cy="44.77" r="6.36"/>
+        <circle cx="190.17" cy="13.26" r="6.36"/>
+    </g>
+    <g style="fill:#7dbe7d"
+       id="5-UAL">
+        <title>UAL</title>
+        <circle cx="189.97" cy="29.19" r="6.36"/>
+        <circle cx="190.28" cy="77.10" r="6.36"/>
+        <circle cx="189.94" cy="93.07" r="6.36"/>
+        <circle cx="200.37" cy="46.32" r="6.36"/>
+        <circle cx="199.85" cy="62.34" r="6.36"/>
+        <circle cx="210.36" cy="15.74" r="6.36"/>
+    </g>
+    <g style="fill:#d62839"
+       id="6-Likud">
+        <title>Likud</title>
+        <circle cx="209.73" cy="31.82" r="6.36"/>
+        <circle cx="210.44" cy="81.17" r="6.36"/>
+        <circle cx="220.27" cy="50.91" r="6.36"/>
+        <circle cx="230.10" cy="20.65" r="6.36"/>
+        <circle cx="228.98" cy="37.02" r="6.36"/>
+        <circle cx="219.14" cy="67.28" r="6.36"/>
+        <circle cx="209.30" cy="97.55" r="6.36"/>
+        <circle cx="249.10" cy="27.92" r="6.36"/>
+        <circle cx="239.25" cy="58.45" r="6.36"/>
+        <circle cx="247.37" cy="44.71" r="6.36"/>
+        <circle cx="229.39" cy="89.15" r="6.36"/>
+        <circle cx="237.35" cy="75.37" r="6.36"/>
+        <circle cx="267.08" cy="37.44" r="6.36"/>
+        <circle cx="227.15" cy="106.29" r="6.36"/>
+        <circle cx="264.59" cy="54.76" r="6.36"/>
+        <circle cx="256.89" cy="68.76" r="6.36"/>
+        <circle cx="253.95" cy="86.36" r="6.36"/>
+        <circle cx="283.76" cy="49.09" r="6.36"/>
+        <circle cx="246.39" cy="100.72" r="6.36"/>
+        <circle cx="280.34" cy="66.98" r="6.36"/>
+        <circle cx="272.77" cy="81.61" r="6.36"/>
+    </g>
+    <g style="fill:#f08a24"
+       id="7-Shas">
+        <title>Shas</title>
+        <circle cx="298.90" cy="62.67" r="6.36"/>
+        <circle cx="242.57" cy="118.84" r="6.36"/>
+        <circle cx="268.50" cy="99.97" r="6.36"/>
+        <circle cx="294.35" cy="81.17" r="6.36"/>
+        <circle cx="260.76" cy="115.42" r="6.36"/>
+        <circle cx="286.53" cy="96.70" r="6.36"/>
+        <circle cx="312.28" cy="77.99" r="6.36"/>
+        <circle cx="306.36" cy="97.08" r="6.36"/>
+    </g>
+    <g style="fill:#7a4b2a"
+       id="8-UTJ">
+        <title>UTJ</title>
+        <circle cx="280.58" cy="115.81" r="6.36"/>
+        <circle cx="254.76" cy="134.54" r="6.36"/>
+        <circle cx="323.70" cy="94.83" r="6.36"/>
+        <circle cx="297.86" cy="113.70" r="6.36"/>
+        <circle cx="271.94" cy="132.68" r="6.36"/>
+        <circle cx="316.18" cy="114.44" r="6.36"/>
+        <circle cx="332.99" cy="112.92" r="6.36"/>
+        <circle cx="289.85" cy="133.43" r="6.36"/>
+    </g>
+    <g style="fill:#e8b923"
+       id="9-Religious-Zionism">
+        <title>Religious Zionism</title>
+        <circle cx="306.50" cy="132.21" r="6.36"/>
+        <circle cx="263.09" cy="152.58" r="6.36"/>
+        <circle cx="323.62" cy="132.93" r="6.36"/>
+        <circle cx="340.01" cy="132.02" r="6.36"/>
+        <circle cx="279.49" cy="151.80" r="6.36"/>
+        <circle cx="296.07" cy="152.35" r="6.36"/>
+        <circle cx="312.26" cy="151.80" r="6.36"/>
+    </g>
+    <g style="fill:#8c1c2e"
+       id="10-Otzma-Yehudit">
+        <title>Otzma Yehudit</title>
+        <circle cx="328.57" cy="152.25" r="6.36"/>
+        <circle cx="344.65" cy="151.82" r="6.36"/>
+        <circle cx="267.14" cy="172.05" r="6.36"/>
+        <circle cx="283.10" cy="172.05" r="6.36"/>
+        <circle cx="299.05" cy="172.05" r="6.36"/>
+        <circle cx="314.99" cy="172.05" r="6.36"/>
+        <circle cx="330.93" cy="172.05" r="6.36"/>
+        <circle cx="346.86" cy="172.05" r="6.36"/>
+    </g>
+    </g>
+    <text x="180.00" y="19" style="font-size:14.0px;font-weight:bold;text-anchor:middle;font-family:sans-serif">Knesset: poll average, 52 / 16 / 52</text>
+    <g style="font-size:9px;font-family:sans-serif">
+        <rect x="42.60" y="214.00" width="8" height="8" rx="1.5" style="fill:#1E3F8F;stroke:#888;stroke-width:0.5"/>
+        <text x="54.60" y="221.50">Democrats (9)</text>
+        <rect x="42.60" y="227.00" width="8" height="8" rx="1.5" style="fill:#2B5FD9;stroke:#888;stroke-width:0.5"/>
+        <text x="54.60" y="234.50">Yashar (22)</text>
+        <rect x="42.60" y="240.00" width="8" height="8" rx="1.5" style="fill:#6FA8F5;stroke:#888;stroke-width:0.5"/>
+        <text x="54.60" y="247.50">Together (12)</text>
+        <rect x="42.60" y="253.00" width="8" height="8" rx="1.5" style="fill:#4FC3D9;stroke:#888;stroke-width:0.5"/>
+        <text x="54.60" y="260.50">Yisrael Beiteinu (9)</text>
+        <rect x="42.60" y="266.00" width="8" height="8" rx="1.5" style="fill:#2E8B57;stroke:#888;stroke-width:0.5"/>
+        <text x="54.60" y="273.50">Joint List (10)</text>
+        <rect x="42.60" y="279.00" width="8" height="8" rx="1.5" style="fill:#7DBE7D;stroke:#888;stroke-width:0.5"/>
+        <text x="54.60" y="286.50">UAL (6)</text>
+        <rect x="180.00" y="214.00" width="8" height="8" rx="1.5" style="fill:#D62839;stroke:#888;stroke-width:0.5"/>
+        <text x="192.00" y="221.50">Likud (21)</text>
+        <rect x="180.00" y="227.00" width="8" height="8" rx="1.5" style="fill:#F08A24;stroke:#888;stroke-width:0.5"/>
+        <text x="192.00" y="234.50">Shas (8)</text>
+        <rect x="180.00" y="240.00" width="8" height="8" rx="1.5" style="fill:#7A4B2A;stroke:#888;stroke-width:0.5"/>
+        <text x="192.00" y="247.50">UTJ (8)</text>
+        <rect x="180.00" y="253.00" width="8" height="8" rx="1.5" style="fill:#E8B923;stroke:#888;stroke-width:0.5"/>
+        <text x="192.00" y="260.50">Religious Zionism (7)</text>
+        <rect x="180.00" y="266.00" width="8" height="8" rx="1.5" style="fill:#8C1C2E;stroke:#888;stroke-width:0.5"/>
+        <text x="192.00" y="273.50">Otzma Yehudit (8)</text>
+    </g>
+</svg>

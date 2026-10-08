@@ -1,0 +1,24 @@
+# Knesset, based on the Haaretz poll average ("last 3 polls") from the screenshot.
+# Party averages (Yashar 22.7, Likud 19.8, Together 12, Democrats 9.4, Yisrael Beiteinu 8.6,
+# Joint List 7.8, UTJ 7.7, Otzma Yehudit 7.2, Shas 7.1, Religious Zionism 6.1, UAL 5)
+# sum to ~113, not 120, so each bloc was scaled up to its target and rounded to whole seats:
+#   Eisenkot bloc 52 (Yashar, Together, Democrats, Yisrael Beiteinu)
+#   Unaligned 16 (Joint List, UAL)
+#   Netanyahu bloc 52 (Likud, Shas, UTJ, Otzma Yehudit, Religious Zionism)
+# Which party belongs to which bloc is my assumption. Left to right: Eisenkot bloc, unaligned, Netanyahu bloc.
+title: Knesset: poll average, 52 / 16 / 52
+number: yes
+
+Democrats, 9, #1E3F8F
+Yashar, 22, #2B5FD9
+Together, 12, #6FA8F5
+Yisrael Beiteinu, 9, #4FC3D9
+
+Joint List, 10, #2E8B57
+UAL, 6, #7DBE7D
+
+Likud, 21, #D62839
+Shas, 8, #F08A24
+UTJ, 8, #7A4B2A
+Religious Zionism, 7, #E8B923
+Otzma Yehudit, 8, #8C1C2E
