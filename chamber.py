@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Design and render an enlarged House of Representatives chamber.
 
-Today's Hall of the House is a 139 x 93 ft floor, 36 ft high, with the
-Speaker's rostrum on the south wall and galleries on the upper level behind
-the floor's walnut walls. This design keeps the room and its fittings but
-takes out the wall between the floor and the galleries, so the members'
-curved benches rise in one continuous bowl from the well up through the old
-gallery space. A few rows of public seating run around the top behind a rail.
+Today's Hall of the House is 139 x 93 ft and 36 ft high, galleries included,
+in the middle of the House wing (238 ft 10 in x 142 ft 8 in outside). At real
+seat sizes, with rows 44 in apart, it could hold about 880 members even if all
+of it were seats, so 1,527 members cannot fit in it. This design takes the hall out to
+almost the whole wing, keeping the outer walls and a corridor round the room,
+and keeps the hall's look and fittings. There are no separate galleries: the
+members' benches rise in one continuous bowl from the well, and a few rows of
+public seating sit at the top behind a rail and a glass screen.
 
     python chamber.py            # print the seat counts and render every view
     python chamber.py --report   # just the seat counts
@@ -41,15 +43,15 @@ THREE_FILES = ["build/three.min.js", "examples/js/environments/RoomEnvironment.j
                "examples/js/postprocessing/ShaderPass.js", "examples/js/postprocessing/SAOPass.js"]
 
 FT = 0.3048
-# Today's floor. x runs west -> east, y south (rostrum wall) -> north, z up, metres.
-FLOOR_W = 139 * FT
-FLOOR_D = 93 * FT
+# x runs west -> east, y south (rostrum wall) -> north, z up, metres.
+# Today's hall, galleries included (Glenn Brown, History of the United States Capitol),
+# and the House wing around it.
+TODAY_W, TODAY_D = 139 * FT, 93 * FT
+WING_W, WING_D = (238 + 10 / 12) * FT, (142 + 8 / 12) * FT
+# The new hall: the wing less its outer walls and a corridor round the room.
+HALL_W = 210 * FT
+HALL_D = 110 * FT
 HALL_H = 36 * FT
-# The galleries behind the floor walls on the east, west and north sides. Their
-# exact depth isn't published; 25 ft matches the photos (7-8 rows plus a corridor).
-GALLERY_DEPTH = 25 * FT
-HALL_W = FLOOR_W + 2 * GALLERY_DEPTH
-HALL_D = FLOOR_D + GALLERY_DEPTH
 HALF_W = HALL_W / 2
 
 # Rostrum on the south wall, three tiers like today's.
@@ -59,13 +61,13 @@ SPEAKER = (0.0, 2.6)  # the rows curve around this point
 
 # The members' bowl: curved benches on carpeted tiers.
 FIRST_ROW_R = 6.8       # radius of the first bench from the Speaker
-ROW_DEPTH = 0.92        # tier depth, front of one bench to the next
-SEAT_WIDTH = 0.58       # one place on a bench, arm to arm
+# Today's seats come in pairs 52 1/2 in wide and 33 in deep (House collection).
+SEAT_WIDTH = 0.67       # one place, arm to arm
+ROW_DEPTH = 1.12        # front of one bench to the next: the seat plus a passage
 CENTRE_AISLE = 1.7      # the wide aisle between the parties, with its runner
 AISLE = 1.05            # the other radial aisles
 AISLES = [24, 46, 68, 112, 134, 156]   # degrees from due east, seen from the Speaker
 MIN_ANGLE, MAX_ANGLE = 9.0, 171.0      # leaves a passage along the rostrum wall
-MEMBER_MAX_R = 28.3                    # outermost member bench: every row is a full arc
 
 
 def rise(row):
@@ -83,7 +85,7 @@ TABLES = [(72, 87.2), (92.8, 108), (49, 65), (115, 131)]
 
 # Public seating: a few curved rows around the top, behind a walnut rail.
 TOP_AISLE = 1.2
-PUBLIC_ROWS = 3
+PUBLIC_ROWS = 4
 PUBLIC_ROW_DEPTH = 0.85
 PUBLIC_RISE = 0.42
 PUBLIC_SEAT_WIDTH = 0.55
@@ -155,8 +157,9 @@ def bench_row(r, z, row, width, kind):
     return seats
 
 
-def build_rows():
-    """Member rows until the target is met, then a cross-aisle and the public rows."""
+def build_rows(target):
+    """Member rows until every member has a seat, then a cross-aisle and the public rows.
+    The outer rows run on into the corners of the room."""
     rows, seats = [], []
     r, z = FIRST_ROW_R, 0.20
     i = 0
@@ -166,7 +169,7 @@ def build_rows():
             break
         rows.append({"r": r, "z": round(z, 3), "kind": "member", "depth": ROW_DEPTH})
         seats.extend(row_seats)
-        if r + ROW_DEPTH > MEMBER_MAX_R:
+        if len(seats) >= target:
             break
         z += rise(i)
         r += ROW_DEPTH
@@ -280,12 +283,12 @@ def leadership_tables(rows):
 
 
 def build_layout():
-    rows, members, public, aisle = build_rows()
     parties = read_parties()
+    rows, members, public, aisle = build_rows(sum(n for _, n, _ in parties))
     for seat, p in zip(members, assign_parties(members, parties)):
         seat["party"] = p
     return {
-        "hall": {"w": HALL_W, "d": HALL_D, "h": HALL_H, "floor_w": FLOOR_W, "floor_d": FLOOR_D},
+        "hall": {"w": HALL_W, "d": HALL_D, "h": HALL_H},
         "rostrum": {"w": ROSTRUM_W, "d": ROSTRUM_D},
         "speaker": SPEAKER,
         "rows": rows,
@@ -347,7 +350,8 @@ def report(layout):
     members, public, rows = layout["members"], layout["public"], layout["rows"]
     total = sum(p["seats"] for p in layout["parties"])
     member_rows = [r for r in rows if r["kind"] == "member"]
-    print(f"hall {HALL_W:.1f} x {HALL_D:.1f} m (floor {FLOOR_W:.1f} x {FLOOR_D:.1f} m), {HALL_H:.1f} m high")
+    print(f"hall {HALL_W / FT:.0f} x {HALL_D / FT:.0f} ft ({HALL_W:.1f} x {HALL_D:.1f} m), {HALL_H / FT:.0f} ft high; "
+          f"today's hall is {TODAY_W / FT:.0f} x {TODAY_D / FT:.0f} ft, the House wing {WING_W / FT:.0f} x {WING_D / FT:.0f} ft")
     print(f"members' bowl: {len(member_rows)} tiers of benches, rising to {member_rows[-1]['z']:.2f} m; "
           f"{len(members)} seats for {total} members ({len(members) - total} spare)")
     print(f"public: {len(public)} seats in {PUBLIC_ROWS} rows, top row at {rows[-1]['z']:.2f} m "
@@ -360,10 +364,14 @@ def report(layout):
 # Camera positions (x east, y north from the rostrum wall, z up).
 VIEWS = {
     "gallery-view": dict(eye=(0, HALL_D - 2.6, 8.7), target=(0, 6.0, 0.4), fov=66),
-    "side-view": dict(eye=(25.5, 18.5, 8.6), target=(-3.0, 6.0, 1.6), fov=60),
+    "side-view": dict(eye=(28.6, 23.6, 9.2), target=(-3.0, 5.0, 1.2), fov=60),
     "floor-view": dict(eye=(-4.6, 9.2, 1.55), target=(1.5, 2.6, 2.0), fov=62),
     "speaker-view": dict(eye=(0, 1.6, 4.3), target=(0, 24, 3.4), fov=74),
     "party-seating": dict(eye=(0, 3, 44), target=(0, 18.5, 0), fov=50, colors="party", hide=["ceiling"]),
+    # a joint session: every seat taken, the President at the rostrum
+    "sotu-gallery": dict(eye=(0, HALL_D - 2.6, 8.7), target=(0, 4.0, 1.4), fov=60, sotu=True),
+    "sotu-rostrum": dict(eye=(1.4, 0.5, 8.9), target=(0, 11.5, 0.6), fov=70, sotu=True),
+    "sotu-president": dict(eye=(0, 16.5, 3.4), target=(0, 2.0, 2.4), fov=30, sotu=True),
 }
 
 

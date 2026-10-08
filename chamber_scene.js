@@ -316,7 +316,9 @@ const M = {
   leadedDoor: std({map: leadedDoorTex, roughness: 0.35, envMapIntensity: 0.6}),
   panelDoor: std({map: panelDoorTex, roughness: 0.4, envMapIntensity: 0.5}),
   bulb: new THREE.MeshBasicMaterial({color: '#fff3d6'}),
+  glass: std({color: '#d6e6e8', transparent: true, opacity: 0.16, roughness: 0.04, metalness: 0.1, envMapIntensity: 1.6, depthWrite: false, side: THREE.DoubleSide}),
 };
+const NO_AO = [];   // see-through things the ambient occlusion pass should ignore
 
 // ------------------------------------------------------------------ geometry helpers
 
@@ -517,6 +519,19 @@ B.riser.mesh(M.riser, {cast: false}); B.carpet.mesh(M.carpet); B.carpetSide.mesh
     arcBox({r0: r - 0.17, r1: r + 0.02, a0, a1, z0: z1, z1: z1 + 0.06, inner: cap, outer: cap, top: cap, ends: cap});
   }
   rail.mesh(M.parapet); wood.mesh(M.walnut); cap.mesh(M.brass);
+  // a security screen of laminated glass in a bronze frame, 1.7 m above the rail
+  const glass = new Builder(), frame = new Builder(), g0 = z1 + 0.06, g1 = g0 + 1.7, rg = r - 0.07;
+  for (const [a0, a1] of arcRanges(rg)) {
+    arcBox({r0: rg - 0.01, r1: rg + 0.01, a0, a1, z0: g0, z1: g1, inner: glass, outer: glass});
+    arcBox({r0: rg - 0.04, r1: rg + 0.04, a0, a1, z0: g1, z1: g1 + 0.06, inner: frame, outer: frame, top: frame, ends: frame});
+    const n = Math.max(1, Math.round((a1 - a0) * rg / 1.8));
+    for (let k = 0; k <= n; k++) {
+      const a = a0 + (a1 - a0) * k / n, da = 0.025 / rg;
+      arcBox({r0: rg - 0.04, r1: rg + 0.04, a0: a - da, a1: a + da, z0: g0, z1: g1, inner: frame, outer: frame, ends: frame, seg: 1});
+    }
+  }
+  NO_AO.push(glass.mesh(M.glass, {cast: false}));
+  frame.mesh(M.bronze);
 }
 
 // brass handrails down the steeper side aisles
@@ -545,9 +560,10 @@ B.riser.mesh(M.riser, {cast: false}); B.carpet.mesh(M.carpet); B.carpetSide.mesh
 // ------------------------------------------------------------------ benches
 
 const UP = new THREE.Vector3(0, 1, 0), ONE = new THREE.Vector3(1, 1, 1);
-function seatMatrix(s, lx, lz) {
+function seatMatrix(s, lx, lz, sz = 1) {
   const q = new THREE.Quaternion().setFromAxisAngle(UP, s.face);
-  return new THREE.Matrix4().compose(V(s.x, s.y, s.z), q, ONE).multiply(new THREE.Matrix4().makeTranslation(lx, 0, lz));
+  return new THREE.Matrix4().compose(V(s.x, s.y, s.z), q, ONE).multiply(new THREE.Matrix4().makeTranslation(lx, 0, lz))
+    .multiply(new THREE.Matrix4().makeScale(1, 1, sz));
 }
 function instanced(geo, mat, matrices, colors) {
   if (!matrices.length) return;
@@ -602,7 +618,8 @@ function buildBenches(benches, {depth, upholstery, colorOf, votes}) {
     arcBox({...common, r0: b.r - 0.11 - shift, r1: back0, z0: z, z1: z + 0.37, inner: wood, top: wood});
     b.seats.forEach((s, i) => {
       const w = b.step * b.r;
-      parts.cushion.push(seatMatrix(s, shift, 0)); parts.back.push(seatMatrix(s, shift, 0));
+      const sz = (w - 0.06) / 0.53;      // cushions fill the place between the arms
+      parts.cushion.push(seatMatrix(s, shift, 0, sz)); parts.back.push(seatMatrix(s, shift, 0, sz));
       colors.push(colorOf(s));
       if (!s.end_lo) parts.arm.push(seatMatrix(s, shift, -w / 2));
       if (s.end_lo) parts.end.push(seatMatrix(s, shift, -w / 2 - 0.028));
@@ -750,7 +767,12 @@ for (const t of TIERS) {
 }
 
 // chairs on the rostrum
-chair(0, 1.05, 1.25, Math.PI / 2, {backH: 1.25, scale: 1.08});
+// the Speaker's chair; at a joint session the Vice President sits beside the Speaker
+// it stands on a dais behind the Speaker's desk
+const DAIS = 1.25 + 0.38;
+extrude([[1.6, 0.35], [1.6, 1.75], [-1.6, 1.75], [-1.6, 0.35]], 1.25, DAIS, [M.carpet, M.honey]);
+if (VIEW.sotu) for (const x of [-0.62, 0.62]) chair(x, 1.1, DAIS, Math.PI / 2, {backH: 1.25, scale: 1.08});
+else chair(0, 1.1, DAIS, Math.PI / 2, {backH: 1.25, scale: 1.08});
 for (const x of [-3.15, -0.9, 0.9, 3.15]) chair(x, Math.abs(x) > 3 ? 2.75 : 3.05, 0.72, Math.PI / 2);
 for (const x of [-5.0, -2.6, -1.0, 1.0, 2.6, 5.0]) chair(x, Math.abs(x) > 4 ? 3.3 : 4.25, 0.3, Math.PI / 2);
 // the Mace on its marble pedestal, at the Speaker's right
@@ -759,6 +781,8 @@ cylinder(3.35, 1.55, 1.67, 0.24, 0.05, M.white, 24);
 cylinder(3.35, 1.55, 1.72, 0.05, 1.05, M.silver, 12);
 { const globe = new THREE.Mesh(new THREE.SphereGeometry(0.12, 20, 16), M.silver); globe.position.copy(V(3.35, 1.55, 2.86)); add(globe);
   const eagle = new THREE.Mesh(new THREE.ConeGeometry(0.06, 0.16, 8), M.silver); eagle.position.copy(V(3.35, 1.55, 3.04)); add(eagle); }
+
+const PRESS_SEATS = [];
 
 // ------------------------------------------------------------------ frontispiece
 
@@ -963,7 +987,7 @@ function upperWall(w, s0, s1, floorZ) {
       for (const [ds, dz, fw, fh] of [[0, 0, pw, 0.02], [0, z1 - z0 - 0.02, pw, 0.02], [-pw / 2, 0, 0.02, z1 - z0], [pw / 2 - 0.02 + 0.01, 0, 0.02, z1 - z0]])
         wbox(w, c + ds, 0.012, z0 + dz, fw, 0.03, fh, M.gold);
     } else {
-      if (fz > 6.5) door(w, c, fz, 'panel');
+      if (fz > 4.5) door(w, c, fz, 'panel');
       else wplane(w, c, 0.012, wainTop + 0.25, bw - 0.4, Z_CORNICE - 0.4 - wainTop - 0.25, M.damask);
       wdisc(w, c, 0, Z_CORNICE - 0.42, 0.27, M.white);
       wring(w, c, 0.06, Z_CORNICE - 0.42, 0.28, 0.03, M.gold);
@@ -989,8 +1013,10 @@ const wallFloor = w => s => { const [x, y] = wpt(w, s, 0.7); return floorAt(x, y
 
 { // south wall: rostrum in the middle, portraits of Lafayette and Washington, doors
   const w = WALLS.south, S = x => HW - x;
-  const pil = [5.9, 8.5, 11.8, 14.4, 17.6, 20.8, 24.0, 27.2];
-  const contents = {7.2: 'door', 10.15: 'portrait', 13.1: 'door', 19.2: 'door', 25.6: 'door'};
+  const pil = [5.9, 8.5, 11.8, 14.4];
+  while (pil[pil.length - 1] + 3.25 < HW - 1.0) pil.push(+(pil[pil.length - 1] + 3.25).toFixed(2));
+  const contents = {7.2: 'door', 10.15: 'portrait', 13.1: 'door'};
+  for (let i = 4; i + 1 < pil.length; i += 2) contents[((pil[i] + pil[i + 1]) / 2).toFixed(3)] = 'door';
   const bays = [];
   for (const side of [-1, 1]) {
     const edges = [5.5, ...pil, HW];
@@ -1037,7 +1063,7 @@ for (const name of ['east', 'west']) {     // side walls: floor-level doors in t
   }
   box(0, -0.08, Z_LEDGE, 2 * PG, 0.16, Z_UP - Z_LEDGE, M.walnut, 0, g);
   box(0, -0.08, Z_UP - 0.04, 2 * PG, 0.3, 0.07, M.brass, 0, g);
-  const seats = [];
+  const seats = PRESS_SEATS;
   [-0.55, -1.4, -2.25].forEach((y, k) => {
     const z = tiers[k][2];
     for (let x = -PG + 0.6; x <= PG - 0.6; x += 0.55) {
@@ -1142,6 +1168,97 @@ for (const name of ['east', 'west']) {     // side walls: floor-level doors in t
   }
 }
 
+// ------------------------------------------------------------------ people (State of the Union)
+
+// A simple figure, seated or standing: local x forward, y up, z to the right.
+function figureParts(pose) {
+  const R = (w, h, d, x, y, z, rz = 0, r = 0.03) => RB(w, h, d, r, 1).rotateZ(rz).translate(x, y, z);
+  const S = (r, x, y, z, sx = 1, sy = 1, sz = 1) => new THREE.SphereGeometry(r, 14, 10).scale(sx, sy, sz).translate(x, y, z);
+  const C = (r, h, x, y, z) => new THREE.CylinderGeometry(r, r, h, 10).translate(x, y, z);
+  const P = {};
+  if (pose === 'seated') {
+    const t = 0.1;   // leaning back a little
+    P.suit = [R(0.25, 0.56, 0.42, -0.15, 0.79, 0, t, 0.07),
+      ...[-1, 1].flatMap(s => [R(0.46, 0.16, 0.17, 0.02, 0.545, s * 0.1, 0, 0.05), R(0.13, 0.46, 0.14, 0.24, 0.27, s * 0.1, 0, 0.04),
+                               R(0.11, 0.33, 0.12, -0.12, 0.88, s * 0.245, 0.38, 0.04), R(0.31, 0.1, 0.11, 0.07, 0.69, s * 0.215, 0, 0.035)])];
+    P.shoes = [-1, 1].map(s => R(0.26, 0.09, 0.11, 0.31, 0.045, s * 0.1, 0, 0.03));
+    P.skin = [S(0.09, -0.12, 1.25, 0, 1, 1.27, 0.86), C(0.05, 0.12, -0.135, 1.1, 0),
+              ...[-1, 1].map(s => S(0.047, 0.24, 0.68, s * 0.19, 1.3, 0.7, 0.9))];
+    P.shirt = [R(0.02, 0.24, 0.15, -0.035, 0.94, 0, t, 0.005)];
+    P.tie = [R(0.015, 0.32, 0.055, -0.022, 0.88, 0, t, 0.004)];
+    P.hairShort = [S(0.095, -0.14, 1.285, 0, 1, 0.92, 0.92)];
+    P.hairLong = [S(0.1, -0.145, 1.27, 0, 1.0, 1.15, 0.98), R(0.08, 0.28, 0.2, -0.2, 1.1, 0, t, 0.04)];
+  } else {
+    P.suit = [R(0.25, 0.58, 0.43, 0, 1.26, 0, 0, 0.07),
+      ...[-1, 1].flatMap(s => [R(0.16, 0.48, 0.17, 0, 0.73, s * 0.1, 0, 0.05), R(0.14, 0.46, 0.14, 0, 0.28, s * 0.1, 0, 0.04),
+                               R(0.11, 0.33, 0.12, 0.03, 1.35, s * 0.255, 0.25, 0.04), R(0.32, 0.1, 0.11, 0.2, 1.2, s * 0.225, 0, 0.035)])];
+    P.shoes = [-1, 1].map(s => R(0.26, 0.09, 0.11, 0.07, 0.045, s * 0.1, 0, 0.03));
+    P.skin = [S(0.09, 0.02, 1.73, 0, 1, 1.27, 0.86), C(0.05, 0.12, 0.0, 1.58, 0),
+              ...[-1, 1].map(s => S(0.047, 0.37, 1.2, s * 0.2, 1.3, 0.7, 0.9))];
+    P.shirt = [R(0.02, 0.24, 0.15, 0.125, 1.42, 0, 0, 0.005)];
+    P.tie = [R(0.015, 0.32, 0.055, 0.137, 1.36, 0, 0, 0.004)];
+    P.hairShort = [S(0.095, 0.0, 1.765, 0, 1, 0.92, 0.92)];
+    P.hairLong = [S(0.1, -0.005, 1.75, 0, 1.0, 1.15, 0.98), R(0.08, 0.28, 0.2, -0.06, 1.58, 0, 0, 0.04)];
+  }
+  for (const k in P) P[k] = merge(P[k]);
+  return P;
+}
+
+const pick = list => list[Math.floor(rand() * list.length)];
+const PALETTE = {
+  suitMen: ['#1c2230', '#24272d', '#16171a', '#33363c', '#22304f', '#2e2f33', '#3a3a3e', '#1f2a3d', '#2a2522'],
+  suitWomen: ['#a3242c', '#e9e5dc', '#2a4fa0', '#c76d8e', '#2a6b70', '#5a3d7a', '#cdb79a', '#1c2230', '#16171a', '#8a1c3a', '#d1b44f', '#efefef'],
+  skin: ['#f1c9a5', '#e8b996', '#d9a47c', '#c68863', '#a86b47', '#8a5434', '#6b3e26', '#4a2a1a', '#f5d6bc'],
+  hair: ['#1b1612', '#1b1612', '#2e2219', '#2e2219', '#4a3626', '#4a3626', '#6b5038', '#a88a5c', '#8e8c88', '#b9b6b0'],
+  tie: ['#9c1c26', '#1f3d7a', '#3a6fb0', '#6b1f3a', '#c9a043', '#2b2b2b', '#5d7fa8', '#b8323a', '#7d8fa8'],
+  shirt: ['#f2f2f0', '#f2f2f0', '#f2f2f0', '#dfe8f2', '#eef0f5'],
+  uniform: ['#3f4430', '#1b2235', '#354a6b', '#2f3640', '#1d2433', '#3b4232'],
+};
+function randomPerson(extra = {}) {
+  const woman = rand() < 0.32, hair = pick(PALETTE.hair);
+  const p = {pose: 'seated', woman, skin: pick(PALETTE.skin), hair, hairStyle: woman ? 'long' : (rand() < 0.06 ? 'bald' : 'short'),
+             suit: woman ? pick(PALETTE.suitWomen) : pick(PALETTE.suitMen), shirt: pick(PALETTE.shirt), tie: woman ? null : pick(PALETTE.tie)};
+  if (woman) p.shirt = rand() < 0.5 ? p.suit : '#f1ede4';
+  return Object.assign(p, extra);
+}
+function addPeople(people) {
+  const mats = {suit: std({map: fabricTex, roughness: 0.82, envMapIntensity: 0.3}), shoes: std({color: '#0d0d0d', roughness: 0.35}),
+                skin: std({roughness: 0.62, envMapIntensity: 0.4}), shirt: std({roughness: 0.7, envMapIntensity: 0.3}),
+                tie: std({roughness: 0.45, envMapIntensity: 0.5}), hairShort: std({roughness: 0.75, envMapIntensity: 0.3}),
+                hairLong: std({roughness: 0.75, envMapIntensity: 0.3})};
+  for (const pose of ['seated', 'standing']) {
+    const geos = figureParts(pose), group = people.filter(p => p.pose === pose);
+    const colorOf = {suit: p => p.suit, shoes: () => '#111111', skin: p => p.skin, shirt: p => p.shirt, tie: p => p.tie,
+                     hairShort: p => p.hairStyle === 'short' ? p.hair : null, hairLong: p => p.hairStyle === 'long' ? p.hair : null};
+    for (const part in geos) {
+      const list = group.filter(p => colorOf[part](p));
+      instanced(geos[part], mats[part], list.map(p => p.m), list.map(p => new THREE.Color(colorOf[part](p))));
+    }
+  }
+}
+
+if (VIEW.sotu) {
+  const people = [];
+  const seated = (s, shift, extra) => people.push(randomPerson(Object.assign({m: seatMatrix(s, shift, 0)}, extra)));
+  const memberShift = 0.46 - L.rows[0].depth / 2;
+  // the front rows near the centre aisle: the justices and the Joint Chiefs on one side, the Cabinet on the other
+  const near = (row, east) => L.members.filter(s => s.row === row && (east ? s.angle < 90 : s.angle > 90))
+    .sort((a, b) => Math.abs(a.angle - 90) - Math.abs(b.angle - 90));
+  const special = new Map();
+  near(1, true).slice(0, 9).forEach(s => special.set(s, {suit: '#0e0f11', shirt: '#f4f2ee', tie: null}));
+  near(2, true).slice(0, 6).forEach(s => special.set(s, {suit: pick(PALETTE.uniform), shirt: '#d8d2c4', tie: '#1b1b1b', woman: false, hairStyle: 'short'}));
+  for (const s of L.members) seated(s, memberShift, special.get(s) || {});
+  for (const s of L.public) seated(s, 0.46 - L.rows.find(r => r.kind === 'public').depth / 2, {});
+  for (const s of PRESS_SEATS) seated(s, 0.46 - 0.85 / 2, {});
+  // the President at the rostrum; the Vice President and the Speaker behind
+  const at = (x, y, z, face, dy = 0) => new THREE.Matrix4().compose(V(x, y, z + dy), new THREE.Quaternion().setFromAxisAngle(UP, face), ONE);
+  people.push(randomPerson({pose: 'standing', m: at(0, 3.02, 0.72, Math.PI / 2), woman: false, hairStyle: 'short', hair: '#9a968e',
+                            suit: '#1b2233', shirt: '#f2f2f0', tie: '#2a4b8d', skin: '#e8b996'}));
+  for (const x of [-0.62, 0.62]) people.push(randomPerson({m: at(x, 1.12, DAIS, Math.PI / 2, 0.1)}));
+  lectern(0, 3.6, 1.78, Math.PI / 2, {w: 0.85, d: 0.44});
+  addPeople(people);
+}
+
 // ------------------------------------------------------------------ lighting
 
 scene.add(new THREE.HemisphereLight('#fff3e0', '#4a3a2a', 0.42));
@@ -1181,7 +1298,10 @@ sao.saoMaterial.defines.NUM_SAMPLES = 16; sao.saoMaterial.needsUpdate = true;
 { // the depth render inside the pass needs no lighting
   const depthOnly = new THREE.MeshBasicMaterial({colorWrite: false});
   const render = sao.render.bind(sao);
-  sao.render = (...args) => { scene.overrideMaterial = depthOnly; try { render(...args); } finally { scene.overrideMaterial = null; } };
+  sao.render = (...args) => {
+    scene.overrideMaterial = depthOnly; for (const m of NO_AO) m.visible = false;
+    try { render(...args); } finally { scene.overrideMaterial = null; for (const m of NO_AO) m.visible = true; }
+  };
 }
 composer.addPass(sao);
 composer.addPass(new THREE.ShaderPass({

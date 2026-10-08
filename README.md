@@ -216,7 +216,8 @@ party unlinked rather than red.
 ## An enlarged House chamber
 
 `chamber.py` designs a House chamber big enough for the 1,527 members in
-`parties/us-house.txt` and renders it in 3D, made to look like today's Hall of the House.
+`parties/us-house.txt` and renders it in 3D, made to look like today's Hall of the House,
+empty or during a State of the Union.
 
 ```sh
 python chamber.py                      # print the seat counts and render every view
@@ -225,32 +226,51 @@ python chamber.py --views gallery-view --size 1280x720   # one quick preview
 ```
 
 ![Gallery view](chamber/chamber-gallery-view.png)
+![State of the Union](chamber/chamber-sotu-gallery.png)
 
-The room and its fittings are today's: the three-tier walnut rostrum, the marble
+The fittings are today's: the three-tier walnut rostrum, the marble
 frontispiece with its black columns, flag, fasces and clock, the portraits of
 Washington and Lafayette, leaded-glass doors, the gilt Greek-key frieze, blue
 damask upper walls, the coffered ceiling with its laylight, the blue carpet with
 gold rosettes, and curved benches with leather seats and walnut backs.
 
-The difference is the wall between the floor and the galleries. It is gone, so
-the members' benches rise in one continuous bowl from the well up through the
-old gallery space, and the public sits in a few curved rows around the top,
-behind a walnut rail. The press gallery stays where it is, above the rostrum.
+### Does it fit?
+
+Today's hall is 139 x 93 ft and 36 ft high, *galleries included* (Glenn Brown,
+*History of the United States Capitol*), and today's seats come in pairs 52½ in
+wide and 33 in deep (House collection). At that size, with rows 44 in apart, today's
+hall could hold about 880 members even if all of it were seats, so 1,527 cannot fit in it.
+
+So the new hall takes in almost the whole House wing, which is 238 ft 10 in by
+142 ft 8 in outside. It keeps the outer walls and a corridor round the room. The
+cloakrooms, lobbies and grand stairs around today's hall would have to go or move.
 
 | | |
 | --- | --- |
-| Room | 57.6 x 36.0 m, 11.0 m high (today's 139 x 93 ft floor plus the galleries) |
-| Members | 24 tiers of benches, 1,542 places for 1,527 members (15 spare) |
-| Public | 342 seats in 3 rows at the top |
-| Total | 1,884 seats |
+| Room | 210 x 110 ft (64.0 x 33.5 m), 36 ft high |
+| Members | 25 tiers, 1,544 seats for 1,527 members (17 spare), real seat size |
+| Public | 186 seats in 4 rows at the top, behind a rail and a glass screen |
+| Total | 1,730 seats |
 
-The galleries' depth isn't published; the model assumes 25 ft on the east, west
-and north sides, which matches photos of today's chamber.
+There are no separate galleries. The members' benches rise in one continuous
+bowl from the well, and the outer rows run on into the corners of the room. The
+public sits at the top, behind a walnut rail with a laminated-glass screen on
+it, since visitors now sit just behind the members. The press gallery stays
+above the rostrum.
 
-Views (in `chamber/`): `gallery-view` (from the top of the bowl, facing the
-rostrum), `side-view`, `floor-view` (from a leadership table), `speaker-view` (from
-the rostrum) and `party-seating` (from above, members' seats in their party
-colours, left-wing parties on the Speaker's right as Democrats sit today).
+Views (in `chamber/`):
+
+| View | What |
+| --- | --- |
+| `gallery-view` | From the top of the bowl, facing the rostrum |
+| `side-view` | From the public seats in a corner |
+| `floor-view` | From a leadership table |
+| `speaker-view` | From the rostrum |
+| `party-seating` | From above, members' seats in their party colours (left-wing parties on the Speaker's right, as Democrats sit today) |
+| `sotu-gallery`, `sotu-rostrum`, `sotu-president` | A State of the Union: every seat taken, the President at the rostrum, the Vice President and the Speaker behind |
+
+The people are simple figures, not detailed humans: they look right from a
+distance but have no faces close up.
 
 Rendering uses [three.js](https://threejs.org/) in the same headless Chromium
 as `wikishot.py`; the first run downloads three.js into `.cache/`.
