@@ -17,6 +17,7 @@ Speaker's right, as Democrats sit today).
 """
 
 import argparse
+import base64
 import json
 import math
 import os
@@ -361,249 +362,50 @@ def balcony_bands():
     return bands + [floor_front], parapet
 
 
+def split_rail():
+    rows = balcony_rows()
+    d = BALCONY_ROW_DEPTH
+    public_front = [r for r in rows if r["kind"] == "public"][0]
+    members_back = [r for r in rows if r["kind"] == "member"][-1]
+    edge = public_front["inset"] + d / 2
+    z0 = round(members_back["z"] + 0.15, 3)
+    return {"z0": z0, "z": round(z0 + 0.9, 3), "polys": polygons(balcony_outline(edge - 0.07, edge))}
 
-SCENE_JS = r"""
-THREE.ColorManagement.legacyMode = false;
-const L = window.LAYOUT, VIEW = window.VIEW;
-const W = L.room.w, D = L.room.d, H = L.room.h, HW = W / 2;
-const canvas = document.getElementById('c');
-const renderer = new THREE.WebGLRenderer({canvas, antialias: true, preserveDrawingBuffer: true});
-renderer.setPixelRatio(1);
-renderer.setSize(canvas.width, canvas.height, false);
-renderer.outputEncoding = THREE.sRGBEncoding;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.15;
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-const scene = new THREE.Scene();
-scene.background = new THREE.Color('#1b1d22');
 
-// plan (x east, y north, z up) -> three (x, up, -north)
-const V = (x, y, z) => new THREE.Vector3(x, z, -y);
-const mat = (color, opts = {}) => new THREE.MeshStandardMaterial(Object.assign({color, roughness: 0.8, metalness: 0}, opts));
 
-function shapeFrom(poly) {
-  const s = new THREE.Shape(poly.outer.map(([x, y]) => new THREE.Vector2(x, y)));
-  for (const h of poly.holes) s.holes.push(new THREE.Path(h.map(([x, y]) => new THREE.Vector2(x, y))));
-  return s;
-}
-function extrude(polys, z0, z1, material) {
-  const group = new THREE.Group();
-  if (z1 - z0 < 0.005) z1 = z0 + 0.005;
-  for (const poly of polys) {
-    const g = new THREE.ExtrudeGeometry(shapeFrom(poly), {depth: z1 - z0, bevelEnabled: false, curveSegments: 1});
-    g.rotateX(-Math.PI / 2);
-    g.translate(0, z0, 0);
-    const m = new THREE.Mesh(g, material);
-    m.castShadow = true; m.receiveShadow = true;
-    group.add(m);
-  }
-  scene.add(group);
-  return group;
-}
-function boxAt(x, y, z, w, d, h, material, rotY = 0) {
-  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), material);
-  m.position.copy(V(x, y, z + h / 2));
-  m.rotation.y = rotY;
-  m.castShadow = true; m.receiveShadow = true;
-  scene.add(m);
-  return m;
-}
-function star(g, cx, cy, r) {
-  g.beginPath();
-  for (let i = 0; i < 10; i++) {
-    const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.4 : r;
-    g.lineTo(cx + rr * Math.cos(a), cy + rr * Math.sin(a));
-  }
-  g.closePath(); g.fill();
-}
-function canvasTexture(w, h, draw) {
-  const c = document.createElement('canvas'); c.width = w; c.height = h;
-  draw(c.getContext('2d'), w, h);
-  const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; t.anisotropy = 8;
-  return t;
-}
+SCENE_FILE = ROOT / "chamber_scene.js"
+THREE_BASE = "https://cdn.jsdelivr.net/npm/three@0.147.0/"
+THREE_FILES = ["build/three.min.js", "examples/js/environments/RoomEnvironment.js",
+               "examples/js/geometries/RoundedBoxGeometry.js"]
 
-// ---------- room
-const carpet = mat('#20305e', {roughness: 0.95});
-const wallMat = mat('#e6dcc6', {roughness: 0.9});
-const woodMat = mat('#5b3a24', {roughness: 0.6});
-const marbleMat = mat('#efe9dc', {roughness: 0.35});
-const goldMat = mat('#c9a24a', {roughness: 0.35, metalness: 0.6});
-const stepMat = mat('#283a70', {roughness: 0.95});
-const balconyMat = mat('#e9e0cb', {roughness: 0.85});
-
-const floor = new THREE.Mesh(new THREE.PlaneGeometry(W, D), carpet);
-floor.rotation.x = -Math.PI / 2; floor.position.copy(V(0, D / 2, 0)); floor.receiveShadow = true; scene.add(floor);
-
-const walls = {};
-function wall(name, x, y, w, rotY) {
-  const g = new THREE.Group();
-  const panel = new THREE.Mesh(new THREE.PlaneGeometry(w, H), wallMat);
-  panel.position.y = H / 2; panel.receiveShadow = true; g.add(panel);
-  const wains = new THREE.Mesh(new THREE.BoxGeometry(w, 1.25, 0.06), woodMat);
-  wains.position.set(0, 0.62, 0.03); g.add(wains);
-  // pilasters
-  const n = Math.round(w / 4.6);
-  for (let i = 0; i <= n; i++) {
-    const px = -w / 2 + i * (w / n);
-    const pil = new THREE.Mesh(new THREE.BoxGeometry(0.55, H, 0.18), marbleMat);
-    pil.position.set(px, H / 2, 0.09); pil.receiveShadow = true; g.add(pil);
-  }
-  const cornice = new THREE.Mesh(new THREE.BoxGeometry(w, 0.45, 0.35), marbleMat);
-  cornice.position.set(0, H - 0.25, 0.17); g.add(cornice);
-  const trim = new THREE.Mesh(new THREE.BoxGeometry(w, 0.08, 0.38), goldMat);
-  trim.position.set(0, H - 0.5, 0.19); g.add(trim);
-  g.position.copy(V(x, y, 0)); g.rotation.y = rotY;
-  scene.add(g); walls[name] = g;
-}
-wall('south', 0, 0, W, Math.PI);
-wall('north', 0, D, W, 0);
-wall('west', -HW, D / 2, D, Math.PI / 2);
-wall('east', HW, D / 2, D, -Math.PI / 2);
-
-// doors along the floor level
-const doorMat = mat('#3a2416', {roughness: 0.5});
-for (const [x, y, rot] of [[0, D - 0.04, Math.PI], [-HW + 0.04, 6, Math.PI / 2], [HW - 0.04, 6, -Math.PI / 2], [-10, D - 0.04, Math.PI], [10, D - 0.04, Math.PI]]) {
-  const dmesh = new THREE.Mesh(new THREE.BoxGeometry(2.2, 3.0, 0.08), doorMat);
-  dmesh.position.copy(V(x, y, 1.5)); dmesh.rotation.y = rot; scene.add(dmesh);
-}
-
-// ceiling with the stained-glass skylight
-const ceiling = new THREE.Group();
-const ceil = new THREE.Mesh(new THREE.PlaneGeometry(W, D), mat('#d9cfb8', {roughness: 0.9}));
-ceil.rotation.x = Math.PI / 2; ceil.position.copy(V(0, D / 2, H)); ceiling.add(ceil);
-const skyTex = canvasTexture(1024, 640, (g, w, h) => {
-  g.fillStyle = '#cdb67a'; g.fillRect(0, 0, w, h);
-  const cols = 12, rows = 7;
-  for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
-    const x = i * w / cols, y = j * h / rows;
-    g.fillStyle = (i + j) % 2 ? '#e8d9a8' : '#f2e6bd'; g.fillRect(x + 6, y + 6, w / cols - 12, h / rows - 12);
-  }
-  g.fillStyle = '#f7efd2'; g.beginPath(); g.ellipse(w / 2, h / 2, 150, 120, 0, 0, Math.PI * 2); g.fill();
-  g.strokeStyle = '#9c7a2e'; g.lineWidth = 10; g.stroke();
-  g.fillStyle = '#9c7a2e'; star(g, w / 2, h / 2, 80);
-});
-const sky = new THREE.Mesh(new THREE.PlaneGeometry(W * 0.55, D * 0.5), new THREE.MeshStandardMaterial({map: skyTex, emissive: '#fff4d6', emissiveMap: skyTex, emissiveIntensity: 0.9}));
-sky.rotation.x = Math.PI / 2; sky.position.copy(V(0, D * 0.55, H - 0.02)); ceiling.add(sky);
-for (let i = -4; i <= 4; i++) {  // coffers
-  const beam = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.4, D), marbleMat); beam.position.copy(V(i * W / 9, D / 2, H - 0.2)); ceiling.add(beam);
-}
-for (let j = 1; j < 6; j++) {
-  const beam = new THREE.Mesh(new THREE.BoxGeometry(W, 0.4, 0.35), marbleMat); beam.position.copy(V(0, j * D / 6, H - 0.2)); ceiling.add(beam);
-}
-scene.add(ceiling);
-
-// ---------- rostrum
-const rw = L.rostrum.w, rd = L.rostrum.d;
-boxAt(0, rd / 2, 0, rw, rd, 0.75, woodMat);
-boxAt(0, rd / 2 + 0.02, 0, rw - 0.6, 0.05, 0.6, marbleMat).position.z = -(rd + 0.02);
-boxAt(0, (rd - 1.0) / 2, 0.75, rw * 0.7, rd - 1.0, 0.75, woodMat);
-boxAt(0, (rd - 2.3) / 2, 1.5, rw * 0.38, rd - 2.3, 0.8, woodMat);
-boxAt(0, 0.6, 2.3, 1.1, 0.7, 1.5, mat('#3b2214'));                 // Speaker's chair
-boxAt(0, rd + 0.01, 0.15, rw, 0.04, 0.5, goldMat);
-const flagTex = canvasTexture(950, 500, (g, w, h) => {
-  for (let i = 0; i < 13; i++) { g.fillStyle = i % 2 ? '#ffffff' : '#b22234'; g.fillRect(0, i * h / 13, w, h / 13 + 1); }
-  g.fillStyle = '#3c3b6e'; g.fillRect(0, 0, w * 0.4, h * 7 / 13);
-  g.fillStyle = '#fff';
-  for (let r = 0; r < 9; r++) for (let c = 0; c < (r % 2 ? 5 : 6); c++) star(g, (c + (r % 2 ? 1 : 0.5)) * w * 0.4 / 6, (r + 1) * h * 7 / 13 / 10, 9);
-});
-const flag = new THREE.Mesh(new THREE.PlaneGeometry(5.4, 2.85), new THREE.MeshStandardMaterial({map: flagTex, roughness: 0.9, side: THREE.DoubleSide}));
-flag.position.copy(V(0, 0.22, 5.2)); flag.rotation.y = Math.PI; scene.add(flag);
-const mottoTex = canvasTexture(1400, 120, (g, w, h) => {
-  g.fillStyle = '#e6dcc6'; g.fillRect(0, 0, w, h);
-  g.fillStyle = '#a8862f'; g.font = 'bold 82px Georgia, serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
-  g.fillText('IN GOD WE TRUST', w / 2, h / 2 + 4);
-});
-const motto = new THREE.Mesh(new THREE.PlaneGeometry(9, 0.77), new THREE.MeshStandardMaterial({map: mottoTex}));
-motto.position.copy(V(0, 0.4, 7.75)); motto.rotation.y = Math.PI; scene.add(motto);
-for (const x of [-4.2, -3.2, 3.2, 4.2]) boxAt(x, 0.35, 0, 0.7, 0.7, 7.0, marbleMat);
-boxAt(0, 0.35, 7.0, 9.8, 0.75, 0.45, marbleMat);
-// lecterns and tables in the well
-for (const x of [-3.4, 3.4]) { boxAt(x, 6.2, 0, 1.0, 0.7, 1.15, woodMat); boxAt(x, 8.0, 0, 3.4, 1.0, 0.76, woodMat); }
-
-// ---------- bowl and balcony
-for (const b of L.bowl_bands) extrude(b.polys, 0, b.z, stepMat);
-L.balcony_bands.forEach((b, i) => extrude(b.polys, b.z0, b.z, i === L.balcony_bands.length - 1 ? balconyMat : stepMat));
-extrude(L.parapet.polys, L.parapet.z0, L.parapet.z, balconyMat);
-// gilded rail on the parapet
-extrude(L.parapet.polys, L.parapet.z, L.parapet.z + 0.07, goldMat);
-
-// ---------- seats
-function chairGeometry(w, depth, seatH, backH) {
-  const parts = [
-    new THREE.BoxGeometry(depth, 0.12, w).translate(0, seatH, 0),
-    new THREE.BoxGeometry(0.1, backH, w).translate(-depth / 2 + 0.05, seatH + backH / 2, 0),
-    new THREE.BoxGeometry(depth * 0.8, 0.06, 0.06).translate(0, seatH + 0.2, w / 2 - 0.03),
-    new THREE.BoxGeometry(depth * 0.8, 0.06, 0.06).translate(0, seatH + 0.2, -w / 2 + 0.03),
-    new THREE.CylinderGeometry(0.05, 0.08, seatH, 8).translate(0, seatH / 2, 0),
-  ].map(g => g.toNonIndexed());
-  const pos = [], norm = [];
-  for (const g of parts) { pos.push(...g.attributes.position.array); norm.push(...g.attributes.normal.array); }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-  geo.setAttribute('normal', new THREE.Float32BufferAttribute(norm, 3));
-  return geo;
-}
-const chair = chairGeometry(0.5, 0.5, 0.46, 0.62);
-function placeSeats(list, colorOf) {
-  const mesh = new THREE.InstancedMesh(chair, new THREE.MeshStandardMaterial({roughness: 0.55}), list.length);
-  const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), one = new THREE.Vector3(1, 1, 1);
-  list.forEach((s, i) => {
-    q.setFromAxisAngle(up, s.face);
-    m4.compose(V(s.x, s.y, s.z), q, one);
-    mesh.setMatrixAt(i, m4);
-    mesh.setColorAt(i, new THREE.Color(colorOf(s)));
-  });
-  mesh.castShadow = true; mesh.receiveShadow = true;
-  scene.add(mesh);
-}
-const spare = '#6b5a4a';
-const partyColor = s => s.party == null ? spare : L.parties[s.party].color;
-const leather = s => '#2c3d73';
-const colorOf = VIEW.colors === 'party' ? partyColor : leather;
-placeSeats(L.floor_seats, colorOf);
-placeSeats(L.balcony_members, colorOf);
-placeSeats(L.public, () => '#7d2230');
-
-// ---------- light
-scene.add(new THREE.HemisphereLight('#fff6e6', '#8a7b66', 0.75));
-const sun = new THREE.DirectionalLight('#fff3dd', 1.25);
-sun.position.copy(V(-6, D * 0.65, 40)); sun.target.position.copy(V(0, D / 2, 0));
-sun.castShadow = true; sun.shadow.mapSize.set(4096, 4096);
-Object.assign(sun.shadow.camera, {left: -30, right: 30, top: 30, bottom: -30, near: 1, far: 80});
-sun.shadow.bias = -0.0004;
-scene.add(sun, sun.target);
-const fill = new THREE.PointLight('#ffe9c4', 0.35, 60); fill.position.copy(V(0, 4, 8)); scene.add(fill);
-
-// ---------- view
-for (const name of VIEW.hide || []) { if (name === 'ceiling') ceiling.visible = false; else walls[name].visible = false; }
-const cam = VIEW.ortho
-  ? new THREE.OrthographicCamera(-VIEW.ortho * canvas.width / canvas.height, VIEW.ortho * canvas.width / canvas.height, VIEW.ortho, -VIEW.ortho, 0.1, 200)
-  : new THREE.PerspectiveCamera(VIEW.fov, canvas.width / canvas.height, 0.1, 200);
-cam.position.copy(V(...VIEW.eye));
-if (VIEW.ortho) cam.up.set(0, 0, -1);
-cam.lookAt(V(...VIEW.target));
-renderer.render(scene, cam);
-window.RENDERED = true;
-"""
-
+# Camera positions (layout coordinates: x east, y north from the rostrum wall, z up).
 VIEWS = {
-    "gallery-view": dict(eye=(0, ROOM_D - 3.6, 10.3), target=(0, 4.5, 0.0), fov=64, colors="party"),
-    "speaker-view": dict(eye=(0, 1.2, 4.6), target=(0, 20, 2.5), fov=80, colors="party"),
-    "cutaway": dict(eye=(26, 44, 40), target=(0, 12, 0), fov=40, colors="party", hide=["ceiling", "north", "east"]),
-    "chamber": dict(eye=(-17.5, ROOM_D - 3.2, 10.4), target=(5, 3.5, 0.5), fov=66, colors="leather"),
+    "gallery-view": dict(eye=(0, ROOM_D - 3.4, 10.25), target=(0, 4.0, 0.6), fov=56),
+    "speaker-view": dict(eye=(0, 0.9, 4.25), target=(0, 22, 3.2), fov=70),
+    "floor-view": dict(eye=(-1.6, 5.4, 1.7), target=(-13, 19, 4.0), fov=66),
+    "corner-view": dict(eye=(-17.6, ROOM_D - 3.0, 10.4), target=(4, 4, 0.8), fov=64),
+    "party-seating": dict(eye=(26, 44, 40), target=(0, 12, 0), fov=40, colors="party", hide=["ceiling", "north", "east"]),
 }
+
+
+def three_scripts():
+    CACHE.mkdir(parents=True, exist_ok=True)
+    import requests
+    paths = []
+    for f in THREE_FILES:
+        path = CACHE / ("r147-" + Path(f).name)
+        if not path.exists():
+            response = requests.get(THREE_BASE + f, timeout=60)
+            response.raise_for_status()
+            path.write_bytes(response.content)
+        paths.append(path)
+    return paths
 
 
 def render_views(layout, names, size=(2560, 1440)):
     from playwright.sync_api import sync_playwright
-    import requests
 
-    CACHE.mkdir(parents=True, exist_ok=True)
-    three = CACHE / "three.min.js"
-    if not three.exists():
-        three.write_bytes(requests.get(THREE_URL, timeout=60).content)
+    scripts = "".join(f'<script src="{p.as_uri()}"></script>' for p in three_scripts())
     OUT_DIR.mkdir(exist_ok=True)
     written = []
     with sync_playwright() as p:
@@ -612,18 +414,21 @@ def render_views(layout, names, size=(2560, 1440)):
             page_html = (f'<!doctype html><html><body style="margin:0;background:#000">'
                          f'<canvas id="c" width="{size[0]}" height="{size[1]}"></canvas>'
                          f'<script>window.LAYOUT = {json.dumps(layout)}; window.VIEW = {json.dumps(VIEWS[name])};</script>'
-                         f'<script src="{three.as_uri()}"></script><script>{SCENE_JS}</script></body></html>')
+                         f'{scripts}<script src="{SCENE_FILE.as_uri()}"></script></body></html>')
             page_file = CACHE / f"{name}.html"
             page_file.write_text(page_html, encoding="utf-8")
             page = browser.new_page(viewport={"width": size[0], "height": size[1]})
             errors = []
             page.on("pageerror", lambda e: errors.append(str(e)))
             page.goto(page_file.as_uri())
-            page.wait_for_function("window.RENDERED === true", timeout=300_000)
-            if errors:
-                raise RuntimeError(f"{name}: {errors}")
+            try:
+                page.wait_for_function("window.RENDERED === true", timeout=600_000)
+            finally:
+                if errors:
+                    raise RuntimeError(f"{name}: {errors}")
             out = OUT_DIR / f"chamber-{name}.png"
-            page.locator("#c").screenshot(path=str(out))
+            data_url = page.evaluate("document.getElementById('c').toDataURL('image/png')")
+            out.write_bytes(base64.b64decode(data_url.split(",", 1)[1]))
             written.append(out)
             page.close()
         browser.close()
@@ -636,6 +441,7 @@ def model_data(layout):
     data["bowl_bands"] = bowl_bands(layout["rows"])
     data["balcony_bands"] = bands
     data["parapet"] = parapet
+    data["split_rail"] = split_rail()
     return data
 
 
