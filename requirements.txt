@@ -1,0 +1,3 @@
+parliamentarch>=1.1
+# Only needed for --png
+cairosvg
