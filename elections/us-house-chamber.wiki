@@ -1,0 +1,65 @@
+title: United States House of Representatives
+languages: 138
+---
+{{Short description|Lower house of the United States Congress}}
+{{Infobox legislature
+| background_color = #E81B23 !important
+| name = United States House of Representatives
+| legislature = [[120th United States Congress]]
+| coa_pic = Seal of the United States House of Representatives.svg
+| coa_res = 175
+| coa_alt = Seal of the United States House of Representatives
+| coa_caption = Unofficial seal
+| logo_pic = Flag of the United States House of Representatives.svg{{!}}border
+| logo_res = 175
+| logo_alt = Flag of the United States House of Representatives
+| logo_caption = Flag of the United States House of Representatives
+| body = United States Congress
+| house_type = Lower house
+| term_limits = None
+| new_session = {{Start date|2027|01|03}}
+| members = 1,527 members<br />764 for a majority
+| structure1 = [[File:diagrams/us-house-plain.svg|250px]]
+| structure1_res = 250px
+| political_groups1 = * {{nowrap|{{Color box|#8B0000|border=darkgray}} [[Communist Party USA|Communist Party]] (4)}}
+* {{nowrap|{{Color box|#C8102E|border=darkgray}} [[Party for Socialism and Liberation]] (3)}}
+* {{nowrap|{{Color box|#EC1F27|border=darkgray}} [[Democratic Socialist Party]] (40)}}
+* {{nowrap|{{Color box|#00A95C|border=darkgray}} [[Green Party of the United States|Green]] (35)}}
+* {{nowrap|{{Color box|#78A942|border=darkgray}} [[Animal Welfare Party|Animal Welfare]] (6)}}
+* {{nowrap|{{Color box|#F4563B|border=darkgray}} [[Progressive Party]] (178)}}
+* {{nowrap|{{Color box|#3333FF|border=darkgray}} [[Democratic Party (United States)|Democratic]] (301)}}
+* {{nowrap|{{Color box|#72A9DC|border=darkgray}} [[Democratic Union Party]] (102)}}
+* {{nowrap|{{Color box|#480D67|border=darkgray}} [[Forward Party (United States)|Forward]] (86)}}
+* {{nowrap|{{Color box|#FF7F00|border=darkgray}} [[American Solidarity Party]] (14)}}
+* {{nowrap|{{Color box|#58758E|border=darkgray}} [[Conservative Party]] (116)}}
+* {{nowrap|{{Color box|#FED000|border=darkgray}} [[Libertarian Party (United States)|Libertarian]] (65)}}
+* {{nowrap|{{Color box|#B8860B|border=darkgray}} Taxpayers (5)}}
+* {{nowrap|{{Color box|#E81B23|border=darkgray}} [[Republican Party (United States)|Republican]] (302)}}
+* {{nowrap|{{Color box|#8D2635|border=darkgray}} [[Patriot Party]] (174)}}
+* {{nowrap|{{Color box|#FFC0CB|border=darkgray}} [[New York State Right to Life Party|Right to Life]] (6)}}
+* {{nowrap|{{Color box|#A356DE|border=darkgray}} [[Constitution Party (United States)|Constitution]] (14)}}
+* {{nowrap|{{Color box|#572B85|border=darkgray}} [[United States Pirate Party|Pirate]] (5)}}
+* {{nowrap|{{Color box|#7DDF64|border=darkgray}} Cannabis Reform (5)}}
+* {{nowrap|{{Color box|#8A8A8A|border=darkgray}} Seniors (8)}}
+* {{nowrap|{{Color box|#6B7D2A|border=darkgray}} Farmers & Rural (10)}}
+* {{nowrap|{{Color box|#515A8A|border=darkgray}} Veterans (6)}}
+* {{nowrap|{{Color box|#B56A3A|border=darkgray}} Western States (4)}}
+* {{nowrap|{{Color box|#1F4E79|border=darkgray}} Alaska (2)}}
+* {{nowrap|{{Color box|#D4A017|border=darkgray}} Hawaiʻi (2)}}
+* {{nowrap|{{Color box|#DCDCDC|border=darkgray}} Independent (34)}}
+| term_length = 2 years
+| last_election1 = [[2026 United States House of Representatives elections|November 3, 2026]]
+| next_election1 = November 7, 2028
+| session_room = United States House of Representatives chamber.jpg
+| meeting_place = House of Representatives Chamber<br />[[United States Capitol]]<br />[[Washington, D.C.]]<br />United States
+| constitution = [[United States Constitution]]
+| website = {{URL|https://house.gov}}
+}}
+
+The '''United States House of Representatives''' is the [[lower house]] of the [[United States Congress]]. It has 1,527 members, elected every two years. No party holds a majority: after the [[2026 United States House of Representatives elections|November 3, 2026 elections]], the [[Republican Party (United States)|Republican Party]] is the largest with 302 seats, followed by the [[Democratic Party (United States)|Democratic Party]] with 301.
+
+== History ==
+
+== Composition ==
+
+== Members ==

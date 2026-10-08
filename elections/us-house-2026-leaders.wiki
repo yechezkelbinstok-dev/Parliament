@@ -15,7 +15,7 @@ languages: 9
 | seats_for_election = All 1,527 seats in the [[United States House of Representatives]]
 | majority_seats = 764
 | registered = 218,904,711
-| turnout = 181,487,922 (82.9%)
+| turnout = 181,487,922<br />82.9% {{increase}} 18.6 [[percentage point|pp]]
 | image_size = 100x125px
 | image1 = person:Steve Scalise
 | colour1 = E81B23
@@ -116,9 +116,6 @@ languages: 9
 | popular_vote9 = 4,990,918
 | percentage9 = 2.75%
 | swing9 = ''New party''
-| map_image = diagrams/us-house-plain.svg
-| map_size = 400px
-| map_caption = Composition of the House after the election
 }}
 
 [[Elections in the United States|Elections]] to the [[United States House of Representatives]] were held on November 3, 2026, to elect all 1,527 members of the House. No party came close to the 764 seats needed for a majority.
