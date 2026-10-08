@@ -1,18 +1,24 @@
 # Hypothetical: Reform UK wins a plurality (no majority) and governs in coalition with the Conservatives.
 # Seat numbers are invented for illustration.
 title: House of Commons: Reform-Conservative Coalition
-Sinn Féin, 7, #326760
-SDLP, 2, #2AA82C
-Alliance, 1, #F6CB2F
-Green, 24, #02A95B
-Plaid Cymru, 6, #005B54
-SNP, 18, #FDF38E
-Labour, 138, #E4003B
-Liberal Democrats, 62, #FAA61A
-Independent, 10, #DDDDDD
-Speaker, 1, #000000
-Conservative, 112, #0087DC
-UUP, 1, #48A5EE
-DUP, 5, #D46A4C
-TUV, 1, #0C3A6A
-Reform UK, 262, #12B6CF
+style: westminster
+
+Speaker, 1, #000000, speaker
+
+# Government benches (bottom), starting next to the Speaker
+Reform UK, 262, #12B6CF, government
+Conservative, 112, #0087DC, government
+
+# Opposition benches (top)
+Labour, 138, #E4003B, opposition
+Liberal Democrats, 62, #FAA61A, opposition
+Green, 24, #02A95B, opposition
+SNP, 18, #FDF38E, opposition
+Independent, 10, #DDDDDD, opposition
+Sinn Féin, 7, #326760, opposition
+Plaid Cymru, 6, #005B54, opposition
+DUP, 5, #D46A4C, opposition
+SDLP, 2, #2AA82C, opposition
+Alliance, 1, #F6CB2F, opposition
+UUP, 1, #48A5EE, opposition
+TUV, 1, #0C3A6A, opposition
