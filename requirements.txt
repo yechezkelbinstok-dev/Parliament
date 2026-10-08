@@ -1,3 +1,10 @@
+# parliament.py
 parliamentarch>=1.1
-# Only needed for --png
-cairosvg
+cairosvg  # only needed for --png
+
+# wikishot.py (also needs a Chromium for Playwright: python -m playwright install chromium)
+requests
+beautifulsoup4
+lxml
+pillow
+playwright

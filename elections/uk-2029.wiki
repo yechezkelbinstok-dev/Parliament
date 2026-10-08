@@ -1,0 +1,67 @@
+title: 2029 United Kingdom general election
+languages: 52
+---
+{{Short description|none}}
+{{Infobox election
+| election_name = 2029 United Kingdom general election
+| country = United Kingdom
+| type = parliamentary
+| ongoing = no
+| previous_election = 2024 United Kingdom general election
+| previous_year = 2024
+| next_election = Next United Kingdom general election
+| next_year = ''Next''
+| election_date = 3 May 2029
+| seats_for_election = All [[Constituencies of the Parliament of the United Kingdom|650 seats]] in the [[House of Commons of the United Kingdom|House of Commons]]
+| majority_seats = 326
+| image_size = 160x180px
+| image1 = person:Andy Burnham
+| leader1 = [[Andy Burnham]]
+| party1 = Labour Party (UK)
+| leader_since1 = 17 July 2026
+| leaders_seat1 = [[Makerfield (UK Parliament constituency)|Makerfield]]
+| last_election1 = 411 seats, 33.7%
+| seats1 = 250
+| seat_change1 = {{Decrease}} 161
+| percentage1 = 26.0%
+| swing1 = {{Decrease}} 7.7 [[Percentage point|pp]]
+| image2 = person:Nigel Farage
+| leader2 = [[Nigel Farage]]
+| party2 = Reform UK
+| leader_since2 = 3 June 2024
+| leaders_seat2 = [[Clacton (UK Parliament constituency)|Clacton]]
+| last_election2 = 5 seats, 14.3%
+| seats2 = 147
+| seat_change2 = {{Increase}} 142
+| percentage2 = 24.0%
+| swing2 = {{Increase}} 9.7 [[Percentage point|pp]]
+| image3 = person:Kemi Badenoch
+| leader3 = [[Kemi Badenoch]]
+| party3 = Conservative Party (UK)
+| leader_since3 = 2 November 2024
+| leaders_seat3 = [[North West Essex (UK Parliament constituency)|North West Essex]]
+| last_election3 = 121 seats, 23.7%
+| seats3 = 125
+| seat_change3 = {{Increase}} 4
+| percentage3 = 22.0%
+| swing3 = {{Decrease}} 1.7 [[Percentage point|pp]]
+| map_image = diagrams/uk-mrp-sept-2026-arch.svg
+| map_size = 400px
+| map_caption = Composition of the [[House of Commons of the United Kingdom|House of Commons]] after the election
+| title = [[Prime Minister of the United Kingdom|Prime Minister]]
+| posttitle = Prime Minister after election
+| before_election = [[Andy Burnham]]
+| before_party = [[Labour Party (UK)|Labour]]
+| after_election = [[Nigel Farage]]
+| after_party = [[Reform UK|Reform]]
+}}
+
+A [[general elections in the United Kingdom|general election]] was held in the United Kingdom on 3 May 2029 to elect all 650 members of the [[House of Commons of the United Kingdom|House of Commons]]. The governing [[Labour Party (UK)|Labour Party]] under Prime Minister [[Andy Burnham]] remained the largest party but lost its majority, winning 250 seats. [[Reform UK]], led by [[Nigel Farage]], came second with 147 seats and formed a minority [[coalition government]] with the [[Conservative Party (UK)|Conservative Party]] led by [[Kemi Badenoch]], making Farage [[Prime Minister of the United Kingdom|Prime Minister]].
+
+== Background ==
+
+== Electoral system ==
+
+== Campaign ==
+
+== Results ==

@@ -95,8 +95,16 @@ def normalize_color(color: str) -> str:
     raise ValueError(f"not a hex code or color name: {color!r}")
 
 
-def parse_input(text: str) -> tuple[list[tuple[str, int, str, str | None]], dict]:
-    """Return ([(name, seats, color, bench), ...], settings) from the input text."""
+def apply_setting(settings: dict, key: str, value: str) -> None:
+    kind = SETTINGS[key][0]
+    settings[key] = parse_bool(value) if kind is bool else kind(value)
+
+
+def parse_input(text: str, overrides: list[str] = ()) -> tuple[list[tuple[str, int, str, str | None]], dict]:
+    """Return ([(name, seats, color, bench), ...], settings) from the input text.
+
+    overrides are "key=value" settings that win over the ones in the file.
+    """
     parties = []
     settings = {key: default for key, (_, default) in SETTINGS.items()}
 
@@ -107,9 +115,8 @@ def parse_input(text: str) -> tuple[list[tuple[str, int, str, str | None]], dict
 
         if match := SETTING_LINE.match(line):
             key, value = match.group(1).lower(), match.group(2).strip()
-            kind = SETTINGS[key][0]
             try:
-                settings[key] = parse_bool(value) if kind is bool else kind(value)
+                apply_setting(settings, key, value)
             except ValueError as e:
                 raise InputError(f"line {lineno}: bad value for {key}: {e}") from None
             continue
@@ -134,6 +141,16 @@ def parse_input(text: str) -> tuple[list[tuple[str, int, str, str | None]], dict
         except ValueError as e:
             raise InputError(f"line {lineno}: {e}") from None
         parties.append((name, seats, color, bench))
+
+    for override in overrides:
+        key, sep, value = override.partition("=")
+        key = key.strip().lower()
+        if not sep or key not in SETTINGS:
+            raise InputError(f"--set expects key=value with a known key ({', '.join(SETTINGS)}), got {override!r}")
+        try:
+            apply_setting(settings, key, value.strip())
+        except ValueError as e:
+            raise InputError(f"bad value for {key}: {e}") from None
 
     settings["style"] = settings["style"].lower()
     if settings["style"] not in STYLES:
@@ -277,10 +294,12 @@ def main() -> int:
                         help="SVG file to write (default: diagrams/<input name>.svg)")
     parser.add_argument("--png", action="store_true", help="also write a PNG next to the SVG (needs cairosvg)")
     parser.add_argument("--scale", type=float, default=4, help="PNG size multiplier (default: 4)")
+    parser.add_argument("-s", "--set", action="append", default=[], metavar="KEY=VALUE",
+                        help="override a setting from the file, e.g. -s legend=no -s title= (repeatable)")
     args = parser.parse_args()
 
     try:
-        parties, settings = parse_input(args.input.read_text(encoding="utf-8"))
+        parties, settings = parse_input(args.input.read_text(encoding="utf-8"), args.set)
     except (OSError, InputError) as e:
         print(f"error: {args.input}: {e}", file=sys.stderr)
         return 1

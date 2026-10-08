@@ -1,0 +1,128 @@
+title: 2026 United States House of Representatives elections
+languages: 9
+---
+{{Short description|none}}
+{{Infobox legislative election
+| election_name = 2026 United States House of Representatives elections
+| country = United States
+| previous_election = [[2024 United States House of Representatives elections|2024]]
+| next_election = ''2028''
+| election_date = November 3, 2026
+| seats_for_election = All 1,527 seats in the [[United States House of Representatives]]
+| majority_seats = 764
+| noleader = yes
+| nopercentage = yes
+| first_election = yes
+| party1 = [[Republican Party (United States)|Republican Party]]
+| party1_link = no
+| colour1 = #C83B3E
+| seats1 = 302
+| party2 = [[Democratic Party (United States)|Democratic Party]]
+| party2_link = no
+| colour2 = #3168C6
+| seats2 = 296
+| party3 = [[Patriot Party]]
+| party3_link = no
+| colour3 = #8D2635
+| seats3 = 174
+| party4 = [[Progressive Party]]
+| party4_link = no
+| colour4 = #E15B86
+| seats4 = 168
+| party5 = [[Conservative Party]]
+| party5_link = no
+| colour5 = #58758E
+| seats5 = 116
+| party6 = [[Democratic Union Party]]
+| party6_link = no
+| colour6 = #72A9DC
+| seats6 = 102
+| party7 = [[Forward Party (United States)|Forward Party]]
+| party7_link = no
+| colour7 = #8064B3
+| seats7 = 82
+| party8 = [[Libertarian Party (United States)|Libertarian Party]]
+| party8_link = no
+| colour8 = #E2B72E
+| seats8 = 65
+| party9 = [[Green Party of the United States|Green Party]]
+| party9_link = no
+| colour9 = #38965A
+| seats9 = 57
+| party10 = [[Democratic Socialist Party]]
+| party10_link = no
+| colour10 = #C43D63
+| seats10 = 37
+| party11 = [[American Solidarity Party]]
+| party11_link = no
+| colour11 = #C28A30
+| seats11 = 14
+| party12 = [[Constitution Party (United States)|Constitution Party]]
+| party12_link = no
+| colour12 = #684A39
+| seats12 = 14
+| party13 = Farmers & Rural Party
+| party13_link = no
+| colour13 = #8C7036
+| seats13 = 10
+| party14 = Seniors Party
+| party14_link = no
+| colour14 = #B28A61
+| seats14 = 8
+| party15 = [[Animal Welfare Party]]
+| party15_link = no
+| colour15 = #78A942
+| seats15 = 6
+| party16 = [[New York State Right to Life Party|Right to Life Party]]
+| party16_link = no
+| colour16 = #75435B
+| seats16 = 6
+| party17 = Veterans Party
+| party17_link = no
+| colour17 = #586D78
+| seats17 = 6
+| party18 = Cannabis Reform Party
+| party18_link = no
+| colour18 = #62AD3F
+| seats18 = 5
+| party19 = [[United States Pirate Party|Pirate Party]]
+| party19_link = no
+| colour19 = #333333
+| seats19 = 5
+| party20 = Taxpayers Party
+| party20_link = no
+| colour20 = #D28C2D
+| seats20 = 5
+| party21 = [[Communist Party USA|Communist Party]]
+| party21_link = no
+| colour21 = #8B0F1F
+| seats21 = 4
+| party22 = Western States Party
+| party22_link = no
+| colour22 = #A46E32
+| seats22 = 4
+| party23 = [[Party for Socialism and Liberation]]
+| party23_link = no
+| colour23 = #B3263E
+| seats23 = 3
+| party24 = Alaska Party
+| party24_link = no
+| colour24 = #66A0B3
+| seats24 = 2
+| party25 = Hawaiʻi Party
+| party25_link = no
+| colour25 = #D9A441
+| seats25 = 2
+| party26 = Independents
+| party26_link = no
+| colour26 = #B8B8B8
+| seats26 = 34
+| map = diagrams/us-house-plain.svg
+| map_caption = Composition of the House after the election
+}}
+
+[[Elections in the United States|Elections]] to the [[United States House of Representatives]] were held on November 3, 2026, to elect all 1,527 members of the House. No party came close to the 764 seats needed for a majority: the Republican-led bloc won 682 seats, the Democratic-led bloc 671 and unaligned parties 174.
+
+== Background ==
+
+== Results ==

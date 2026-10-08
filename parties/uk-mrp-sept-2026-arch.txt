@@ -1,0 +1,21 @@
+# Same seats as uk-mrp-sept-2026.txt, as a plain arch for the 2029 election infobox
+# (elections/uk-2029.wiki). Left to right roughly by political position.
+legend: no
+number: yes
+
+Sinn Féin, 7, #326760
+SDLP, 2, #2AA82C
+Alliance, 1, #F6CB2F
+Green, 3, #02A95B
+Plaid Cymru, 6, #005B54
+SNP, 27, #FDF38E
+Labour, 250, #E4003B
+Liberal Democrats, 63, #FAA61A
+Independent/Other, 10, #BBBBBB
+Speaker, 1, #000000
+Conservative, 125, #0087DC
+UUP, 1, #48A5EE
+DUP, 5, #D46A4C
+TUV, 1, #0C3A6A
+Restore Britain, 1, #7B2D8E
+Reform UK, 147, #12B6CF

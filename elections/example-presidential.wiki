@@ -1,0 +1,56 @@
+title: 2028 United States presidential election
+languages: 38
+---
+{{Short description|none}}
+{{Infobox election
+| election_name = 2028 United States presidential election
+| country = United States
+| type = presidential
+| college_voted = yes
+| previous_election = 2024 United States presidential election
+| previous_year = 2024
+| next_election = 2032 United States presidential election
+| next_year = ''2032''
+| election_date = November 7, 2028
+| votes_for_election = 538 members of the [[United States Electoral College|Electoral College]]
+| needed_votes = 270 electoral
+| turnout = 65.8% {{increase}} 1.5 [[percentage point|pp]]
+| image_size = 200x200px
+| image1 = Female portrait placeholder cropped.jpg
+| nominee1 = '''Jane Doe'''
+| party1 = Democratic Party (United States)
+| home_state1 = [[Pennsylvania]]
+| running_mate1 = '''John Roe'''
+| electoral_vote1 = '''303'''
+| states_carried1 = '''26 + [[Washington, D.C.|DC]]'''
+| popular_vote1 = '''79,114,201'''
+| percentage1 = '''50.9%'''
+| image2 = Male portrait placeholder cropped.jpg
+| nominee2 = Richard Miles
+| party2 = Republican Party (United States)
+| home_state2 = [[Ohio]]
+| running_mate2 = Mary Major
+| electoral_vote2 = 235
+| states_carried2 = 24
+| popular_vote2 = 74,220,516
+| percentage2 = 47.7%
+| title = President
+| before_election = [[Donald Trump]]
+| before_party = Republican Party (United States)
+| posttitle = Elected President
+| after_election = Jane Doe
+| after_party = Democratic Party (United States)
+}}
+
+[[United States presidential election|Presidential elections]] were held in the [[United States]] on November 7, 2028. The [[Democratic Party (United States)|Democratic]] ticket of Jane Doe and John Roe defeated the [[Republican Party (United States)|Republican]] ticket of Richard Miles and Mary Major.
+
+== Background ==
+
+== Nominations ==
+=== Democratic Party ===
+=== Republican Party ===
+
+== General election ==
+=== Polling ===
+
+== Results ==
