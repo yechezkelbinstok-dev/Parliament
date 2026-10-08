@@ -11,19 +11,19 @@
         <circle cx="12.11" cy="177.64" r="1.89"/>
         <circle cx="16.84" cy="177.64" r="1.89"/>
         <circle cx="21.57" cy="177.64" r="1.89"/>
+        <circle cx="26.30" cy="177.64" r="1.89"/>
     </g>
     <g style="fill:#c8102e"
        id="1-Party-for-Socialism-and-Liberation">
         <title>Party for Socialism and Liberation</title>
-        <circle cx="26.30" cy="177.64" r="1.89"/>
         <circle cx="31.03" cy="177.64" r="1.89"/>
         <circle cx="35.76" cy="177.64" r="1.89"/>
+        <circle cx="40.49" cy="177.64" r="1.89"/>
+        <circle cx="45.22" cy="177.64" r="1.89"/>
     </g>
     <g style="fill:#ec1f27"
        id="2-Democratic-Socialist-Party">
         <title>Democratic Socialist Party</title>
-        <circle cx="40.49" cy="177.64" r="1.89"/>
-        <circle cx="45.22" cy="177.64" r="1.89"/>
         <circle cx="49.95" cy="177.64" r="1.89"/>
         <circle cx="54.68" cy="177.64" r="1.89"/>
         <circle cx="59.42" cy="177.64" r="1.89"/>
@@ -62,12 +62,12 @@
         <circle cx="36.29" cy="167.46" r="1.89"/>
         <circle cx="41.04" cy="167.45" r="1.89"/>
         <circle cx="45.79" cy="167.44" r="1.89"/>
+        <circle cx="50.54" cy="167.43" r="1.89"/>
+        <circle cx="55.28" cy="167.55" r="1.89"/>
     </g>
     <g style="fill:#00a95c"
        id="3-Green-Party">
         <title>Green Party</title>
-        <circle cx="50.54" cy="167.43" r="1.89"/>
-        <circle cx="55.28" cy="167.55" r="1.89"/>
         <circle cx="8.24" cy="162.59" r="1.89"/>
         <circle cx="60.04" cy="167.54" r="1.89"/>
         <circle cx="13.02" cy="162.44" r="1.89"/>
@@ -101,20 +101,16 @@
         <circle cx="42.33" cy="157.33" r="1.89"/>
         <circle cx="14.38" cy="152.38" r="1.89"/>
         <circle cx="75.07" cy="162.27" r="1.89"/>
-    </g>
-    <g style="fill:#78a942"
-       id="4-Animal-Welfare-Party">
-        <title>Animal Welfare Party</title>
         <circle cx="47.12" cy="157.32" r="1.89"/>
+    </g>
+    <g style="fill:#f4563b"
+       id="4-Progressive-Party">
+        <title>Progressive Party</title>
         <circle cx="19.18" cy="152.37" r="1.89"/>
         <circle cx="79.83" cy="162.49" r="1.89"/>
         <circle cx="23.98" cy="152.36" r="1.89"/>
         <circle cx="51.93" cy="157.30" r="1.89"/>
         <circle cx="56.69" cy="157.55" r="1.89"/>
-    </g>
-    <g style="fill:#f4563b"
-       id="5-Progressive-Party">
-        <title>Progressive Party</title>
         <circle cx="28.79" cy="152.35" r="1.89"/>
         <circle cx="84.64" cy="162.48" r="1.89"/>
         <circle cx="33.60" cy="152.34" r="1.89"/>
@@ -268,6 +264,10 @@
         <circle cx="57.04" cy="114.06" r="1.89"/>
         <circle cx="102.92" cy="138.58" r="1.89"/>
         <circle cx="48.85" cy="109.32" r="1.89"/>
+    </g>
+    <g style="fill:#a6192e"
+       id="5-Labor-Party">
+        <title>Labor Party</title>
         <circle cx="40.66" cy="104.58" r="1.89"/>
         <circle cx="94.73" cy="133.84" r="1.89"/>
         <circle cx="32.47" cy="99.84" r="1.89"/>
@@ -292,11 +292,11 @@
         <circle cx="72.68" cy="115.25" r="1.89"/>
         <circle cx="40.35" cy="95.60" r="1.89"/>
         <circle cx="48.54" cy="100.33" r="1.89"/>
-        <circle cx="56.74" cy="105.05" r="1.89"/>
     </g>
-    <g style="fill:#3333ff"
-       id="6-Democratic-Party">
-        <title>Democratic Party</title>
+    <g style="fill:#00897b"
+       id="6-Housing---Tenants-Party">
+        <title>Housing &amp; Tenants Party</title>
+        <circle cx="56.74" cy="105.05" r="1.89"/>
         <circle cx="64.94" cy="109.78" r="1.89"/>
         <circle cx="97.27" cy="129.44" r="1.89"/>
         <circle cx="105.46" cy="134.17" r="1.89"/>
@@ -304,6 +304,10 @@
         <circle cx="89.53" cy="123.96" r="1.89"/>
         <circle cx="37.58" cy="91.07" r="1.89"/>
         <circle cx="45.78" cy="95.80" r="1.89"/>
+    </g>
+    <g style="fill:#328de0"
+       id="7-Women-s-Equality-Party">
+        <title>Women&#x27;s Equality Party</title>
         <circle cx="53.98" cy="100.52" r="1.89"/>
         <circle cx="78.11" cy="115.46" r="1.89"/>
         <circle cx="62.18" cy="105.25" r="1.89"/>
@@ -318,6 +322,10 @@
         <circle cx="75.38" cy="110.98" r="1.89"/>
         <circle cx="67.68" cy="105.47" r="1.89"/>
         <circle cx="40.33" cy="86.81" r="1.89"/>
+    </g>
+    <g style="fill:#3333ff"
+       id="8-Democratic-Party">
+        <title>Democratic Party</title>
         <circle cx="48.55" cy="91.54" r="1.89"/>
         <circle cx="37.11" cy="83.12" r="1.89"/>
         <circle cx="84.12" cy="114.93" r="1.89"/>
@@ -600,7 +608,7 @@
         <circle cx="118.15" cy="34.12" r="1.89"/>
     </g>
     <g style="fill:#72a9dc"
-       id="7-Democratic-Union-Party">
+       id="9-Democratic-Union-Party">
         <title>Democratic Union Party</title>
         <circle cx="140.46" cy="86.31" r="1.89"/>
         <circle cx="135.02" cy="73.21" r="1.89"/>
@@ -700,14 +708,14 @@
         <circle cx="147.20" cy="24.99" r="1.89"/>
         <circle cx="157.03" cy="71.25" r="1.89"/>
         <circle cx="162.28" cy="94.31" r="1.89"/>
+    </g>
+    <g style="fill:#480d67"
+       id="10-Forward-Party">
+        <title>Forward Party</title>
         <circle cx="152.13" cy="43.28" r="1.89"/>
         <circle cx="159.83" cy="80.33" r="1.89"/>
         <circle cx="149.68" cy="29.30" r="1.89"/>
         <circle cx="147.22" cy="15.33" r="1.89"/>
-    </g>
-    <g style="fill:#480d67"
-       id="8-Forward-Party">
-        <title>Forward Party</title>
         <circle cx="159.53" cy="75.57" r="1.89"/>
         <circle cx="154.62" cy="47.61" r="1.89"/>
         <circle cx="147.54" cy="10.44" r="1.89"/>
@@ -764,6 +772,10 @@
         <circle cx="167.29" cy="31.56" r="1.89"/>
         <circle cx="169.90" cy="59.82" r="1.89"/>
         <circle cx="167.31" cy="22.06" r="1.89"/>
+    </g>
+    <g style="fill:#ff7f00"
+       id="11-American-Solidarity-Party">
+        <title>American Solidarity Party</title>
         <circle cx="172.38" cy="83.34" r="1.89"/>
         <circle cx="169.80" cy="45.59" r="1.89"/>
         <circle cx="167.32" cy="12.57" r="1.89"/>
@@ -782,6 +794,10 @@
         <circle cx="172.38" cy="21.74" r="1.89"/>
         <circle cx="172.39" cy="12.27" r="1.89"/>
         <circle cx="174.87" cy="64.24" r="1.89"/>
+    </g>
+    <g style="fill:#58758e"
+       id="12-Conservative-Party">
+        <title>Conservative Party</title>
         <circle cx="172.47" cy="7.53" r="1.89"/>
         <circle cx="174.95" cy="59.50" r="1.89"/>
         <circle cx="174.89" cy="45.30" r="1.89"/>
@@ -794,10 +810,6 @@
         <circle cx="177.47" cy="54.69" r="1.89"/>
         <circle cx="177.44" cy="49.96" r="1.89"/>
         <circle cx="177.45" cy="40.50" r="1.89"/>
-    </g>
-    <g style="fill:#ff7f00"
-       id="9-American-Solidarity-Party">
-        <title>American Solidarity Party</title>
         <circle cx="177.45" cy="31.04" r="1.89"/>
         <circle cx="177.46" cy="21.57" r="1.89"/>
         <circle cx="177.46" cy="12.11" r="1.89"/>
@@ -812,10 +824,6 @@
         <circle cx="180.00" cy="45.20" r="1.89"/>
         <circle cx="180.00" cy="35.74" r="1.89"/>
         <circle cx="182.51" cy="7.38" r="1.89"/>
-    </g>
-    <g style="fill:#58758e"
-       id="10-Conservative-Party">
-        <title>Conservative Party</title>
         <circle cx="182.54" cy="12.11" r="1.89"/>
         <circle cx="182.54" cy="21.57" r="1.89"/>
         <circle cx="182.55" cy="31.04" r="1.89"/>
@@ -906,6 +914,10 @@
         <circle cx="205.38" cy="47.61" r="1.89"/>
         <circle cx="200.47" cy="75.57" r="1.89"/>
         <circle cx="212.78" cy="15.33" r="1.89"/>
+    </g>
+    <g style="fill:#fed000"
+       id="13-Libertarian-Party">
+        <title>Libertarian Party</title>
         <circle cx="210.32" cy="29.30" r="1.89"/>
         <circle cx="200.17" cy="80.33" r="1.89"/>
         <circle cx="207.87" cy="43.28" r="1.89"/>
@@ -932,10 +944,6 @@
         <circle cx="222.27" cy="12.62" r="1.89"/>
         <circle cx="220.21" cy="21.86" r="1.89"/>
         <circle cx="205.12" cy="81.46" r="1.89"/>
-    </g>
-    <g style="fill:#fed000"
-       id="11-Libertarian-Party">
-        <title>Libertarian Party</title>
         <circle cx="210.02" cy="63.19" r="1.89"/>
         <circle cx="207.97" cy="72.43" r="1.89"/>
         <circle cx="212.87" cy="54.15" r="1.89"/>
@@ -975,11 +983,19 @@
         <circle cx="229.95" cy="34.62" r="1.89"/>
         <circle cx="209.98" cy="92.78" r="1.89"/>
         <circle cx="222.65" cy="57.12" r="1.89"/>
+    </g>
+    <g style="fill:#b8860b"
+       id="14-Taxpayers-Party">
+        <title>Taxpayers Party</title>
         <circle cx="236.71" cy="16.94" r="1.89"/>
         <circle cx="219.70" cy="66.11" r="1.89"/>
         <circle cx="232.37" cy="30.46" r="1.89"/>
         <circle cx="215.36" cy="79.63" r="1.89"/>
         <circle cx="212.40" cy="88.61" r="1.89"/>
+    </g>
+    <g style="fill:#e81b23"
+       id="15-Republican-Party">
+        <title>Republican Party</title>
         <circle cx="225.07" cy="52.96" r="1.89"/>
         <circle cx="234.78" cy="26.30" r="1.89"/>
         <circle cx="222.11" cy="61.95" r="1.89"/>
@@ -1001,19 +1017,11 @@
         <circle cx="229.85" cy="54.76" r="1.89"/>
         <circle cx="226.83" cy="63.74" r="1.89"/>
         <circle cx="232.26" cy="50.63" r="1.89"/>
-    </g>
-    <g style="fill:#b8860b"
-       id="12-Taxpayers-Party">
-        <title>Taxpayers Party</title>
         <circle cx="214.75" cy="94.57" r="1.89"/>
         <circle cx="220.18" cy="81.46" r="1.89"/>
         <circle cx="234.66" cy="46.50" r="1.89"/>
         <circle cx="246.10" cy="20.52" r="1.89"/>
         <circle cx="237.06" cy="42.37" r="1.89"/>
-    </g>
-    <g style="fill:#e81b23"
-       id="13-Republican-Party">
-        <title>Republican Party</title>
         <circle cx="217.15" cy="90.44" r="1.89"/>
         <circle cx="222.58" cy="77.33" r="1.89"/>
         <circle cx="239.45" cy="38.25" r="1.89"/>
@@ -1290,6 +1298,10 @@
         <circle cx="305.90" cy="91.81" r="1.89"/>
         <circle cx="251.74" cy="129.90" r="1.89"/>
         <circle cx="286.77" cy="105.73" r="1.89"/>
+    </g>
+    <g style="fill:#8d2635"
+       id="16-Patriot-Party">
+        <title>Patriot Party</title>
         <circle cx="279.09" cy="111.25" r="1.89"/>
         <circle cx="314.13" cy="87.07" r="1.89"/>
         <circle cx="267.65" cy="119.65" r="1.89"/>
@@ -1316,10 +1328,6 @@
         <circle cx="314.22" cy="95.80" r="1.89"/>
         <circle cx="322.42" cy="91.07" r="1.89"/>
         <circle cx="270.47" cy="123.96" r="1.89"/>
-    </g>
-    <g style="fill:#8d2635"
-       id="14-Patriot-Party">
-        <title>Patriot Party</title>
         <circle cx="278.67" cy="119.24" r="1.89"/>
         <circle cx="254.54" cy="134.17" r="1.89"/>
         <circle cx="262.73" cy="129.44" r="1.89"/>
@@ -1468,12 +1476,20 @@
         <circle cx="324.17" cy="142.41" r="1.89"/>
         <circle cx="305.89" cy="147.31" r="1.89"/>
         <circle cx="287.62" cy="152.23" r="1.89"/>
+    </g>
+    <g style="fill:#ffc0cb"
+       id="17-Right-to-Life-Party">
+        <title>Right to Life Party</title>
         <circle cx="329.05" cy="142.41" r="1.89"/>
         <circle cx="347.42" cy="137.87" r="1.89"/>
         <circle cx="269.44" cy="157.51" r="1.89"/>
         <circle cx="310.78" cy="147.32" r="1.89"/>
         <circle cx="292.50" cy="152.24" r="1.89"/>
         <circle cx="333.92" cy="142.42" r="1.89"/>
+    </g>
+    <g style="fill:#a356de"
+       id="18-Constitution-Party">
+        <title>Constitution Party</title>
         <circle cx="315.65" cy="147.33" r="1.89"/>
         <circle cx="274.32" cy="157.51" r="1.89"/>
         <circle cx="338.79" cy="142.42" r="1.89"/>
@@ -1488,29 +1504,37 @@
         <circle cx="307.08" cy="152.29" r="1.89"/>
         <circle cx="330.21" cy="147.36" r="1.89"/>
         <circle cx="335.05" cy="147.37" r="1.89"/>
+    </g>
+    <g style="fill:#572b85"
+       id="19-Pirate-Party">
+        <title>Pirate Party</title>
         <circle cx="311.92" cy="152.30" r="1.89"/>
         <circle cx="288.79" cy="157.23" r="1.89"/>
         <circle cx="265.72" cy="162.46" r="1.89"/>
         <circle cx="339.88" cy="147.38" r="1.89"/>
         <circle cx="316.75" cy="152.31" r="1.89"/>
         <circle cx="293.62" cy="157.25" r="1.89"/>
-    </g>
-    <g style="fill:#ffc0cb"
-       id="15-Right-to-Life-Party">
-        <title>Right to Life Party</title>
         <circle cx="344.71" cy="147.39" r="1.89"/>
+    </g>
+    <g style="fill:#7ddf64"
+       id="20-Cannabis-Reform-Party">
+        <title>Cannabis Reform Party</title>
         <circle cx="321.58" cy="152.33" r="1.89"/>
         <circle cx="270.55" cy="162.47" r="1.89"/>
         <circle cx="349.58" cy="147.68" r="1.89"/>
         <circle cx="298.50" cy="157.54" r="1.89"/>
-        <circle cx="326.40" cy="152.34" r="1.89"/>
     </g>
-    <g style="fill:#a356de"
-       id="16-Constitution-Party">
-        <title>Constitution Party</title>
+    <g style="fill:#78a942"
+       id="21-Animal-Welfare-Party">
+        <title>Animal Welfare Party</title>
+        <circle cx="326.40" cy="152.34" r="1.89"/>
         <circle cx="275.36" cy="162.48" r="1.89"/>
         <circle cx="331.21" cy="152.35" r="1.89"/>
         <circle cx="303.31" cy="157.55" r="1.89"/>
+    </g>
+    <g style="fill:#8a8a8a"
+       id="22-Seniors-Party">
+        <title>Seniors Party</title>
         <circle cx="308.07" cy="157.30" r="1.89"/>
         <circle cx="336.02" cy="152.36" r="1.89"/>
         <circle cx="280.17" cy="162.49" r="1.89"/>
@@ -1523,83 +1547,71 @@
         <circle cx="350.45" cy="152.63" r="1.89"/>
         <circle cx="322.47" cy="157.34" r="1.89"/>
     </g>
-    <g style="fill:#572b85"
-       id="17-Pirate-Party">
-        <title>Pirate Party</title>
+    <g style="fill:#6b7d2a"
+       id="23-Farmers---Rural-Party">
+        <title>Farmers &amp; Rural Party</title>
         <circle cx="294.52" cy="162.31" r="1.89"/>
         <circle cx="327.26" cy="157.36" r="1.89"/>
         <circle cx="332.04" cy="157.37" r="1.89"/>
         <circle cx="299.34" cy="162.53" r="1.89"/>
         <circle cx="266.60" cy="167.48" r="1.89"/>
-    </g>
-    <g style="fill:#7ddf64"
-       id="18-Cannabis-Reform-Party">
-        <title>Cannabis Reform Party</title>
         <circle cx="336.82" cy="157.38" r="1.89"/>
         <circle cx="304.12" cy="162.53" r="1.89"/>
         <circle cx="341.60" cy="157.39" r="1.89"/>
         <circle cx="308.86" cy="162.35" r="1.89"/>
         <circle cx="271.38" cy="167.49" r="1.89"/>
-    </g>
-    <g style="fill:#8a8a8a"
-       id="19-Seniors-Party">
-        <title>Seniors Party</title>
         <circle cx="346.38" cy="157.40" r="1.89"/>
         <circle cx="313.64" cy="162.37" r="1.89"/>
         <circle cx="351.18" cy="157.60" r="1.89"/>
+    </g>
+    <g style="fill:#515a8a"
+       id="24-Veterans-Party">
+        <title>Veterans Party</title>
         <circle cx="276.15" cy="167.50" r="1.89"/>
         <circle cx="318.41" cy="162.38" r="1.89"/>
         <circle cx="280.92" cy="167.51" r="1.89"/>
         <circle cx="323.18" cy="162.39" r="1.89"/>
         <circle cx="285.67" cy="167.36" r="1.89"/>
-    </g>
-    <g style="fill:#6b7d2a"
-       id="20-Farmers---Rural-Party">
-        <title>Farmers &amp; Rural Party</title>
         <circle cx="327.94" cy="162.40" r="1.89"/>
         <circle cx="332.71" cy="162.41" r="1.89"/>
         <circle cx="290.43" cy="167.38" r="1.89"/>
+    </g>
+    <g style="fill:#b56a3a"
+       id="25-Western-States-Party">
+        <title>Western States Party</title>
         <circle cx="337.47" cy="162.42" r="1.89"/>
         <circle cx="295.19" cy="167.39" r="1.89"/>
         <circle cx="342.23" cy="162.43" r="1.89"/>
         <circle cx="346.98" cy="162.44" r="1.89"/>
         <circle cx="299.96" cy="167.54" r="1.89"/>
+    </g>
+    <g style="fill:#1f4e79"
+       id="26-Alaska-Party">
+        <title>Alaska Party</title>
         <circle cx="351.76" cy="162.59" r="1.89"/>
         <circle cx="304.72" cy="167.55" r="1.89"/>
-    </g>
-    <g style="fill:#515a8a"
-       id="21-Veterans-Party">
-        <title>Veterans Party</title>
         <circle cx="309.46" cy="167.43" r="1.89"/>
+    </g>
+    <g style="fill:#d4a017"
+       id="27-Hawai-i-Party">
+        <title>Hawaiʻi Party</title>
         <circle cx="314.21" cy="167.44" r="1.89"/>
         <circle cx="318.96" cy="167.45" r="1.89"/>
         <circle cx="323.71" cy="167.46" r="1.89"/>
+    </g>
+    <g style="fill:#dcdcdc"
+       id="28-Independents">
+        <title>Independents</title>
         <circle cx="267.18" cy="172.55" r="1.89"/>
         <circle cx="328.46" cy="167.47" r="1.89"/>
-    </g>
-    <g style="fill:#b56a3a"
-       id="22-Western-States-Party">
-        <title>Western States Party</title>
         <circle cx="333.21" cy="167.47" r="1.89"/>
         <circle cx="271.93" cy="172.55" r="1.89"/>
         <circle cx="337.95" cy="167.48" r="1.89"/>
         <circle cx="276.67" cy="172.56" r="1.89"/>
-    </g>
-    <g style="fill:#1f4e79"
-       id="23-Alaska-Party">
-        <title>Alaska Party</title>
         <circle cx="342.70" cy="167.49" r="1.89"/>
         <circle cx="347.44" cy="167.50" r="1.89"/>
-    </g>
-    <g style="fill:#d4a017"
-       id="24-Hawai-i-Party">
-        <title>Hawaiʻi Party</title>
         <circle cx="281.42" cy="172.57" r="1.89"/>
         <circle cx="352.19" cy="167.60" r="1.89"/>
-    </g>
-    <g style="fill:#dcdcdc"
-       id="25-Independents">
-        <title>Independents</title>
         <circle cx="286.15" cy="172.49" r="1.89"/>
         <circle cx="290.90" cy="172.50" r="1.89"/>
         <circle cx="295.64" cy="172.51" r="1.89"/>

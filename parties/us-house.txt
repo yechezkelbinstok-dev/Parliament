@@ -1,14 +1,16 @@
 title: United States House of Representatives
-Communist Party, 4, #8B0000
-Party for Socialism and Liberation, 3, #C8102E
+Communist Party, 5, #8B0000
+Party for Socialism and Liberation, 4, #C8102E
 Democratic Socialist Party, 40, #EC1F27
-Green Party, 35, #00A95C
-Animal Welfare Party, 6, #78A942
-Progressive Party, 178, #F4563B
-Democratic Party, 301, #3333FF
-Democratic Union Party, 102, #72A9DC
-Forward Party, 86, #480D67
-American Solidarity Party, 14, #FF7F00
+Green Party, 34, #00A95C
+Progressive Party, 158, #F4563B
+Labor Party, 24, #A6192E
+Housing & Tenants Party, 8, #00897B
+Women's Equality Party, 14, #328DE0
+Democratic Party, 280, #3333FF
+Democratic Union Party, 98, #72A9DC
+Forward Party, 60, #480D67
+American Solidarity Party, 18, #FF7F00
 Conservative Party, 116, #58758E
 Libertarian Party, 65, #FED000
 Taxpayers Party, 5, #B8860B
@@ -16,12 +18,13 @@ Republican Party, 302, #E81B23
 Patriot Party, 174, #8D2635
 Right to Life Party, 6, #FFC0CB
 Constitution Party, 14, #A356DE
-Pirate Party, 5, #572B85
-Cannabis Reform Party, 5, #7DDF64
-Seniors Party, 8, #8A8A8A
-Farmers & Rural Party, 10, #6B7D2A
-Veterans Party, 6, #515A8A
-Western States Party, 4, #B56A3A
-Alaska Party, 2, #1F4E79
-Hawaiʻi Party, 2, #D4A017
-Independents, 34, #DCDCDC
+Pirate Party, 7, #572B85
+Cannabis Reform Party, 4, #7DDF64
+Animal Welfare Party, 4, #78A942
+Seniors Party, 11, #8A8A8A
+Farmers & Rural Party, 13, #6B7D2A
+Veterans Party, 8, #515A8A
+Western States Party, 5, #B56A3A
+Alaska Party, 3, #1F4E79
+Hawaiʻi Party, 3, #D4A017
+Independents, 44, #DCDCDC

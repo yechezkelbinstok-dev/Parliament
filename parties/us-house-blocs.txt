@@ -1,4 +1,4 @@
 title: United States House of Representatives: Political Blocs
-Democratic-aligned bloc, 667, #3333FF
-Unaligned, 178, #B8B8B8
+Democratic-aligned bloc, 656, #3333FF
+Unaligned, 189, #B8B8B8
 Republican-aligned bloc, 682, #E81B23

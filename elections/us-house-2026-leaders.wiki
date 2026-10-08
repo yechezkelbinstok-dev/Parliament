@@ -22,44 +22,44 @@ languages: 9
 | leader1 = [[Steve Scalise]]
 | party1 = [[Republican Party (United States)|Republican Party]]
 | leaders_seat1 = [[Louisiana's 1st congressional district|Greater New Orleans]]
-| last_election1 = 220 seats
+| last_election1 = 220 seats, 49.75%
 | seats1 = 302
 | seat_change1 = {{Increase}} 82
-| popular_vote1 = 35,880,162
-| percentage1 = 19.77%
-| swing1 = {{Decrease}} 29.98 [[Percentage point|pp]]
+| popular_vote1 = 35,480,889
+| percentage1 = 19.55%
+| swing1 = {{Decrease}} 30.20 [[Percentage point|pp]]
 | image2 = person:Hakeem Jeffries
 | colour2 = 3333FF
 | leader2 = [[Hakeem Jeffries]]
 | party2 = [[Democratic Party (United States)|Democratic Party]]
 | leaders_seat2 = [[New York's 8th congressional district|Central Brooklyn]]
-| last_election2 = 215 seats
-| seats2 = 301
-| seat_change2 = {{Increase}} 86
-| popular_vote2 = 35,626,079
-| percentage2 = 19.63%
-| swing2 = {{Decrease}} 27.56 [[Percentage point|pp]]
-| image3 = person:Alexandria Ocasio-Cortez
-| colour3 = F4563B
-| leader3 = [[Alexandria Ocasio-Cortez]]
-| party3 = [[Progressive Party]]
-| leaders_seat3 = [[New York's 14th congressional district|East Bronx–North Queens]]
+| last_election2 = 215 seats, 47.19%
+| seats2 = 280
+| seat_change2 = {{Increase}} 65
+| popular_vote2 = 33,575,265
+| percentage2 = 18.50%
+| swing2 = {{Decrease}} 28.69 [[Percentage point|pp]]
+| image3 = person:Jim Jordan
+| colour3 = 8D2635
+| leader3 = [[Jim Jordan]]
+| party3 = [[Patriot Party]]
+| leaders_seat3 = [[Ohio's 4th congressional district|West-Central Ohio]]
 | last_election3 = ''New party''
-| seats3 = 178
+| seats3 = 174
 | seat_change3 = ''New party''
-| popular_vote3 = 21,724,104
-| percentage3 = 11.97%
+| popular_vote3 = 20,417,391
+| percentage3 = 11.25%
 | swing3 = ''New party''
-| image4 = person:Jim Jordan
-| colour4 = 8D2635
-| leader4 = [[Jim Jordan]]
-| party4 = [[Patriot Party]]
-| leaders_seat4 = [[Ohio's 4th congressional district|West-Central Ohio]]
+| image4 = person:Alexandria Ocasio-Cortez
+| colour4 = F4563B
+| leader4 = [[Alexandria Ocasio-Cortez]]
+| party4 = [[Progressive Party]]
+| leaders_seat4 = [[New York's 14th congressional district|East Bronx–North Queens]]
 | last_election4 = ''New party''
-| seats4 = 174
+| seats4 = 158
 | seat_change4 = ''New party''
-| popular_vote4 = 20,544,433
-| percentage4 = 11.32%
+| popular_vote4 = 18,965,488
+| percentage4 = 10.45%
 | swing4 = ''New party''
 | image5 = person:David Valadao
 | colour5 = 58758E
@@ -69,8 +69,8 @@ languages: 9
 | last_election5 = ''New party''
 | seats5 = 116
 | seat_change5 = ''New party''
-| popular_vote5 = 13,593,445
-| percentage5 = 7.49%
+| popular_vote5 = 13,611,594
+| percentage5 = 7.50%
 | swing5 = ''New party''
 | image6 = person:Marie Gluesenkamp Perez
 | colour6 = 72A9DC
@@ -78,33 +78,33 @@ languages: 9
 | party6 = [[Democratic Union Party]]
 | leaders_seat6 = [[Washington's 3rd congressional district|Southwest Washington]]
 | last_election6 = ''New party''
-| seats6 = 102
+| seats6 = 98
 | seat_change6 = ''New party''
-| popular_vote6 = 11,978,203
-| percentage6 = 6.60%
+| popular_vote6 = 11,705,971
+| percentage6 = 6.45%
 | swing6 = ''New party''
-| image7 = person:Andrew Yang
-| colour7 = 480D67
-| leader7 = [[Andrew Yang]]
-| party7 = [[Forward Party (United States)|Forward Party]]
-| leaders_seat7 = [[Manhattan]]
-| last_election7 = 0 seats
-| seats7 = 86
-| seat_change7 = {{Increase}} 86
-| popular_vote7 = 10,108,877
-| percentage7 = 5.57%
-| swing7 = N/A
-| image8 = person:Justin Amash
-| colour8 = FED000
-| leader8 = [[Justin Amash]]
-| party8 = [[Libertarian Party (United States)|Libertarian Party]]
-| leaders_seat8 = [[Michigan's 3rd congressional district|West Michigan]]
-| last_election8 = 0 seats
-| seats8 = 65
-| seat_change8 = {{Increase}} 65
-| popular_vote8 = 7,676,939
-| percentage8 = 4.23%
-| swing8 = {{Increase}} 3.76 [[Percentage point|pp]]
+| image7 = person:Justin Amash
+| colour7 = FED000
+| leader7 = [[Justin Amash]]
+| party7 = [[Libertarian Party (United States)|Libertarian Party]]
+| leaders_seat7 = [[Michigan's 3rd congressional district|West Michigan]]
+| last_election7 = 0 seats, 0.47%
+| seats7 = 65
+| seat_change7 = {{Increase}} 65
+| popular_vote7 = 7,894,724
+| percentage7 = 4.35%
+| swing7 = {{Increase}} 3.88 [[Percentage point|pp]]
+| image8 = person:Andrew Yang
+| colour8 = 480D67
+| leader8 = [[Andrew Yang]]
+| party8 = [[Forward Party (United States)|Forward Party]]
+| leaders_seat8 = [[Manhattan]]
+| last_election8 = 0 seats, 0.00%
+| seats8 = 60
+| seat_change8 = {{Increase}} 60
+| popular_vote8 = 7,350,261
+| percentage8 = 4.05%
+| swing8 = {{Increase}} 4.05 [[Percentage point|pp]]
 | image9 = person:Rashida Tlaib
 | colour9 = EC1F27
 | leader9 = [[Rashida Tlaib]]
@@ -113,13 +113,22 @@ languages: 9
 | last_election9 = ''New party''
 | seats9 = 40
 | seat_change9 = ''New party''
-| popular_vote9 = 4,990,918
-| percentage9 = 2.75%
+| popular_vote9 = 4,809,430
+| percentage9 = 2.65%
 | swing9 = ''New party''
+| title = [[Speaker of the United States House of Representatives|Speaker]]
+| posttitle = Speaker after election
+| before_election = [[Mike Johnson]]
+| before_party = Republican Party
+| after_election = [[Hakeem Jeffries]]
+| after_party = Democratic Party
 }}
 
-[[Elections in the United States|Elections]] to the [[United States House of Representatives]] were held on November 3, 2026, to elect all 1,527 members of the House. No party came close to the 764 seats needed for a majority.
+[[Elections in the United States|Elections]] to the [[United States House of Representatives]] were held on November 3, 2026, to elect all 1,527 members of the House. No party won the 764 seats needed for a majority. The Republican-aligned bloc won 682 seats and the Democratic-aligned bloc 656, with 189 seats going to unaligned parties. [[Hakeem Jeffries]] was elected [[Speaker of the United States House of Representatives|Speaker]], replacing [[Mike Johnson]], with the support of the Democratic-aligned bloc and eight unaligned parties, 766 seats in all.
 
-== Background ==
+== Electoral system ==
+The 1,527 members are elected by [[single transferable vote]] in multi-member constituencies within each state, with seats apportioned among the states by population.
 
 == Results ==
+
+== Government formation ==

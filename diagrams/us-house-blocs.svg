@@ -663,6 +663,10 @@
         <circle cx="147.18" cy="34.67" r="1.89"/>
         <circle cx="152.44" cy="57.73" r="1.89"/>
         <circle cx="154.54" cy="66.95" r="1.89"/>
+    </g>
+    <g style="fill:#b8b8b8"
+       id="1-Unaligned">
+        <title>Unaligned</title>
         <circle cx="159.81" cy="90.01" r="1.89"/>
         <circle cx="142.61" cy="11.46" r="1.89"/>
         <circle cx="144.73" cy="20.68" r="1.89"/>
@@ -674,10 +678,6 @@
         <circle cx="162.28" cy="94.31" r="1.89"/>
         <circle cx="152.13" cy="43.28" r="1.89"/>
         <circle cx="159.83" cy="80.33" r="1.89"/>
-    </g>
-    <g style="fill:#b8b8b8"
-       id="1-Unaligned">
-        <title>Unaligned</title>
         <circle cx="149.68" cy="29.30" r="1.89"/>
         <circle cx="147.22" cy="15.33" r="1.89"/>
         <circle cx="159.53" cy="75.57" r="1.89"/>
@@ -1547,9 +1547,9 @@
     <text x="180.00" y="19" style="font-size:10.3px;font-weight:bold;text-anchor:middle;font-family:sans-serif">United States House of Representatives: Political Blocs</text>
     <g style="font-size:9px;font-family:sans-serif">
         <rect x="89.70" y="214.00" width="8" height="8" rx="1.5" style="fill:#3333FF;stroke:#888;stroke-width:0.5"/>
-        <text x="101.70" y="221.50">Democratic-aligned bloc (667)</text>
+        <text x="101.70" y="221.50">Democratic-aligned bloc (656)</text>
         <rect x="89.70" y="227.00" width="8" height="8" rx="1.5" style="fill:#B8B8B8;stroke:#888;stroke-width:0.5"/>
-        <text x="101.70" y="234.50">Unaligned (178)</text>
+        <text x="101.70" y="234.50">Unaligned (189)</text>
         <rect x="89.70" y="240.00" width="8" height="8" rx="1.5" style="fill:#E81B23;stroke:#888;stroke-width:0.5"/>
         <text x="101.70" y="247.50">Republican-aligned bloc (682)</text>
     </g>
