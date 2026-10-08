@@ -225,9 +225,11 @@ def add_title_and_legend(svg: str, width: float, height: float, shown: list, set
     total_height = top + height
 
     if settings["title"]:
+        # shrink long titles so they fit the diagram width (bold sans-serif is ~0.62em per character)
+        title_size = min(TITLE_FONT_SIZE, (total_width - 2 * MARGIN) / (0.62 * len(settings["title"])))
         parts.append(
             f'    <text x="{total_width / 2:.2f}" y="{MARGIN + TITLE_FONT_SIZE}" '
-            f'style="font-size:{TITLE_FONT_SIZE}px;font-weight:bold;text-anchor:middle;'
+            f'style="font-size:{title_size:.1f}px;font-weight:bold;text-anchor:middle;'
             f'font-family:sans-serif">{escape(settings["title"])}</text>'
         )
 

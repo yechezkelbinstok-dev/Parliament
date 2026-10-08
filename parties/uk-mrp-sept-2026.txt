@@ -2,16 +2,16 @@
 # https://www.moreincommon.org.uk/research/more-in-commons-september-2026-mrp/
 # Speaker (1) added separately. Northern Ireland (18) is NOT projected in that MRP:
 # it uses the 2024 general election result. "Independent/Other" = MRP's "Other" (9) + NI independent (1).
-# Labour is short of a majority (326), so it is shown as a minority government.
-title: UK House of Commons: Sept 2026 MRP
+# Reform UK + Conservative are shown as a coalition government (272 seats, short of the 326 majority).
+title: UK Commons, Sept 2026 MRP: Reform-Tory Coalition
 style: westminster
 
 Speaker, 1, #000000, speaker
 
-Labour, 250, #E4003B, government
+Reform UK, 147, #12B6CF, government
+Conservative, 125, #0087DC, government
 
-Reform UK, 147, #12B6CF, opposition
-Conservative, 125, #0087DC, opposition
+Labour, 250, #E4003B, opposition
 Liberal Democrats, 63, #FAA61A, opposition
 SNP, 27, #FDF38E, opposition
 Plaid Cymru, 6, #005B54, opposition

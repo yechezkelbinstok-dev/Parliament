@@ -715,7 +715,7 @@
         <circle cx="351.46" cy="176.50" r="2.80"/>
     </g>
     </g>
-    <text x="180.00" y="19" style="font-size:14px;font-weight:bold;text-anchor:middle;font-family:sans-serif">House of Commons 2024</text>
+    <text x="180.00" y="19" style="font-size:14.0px;font-weight:bold;text-anchor:middle;font-family:sans-serif">House of Commons 2024</text>
     <g style="font-size:9px;font-family:sans-serif">
         <rect x="37.20" y="214.00" width="8" height="8" rx="1.5" style="fill:#326760;stroke:#888;stroke-width:0.5"/>
         <text x="49.20" y="221.50">Sinn Féin (7)</text>
