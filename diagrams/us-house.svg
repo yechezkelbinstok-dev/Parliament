@@ -303,18 +303,14 @@
         <circle cx="53.98" cy="100.52" r="1.89"/>
         <circle cx="78.11" cy="115.46" r="1.89"/>
     </g>
-    <g style="fill:#62ad3f"
-       id="6-Cannabis-Reform-Party">
-        <title>Cannabis Reform Party</title>
+    <g style="fill:#3168c6"
+       id="6-Democratic-Party">
+        <title>Democratic Party</title>
         <circle cx="62.18" cy="105.25" r="1.89"/>
         <circle cx="34.35" cy="87.32" r="1.89"/>
         <circle cx="70.39" cy="109.98" r="1.89"/>
         <circle cx="94.52" cy="124.92" r="1.89"/>
         <circle cx="43.04" cy="91.29" r="1.89"/>
-    </g>
-    <g style="fill:#3168c6"
-       id="7-Democratic-Party">
-        <title>Democratic Party</title>
         <circle cx="86.81" cy="119.43" r="1.89"/>
         <circle cx="102.73" cy="129.65" r="1.89"/>
         <circle cx="51.25" cy="96.02" r="1.89"/>
@@ -606,15 +602,15 @@
         <circle cx="135.02" cy="73.21" r="1.89"/>
         <circle cx="120.55" cy="38.25" r="1.89"/>
         <circle cx="137.42" cy="77.33" r="1.89"/>
+    </g>
+    <g style="fill:#72a9dc"
+       id="7-Democratic-Union-Party">
+        <title>Democratic Union Party</title>
         <circle cx="142.85" cy="90.44" r="1.89"/>
         <circle cx="122.94" cy="42.37" r="1.89"/>
         <circle cx="113.90" cy="20.52" r="1.89"/>
         <circle cx="125.34" cy="46.50" r="1.89"/>
         <circle cx="139.82" cy="81.46" r="1.89"/>
-    </g>
-    <g style="fill:#72a9dc"
-       id="8-Democratic-Union-Party">
-        <title>Democratic Union Party</title>
         <circle cx="145.25" cy="94.57" r="1.89"/>
         <circle cx="127.74" cy="50.63" r="1.89"/>
         <circle cx="133.17" cy="63.74" r="1.89"/>
@@ -712,15 +708,15 @@
         <circle cx="154.62" cy="47.61" r="1.89"/>
         <circle cx="147.54" cy="10.44" r="1.89"/>
         <circle cx="152.16" cy="33.64" r="1.89"/>
+    </g>
+    <g style="fill:#8064b3"
+       id="8-Forward-Party">
+        <title>Forward Party</title>
         <circle cx="149.70" cy="19.66" r="1.89"/>
         <circle cx="162.31" cy="84.67" r="1.89"/>
         <circle cx="157.39" cy="56.72" r="1.89"/>
         <circle cx="159.58" cy="65.94" r="1.89"/>
         <circle cx="157.11" cy="51.96" r="1.89"/>
-    </g>
-    <g style="fill:#8064b3"
-       id="9-Forward-Party">
-        <title>Forward Party</title>
         <circle cx="154.65" cy="37.99" r="1.89"/>
         <circle cx="152.19" cy="24.01" r="1.89"/>
         <circle cx="159.87" cy="61.08" r="1.89"/>
@@ -798,28 +794,28 @@
         <circle cx="177.47" cy="54.69" r="1.89"/>
         <circle cx="177.44" cy="49.96" r="1.89"/>
         <circle cx="177.45" cy="40.50" r="1.89"/>
+    </g>
+    <g style="fill:#c28a30"
+       id="9-American-Solidarity-Party">
+        <title>American Solidarity Party</title>
         <circle cx="177.45" cy="31.04" r="1.89"/>
         <circle cx="177.46" cy="21.57" r="1.89"/>
         <circle cx="177.46" cy="12.11" r="1.89"/>
         <circle cx="177.49" cy="7.38" r="1.89"/>
         <circle cx="180.00" cy="87.77" r="1.89"/>
-    </g>
-    <g style="fill:#59428c"
-       id="10-Pirate-Party">
-        <title>Pirate Party</title>
         <circle cx="180.00" cy="78.31" r="1.89"/>
         <circle cx="180.00" cy="73.58" r="1.89"/>
         <circle cx="180.00" cy="64.12" r="1.89"/>
         <circle cx="180.00" cy="59.39" r="1.89"/>
         <circle cx="180.00" cy="26.28" r="1.89"/>
-    </g>
-    <g style="fill:#c28a30"
-       id="11-American-Solidarity-Party">
-        <title>American Solidarity Party</title>
         <circle cx="180.00" cy="16.82" r="1.89"/>
         <circle cx="180.00" cy="45.20" r="1.89"/>
         <circle cx="180.00" cy="35.74" r="1.89"/>
         <circle cx="182.51" cy="7.38" r="1.89"/>
+    </g>
+    <g style="fill:#58758e"
+       id="10-Conservative-Party">
+        <title>Conservative Party</title>
         <circle cx="182.54" cy="12.11" r="1.89"/>
         <circle cx="182.54" cy="21.57" r="1.89"/>
         <circle cx="182.55" cy="31.04" r="1.89"/>
@@ -830,10 +826,6 @@
         <circle cx="182.54" cy="83.07" r="1.89"/>
         <circle cx="182.55" cy="92.54" r="1.89"/>
         <circle cx="185.08" cy="16.90" r="1.89"/>
-    </g>
-    <g style="fill:#58758e"
-       id="12-Conservative-Party">
-        <title>Conservative Party</title>
         <circle cx="185.09" cy="26.37" r="1.89"/>
         <circle cx="185.10" cy="35.83" r="1.89"/>
         <circle cx="185.11" cy="45.30" r="1.89"/>
@@ -940,6 +932,10 @@
         <circle cx="222.27" cy="12.62" r="1.89"/>
         <circle cx="220.21" cy="21.86" r="1.89"/>
         <circle cx="205.12" cy="81.46" r="1.89"/>
+    </g>
+    <g style="fill:#e2b72e"
+       id="11-Libertarian-Party">
+        <title>Libertarian Party</title>
         <circle cx="210.02" cy="63.19" r="1.89"/>
         <circle cx="207.97" cy="72.43" r="1.89"/>
         <circle cx="212.87" cy="54.15" r="1.89"/>
@@ -950,10 +946,6 @@
         <circle cx="220.22" cy="31.64" r="1.89"/>
         <circle cx="215.33" cy="49.91" r="1.89"/>
         <circle cx="210.44" cy="68.19" r="1.89"/>
-    </g>
-    <g style="fill:#e2b72e"
-       id="13-Libertarian-Party">
-        <title>Libertarian Party</title>
         <circle cx="222.67" cy="27.41" r="1.89"/>
         <circle cx="217.78" cy="45.69" r="1.89"/>
         <circle cx="205.13" cy="91.26" r="1.89"/>
@@ -1009,29 +1001,29 @@
         <circle cx="229.85" cy="54.76" r="1.89"/>
         <circle cx="226.83" cy="63.74" r="1.89"/>
         <circle cx="232.26" cy="50.63" r="1.89"/>
+    </g>
+    <g style="fill:#d28c2d"
+       id="12-Taxpayers-Party">
+        <title>Taxpayers Party</title>
         <circle cx="214.75" cy="94.57" r="1.89"/>
         <circle cx="220.18" cy="81.46" r="1.89"/>
         <circle cx="234.66" cy="46.50" r="1.89"/>
         <circle cx="246.10" cy="20.52" r="1.89"/>
         <circle cx="237.06" cy="42.37" r="1.89"/>
+    </g>
+    <g style="fill:#c83b3e"
+       id="13-Republican-Party">
+        <title>Republican Party</title>
         <circle cx="217.15" cy="90.44" r="1.89"/>
         <circle cx="222.58" cy="77.33" r="1.89"/>
         <circle cx="239.45" cy="38.25" r="1.89"/>
         <circle cx="224.98" cy="73.21" r="1.89"/>
         <circle cx="219.54" cy="86.31" r="1.89"/>
-    </g>
-    <g style="fill:#d28c2d"
-       id="14-Taxpayers-Party">
-        <title>Taxpayers Party</title>
         <circle cx="241.85" cy="34.12" r="1.89"/>
         <circle cx="244.24" cy="30.00" r="1.89"/>
         <circle cx="246.63" cy="25.88" r="1.89"/>
         <circle cx="232.17" cy="60.85" r="1.89"/>
         <circle cx="234.56" cy="56.74" r="1.89"/>
-    </g>
-    <g style="fill:#c83b3e"
-       id="15-Republican-Party">
-        <title>Republican Party</title>
         <circle cx="229.10" cy="69.84" r="1.89"/>
         <circle cx="236.95" cy="52.63" r="1.89"/>
         <circle cx="250.71" cy="22.51" r="1.89"/>
@@ -1324,6 +1316,10 @@
         <circle cx="314.22" cy="95.80" r="1.89"/>
         <circle cx="322.42" cy="91.07" r="1.89"/>
         <circle cx="270.47" cy="123.96" r="1.89"/>
+    </g>
+    <g style="fill:#8d2635"
+       id="14-Patriot-Party">
+        <title>Patriot Party</title>
         <circle cx="278.67" cy="119.24" r="1.89"/>
         <circle cx="254.54" cy="134.17" r="1.89"/>
         <circle cx="262.73" cy="129.44" r="1.89"/>
@@ -1334,10 +1330,6 @@
         <circle cx="287.32" cy="115.25" r="1.89"/>
         <circle cx="328.28" cy="91.60" r="1.89"/>
         <circle cx="275.90" cy="123.80" r="1.89"/>
-    </g>
-    <g style="fill:#8d2635"
-       id="16-Patriot-Party">
-        <title>Patriot Party</title>
         <circle cx="292.28" cy="114.34" r="1.89"/>
         <circle cx="300.47" cy="109.61" r="1.89"/>
         <circle cx="308.66" cy="104.88" r="1.89"/>
@@ -1502,39 +1494,47 @@
         <circle cx="339.88" cy="147.38" r="1.89"/>
         <circle cx="316.75" cy="152.31" r="1.89"/>
         <circle cx="293.62" cy="157.25" r="1.89"/>
+    </g>
+    <g style="fill:#75435b"
+       id="15-Right-to-Life-Party">
+        <title>Right to Life Party</title>
         <circle cx="344.71" cy="147.39" r="1.89"/>
         <circle cx="321.58" cy="152.33" r="1.89"/>
         <circle cx="270.55" cy="162.47" r="1.89"/>
         <circle cx="349.58" cy="147.68" r="1.89"/>
         <circle cx="298.50" cy="157.54" r="1.89"/>
         <circle cx="326.40" cy="152.34" r="1.89"/>
+    </g>
+    <g style="fill:#684a39"
+       id="16-Constitution-Party">
+        <title>Constitution Party</title>
         <circle cx="275.36" cy="162.48" r="1.89"/>
         <circle cx="331.21" cy="152.35" r="1.89"/>
         <circle cx="303.31" cy="157.55" r="1.89"/>
         <circle cx="308.07" cy="157.30" r="1.89"/>
-    </g>
-    <g style="fill:#75435b"
-       id="17-Right-to-Life-Party">
-        <title>Right to Life Party</title>
         <circle cx="336.02" cy="152.36" r="1.89"/>
         <circle cx="280.17" cy="162.49" r="1.89"/>
         <circle cx="340.82" cy="152.37" r="1.89"/>
         <circle cx="312.88" cy="157.32" r="1.89"/>
         <circle cx="284.93" cy="162.27" r="1.89"/>
         <circle cx="345.62" cy="152.38" r="1.89"/>
-    </g>
-    <g style="fill:#684a39"
-       id="18-Constitution-Party">
-        <title>Constitution Party</title>
         <circle cx="317.67" cy="157.33" r="1.89"/>
         <circle cx="289.73" cy="162.29" r="1.89"/>
         <circle cx="350.45" cy="152.63" r="1.89"/>
         <circle cx="322.47" cy="157.34" r="1.89"/>
+    </g>
+    <g style="fill:#333333"
+       id="17-Pirate-Party">
+        <title>Pirate Party</title>
         <circle cx="294.52" cy="162.31" r="1.89"/>
         <circle cx="327.26" cy="157.36" r="1.89"/>
         <circle cx="332.04" cy="157.37" r="1.89"/>
         <circle cx="299.34" cy="162.53" r="1.89"/>
         <circle cx="266.60" cy="167.48" r="1.89"/>
+    </g>
+    <g style="fill:#62ad3f"
+       id="18-Cannabis-Reform-Party">
+        <title>Cannabis Reform Party</title>
         <circle cx="336.82" cy="157.38" r="1.89"/>
         <circle cx="304.12" cy="162.53" r="1.89"/>
         <circle cx="341.60" cy="157.39" r="1.89"/>
@@ -1597,7 +1597,7 @@
         <circle cx="281.42" cy="172.57" r="1.89"/>
         <circle cx="352.19" cy="167.60" r="1.89"/>
     </g>
-    <g style="fill:#dddddd"
+    <g style="fill:#b8b8b8"
        id="25-Independents">
         <title>Independents</title>
         <circle cx="286.15" cy="172.49" r="1.89"/>
@@ -1650,32 +1650,32 @@
         <text x="77.40" y="273.50">Animal Welfare Party (6)</text>
         <rect x="65.40" y="279.00" width="8" height="8" rx="1.5" style="fill:#E15B86;stroke:#888;stroke-width:0.5"/>
         <text x="77.40" y="286.50">Progressive Party (168)</text>
-        <rect x="65.40" y="292.00" width="8" height="8" rx="1.5" style="fill:#62AD3F;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="299.50">Cannabis Reform Party (5)</text>
-        <rect x="65.40" y="305.00" width="8" height="8" rx="1.5" style="fill:#3168C6;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="312.50">Democratic Party (296)</text>
-        <rect x="65.40" y="318.00" width="8" height="8" rx="1.5" style="fill:#72A9DC;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="325.50">Democratic Union Party (102)</text>
-        <rect x="65.40" y="331.00" width="8" height="8" rx="1.5" style="fill:#8064B3;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="338.50">Forward Party (82)</text>
-        <rect x="65.40" y="344.00" width="8" height="8" rx="1.5" style="fill:#59428C;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="351.50">Pirate Party (5)</text>
-        <rect x="65.40" y="357.00" width="8" height="8" rx="1.5" style="fill:#C28A30;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="364.50">American Solidarity Party (14)</text>
-        <rect x="65.40" y="370.00" width="8" height="8" rx="1.5" style="fill:#58758E;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="377.50">Conservative Party (116)</text>
-        <rect x="65.40" y="383.00" width="8" height="8" rx="1.5" style="fill:#E2B72E;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="390.50">Libertarian Party (65)</text>
-        <rect x="65.40" y="396.00" width="8" height="8" rx="1.5" style="fill:#D28C2D;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="403.50">Taxpayers Party (5)</text>
-        <rect x="65.40" y="409.00" width="8" height="8" rx="1.5" style="fill:#C83B3E;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="416.50">Republican Party (302)</text>
-        <rect x="65.40" y="422.00" width="8" height="8" rx="1.5" style="fill:#8D2635;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="429.50">Patriot Party (174)</text>
-        <rect x="65.40" y="435.00" width="8" height="8" rx="1.5" style="fill:#75435B;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="442.50">Right to Life Party (6)</text>
-        <rect x="65.40" y="448.00" width="8" height="8" rx="1.5" style="fill:#684A39;stroke:#888;stroke-width:0.5"/>
-        <text x="77.40" y="455.50">Constitution Party (14)</text>
+        <rect x="65.40" y="292.00" width="8" height="8" rx="1.5" style="fill:#3168C6;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="299.50">Democratic Party (296)</text>
+        <rect x="65.40" y="305.00" width="8" height="8" rx="1.5" style="fill:#72A9DC;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="312.50">Democratic Union Party (102)</text>
+        <rect x="65.40" y="318.00" width="8" height="8" rx="1.5" style="fill:#8064B3;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="325.50">Forward Party (82)</text>
+        <rect x="65.40" y="331.00" width="8" height="8" rx="1.5" style="fill:#C28A30;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="338.50">American Solidarity Party (14)</text>
+        <rect x="65.40" y="344.00" width="8" height="8" rx="1.5" style="fill:#58758E;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="351.50">Conservative Party (116)</text>
+        <rect x="65.40" y="357.00" width="8" height="8" rx="1.5" style="fill:#E2B72E;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="364.50">Libertarian Party (65)</text>
+        <rect x="65.40" y="370.00" width="8" height="8" rx="1.5" style="fill:#D28C2D;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="377.50">Taxpayers Party (5)</text>
+        <rect x="65.40" y="383.00" width="8" height="8" rx="1.5" style="fill:#C83B3E;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="390.50">Republican Party (302)</text>
+        <rect x="65.40" y="396.00" width="8" height="8" rx="1.5" style="fill:#8D2635;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="403.50">Patriot Party (174)</text>
+        <rect x="65.40" y="409.00" width="8" height="8" rx="1.5" style="fill:#75435B;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="416.50">Right to Life Party (6)</text>
+        <rect x="65.40" y="422.00" width="8" height="8" rx="1.5" style="fill:#684A39;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="429.50">Constitution Party (14)</text>
+        <rect x="65.40" y="435.00" width="8" height="8" rx="1.5" style="fill:#333333;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="442.50">Pirate Party (5)</text>
+        <rect x="65.40" y="448.00" width="8" height="8" rx="1.5" style="fill:#62AD3F;stroke:#888;stroke-width:0.5"/>
+        <text x="77.40" y="455.50">Cannabis Reform Party (5)</text>
         <rect x="65.40" y="461.00" width="8" height="8" rx="1.5" style="fill:#B28A61;stroke:#888;stroke-width:0.5"/>
         <text x="77.40" y="468.50">Seniors Party (8)</text>
         <rect x="65.40" y="474.00" width="8" height="8" rx="1.5" style="fill:#8C7036;stroke:#888;stroke-width:0.5"/>
@@ -1688,7 +1688,7 @@
         <text x="77.40" y="520.50">Alaska Party (2)</text>
         <rect x="65.40" y="526.00" width="8" height="8" rx="1.5" style="fill:#D9A441;stroke:#888;stroke-width:0.5"/>
         <text x="77.40" y="533.50">Hawaiʻi Party (2)</text>
-        <rect x="65.40" y="539.00" width="8" height="8" rx="1.5" style="fill:#DDDDDD;stroke:#888;stroke-width:0.5"/>
+        <rect x="65.40" y="539.00" width="8" height="8" rx="1.5" style="fill:#B8B8B8;stroke:#888;stroke-width:0.5"/>
         <text x="77.40" y="546.50">Independents (34)</text>
     </g>
 </svg>
