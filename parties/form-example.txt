@@ -1,0 +1,4 @@
+# From the screenshot of the web form: three parties, 100 seats each. Only the first had a name; the others are labelled B and C.
+A, 100, #6437E2
+B, 100, #B28C83
+C, 100, #7E5604
