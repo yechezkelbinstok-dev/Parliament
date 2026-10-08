@@ -1,0 +1,27 @@
+# UK House of Commons, More in Common MRP, fieldwork 21 Aug - 21 Sep 2026 (GB only, 631 seats).
+# https://www.moreincommon.org.uk/research/more-in-commons-september-2026-mrp/
+# Speaker (1) added separately. Northern Ireland (18) is NOT projected in that MRP:
+# it uses the 2024 general election result. "Independent/Other" = MRP's "Other" (9) + NI independent (1).
+# Labour is short of a majority (326), so it is shown as a minority government.
+title: UK House of Commons: Sept 2026 MRP
+style: westminster
+
+Speaker, 1, #000000, speaker
+
+Labour, 250, #E4003B, government
+
+Reform UK, 147, #12B6CF, opposition
+Conservative, 125, #0087DC, opposition
+Liberal Democrats, 63, #FAA61A, opposition
+SNP, 27, #FDF38E, opposition
+Plaid Cymru, 6, #005B54, opposition
+Green, 3, #02A95B, opposition
+Restore Britain, 1, #7B2D8E, opposition
+DUP, 5, #D46A4C, opposition
+Sinn Féin, 7, #326760, opposition
+SDLP, 2, #2AA82C, opposition
+Alliance, 1, #F6CB2F, opposition
+UUP, 1, #48A5EE, opposition
+TUV, 1, #0C3A6A, opposition
+
+Independent/Other, 10, #BBBBBB, crossbench
