@@ -1,0 +1,81 @@
+title: 2026 United States House of Representatives elections
+languages: 9
+---
+{{Short description|none}}
+{{Infobox election
+| election_name = 2026 United States House of Representatives elections
+| country = United States
+| type = parliamentary
+| ongoing = no
+| previous_election = 2024 United States House of Representatives elections
+| previous_year = 2024
+| next_election = 2028 United States House of Representatives elections
+| next_year = ''2028''
+| election_date = November 3, 2026
+| seats_for_election = All 1,527 seats in the [[United States House of Representatives]]
+| majority_seats = 764
+| image_size = 100x125px
+| image1 = person:Steve Scalise
+| colour1 = E81B23
+| leader1 = [[Steve Scalise]]
+| party1 = [[Republican Party (United States)|Republican Party]]
+| leaders_seat1 = Greater New Orleans
+| seats1 = 302
+| image2 = person:Hakeem Jeffries
+| colour2 = 3333FF
+| leader2 = [[Hakeem Jeffries]]
+| party2 = [[Democratic Party (United States)|Democratic Party]]
+| leaders_seat2 = Central Brooklyn
+| seats2 = 301
+| image3 = person:Alexandria Ocasio-Cortez
+| colour3 = E15B86
+| leader3 = [[Alexandria Ocasio-Cortez]]
+| party3 = [[Progressive Party]]
+| leaders_seat3 = East Bronx–North Queens
+| seats3 = 178
+| image4 = person:Jim Jordan
+| colour4 = 8D2635
+| leader4 = [[Jim Jordan]]
+| party4 = [[Patriot Party]]
+| leaders_seat4 = West-Central Ohio
+| seats4 = 174
+| image5 = person:David Valadao
+| colour5 = 58758E
+| leader5 = [[David Valadao]]
+| party5 = [[Conservative Party]]
+| leaders_seat5 = South San Joaquin Valley
+| seats5 = 116
+| image6 = person:Marie Gluesenkamp Perez
+| colour6 = 72A9DC
+| leader6 = [[Marie Gluesenkamp Perez]]
+| party6 = [[Democratic Union Party]]
+| leaders_seat6 = Southwest Washington
+| seats6 = 102
+| image7 = person:Andrew Yang
+| colour7 = 480D67
+| leader7 = [[Andrew Yang]]
+| party7 = [[Forward Party (United States)|Forward Party]]
+| leaders_seat7 = Manhattan
+| seats7 = 86
+| image8 = person:Justin Amash
+| colour8 = FED000
+| leader8 = [[Justin Amash]]
+| party8 = [[Libertarian Party (United States)|Libertarian Party]]
+| leaders_seat8 = West Michigan
+| seats8 = 65
+| image9 = person:Rashida Tlaib
+| colour9 = B51F3C
+| leader9 = [[Rashida Tlaib]]
+| party9 = [[Democratic Socialist Party]]
+| leaders_seat9 = Detroit–Dearborn
+| seats9 = 40
+| map_image = diagrams/us-house-plain.svg
+| map_size = 400px
+| map_caption = Composition of the House after the election
+}}
+
+[[Elections in the United States|Elections]] to the [[United States House of Representatives]] were held on November 3, 2026, to elect all 1,527 members of the House. No party came close to the 764 seats needed for a majority.
+
+== Background ==
+
+== Results ==
