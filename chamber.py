@@ -394,6 +394,8 @@ def views(d):
     p0 = pub["r"] - pub["depth"] / 2 - 0.3
     over = (0, north_floor + p0, pub["z"] + 2.3)
     east = (CX + d.oval.a0 + p0, CY + 1.5, pub["z"] + 2.3)
+    mezz = next(r for r in d.rows if r["level"] == "mezzanine")
+    balcony = (0, north_floor + mezz["r"] - mezz["depth"] / 2 - 0.3, mezz["z"] + 1.1)
     return {
         "gallery-view": dict(eye=over, target=(0, rostrum[1], 0.8), fov=72),
         "side-view": dict(eye=east, target=(-5.0, CY - 1.5, 0.6) if centre else (-4.0, 3.5, 1.2), fov=66),
@@ -405,9 +407,10 @@ def views(d):
         "party-mezzanine": dict(eye=(0, CY - 6, 40), target=(0, CY + 0.5, 0), fov=44, colors="party",
                                 hide=["ceiling", "public"]),
         "sotu-gallery": dict(eye=over, target=(0, rostrum[1], 1.2), fov=64, sotu=True),
-        "sotu-president": dict(eye=(0, north_floor + 6.5, 4.4), target=rostrum, fov=30, sotu=True) if centre
-        else dict(eye=(0, north_floor + 3.0, 2.6), target=rostrum, fov=28, sotu=True),
-        "sotu-rostrum": dict(eye=(0.8, CY - 3.2, 5.6), target=(0, CY + 10, 0.8), fov=72, sotu=True) if centre
+        # the television camera's shot, from the front of the mezzanine on the north side
+        "sotu-president": dict(eye=balcony, target=rostrum, fov=34 if centre else 24, sotu=True),
+        # over the President's shoulder
+        "sotu-rostrum": dict(eye=(4.2, CY - 3.6, 6.4), target=(-1.0, CY + 8, 0.8), fov=70, sotu=True) if centre
         else dict(eye=(1.4, 0.5, 8.9), target=(0, CY - 2.5, 0.6), fov=70, sotu=True),
     }
 
