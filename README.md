@@ -5,8 +5,8 @@ Tools for simulated elections:
 - [`parliament.py`](#parliament-diagrams): seating diagrams from a list of parties
 - [`wikishot.py`](#wikipedia-election-pages): Wikipedia article screenshots
   (desktop and mobile) with a real election infobox
-- [`chamber.py`](#an-enlarged-house-chamber): 3D renders of an enlarged House of
-  Representatives chamber
+- [`chamber.py`](#a-house-chamber-for-1527-members): 3D renders of a House chamber for 1,527 members,
+  in two designs inside today's hall
 
 ## Setup
 
@@ -213,61 +213,83 @@ party unlinked rather than red.
 -o DIR                  output directory (default screenshots/)
 ```
 
-## An enlarged House chamber
+## A House chamber for 1,527 members
 
-`chamber.py` designs a House chamber big enough for the 1,527 members in
-`parties/us-house.txt` and renders it in 3D, made to look like today's Hall of the House,
-empty or during a State of the Union.
+`chamber.py` designs a House chamber for the 1,527 members in
+`parties/us-house.txt` inside today's Hall of the House, in two versions, and
+renders them in 3D in today's style, empty or during a State of the Union.
 
 ```sh
-python chamber.py                      # print the seat counts and render every view
-python chamber.py --report             # just the seat counts
-python chamber.py --views gallery-view --size 1280x720   # one quick preview
+python chamber.py                                  # both designs: seat counts and every view
+python chamber.py --report                         # just the seat counts
+python chamber.py --design oval --views gallery-view --size 1280x720   # one quick preview
 ```
 
-![Gallery view](chamber/chamber-gallery-view.png)
-![State of the Union](chamber/chamber-sotu-gallery.png)
+![Oval design](chamber/oval-sotu-gallery.png)
+![Horseshoe design](chamber/horseshoe-sotu-gallery.png)
 
-The fittings are today's: the three-tier walnut rostrum, the marble
-frontispiece with its black columns, flag, fasces and clock, the portraits of
-Washington and Lafayette, leaded-glass doors, the gilt Greek-key frieze, blue
-damask upper walls, the coffered ceiling with its laylight, the blue carpet with
-gold rosettes, and curved benches with leather seats and walnut backs.
-
-### Does it fit?
+### Why it is shaped like this
 
 Today's hall is 139 x 93 ft and 36 ft high, *galleries included* (Glenn Brown,
 *History of the United States Capitol*), and today's seats come in pairs 52½ in
-wide and 33 in deep (House collection). At that size, with rows 44 in apart, today's
-hall could hold about 880 members even if all of it were seats, so 1,527 cannot fit in it.
+wide and 33 in deep (House collection). In today's half-circle layout, with rows
+44 in apart, the hall could hold about 880 members even if all of it were seats.
 
-So the new hall takes in almost the whole House wing, which is 238 ft 10 in by
-142 ft 8 in outside. It keeps the outer walls and a corridor round the room. The
-cloakrooms, lobbies and grand stairs around today's hall would have to go or move.
+So both designs rebuild only the inside of today's hall, and keep the room and
+everything around it: the grand stairways and their murals, the Speaker's
+Lobby, the cloakrooms. Members sit in oval rows around a long central floor, on
+two levels, which uses the long room far better than a half circle or a circle:
 
-| | |
-| --- | --- |
-| Room | 210 x 110 ft (64.0 x 33.5 m), 36 ft high |
-| Members | 25 tiers, 1,544 seats for 1,527 members (17 spare), real seat size |
-| Public | 186 seats in 4 rows at the top, behind a rail and a glass screen |
-| Total | 1,730 seats |
+- a **lower bowl** rising gently from the floor;
+- a **mezzanine** over most of the lower bowl, like a theatre balcony;
+- a **public ring** at the top, over the back of the mezzanine, behind a walnut
+  rail with a laminated-glass security screen, since visitors sit close to the members.
 
-There are no separate galleries. The members' benches rise in one continuous
-bowl from the well, and the outer rows run on into the corners of the room. The
-public sits at the top, behind a walnut rail with a laminated-glass screen on
-it, since visitors now sit just behind the members. The press gallery stays
-above the rostrum.
+All three levels fit within today's 36 ft height, with 2.3 m (7 ft 6 in) of
+headroom under each overhang.
 
-Views (in `chamber/`):
+### The two designs
+
+| | `oval` | `horseshoe` |
+| --- | --- | --- |
+| Seats | today's size (26¼ in wide, rows 44 in apart) | theatre size (23 in wide, rows 3 ft apart) |
+| Rows | all the way round | stop short of the south wall |
+| Speaker | in the middle of the floor | on today's rostrum against the south wall |
+| Members | 1,552 seats (25 spare): 828 below, 724 on the mezzanine | 1,578 seats (51 spare): 788 below, 790 on the mezzanine |
+| Public | 476 | 398 |
+| Press | in the public ring | 72, in today's press gallery above the rostrum |
+| Central floor | 66 x 20 ft | 76 x 30 ft |
+
+In the **oval**, the rows go round behind the Speaker, so nothing can stand on
+the south wall. The frontispiece moves onto a marble screen behind the Speaker's
+chair: the black columns, the flag, the fasces, the motto and the clock in
+front, and the portraits of Lafayette and Washington on its back, facing the
+members behind the Speaker. The mezzanine covers all but the first two rows of
+the lower bowl, so from the public ring you see mostly the mezzanine and the floor.
+
+In the **horseshoe**, the rows stop 8 m either side of the rostrum, so today's
+rostrum, frontispiece and press gallery stay where they are, with the portraits
+beside the frontispiece. That costs space, which is why its seats are smaller.
+
+Both keep today's fittings: walnut, the blue carpet with gold rosettes and the
+centre-aisle runner, benches with leather seats and walnut backs, leadership
+tables, the three-tier rostrum (two tiers in the middle of the oval), the Mace,
+the gilt Greek-key frieze, blue damask upper walls, and the coffered ceiling
+with its laylight.
+
+### Views
+
+Each view is rendered for both designs, as `chamber/oval-<view>.png` and
+`chamber/horseshoe-<view>.png`:
 
 | View | What |
 | --- | --- |
-| `gallery-view` | From the top of the bowl, facing the rostrum |
-| `side-view` | From the public seats in a corner |
+| `gallery-view` | From the front of the public ring, facing the rostrum |
+| `side-view` | From the front of the public ring on the east side |
 | `floor-view` | From a leadership table |
-| `speaker-view` | From the rostrum |
-| `party-seating` | From above, members' seats in their party colours (left-wing parties on the Speaker's right, as Democrats sit today) |
-| `sotu-gallery`, `sotu-rostrum`, `sotu-president` | A State of the Union: every seat taken, the President at the rostrum, the Vice President and the Speaker behind |
+| `speaker-view` | From the Speaker's chair |
+| `party-lower`, `party-mezzanine` | From above, members' seats in their party colours, without the levels above (left-wing parties from the Speaker's right round to right-wing parties on his left) |
+| `sotu-gallery`, `sotu-president`, `sotu-rostrum` | A State of the Union: every seat taken, the President at the rostrum, the Vice President and the Speaker behind |
 
 The people are simple figures, not detailed humans: they look right from a
 distance but have no faces close up.

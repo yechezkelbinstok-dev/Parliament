@@ -1,5 +1,5 @@
-// Realistic model of the enlarged House chamber, built from the layout that
-// chamber.py computes (window.LAYOUT) and shot from window.VIEW.
+// Realistic model of a House chamber for 1,527 members inside today's Hall of the House,
+// built from the layout chamber.py computes (window.LAYOUT) and shot from window.VIEW.
 // Layout coordinates: x east, y north (away from the rostrum wall), z up, metres.
 
 window.addEventListener('error', e => { window.FAILED = String(e.message); });
@@ -28,7 +28,7 @@ scene.environment = pmrem.fromScene(new THREE.RoomEnvironment(), 0.04).texture;
 
 const V = (x, y, z) => new THREE.Vector3(x, z, -y);   // layout -> three.js
 const groups = {};
-for (const name of ['ceiling', 'north', 'south', 'east', 'west']) { groups[name] = new THREE.Group(); scene.add(groups[name]); }
+for (const name of ['ceiling', 'north', 'south', 'east', 'west', 'lower', 'mezzanine', 'public']) { groups[name] = new THREE.Group(); scene.add(groups[name]); }
 
 // ------------------------------------------------------------------ textures
 
@@ -315,8 +315,9 @@ const M = {
   chrome: std({color: '#9a9a9a', roughness: 0.15, metalness: 1.0}),
   leadedDoor: std({map: leadedDoorTex, roughness: 0.35, envMapIntensity: 0.6}),
   panelDoor: std({map: panelDoorTex, roughness: 0.4, envMapIntensity: 0.5}),
+  soffit: std({map: plasterTex, color: '#f3ecdf', roughness: 0.9, envMapIntensity: 0.3}),
   bulb: new THREE.MeshBasicMaterial({color: '#fff3d6'}),
-  glass: std({color: '#d6e6e8', transparent: true, opacity: 0.16, roughness: 0.04, metalness: 0.1, envMapIntensity: 1.6, depthWrite: false, side: THREE.DoubleSide}),
+  glass: std({color: '#d6e6e8', transparent: true, opacity: 0.1, roughness: 0.04, metalness: 0.1, envMapIntensity: 0.9, depthWrite: false, side: THREE.DoubleSide}),
 };
 const NO_AO = [];   // see-through things the ambient occlusion pass should ignore
 
@@ -346,30 +347,72 @@ class Builder {
   }
 }
 
-// A curved box: the part of a ring r0..r1 between angles a0..a1 (radians), z0..z1.
-function arcBox(o) {
-  const cx = o.cx ?? SX, cy = o.cy ?? SY, {r0, r1, a0, a1, z0, z1} = o;
-  const seg = o.seg || Math.max(1, Math.ceil((a1 - a0) / (1.5 * DEG)));
-  const P = (r, a, z) => [cx + r * Math.cos(a), cy + r * Math.sin(a), z];
-  const R = (a, s) => [s * Math.cos(a), s * Math.sin(a), 0];
-  const wood = (r, a, z) => [r * (a - a0), z];
-  const woodTop = (r, a) => [r * (a - a0), r];
-  const flat = (r, a) => { const p = P(r, a, 0); return [p[0], p[1]]; };
-  for (let k = 0; k < seg; k++) {
-    const t0 = a0 + (a1 - a0) * k / seg, t1 = a0 + (a1 - a0) * (k + 1) / seg;
-    for (const [b, r, s, uvf] of [[o.outer, r1, 1, o.outerUV || wood], [o.inner, r0, -1, o.innerUV || wood]]) {
-      if (!b) continue;
-      b.quad([P(r, t0, z0), P(r, t1, z0), P(r, t1, z1), P(r, t0, z1)], [R(t0, s), R(t1, s), R(t1, s), R(t0, s)],
-             [uvf(r, t0, z0), uvf(r, t1, z0), uvf(r, t1, z1), uvf(r, t0, z1)]);
-    }
-    for (const [b, z, s] of [[o.top, z1, 1], [o.bottom, z0, -1]]) {
-      if (!b) continue;
-      const uvf = o.topUV === 'flat' ? flat : woodTop;
-      b.quad([P(r0, t0, z), P(r1, t0, z), P(r1, t1, z), P(r0, t1, z)], [0, 0, s], [uvf(r0, t0), uvf(r1, t0), uvf(r1, t1), uvf(r0, t1)]);
+// Rows are parallel curves a distance r outside the central floor, an ellipse a0 x b0 centred
+// in the hall; t is the ellipse's angle parameter. A shape can bring its own at(t, r), like
+// the straight rows of the press gallery.
+const [OCX, OCY] = L.centre, OA = L.oval.a0, OB = L.oval.b0;
+function ovalAt(t, r) {
+  const c = Math.cos(t), s = Math.sin(t);
+  let nx = OB * c, ny = OA * s;
+  const n = Math.hypot(nx, ny); nx /= n; ny /= n;
+  return [OCX + OA * c + r * nx, OCY + OB * s + r * ny, nx, ny];
+}
+const T0 = 1.5 * Math.PI;   // rows run from the south by way of the east, north and west
+function keep(x, y) { return !(L.cut && Math.abs(x - OCX) < L.cut[0] && y < L.cut[1]); }
+// t ranges where a row at offset r is in the hall and not in the horseshoe's open end
+function tRanges(r) {
+  const out = [], n = 1440; let start = null, prev = null;
+  for (let i = 0; i <= n; i++) {
+    const t = T0 + 2 * Math.PI * i / n, [x, y] = ovalAt(t, r);
+    const ok = keep(x, y) && Math.abs(x) <= HW - 0.01 && y >= 0.01 && y <= D - 0.01;
+    if (ok && start === null) start = t;
+    if (!ok && start !== null) { out.push([start, prev]); start = null; }
+    prev = t;
+  }
+  if (start !== null) out.push([start, prev]);
+  return out;
+}
+const aisleT = a => { let t = a.t; while (t < T0) t += 2 * Math.PI; return t; };
+const speed = (t, r, at = ovalAt) => { const a = at(t - 1e-4, r), b = at(t + 1e-4, r); return Math.hypot(b[0] - a[0], b[1] - a[1]) / 2e-4; };
+
+// A box that follows the rows: offsets r0..r1 (outwards), parameter t0..t1, heights z0..z1.
+// UV functions get the arc length s along the face, the face's length and z.
+function curveBox(o) {
+  const at = o.at || ovalAt, {r0, r1, t0, t1, z0, z1} = o, mid = (r0 + r1) / 2;
+  let len = 0;
+  for (let k = 0, p = at(t0, mid); k < 24; k++) { const q = at(t0 + (t1 - t0) * (k + 1) / 24, mid); len += Math.hypot(q[0] - p[0], q[1] - p[1]); p = q; }
+  const seg = o.seg || Math.max(1, Math.ceil(len / (o.step || 0.3)));
+  const ts = Array.from({length: seg + 1}, (_, k) => t0 + (t1 - t0) * k / seg);
+  const ring = r => {
+    const pts = ts.map(t => at(t, r)), s = [0];
+    for (let k = 1; k < pts.length; k++) s.push(s[k - 1] + Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]));
+    return {pts, s, len: s[s.length - 1]};
+  };
+  const wood = (s, l, z) => [s, z];
+  for (const [b, r, sign, uvf] of [[o.outer, r1, 1, o.outerUV || wood], [o.inner, r0, -1, o.innerUV || wood]]) {
+    if (!b) continue;
+    const R = ring(r);
+    for (let k = 0; k < seg; k++) {
+      const p = R.pts[k], q = R.pts[k + 1], np = [sign * p[2], sign * p[3], 0], nq = [sign * q[2], sign * q[3], 0];
+      b.quad([[p[0], p[1], z0], [q[0], q[1], z0], [q[0], q[1], z1], [p[0], p[1], z1]], [np, nq, nq, np],
+             [uvf(R.s[k], R.len, z0), uvf(R.s[k + 1], R.len, z0), uvf(R.s[k + 1], R.len, z1), uvf(R.s[k], R.len, z1)]);
     }
   }
-  if (o.ends) for (const [a, s] of [[a0, -1], [a1, 1]]) {
-    o.ends.quad([P(r0, a, z0), P(r1, a, z0), P(r1, a, z1), P(r0, a, z1)], [-s * Math.sin(a), s * Math.cos(a), 0],
+  if (o.top || o.bottom) {
+    const A = ring(r0), Bq = ring(r1), Mm = ring(mid);
+    const uv = o.topUV === 'flat' ? (p, s, r) => [p[0], p[1]] : (p, s, r) => [s, r];
+    for (const [b, z, nz] of [[o.top, z1, 1], [o.bottom, z0, -1]]) {
+      if (!b) continue;
+      for (let k = 0; k < seg; k++) {
+        const a0 = A.pts[k], a1 = A.pts[k + 1], b0 = Bq.pts[k], b1 = Bq.pts[k + 1];
+        b.quad([[a0[0], a0[1], z], [b0[0], b0[1], z], [b1[0], b1[1], z], [a1[0], a1[1], z]], [0, 0, nz],
+               [uv(a0, Mm.s[k], r0), uv(b0, Mm.s[k], r1), uv(b1, Mm.s[k + 1], r1), uv(a1, Mm.s[k + 1], r0)]);
+      }
+    }
+  }
+  if (o.ends) for (const [t, sign] of [[t0, -1], [t1, 1]]) {
+    const a = at(t, r0), b = at(t, r1);
+    o.ends.quad([[a[0], a[1], z0], [b[0], b[1], z0], [b[0], b[1], z1], [a[0], a[1], z1]], [-sign * a[3], sign * a[2], 0],
                 [[r0, z0], [r1, z0], [r1, z1], [r0, z1]]);
   }
 }
@@ -397,9 +440,15 @@ function shapeFrom(outer, holes = []) {
   for (const h of holes) s.holes.push(new THREE.Path(h.map(([x, y]) => new THREE.Vector2(x, y))));
   return s;
 }
+// materials: [lids, sides], or [top, sides, underside] for a raised tier
 function extrude(outer, z0, z1, materials, holes = [], parent = scene) {
   if (z1 - z0 < 0.005) z1 = z0 + 0.005;
   const g = new THREE.ExtrudeGeometry(shapeFrom(outer, holes), {depth: z1 - z0, bevelEnabled: false, curveSegments: 1});
+  if (materials.length === 3) {   // ExtrudeGeometry puts the bottom lid first, then the top
+    const [lids, sides] = g.groups, half = lids.count / 2;
+    g.clearGroups();
+    g.addGroup(lids.start, half, 2); g.addGroup(lids.start + half, half, 0); g.addGroup(sides.start, sides.count, 1);
+  }
   g.rotateX(-Math.PI / 2); g.translate(0, z0, 0);
   return add(new THREE.Mesh(g, materials), parent);
 }
@@ -430,20 +479,6 @@ function floorAt(x, y) {
   for (const b of L.bands) for (const p of b.polys) if (b.z > z && pip(p.outer, x, y)) z = b.z;
   return z;
 }
-const [AMIN, AMAX] = L.angles, [CLX, CLY] = L.clearance;
-// angle ranges (radians) where a ring of radius r is inside the tiered area
-function arcRanges(r) {
-  const out = []; let start = null, prev = null;
-  for (let a = AMIN; a <= AMAX + 1e-9; a += 0.1) {
-    const x = SX + r * Math.cos(a * DEG), y = SY + r * Math.sin(a * DEG);
-    const ok = Math.abs(x) <= HW - 0.01 && y <= D - 0.01 && !(Math.abs(x) < CLX && y < CLY);
-    if (ok && start === null) start = a;
-    if (!ok && start !== null) { out.push([start * DEG, prev * DEG]); start = null; }
-    prev = a;
-  }
-  if (start !== null) out.push([start * DEG, AMAX * DEG]);
-  return out;
-}
 
 // ------------------------------------------------------------------ floor and tiers
 
@@ -453,107 +488,120 @@ const floorMesh = new THREE.Mesh(floorGeo, M.carpet);
 floorMesh.rotation.x = -Math.PI / 2; floorMesh.position.copy(V(0, D / 2 - 2, 0)); floorMesh.receiveShadow = true;
 scene.add(floorMesh);
 
-for (const b of L.bands) for (const p of b.polys) extrude(p.outer, 0, b.z, [M.carpet, M.carpetSide], p.holes);
+const LEVELS = ['lower', 'mezzanine', 'public'];
+// carpeted tiers; the mezzanine's and the public ring's are slabs with a plaster soffit
+for (const b of L.bands) for (const p of b.polys)
+  extrude(p.outer, b.z0, b.z, b.z0 > 0 ? [M.carpet, M.carpetSide, M.soffit] : [M.carpet, M.carpetSide], p.holes, groups[b.level]);
 
-// risers with a gold nosing, and the half steps in the steeper aisles
-const B = {riser: new Builder(), carpet: new Builder(), carpetSide: new Builder()};
-const riserUV = (z0, z1) => (r, a, z) => [r * a, (z - z0) / (z1 - z0)];
-L.rows.forEach((row, i) => {
-  const prev = L.rows[i - 1];
-  if (prev && prev.kind !== row.kind) return;          // behind the rail
-  const z0 = prev ? prev.z : 0, r = row.r - row.depth / 2 - 0.003;
-  for (const [a0, a1] of arcRanges(r)) arcBox({r0: r, r1: r, a0, a1, z0, z1: row.z, inner: B.riser, innerUV: riserUV(z0, row.z)});
-});
-const AISLE_ANGLES = [...L.aisles, 90];
-const stepped = [];   // rows whose aisles get a half step
-L.rows.forEach((row, i) => {
-  const nxt = L.rows[i + 1];
-  if (!nxt || nxt.kind !== row.kind || nxt.z - row.z <= 0.26) return;
-  const rOut = nxt.r - nxt.depth / 2, rIn = rOut - 0.42, zs = row.z + (nxt.z - row.z) / 2;
-  stepped.push({row: i, y: rIn, z: zs});
-  for (const a of AISLE_ANGLES) {
-    const hw = ((a === 90 ? L.centre_aisle : L.aisle_width) / 2 - 0.03) / rOut;
-    arcBox({r0: rIn, r1: rOut, a0: a * DEG - hw, a1: a * DEG + hw, z0: row.z, z1: zs, top: B.carpet, topUV: 'flat',
-            inner: B.riser, innerUV: riserUV(row.z, zs), ends: B.carpetSide, seg: 2});
-  }
-});
-B.riser.mesh(M.riser, {cast: false}); B.carpet.mesh(M.carpet); B.carpetSide.mesh(M.carpetSide);
-
-// the centre-aisle runner, from the well over every tier and step to the top
-{
-  const members = L.rows.filter(r => r.kind === 'member');
-  const pts = [[CLY, 0]];
-  let z = 0;
-  members.forEach((row, i) => {
-    const y0 = SY + row.r - row.depth / 2;
-    pts.push([y0, z], [y0, row.z]); z = row.z;
-    const st = stepped.find(s => s.row === L.rows.indexOf(row));
-    if (st) { pts.push([SY + st.y, z], [SY + st.y, st.z]); z = st.z; }
+// risers with a gold nosing, and half steps in the steeper aisles
+const riserUV = (z0, z1) => (s, l, z) => [s, (z - z0) / (z1 - z0)];
+for (const level of LEVELS) {
+  const rows = L.rows.filter(r => r.level === level), g = groups[level];
+  const riser = new Builder(), top = new Builder(), side = new Builder();
+  rows.forEach((row, i) => {
+    if (i > 0 || level === 'lower') {        // a raised level's first riser is behind its front
+      const z0 = i > 0 ? rows[i - 1].z : 0, r = row.r - row.depth / 2 - 0.003;
+      for (const [t0, t1] of tRanges(r)) curveBox({r0: r, r1: r, t0, t1, z0, z1: row.z, inner: riser, innerUV: riserUV(z0, row.z)});
+    }
+    const nxt = rows[i + 1];
+    if (!nxt || nxt.z - row.z <= 0.26) return;
+    const rOut = nxt.r - nxt.depth / 2, rIn = rOut - 0.42, zs = row.z + (nxt.z - row.z) / 2;
+    for (const a of L.aisles) {
+      const t = aisleT(a), [x, y] = ovalAt(t, rOut);
+      if (!keep(x, y)) continue;
+      const hw = (a.w / 2 - 0.03) / speed(t, rOut);
+      curveBox({r0: rIn, r1: rOut, t0: t - hw, t1: t + hw, z0: row.z, z1: zs, top, topUV: 'flat',
+                inner: riser, innerUV: riserUV(row.z, zs), ends: side, seg: 2});
+    }
   });
-  pts.push([SY + L.aisle.r_out, z]);
+  riser.mesh(M.riser, {cast: false, parent: g}); top.mesh(M.carpet, {parent: g}); side.mesh(M.carpetSide, {parent: g});
+}
+
+// the centre aisles' runners
+for (const prof of L.runners) {
   const b = new Builder(), RW = 1.25, RL = 1.25;
-  for (let i = 0; i + 1 < pts.length; i++) {
-    const [y0, z0] = pts[i], [y1, z1] = pts[i + 1], len = Math.hypot(y1 - y0, z1 - z0);
-    if (len < 1e-4) continue;
-    if (z1 === z0) b.quad([[-RW / 2, y0, z0 + 0.004], [RW / 2, y0, z0 + 0.004], [RW / 2, y1, z0 + 0.004], [-RW / 2, y1, z0 + 0.004]], [0, 0, 1], [[0, y0 / RL], [1, y0 / RL], [1, y1 / RL], [0, y1 / RL]]);
-    else b.quad([[-RW / 2, y0 - 0.005, z0], [RW / 2, y0 - 0.005, z0], [RW / 2, y0 - 0.005, z1], [-RW / 2, y0 - 0.005, z1]], [0, -1, 0], [[0, 0.1], [1, 0.1], [1, 0.1], [0, 0.1]]);
-  }
-  b.mesh(M.runner, {cast: false});
-}
-
-// walnut screens stepping up both open ends of the bowl
-{
-  for (const sc of L.screens) for (const p of sc.polys) {
-    extrude(p.outer, 0, sc.z + 0.95, [M.walnut, M.walnut]);
-    extrude(p.outer, sc.z + 0.95, sc.z + 1.0, [M.brass, M.brass]);
-  }
-}
-
-// the rail between the members' bowl and the public rows
-{
-  const rail = new Builder(), wood = new Builder(), cap = new Builder();
-  const pub = L.rows.find(r => r.kind === 'public');
-  const r = pub.r - pub.depth / 2, z0 = L.aisle.z, z1 = L.aisle.z + 0.95;
-  for (const [a0, a1] of arcRanges(r - 0.07)) {
-    arcBox({r0: r - 0.14, r1: r, a0, a1, z0, z1, inner: rail, innerUV: (rr, a, z) => [rr * a / 1.4, (z - z0) / (z1 - z0)], outer: wood, ends: wood});
-    arcBox({r0: r - 0.17, r1: r + 0.02, a0, a1, z0: z1, z1: z1 + 0.06, inner: cap, outer: cap, top: cap, ends: cap});
-  }
-  rail.mesh(M.parapet); wood.mesh(M.walnut); cap.mesh(M.brass);
-  // a security screen of laminated glass in a bronze frame, 1.7 m above the rail
-  const glass = new Builder(), frame = new Builder(), g0 = z1 + 0.06, g1 = g0 + 1.7, rg = r - 0.07;
-  for (const [a0, a1] of arcRanges(rg)) {
-    arcBox({r0: rg - 0.01, r1: rg + 0.01, a0, a1, z0: g0, z1: g1, inner: glass, outer: glass});
-    arcBox({r0: rg - 0.04, r1: rg + 0.04, a0, a1, z0: g1, z1: g1 + 0.06, inner: frame, outer: frame, top: frame, ends: frame});
-    const n = Math.max(1, Math.round((a1 - a0) * rg / 1.8));
-    for (let k = 0; k <= n; k++) {
-      const a = a0 + (a1 - a0) * k / n, da = 0.025 / rg;
-      arcBox({r0: rg - 0.04, r1: rg + 0.04, a0: a - da, a1: a + da, z0: g0, z1: g1, inner: frame, outer: frame, ends: frame, seg: 1});
+  const dir = Math.sign(prof[prof.length - 1][0] - prof[0][0]);
+  for (let i = 0; i + 1 < prof.length; i++) {
+    const [y0, z0] = prof[i], [y1, z1] = prof[i + 1];
+    if (Math.abs(y1 - y0) + Math.abs(z1 - z0) < 1e-4) continue;
+    if (z1 === z0) b.quad([[-RW / 2, y0, z0 + 0.004], [RW / 2, y0, z0 + 0.004], [RW / 2, y1, z0 + 0.004], [-RW / 2, y1, z0 + 0.004]], [0, 0, 1],
+                          [[0, y0 / RL], [1, y0 / RL], [1, y1 / RL], [0, y1 / RL]]);
+    else {
+      const y = y0 - dir * 0.005;
+      b.quad([[-RW / 2, y, z0], [RW / 2, y, z0], [RW / 2, y, z1], [-RW / 2, y, z1]], [0, -dir, 0], [[0, 0.1], [1, 0.1], [1, 0.1], [0, 0.1]]);
     }
   }
-  NO_AO.push(glass.mesh(M.glass, {cast: false}));
-  frame.mesh(M.bronze);
+  b.mesh(M.runner, {cast: false, parent: groups.lower});
 }
 
-// brass handrails down the steeper side aisles
+// walnut screens along both sides of the horseshoe's open end
+for (const sc of L.screens) for (const p of sc.polys) {
+  extrude(p.outer, sc.z0, sc.z + 0.95, [M.walnut, M.walnut], [], groups[sc.level]);
+  extrude(p.outer, sc.z + 0.95, sc.z + 1.0, [M.brass, M.brass], [], groups[sc.level]);
+}
+
+// the fronts of the mezzanine and the public ring; the public one carries a security screen
+// of laminated glass in a bronze frame
+for (const f of L.fronts) {
+  const g = groups[f.level], panel = new Builder(), wood = new Builder(), cap = new Builder(), glass = new Builder(), frame = new Builder();
+  for (const [t0, t1] of tRanges(f.r - 0.08)) {
+    curveBox({r0: f.r - 0.16, r1: f.r, t0, t1, z0: f.z0, z1: f.z1, inner: panel,
+              innerUV: (s, l, z) => [s / 1.4, (z - f.z0) / (f.z1 - f.z0)], outer: wood, ends: wood, bottom: wood});
+    curveBox({r0: f.r - 0.19, r1: f.r + 0.02, t0, t1, z0: f.z1, z1: f.z1 + 0.06, inner: cap, outer: cap, top: cap, ends: cap});
+    if (!f.glass) continue;
+    const g0 = f.z1 + 0.06, g1 = g0 + 1.6, rg = f.r - 0.08;
+    curveBox({r0: rg - 0.01, r1: rg + 0.01, t0, t1, z0: g0, z1: g1, inner: glass, outer: glass});
+    curveBox({r0: rg - 0.04, r1: rg + 0.04, t0, t1, z0: g1, z1: g1 + 0.06, inner: frame, outer: frame, top: frame, ends: frame});
+    const n = Math.max(1, Math.round((t1 - t0) * speed((t0 + t1) / 2, rg) / 1.8));
+    for (let k = 0; k <= n; k++) {
+      const t = t0 + (t1 - t0) * k / n, dt = 0.025 / speed(t, rg);
+      curveBox({r0: rg - 0.04, r1: rg + 0.04, t0: t - dt, t1: t + dt, z0: g0, z1: g1, inner: frame, outer: frame, ends: frame, seg: 1});
+    }
+  }
+  panel.mesh(M.parapet, {parent: g}); wood.mesh(M.walnut, {parent: g}); cap.mesh(M.brass, {parent: g});
+  const gm = glass.mesh(M.glass, {cast: false, parent: g});
+  if (gm) NO_AO.push(gm);
+  frame.mesh(M.bronze, {parent: g});
+}
+
+// brass handrails down the aisles of the mezzanine and the public ring
 {
-  const mat = M.brass, rows = L.rows;
-  const tube = (p, q, rad) => {
+  const tube = (p, q, rad, parent) => {
     const a = V(...p), b = V(...q), len = a.distanceTo(b);
-    const m = new THREE.Mesh(new THREE.CylinderGeometry(rad, rad, len, 8), mat);
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(rad, rad, len, 8), M.brass);
     m.position.copy(a).add(b).multiplyScalar(0.5);
     m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize());
-    add(m, scene, false);
+    add(m, parent, false);
   };
-  for (const kind of ['member', 'public']) {
-    const list = rows.filter(r => r.kind === kind && (kind === 'public' || r.z >= 3.2));
+  for (const level of ['mezzanine', 'public']) {
+    const rows = L.rows.filter(r => r.level === level);
     for (const a of L.aisles) {
-      const pts = list.map(r => { const rr = r.r; return [SX + rr * Math.cos(a * DEG), SY + rr * Math.sin(a * DEG), r.z]; });
-      for (let i = 0; i < pts.length; i++) {
-        const [x, y, z] = pts[i];
-        tube([x, y, z], [x, y, z + 0.9], 0.018);
-        if (i + 1 < pts.length) tube([x, y, z + 0.9], [pts[i + 1][0], pts[i + 1][1], pts[i + 1][2] + 0.9], 0.024);
+      const t = aisleT(a);
+      const pts = rows.map(r => { const [x, y] = ovalAt(t, r.r); return [x, y, r.z]; }).filter(([x, y]) => keep(x, y));
+      pts.forEach(([x, y, z], i) => {
+        tube([x, y, z], [x, y, z + 0.9], 0.018, groups[level]);
+        if (i + 1 < pts.length) tube([x, y, z + 0.9], [pts[i + 1][0], pts[i + 1][1], pts[i + 1][2] + 0.9], 0.024, groups[level]);
+      });
+    }
+  }
+}
+
+// downlights in the soffits
+{
+  const disc = new THREE.CircleGeometry(0.13, 16).rotateX(Math.PI / 2);
+  for (const level of ['mezzanine', 'public']) {
+    const list = [];
+    for (const row of L.rows.filter(r => r.level === level)) for (const [t0, t1] of tRanges(row.r)) {
+      const n = Math.floor((t1 - t0) * speed((t0 + t1) / 2, row.r) / 2.4);
+      for (let k = 0; k < n; k++) {
+        const [x, y] = ovalAt(t0 + (t1 - t0) * (k + 0.5) / n, row.r), p = V(x, y, row.z - 0.452);
+        list.push(new THREE.Matrix4().makeTranslation(p.x, p.y, p.z));
       }
     }
+    if (!list.length) continue;
+    const mesh = new THREE.InstancedMesh(disc, M.bulb, list.length);
+    list.forEach((m, i) => mesh.setMatrixAt(i, m));
+    groups[level].add(mesh);
   }
 }
 
@@ -565,12 +613,12 @@ function seatMatrix(s, lx, lz, sz = 1) {
   return new THREE.Matrix4().compose(V(s.x, s.y, s.z), q, ONE).multiply(new THREE.Matrix4().makeTranslation(lx, 0, lz))
     .multiply(new THREE.Matrix4().makeScale(1, 1, sz));
 }
-function instanced(geo, mat, matrices, colors) {
+function instanced(geo, mat, matrices, colors, parent = scene) {
   if (!matrices.length) return;
   const mesh = new THREE.InstancedMesh(geo, mat, matrices.length);
   matrices.forEach((m, i) => mesh.setMatrixAt(i, m));
   if (colors) colors.forEach((c, i) => mesh.setColorAt(i, c));
-  mesh.castShadow = mesh.receiveShadow = true; scene.add(mesh);
+  mesh.castShadow = mesh.receiveShadow = true; parent.add(mesh);
 }
 
 // one place on a bench: local x forward (towards the Speaker), y up, z to the occupant's right
@@ -589,36 +637,22 @@ endShape.lineTo(-0.455, 0);
 const endGeo = new THREE.ExtrudeGeometry(endShape, {depth: 0.05, bevelEnabled: true, bevelThickness: 0.006, bevelSize: 0.006, bevelSegments: 1, curveSegments: 6}).translate(0, 0, -0.025);
 const voteGeo = new THREE.BoxGeometry(0.03, 0.075, 0.14).translate(0, 0.82, 0);
 
-function benchesOf(seats, cx, cy) {
-  const out = []; let cur = null;
-  for (const s of seats) {
-    if (!cur || s.end_lo) { cur = {seats: [], z: s.z, cx, cy}; out.push(cur); }
-    cur.seats.push(s);
-  }
-  for (const b of out) {
-    const f = b.seats[0], l = b.seats[b.seats.length - 1];
-    b.r = Math.hypot(f.x - cx, f.y - cy);
-    const af = Math.atan2(f.y - cy, f.x - cx), al = Math.atan2(l.y - cy, l.x - cx);
-    b.step = b.seats.length > 1 ? (al - af) / (b.seats.length - 1) : 0.58 / b.r;
-    b.a0 = af - b.step / 2; b.a1 = al + b.step / 2;
-  }
-  return out;
-}
 
 const caramel = new THREE.Color('#9c5426'), blue = new THREE.Color('#2c3f72');
-function buildBenches(benches, {depth, upholstery, colorOf, votes}) {
-  const shift = 0.46 - depth / 2;                // local x shift so the back sits at the tier's edge
+// A bench: a walnut back with a panel per place, a top rail and a base; per place a cushion
+// and a back, wooden arms between the places and carved ends.
+function buildBenches(benches, {upholstery, colorOf, votes, parent = scene}) {
   const wood = new Builder(), panel = new Builder();
   const parts = {cushion: [], back: [], arm: [], end: [], vote: []}, colors = [];
   for (const b of benches) {
-    const back1 = b.r + depth / 2 - 0.02, back0 = back1 - 0.08, z = b.z;
-    const common = {cx: b.cx, cy: b.cy, a0: b.a0, a1: b.a1, seg: Math.max(1, b.seats.length * 2)};
-    arcBox({...common, r0: back0, r1: back1, z0: z, z1: z + 1.0, outer: panel, outerUV: (r, a, zz) => [(a - b.a0) / b.step, zz - z], inner: wood});
-    arcBox({...common, r0: back0 - 0.03, r1: back1 + 0.025, z0: z + 1.0, z1: z + 1.05, outer: wood, inner: wood, top: wood});
-    arcBox({...common, r0: b.r - 0.11 - shift, r1: back0, z0: z, z1: z + 0.37, inner: wood, top: wood});
+    const shift = 0.46 - b.depth / 2, w = b.seat_w, n = b.seats.length, z = b.z;   // shift: the back sits at the tier's edge
+    const back1 = b.r + b.depth / 2 - 0.02, back0 = back1 - 0.08;
+    const common = {at: b.at, t0: b.t0, t1: b.t1, seg: Math.max(2, n * 2)};
+    curveBox({...common, r0: back0, r1: back1, z0: z, z1: z + 1.0, outer: panel, outerUV: (s, l, zz) => [s / l * n, zz - z], inner: wood});
+    curveBox({...common, r0: back0 - 0.03, r1: back1 + 0.025, z0: z + 1.0, z1: z + 1.05, outer: wood, inner: wood, top: wood});
+    curveBox({...common, r0: b.r - 0.11 - shift, r1: back0, z0: z, z1: z + 0.37, inner: wood, top: wood});
+    const sz = (w - 0.06) / 0.53;      // cushions fill the place between the arms
     b.seats.forEach((s, i) => {
-      const w = b.step * b.r;
-      const sz = (w - 0.06) / 0.53;      // cushions fill the place between the arms
       parts.cushion.push(seatMatrix(s, shift, 0, sz)); parts.back.push(seatMatrix(s, shift, 0, sz));
       colors.push(colorOf(s));
       if (!s.end_lo) parts.arm.push(seatMatrix(s, shift, -w / 2));
@@ -627,19 +661,21 @@ function buildBenches(benches, {depth, upholstery, colorOf, votes}) {
       if (votes && (s.end_lo || s.end_hi || i % 8 === 4)) parts.vote.push(seatMatrix(s, shift - 0.455, 0));
     });
   }
-  panel.mesh(M.benchPanel); wood.mesh(M.bench);
-  instanced(cushionGeo, upholstery, parts.cushion, colors);
-  instanced(backGeo, upholstery, parts.back, colors);
-  instanced(armGeo, M.bench, parts.arm);
-  instanced(endGeo, M.bench, parts.end);
-  instanced(voteGeo, M.dark, parts.vote);
+  panel.mesh(M.benchPanel, {parent}); wood.mesh(M.bench, {parent});
+  instanced(cushionGeo, upholstery, parts.cushion, colors, parent);
+  instanced(backGeo, upholstery, parts.back, colors, parent);
+  instanced(armGeo, M.bench, parts.arm, null, parent);
+  instanced(endGeo, M.bench, parts.end, null, parent);
+  instanced(voteGeo, M.dark, parts.vote, null, parent);
 }
 const jitter = c => c.clone().offsetHSL((rand() - 0.5) * 0.01, (rand() - 0.5) * 0.06, (rand() - 0.5) * 0.04);
 const partyColor = s => new THREE.Color(s.party == null ? '#8c7f73' : L.parties[s.party].color);
-buildBenches(benchesOf(L.members, SX, SY), {depth: L.rows[0].depth, upholstery: M.leather, votes: true,
-             colorOf: PARTY ? partyColor : () => jitter(caramel)});
-const pubDepth = L.rows.find(r => r.kind === 'public').depth;
-buildBenches(benchesOf(L.public, SX, SY), {depth: pubDepth, upholstery: M.fabric, colorOf: () => jitter(blue)});
+for (const level of LEVELS) {
+  const benches = L.benches.filter(b => b.level === level);
+  const members = benches.length > 0 && benches[0].kind === 'member';
+  buildBenches(benches, {upholstery: members ? M.leather : M.fabric, votes: members, parent: groups[level],
+                         colorOf: members ? (PARTY ? partyColor : () => jitter(caramel)) : () => jitter(blue)});
+}
 
 // ------------------------------------------------------------------ chairs, lecterns, tables
 
@@ -683,28 +719,32 @@ function lectern(x, y, z, face, {w = 0.62, d = 0.48, pedestal = 0}) {
   gooseneck(x + Math.cos(face) * 0.2, y + Math.sin(face) * 0.2, z + pedestal + 0.15, face + Math.PI, 0.38);
 }
 
-// leadership tables at the front of each side
-for (const t of L.tables) {
-  const r = t.r, a0 = t.a0 * DEG, a1 = t.a1 * DEG, z = t.z;
-  const wood = new Builder(), panel = new Builder(), top = new Builder();
-  arcBox({r0: r - 0.34, r1: r + 0.3, a0: a0 + 0.004, a1: a1 - 0.004, z0: z, z1: z + 0.72, inner: panel, innerUV: (rr, a, zz) => [rr * (a - a0) / 1.2, (zz - z) / 0.72 * 0.75], outer: wood, ends: wood});
-  arcBox({r0: r - 0.44, r1: r + 0.42, a0, a1, z0: z + 0.72, z1: z + 0.77, inner: top, outer: top, top, ends: top});
-  panel.mesh(M.honeyPanel); wood.mesh(M.honey); top.mesh(M.honey);
-  const mid = (a0 + a1) / 2, reader = mid;   // the reader stands behind the table, facing the Speaker
-  const lx = SX + (r + 0.12) * Math.cos(mid), ly = SY + (r + 0.12) * Math.sin(mid);
-  lectern(lx, ly, z + 0.77, reader + Math.PI, {w: 0.6, d: 0.42});
-  for (const da of [-0.35, 0.35]) {
-    const a = mid + da * (a1 - a0);
-    gooseneck(SX + (r - 0.25) * Math.cos(a), SY + (r - 0.25) * Math.sin(a), z + 0.77, a);
+
+// leadership tables in the first row either side of the north aisle
+for (const tb of L.tables) {
+  const r = tb.r, z = tb.z, wood = new Builder(), panel = new Builder(), top = new Builder();
+  curveBox({r0: r - 0.34, r1: r + 0.3, t0: tb.t0 + 0.004, t1: tb.t1 - 0.004, z0: z, z1: z + 0.72, inner: panel,
+            innerUV: (s, l, zz) => [s / 1.2, (zz - z) / 0.72 * 0.75], outer: wood, ends: wood});
+  curveBox({r0: r - 0.44, r1: r + 0.42, t0: tb.t0, t1: tb.t1, z0: z + 0.72, z1: z + 0.77, inner: top, outer: top, top, ends: top});
+  panel.mesh(M.honeyPanel, {parent: groups.lower}); wood.mesh(M.honey, {parent: groups.lower}); top.mesh(M.honey, {parent: groups.lower});
+  const [lx, ly, nx, ny] = ovalAt((tb.t0 + tb.t1) / 2, r + 0.12);
+  lectern(lx, ly, z + 0.77, Math.atan2(-ny, -nx), {w: 0.6, d: 0.42});    // the reader faces the floor
+  for (const f of [0.15, 0.85]) {
+    const [mx, my, mnx, mny] = ovalAt(tb.t0 + (tb.t1 - tb.t0) * f, r - 0.25);
+    gooseneck(mx, my, z + 0.77, Math.atan2(mny, mnx));
   }
 }
 
-// the well: two lecterns and the small round table
-for (const s of [-1, 1]) lectern(s * 2.35, 6.55, 0, Math.PI / 2, {w: 0.62, d: 0.45, pedestal: 1.0});
-cylinder(0, 6.85, 0, 0.09, 0.72, M.honey, 16);
-cylinder(0, 6.85, 0, 0.35, 0.05, M.honey, 24);
-cylinder(0, 6.85, 0.72, 0.52, 0.04, M.honey, 40);
-for (const s of [-1, 1]) chair(s * 0.85, 6.85, 0, s > 0 ? Math.PI : 0, {backH: 0.55});
+// lecterns on the floor, facing the chamber (and today's small round table in front of the rostrum)
+if (L.rostrum === 'wall') {
+  for (const s of [-1, 1]) lectern(s * 2.35, 6.55, 0, Math.PI / 2, {w: 0.62, d: 0.45, pedestal: 1.0});
+  cylinder(0, 6.85, 0, 0.09, 0.72, M.honey, 16);
+  cylinder(0, 6.85, 0, 0.35, 0.05, M.honey, 24);
+  cylinder(0, 6.85, 0.72, 0.52, 0.04, M.honey, 40);
+  for (const s of [-1, 1]) chair(s * 0.85, 6.85, 0, s > 0 ? Math.PI : 0, {backH: 0.55});
+} else {
+  for (const s of [-1, 1]) lectern(s * (OA - 1.6), OCY, 0, s > 0 ? Math.PI : 0, {w: 0.62, d: 0.45, pedestal: 1.0});
+}
 
 // ------------------------------------------------------------------ rostrum
 
@@ -726,14 +766,18 @@ function offsetLine(pts, d) {   // offset an open polyline by d to its left
   out.push(segs[segs.length - 1][1]);
   return out;
 }
-// the three tiers, lowest first; each front runs east -> west with the inside on its left
-const TIERS = [
-  {hw: 6.25, front: [[6.25, 3.4], [4.3, 5.2], [-4.3, 5.2], [-6.25, 3.4]], floor: 0.3, desk: 1.12, depth: 0.55, medallions: true},
-  {hw: 4.6, front: [[4.6, 2.75], [3.5, 3.85], [-3.5, 3.85], [-4.6, 2.75]], floor: 0.72, desk: 1.72, depth: 0.45, medallions: true},
-  {hw: 2.4, front: [[2.4, 2.0], [1.8, 2.6], [-1.8, 2.6], [-2.4, 2.0]], floor: 1.25, desk: 2.32, depth: 0.45, medallions: false},
+// the tiers, lowest first; each front runs east -> west with the inside on its left
+const CENTRE = L.rostrum === 'centre', C = OCY;
+const TIERS = CENTRE ? [
+  {hw: 3.8, back: C - 1.7, front: [[3.8, C + 0.6], [2.8, C + 1.7], [-2.8, C + 1.7], [-3.8, C + 0.6]], floor: 0.3, desk: 1.12, depth: 0.55, medallions: true},
+  {hw: 2.0, back: C - 1.7, front: [[2.0, C + 0.1], [1.5, C + 0.6], [-1.5, C + 0.6], [-2.0, C + 0.1]], floor: 0.72, desk: 1.72, depth: 0.4, medallions: false},
+] : [
+  {hw: 6.25, back: 0, front: [[6.25, 3.4], [4.3, 5.2], [-4.3, 5.2], [-6.25, 3.4]], floor: 0.3, desk: 1.12, depth: 0.55, medallions: true},
+  {hw: 4.6, back: 0, front: [[4.6, 2.75], [3.5, 3.85], [-3.5, 3.85], [-4.6, 2.75]], floor: 0.72, desk: 1.72, depth: 0.45, medallions: true},
+  {hw: 2.4, back: 0, front: [[2.4, 2.0], [1.8, 2.6], [-1.8, 2.6], [-2.4, 2.0]], floor: 1.25, desk: 2.32, depth: 0.45, medallions: false},
 ];
 for (const t of TIERS) {
-  const outline = [[t.hw, 0], ...t.front, [-t.hw, 0]];
+  const outline = [[t.hw, t.back], ...t.front, [-t.hw, t.back]];
   extrude(outline, 0, t.floor, [M.carpet, M.honey]);
   const inner = offsetLine(t.front, t.depth);
   extrude([...t.front, ...inner.slice().reverse()], 0, t.desk, [M.honey, M.honey]);
@@ -766,120 +810,146 @@ for (const t of TIERS) {
   }
 }
 
-// chairs on the rostrum
-// the Speaker's chair; at a joint session the Vice President sits beside the Speaker
-// it stands on a dais behind the Speaker's desk
-const DAIS = 1.25 + 0.38;
-extrude([[1.6, 0.35], [1.6, 1.75], [-1.6, 1.75], [-1.6, 0.35]], 1.25, DAIS, [M.carpet, M.honey]);
-if (VIEW.sotu) for (const x of [-0.62, 0.62]) chair(x, 1.1, DAIS, Math.PI / 2, {backH: 1.25, scale: 1.08});
-else chair(0, 1.1, DAIS, Math.PI / 2, {backH: 1.25, scale: 1.08});
-for (const x of [-3.15, -0.9, 0.9, 3.15]) chair(x, Math.abs(x) > 3 ? 2.75 : 3.05, 0.72, Math.PI / 2);
-for (const x of [-5.0, -2.6, -1.0, 1.0, 2.6, 5.0]) chair(x, Math.abs(x) > 4 ? 3.3 : 4.25, 0.3, Math.PI / 2);
+// The Speaker's chair stands on a dais behind the Speaker's desk; at a joint session the
+// Vice President sits beside the Speaker.
+const DAIS = CENTRE ? 1.35 : 1.25 + 0.38, DAIS_Y = CENTRE ? C - 0.95 : 1.1;
+if (CENTRE) extrude([[1.0, C - 1.55], [1.0, C - 0.4], [-1.0, C - 0.4], [-1.0, C - 1.55]], 0.72, DAIS, [M.carpet, M.honey]);
+else extrude([[1.6, 0.35], [1.6, 1.75], [-1.6, 1.75], [-1.6, 0.35]], 1.25, DAIS, [M.carpet, M.honey]);
+if (VIEW.sotu) for (const x of [-0.62, 0.62]) chair(x, DAIS_Y, DAIS, Math.PI / 2, {backH: 1.25, scale: 1.08});
+else chair(0, DAIS_Y, DAIS, Math.PI / 2, {backH: 1.25, scale: 1.08});
+// the clerks' chairs
+if (CENTRE) for (const [x, y] of [[-2.5, C + 0.45], [-1.0, C + 0.86], [1.0, C + 0.86], [2.5, C + 0.45]]) chair(x, y, 0.3, Math.PI / 2);
+else {
+  for (const x of [-3.15, -0.9, 0.9, 3.15]) chair(x, Math.abs(x) > 3 ? 2.75 : 3.05, 0.72, Math.PI / 2);
+  for (const x of [-5.0, -2.6, -1.0, 1.0, 2.6, 5.0]) chair(x, Math.abs(x) > 4 ? 3.3 : 4.25, 0.3, Math.PI / 2);
+}
 // the Mace on its marble pedestal, at the Speaker's right
-cylinder(3.35, 1.55, 0.72, 0.2, 0.95, M.greenMarble, 24);
-cylinder(3.35, 1.55, 1.67, 0.24, 0.05, M.white, 24);
-cylinder(3.35, 1.55, 1.72, 0.05, 1.05, M.silver, 12);
-{ const globe = new THREE.Mesh(new THREE.SphereGeometry(0.12, 20, 16), M.silver); globe.position.copy(V(3.35, 1.55, 2.86)); add(globe);
-  const eagle = new THREE.Mesh(new THREE.ConeGeometry(0.06, 0.16, 8), M.silver); eagle.position.copy(V(3.35, 1.55, 3.04)); add(eagle); }
+{
+  const [mx, my, mz] = CENTRE ? [3.2, C - 0.3, 0.3] : [3.35, 1.55, 0.72];
+  cylinder(mx, my, mz, 0.2, 0.95, M.greenMarble, 24);
+  cylinder(mx, my, mz + 0.95, 0.24, 0.05, M.white, 24);
+  cylinder(mx, my, mz + 1.0, 0.05, 1.05, M.silver, 12);
+  const globe = new THREE.Mesh(new THREE.SphereGeometry(0.12, 20, 16), M.silver); globe.position.copy(V(mx, my, mz + 2.14)); add(globe);
+  const eagle = new THREE.Mesh(new THREE.ConeGeometry(0.06, 0.16, 8), M.silver); eagle.position.copy(V(mx, my, mz + 2.32)); add(eagle);
+}
 
 const PRESS_SEATS = [];
 
 // ------------------------------------------------------------------ frontispiece
 
-const south = groups.south;
-box(0, 0.16, 0, 11.0, 0.32, 6.0, M.cream, 0, south, 2);
-for (const [x, w] of [[-3.0, 2.5], [3.0, 2.5], [0, 2.6]]) {     // recessed panels on the marble
-  for (const [z, h] of [[0.4, 1.4], [2.0, 2.6]]) {
+M.motto = std({roughness: 0.35, metalness: 0.2, map: canvasTexture(2048, 160, (g, w, h) => {
+  g.drawImage(creamTex.image, 0, 0, w, h);
+  g.fillStyle = '#b48b35'; g.font = 'bold 104px Georgia, "DejaVu Serif", serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillText('IN GOD WE TRUST', w / 2, h / 2 + 6);
+})});
+M.flag = std({roughness: 0.8, side: THREE.DoubleSide, map: canvasTexture(1900, 1000, (g, w, h) => {
+  for (let i = 0; i < 13; i++) { g.fillStyle = i % 2 ? '#ece8df' : '#9c1b29'; g.fillRect(0, i * h / 13, w, h / 13 + 1); }
+  g.fillStyle = '#26295c'; g.fillRect(0, 0, w * 0.4, h * 7 / 13);
+  g.fillStyle = '#f4f1ea';
+  for (let r = 0; r < 9; r++) for (let c = 0; c < (r % 2 ? 5 : 6); c++) star(g, (c + (r % 2 ? 1 : 0.5)) * w * 0.4 / 6, (r + 1) * h * 7 / 13 / 10, 18);
+})});
+M.clockFace = std({roughness: 0.4, map: canvasTexture(256, 256, (g, w, h) => {
+  g.fillStyle = '#f2ead6'; g.beginPath(); g.arc(128, 128, 126, 0, Math.PI * 2); g.fill();
+  g.fillStyle = '#222';
+  for (let i = 0; i < 12; i++) { g.save(); g.translate(128, 128); g.rotate(i * Math.PI / 6); g.fillRect(-3, -112, 6, 20); g.restore(); }
+  g.strokeStyle = '#222'; g.lineCap = 'round';
+  g.lineWidth = 7; g.beginPath(); g.moveTo(128, 128); g.lineTo(128 + 50, 128 - 30); g.stroke();
+  g.lineWidth = 4; g.beginPath(); g.moveTo(128, 128); g.lineTo(128 - 20, 128 - 92); g.stroke();
+})});
+
+// Today's marble frontispiece: black columns with white Ionic capitals, the flag between the
+// inner pair, gilt fasces, the entablature with the motto and the clock on top. yb is its
+// back, k scales it.
+function frontispiece(o) {
+  const g = o.parent, k = o.k, yb = o.yb, yf = yb + o.depth, cy = yf + 0.3 * k;
+  box(0, yb + o.depth / 2, 0, 2 * o.hw, o.depth, o.top, M.cream, 0, g, 2);
+  for (const [x, w] of o.panels) for (const [z, h] of o.panelRows)
     for (const [dx, dz, bw, bh] of [[0, 0, w, 0.05], [0, h, w, 0.05], [-w / 2, 0, 0.05, h], [w / 2, 0, 0.05, h]])
-      box(x + dx, 0.33, z + dz, bw, 0.03, bh + 0.05, M.white, 0, south);
+      box(x + dx, yf + 0.01, z + dz, bw, 0.03, bh + 0.05, M.white, 0, g);
+  for (const [x, base] of o.cols) {
+    box(x, cy, base, 0.62 * k, 0.62 * k, 0.22 * k, M.white, 0, g);
+    const torus = new THREE.Mesh(new THREE.TorusGeometry(0.28 * k, 0.05 * k, 10, 32), M.white);
+    torus.rotation.x = Math.PI / 2; torus.position.copy(V(x, cy, base + 0.27 * k)); add(torus, g);
+    cylinder(x, cy, base + 0.22 * k, 0.27 * k, o.shaft - base - 0.22 * k, M.black, 40, 0.24 * k, g);
+    cylinder(x, cy, o.shaft - 0.07 * k, 0.25 * k, 0.1 * k, M.white, 32, 0.3 * k, g);
+    box(x, cy, o.shaft + 0.03 * k, 0.78 * k, 0.66 * k, 0.2 * k, M.white, 0, g);
+    for (const s of [-1, 1]) {
+      const vol = new THREE.Mesh(new THREE.CylinderGeometry(0.11 * k, 0.11 * k, 0.62 * k, 20), M.white);
+      vol.rotation.x = Math.PI / 2; vol.position.copy(V(x + s * 0.34 * k, cy, o.shaft + 0.07 * k)); add(vol, g);
+      const eye = new THREE.Mesh(new THREE.TorusGeometry(0.06 * k, 0.018 * k, 6, 16), M.gold);
+      eye.position.copy(V(x + s * 0.34 * k, cy + 0.32 * k, o.shaft + 0.07 * k)); add(eye, g);
+    }
   }
-}
-for (const [x, base] of [[-4.5, 0.72], [-1.55, 1.25], [1.55, 1.25], [4.5, 0.72]]) {
-  const y = 0.62;
-  box(x, y, base, 0.62, 0.62, 0.22, M.white, 0, south);
-  const torus = new THREE.Mesh(new THREE.TorusGeometry(0.28, 0.05, 10, 32), M.white);
-  torus.rotation.x = Math.PI / 2; torus.position.copy(V(x, y, base + 0.27)); add(torus, south);
-  cylinder(x, y, base + 0.22, 0.27, 4.65 - base - 0.22, M.black, 40, 0.24, south);
-  cylinder(x, y, 4.58, 0.25, 0.1, M.white, 32, 0.3, south);
-  box(x, y, 4.68, 0.78, 0.66, 0.2, M.white, 0, south);
-  for (const s of [-1, 1]) {
-    const vol = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.62, 20), M.white);
-    vol.rotation.x = Math.PI / 2; vol.position.copy(V(x + s * 0.34, y, 4.72)); add(vol, south);
-    const eye = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.018, 6, 16), M.gold);
-    eye.position.copy(V(x + s * 0.34, y + 0.32, 4.72)); add(eye, south);
+  const e0 = o.shaft + 0.23 * k, e1 = e0 + 0.62 * k, c1 = e1 + 0.18 * k;
+  box(0, yb + 0.55 * k, e0, 2 * o.hw + 0.4 * k, 1.1 * k, 0.62 * k, M.cream, 0, g, 2);        // entablature
+  box(0, yb + 1.1 * k, e0 + 0.07 * k, 2 * o.hw + 0.4 * k, 0.02, 0.03, M.gold, 0, g);
+  box(0, yb + 0.6 * k, e1, 2 * o.hw + 0.7 * k, 1.2 * k, 0.18 * k, M.white, 0, g, 2);         // cornice
+  box(0, yb + 1.2 * k, e1, 2 * o.hw + 0.7 * k, 0.02, 0.04, M.gold, 0, g);
+  box(0, yb + 0.3 * k, c1, 2 * o.hw, 0.6 * k, o.top - c1, M.cream, 0, g, 2);                  // attic
+  const motto = new THREE.Mesh(new THREE.PlaneGeometry(6.0 * k, 0.42 * k), M.motto);
+  motto.position.copy(V(0, yb + 1.1 * k + 0.006, e0 + 0.37 * k)); motto.rotation.y = Math.PI; add(motto, g, false);
+  { // the flag, gathered in folds between the inner columns
+    const width = o.flag.w, unfolded = width * 1.7, height = o.flag.h, folds = 8;
+    const geo = new THREE.PlaneGeometry(unfolded, height, 280, 2), p = geo.attributes.position, amp = 0.11 * k;
+    for (let i = 0; i < p.count; i++) {
+      const u = (p.getX(i) + unfolded / 2) / unfolded;
+      p.setX(i, -width / 2 + u * width);
+      p.setZ(i, amp * Math.sin(u * folds * 2 * Math.PI) * (0.7 + 0.3 * Math.sin(u * 3.1)));
+    }
+    geo.computeVertexNormals();
+    const flag = new THREE.Mesh(geo, M.flag);
+    flag.position.copy(V(0, yf + 0.16 * k, o.flag.top - height / 2)); flag.rotation.y = Math.PI; add(flag, g);
+    box(0, yf + 0.1 * k, o.flag.top - 0.05, width + 0.25 * k, 0.06, 0.06, M.gold, 0, g);
   }
-}
-box(0, 0.55, 4.88, 11.4, 1.1, 0.62, M.cream, 0, south, 2);           // entablature
-box(0, 1.1, 4.95, 11.4, 0.02, 0.03, M.gold, 0, south);
-box(0, 0.6, 5.5, 11.7, 1.2, 0.18, M.white, 0, south, 2);            // cornice
-box(0, 1.2, 5.5, 11.7, 0.02, 0.04, M.gold, 0, south);
-box(0, 0.3, 5.68, 11.0, 0.6, 0.32, M.cream, 0, south, 2);           // attic
-{
-  const mottoTex = canvasTexture(2048, 160, (g, w, h) => {
-    g.drawImage(creamTex.image, 0, 0, w, h);
-    g.fillStyle = '#b48b35'; g.font = 'bold 104px Georgia, "DejaVu Serif", serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.fillText('IN GOD WE TRUST', w / 2, h / 2 + 6);
-  });
-  const motto = new THREE.Mesh(new THREE.PlaneGeometry(6.0, 0.42), std({map: mottoTex, roughness: 0.35, metalness: 0.2}));
-  motto.position.copy(V(0, 1.106, 5.25)); motto.rotation.y = Math.PI; add(motto, south, false);
-}
-// the flag, gathered in folds between the inner columns
-{
-  const flagTex = canvasTexture(1900, 1000, (g, w, h) => {
-    for (let i = 0; i < 13; i++) { g.fillStyle = i % 2 ? '#ece8df' : '#9c1b29'; g.fillRect(0, i * h / 13, w, h / 13 + 1); }
-    g.fillStyle = '#26295c'; g.fillRect(0, 0, w * 0.4, h * 7 / 13);
-    g.fillStyle = '#f4f1ea';
-    for (let r = 0; r < 9; r++) for (let c = 0; c < (r % 2 ? 5 : 6); c++) star(g, (c + (r % 2 ? 1 : 0.5)) * w * 0.4 / 6, (r + 1) * h * 7 / 13 / 10, 18);
-  });
-  const unfolded = 4.2, width = 2.45, height = 2.2, folds = 8;
-  const geo = new THREE.PlaneGeometry(unfolded, height, 280, 2);
-  const p = geo.attributes.position, amp = 0.11;
-  for (let i = 0; i < p.count; i++) {
-    const u = (p.getX(i) + unfolded / 2) / unfolded;
-    p.setX(i, -width / 2 + u * width);
-    p.setZ(i, amp * Math.sin(u * folds * 2 * Math.PI) * (0.7 + 0.3 * Math.sin(u * 3.1)));
+  for (const x of [-o.fasces.x, o.fasces.x]) {   // gilt fasces between the columns
+    const y = yf + 0.16 * k, z0 = o.fasces.z0, h = 2.75 * k;
+    for (let n = 0; n < 9; n++) {
+      const a = (n / 9) * Math.PI * 2;
+      cylinder(x + 0.12 * k * Math.cos(a), y + 0.07 * k * Math.sin(a), z0, 0.032 * k, h, M.gold, 8, 0.03 * k, g);
+    }
+    for (const dz of [0.35, 1.35, 2.35]) {
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(0.15 * k, 0.03 * k, 8, 20), M.gold); ring.scale.set(1, 0.6, 1);
+      ring.rotation.x = Math.PI / 2; ring.position.copy(V(x, y, z0 + dz * k)); add(ring, g);
+    }
+    const blade = new THREE.Shape([[0, 0], [0.3, 0.06], [0.36, 0.3], [0.32, 0.5], [0, 0.42]].map(([a, b]) => new THREE.Vector2(a * k, b * k)));
+    const bm = new THREE.Mesh(new THREE.ExtrudeGeometry(blade, {depth: 0.03, bevelEnabled: false}), M.gold);
+    bm.position.copy(V(x + (x < 0 ? 0.08 : -0.08) * k, y, z0 + 2.4 * k)); bm.rotation.y = x < 0 ? 0 : Math.PI; add(bm, g);
+    cylinder(x, y, z0 + h, 0.05 * k, 0.12 * k, M.gold, 12, 0.02 * k, g);
   }
-  geo.computeVertexNormals();
-  const flag = new THREE.Mesh(geo, std({map: flagTex, roughness: 0.8, side: THREE.DoubleSide}));
-  flag.position.copy(V(0, 0.48, 4.55 - height / 2)); flag.rotation.y = Math.PI; add(flag, south);
-  box(0, 0.42, 4.5, 2.7, 0.06, 0.06, M.gold, 0, south);
-}
-// gilt fasces between the columns
-for (const x of [-3.02, 3.02]) {
-  const y = 0.48;
-  for (let k = 0; k < 9; k++) {
-    const a = (k / 9) * Math.PI * 2;
-    cylinder(x + 0.12 * Math.cos(a), y + 0.07 * Math.sin(a), 1.75, 0.032, 2.75, M.gold, 8, 0.03, south);
-  }
-  for (const z of [2.1, 3.1, 4.1]) {
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.15, 0.03, 8, 20), M.gold); ring.scale.set(1, 0.6, 1);
-    ring.rotation.x = Math.PI / 2; ring.position.copy(V(x, y, z)); add(ring, south);
-  }
-  const blade = new THREE.Shape([[0, 0], [0.3, 0.06], [0.36, 0.3], [0.32, 0.5], [0, 0.42]].map(([a, b]) => new THREE.Vector2(a, b)));
-  const bg = new THREE.ExtrudeGeometry(blade, {depth: 0.03, bevelEnabled: false});
-  const bm = new THREE.Mesh(bg, M.gold); bm.position.copy(V(x + (x < 0 ? 0.08 : -0.08), y, 4.15));
-  bm.rotation.y = x < 0 ? 0 : Math.PI; add(bm, south);
-  cylinder(x, y, 4.5, 0.05, 0.12, M.gold, 12, 0.02, south);
-}
-// the clock above the frontispiece
-{
-  const faceTex = canvasTexture(256, 256, (g, w, h) => {
-    g.fillStyle = '#f2ead6'; g.beginPath(); g.arc(128, 128, 126, 0, Math.PI * 2); g.fill();
-    g.fillStyle = '#222';
-    for (let i = 0; i < 12; i++) { g.save(); g.translate(128, 128); g.rotate(i * Math.PI / 6); g.fillRect(-3, -112, 6, 20); g.restore(); }
-    g.strokeStyle = '#222'; g.lineCap = 'round';
-    g.lineWidth = 7; g.beginPath(); g.moveTo(128, 128); g.lineTo(128 + 50, 128 - 30); g.stroke();
-    g.lineWidth = 4; g.beginPath(); g.moveTo(128, 128); g.lineTo(128 - 20, 128 - 92); g.stroke();
-  });
-  box(0, 0.33, 6.0, 1.4, 0.66, 0.9, M.cream, 0, south);
-  const face = new THREE.Mesh(new THREE.CircleGeometry(0.34, 40), std({map: faceTex, roughness: 0.4}));
-  face.position.copy(V(0, 0.72, 6.42)); face.rotation.y = Math.PI; add(face, south, false);
-  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.37, 0.05, 10, 40), M.gold); rim.position.copy(V(0, 0.7, 6.42)); add(rim, south);
+  // the clock on top
+  box(0, yb + 0.33 * k, o.top, 1.4 * k, 0.66 * k, 0.9 * k, M.cream, 0, g);
+  const face = new THREE.Mesh(new THREE.CircleGeometry(0.34 * k, 40), M.clockFace);
+  face.position.copy(V(0, yb + 0.72 * k, o.top + 0.42 * k)); face.rotation.y = Math.PI; add(face, g, false);
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.37 * k, 0.05 * k, 10, 40), M.gold);
+  rim.position.copy(V(0, yb + 0.7 * k, o.top + 0.42 * k)); add(rim, g);
   const orn = new THREE.Shape();
   orn.moveTo(-1.1, 0); orn.quadraticCurveTo(-0.9, 0.35, -0.42, 0.42); orn.quadraticCurveTo(-0.2, 0.95, 0, 0.98);
   orn.quadraticCurveTo(0.2, 0.95, 0.42, 0.42); orn.quadraticCurveTo(0.9, 0.35, 1.1, 0); orn.lineTo(-1.1, 0);
   const og = new THREE.ExtrudeGeometry(orn, {depth: 0.06, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.02, bevelSegments: 2});
-  const om = new THREE.Mesh(og, M.gold); om.position.copy(V(0, 0.68, 6.0)); add(om, south);
+  og.scale(k, k, 1);
+  const om = new THREE.Mesh(og, M.gold); om.position.copy(V(0, yb + 0.68 * k, o.top)); add(om, g);
+}
+
+if (CENTRE) {
+  // the frontispiece moves onto a marble screen behind the Speaker's chair ...
+  const yb = C - 1.95;
+  frontispiece({parent: scene, k: 0.75, yb, depth: 0.25, hw: 3.1, top: 4.5, shaft: 3.5,
+                cols: [[-2.6, 0.3], [-1.25, 0.72], [1.25, 0.72], [2.6, 0.3]], panels: [], panelRows: [],
+                flag: {w: 2.0, h: 1.65, top: 3.45}, fasces: {x: 1.93, z0: 1.3}});
+  // ... and Lafayette and Washington onto its back, facing the members behind the Speaker
+  for (const [x, dark] of [[-1.55, '#262838'], [1.55, '#1b1712']]) {
+    const pw = 1.35, ph = 1.8, z0 = 1.2;
+    const pic = new THREE.Mesh(new THREE.PlaneGeometry(pw, ph), std({map: portraitTexture(dark), roughness: 0.55}));
+    pic.position.copy(V(x, yb - 0.008, z0 + ph / 2)); add(pic, scene, false);
+    for (const [dx, dz, bw, bh] of [[0, -0.1, pw + 0.24, 0.12], [0, ph - 0.02, pw + 0.24, 0.12],
+                                    [-pw / 2 - 0.06, -0.1, 0.12, ph + 0.22], [pw / 2 + 0.06, -0.1, 0.12, ph + 0.22]])
+      box(x + dx, yb - 0.05, z0 + dz, bw, 0.1, bh, M.gold);
+  }
+} else {
+  frontispiece({parent: groups.south, k: 1, yb: 0, depth: 0.32, hw: 5.5, top: 6.0, shaft: 4.65,
+                cols: [[-4.5, 0.72], [-1.55, 1.25], [1.55, 1.25], [4.5, 0.72]],
+                panels: [[-3.0, 2.5], [3.0, 2.5], [0, 2.6]], panelRows: [[0.4, 1.4], [2.0, 2.6]],
+                flag: {w: 2.45, h: 2.2, top: 4.55}, fasces: {x: 3.02, z0: 1.75}});
 }
 
 // ------------------------------------------------------------------ walls
@@ -912,7 +982,7 @@ function wdisc(w, s, off, z, r, mat, seg = 32) {
 function wring(w, s, off, z, r, tube, mat, seg = 32) {
   return wmesh(w, new THREE.TorusGeometry(r, tube, 8, seg), mat, s, off, z);
 }
-const Z_LOW = 5.5, Z_FRIEZE = 5.8, Z_LEDGE = 5.95, Z_UP = 7.0, Z_CORNICE = 10.2;
+const Z_LOW = 5.5, Z_FRIEZE = 5.8, Z_LEDGE = 5.95, Z_UP = 7.0, Z_CORNICE = 10.35;
 
 function pilaster(w, s, z0, z1, width = 0.5) {
   wbox(w, s, 0, z0, width + 0.12, 0.2, 0.32, M.cream);
@@ -921,7 +991,7 @@ function pilaster(w, s, z0, z1, width = 0.5) {
   wbox(w, s, 0, z1 - 0.3, width + 0.06, 0.16, 0.04, M.gold);
 }
 function door(w, s, z, kind) {
-  const leaded = kind === 'leaded', dw = leaded ? 1.6 : 1.5, dh = leaded ? 3.0 : 2.2;
+  const leaded = kind === 'leaded', dw = leaded ? 1.6 : 1.5, dh = leaded ? 3.0 : 2.05;
   wbox(w, s, 0, z, dw + 0.5, 0.06, dh + 0.3, M.cream);
   wbox(w, s, 0.06, z + dh + 0.12, dw + 0.36, 0.04, 0.06, M.gold);
   const leaf = wbox(w, s, 0.06, z, dw, 0.03, dh, leaded ? M.leadedDoor : M.panelDoor);
@@ -981,16 +1051,20 @@ function upperWall(w, s0, s1, floorZ) {
     wbox(w, c, 0, wainTop, bw, 0.08, 0.05, M.walnut);
     if (i % 2 === 0) {            // damask panel in a cream frame
       const z0 = wainTop + 0.25, z1 = Z_CORNICE - 0.4, pw = bw - 0.5;
+      if (z1 - z0 > 0.4) {
       wplane(w, c, 0.012, z0, pw, z1 - z0, M.damask, [c / 0.6, z0 / 0.6, (c + pw) / 0.6, z1 / 0.6]);
       for (const [ds, dz, fw, fh] of [[0, -0.1, pw + 0.2, 0.1], [0, z1 - z0, pw + 0.2, 0.1], [-pw / 2 - 0.05, -0.1, 0.1, z1 - z0 + 0.2], [pw / 2 + 0.05, -0.1, 0.1, z1 - z0 + 0.2]])
         wbox(w, c + ds, 0, z0 + dz, fw, 0.07, fh, M.cream);
       for (const [ds, dz, fw, fh] of [[0, 0, pw, 0.02], [0, z1 - z0 - 0.02, pw, 0.02], [-pw / 2, 0, 0.02, z1 - z0], [pw / 2 - 0.02 + 0.01, 0, 0.02, z1 - z0]])
         wbox(w, c + ds, 0.012, z0 + dz, fw, 0.03, fh, M.gold);
+      }
     } else {
       if (fz > 4.5) door(w, c, fz, 'panel');
-      else wplane(w, c, 0.012, wainTop + 0.25, bw - 0.4, Z_CORNICE - 0.4 - wainTop - 0.25, M.damask);
-      wdisc(w, c, 0, Z_CORNICE - 0.42, 0.27, M.white);
-      wring(w, c, 0.06, Z_CORNICE - 0.42, 0.28, 0.03, M.gold);
+      else if (Z_CORNICE - 0.4 - wainTop - 0.25 > 0.4) wplane(w, c, 0.012, wainTop + 0.25, bw - 0.4, Z_CORNICE - 0.4 - wainTop - 0.25, M.damask);
+      if (fz <= 4.5 || fz + 2.9 < Z_CORNICE) {   // a relief medallion over the door, where there is room
+        wdisc(w, c, 0, Z_CORNICE - 0.42, 0.27, M.white);
+        wring(w, c, 0.06, Z_CORNICE - 0.42, 0.28, 0.03, M.gold);
+      }
     }
     pos += bw; pil.push(pos + 0.25); pos += 0.5;
   });
@@ -1011,51 +1085,43 @@ function cornice(w, s0, s1) {
 }
 const wallFloor = w => s => { const [x, y] = wpt(w, s, 0.7); return floorAt(x, y); };
 
-{ // south wall: rostrum in the middle, portraits of Lafayette and Washington, doors
-  const w = WALLS.south, S = x => HW - x;
-  const pil = [5.9, 8.5, 11.8, 14.4];
-  while (pil[pil.length - 1] + 3.25 < HW - 1.0) pil.push(+(pil[pil.length - 1] + 3.25).toFixed(2));
-  const contents = {7.2: 'door', 10.15: 'portrait', 13.1: 'door'};
-  for (let i = 4; i + 1 < pil.length; i += 2) contents[((pil[i] + pil[i + 1]) / 2).toFixed(3)] = 'door';
-  const bays = [];
-  for (const side of [-1, 1]) {
-    const edges = [5.5, ...pil, HW];
-    for (let i = 0; i + 1 < edges.length; i++) {
-      const c = (edges[i] + edges[i + 1]) / 2;
-      let what = null;
-      for (const [k, v] of Object.entries(contents)) if (Math.abs(+k - c) < 0.3) what = v;
-      if (what === 'portrait') what = {portrait: side < 0 ? '#1b1712' : '#262838'};
-      const a = S(side * edges[i]), b = S(side * edges[i + 1]), dir = Math.sign(b - a);
-      const a2 = a + (i > 0 ? 0.25 * dir : 0), b2 = b - (i + 2 < edges.length ? 0.25 * dir : 0);
-      bays.push([Math.min(a2, b2), Math.max(a2, b2), what]);
-    }
+{ // south wall: walnut bays between cream pilasters; with the rostrum on the wall, the
+  // frontispiece in the middle and Washington and Lafayette either side of it
+  const w = WALLS.south, S = x => HW - x, xs = [];
+  if (CENTRE) for (let x = 1.7; x < HW - 1.0; x += 3.25) xs.push(x, -x);
+  else for (let x = 5.8; x < HW - 1.0; x += x < 8 ? 2.5 : 3.25) xs.push(x, -x);
+  xs.sort((a, b) => a - b);
+  const edges = [-HW, ...xs, HW], bays = [];
+  for (let i = 0; i + 1 < edges.length; i++) {
+    const x0 = edges[i], x1 = edges[i + 1], c = (x0 + x1) / 2;
+    if (!CENTRE && Math.abs(c) < 5.8) continue;
+    let what = i % 2 ? 'door' : null;
+    if (!CENTRE && Math.abs(c - 7.05) < 0.3) what = {portrait: '#262838'};
+    if (!CENTRE && Math.abs(c + 7.05) < 0.3) what = {portrait: '#1b1712'};
+    bays.push([S(x1) + (i + 2 < edges.length ? 0.25 : 0), S(x0) - (i > 0 ? 0.25 : 0), what]);
   }
-  lowerWall(w, [...pil.map(x => S(x)), ...pil.map(x => S(-x))], bays);
+  lowerWall(w, xs.map(S), bays);
   band(w, 0, W);
-  const PG = 18;   // press gallery opening
-  upperWall(w, 0, S(PG), () => Z_UP); upperWall(w, S(-PG), W, () => Z_UP);
-  cornice(w, 0, S(PG)); cornice(w, S(-PG), W);
+  if (CENTRE) { upperWall(w, 0, W, wallFloor(w)); cornice(w, 0, W); }
+  else {
+    const PG = L.cut[0] - 0.4;     // the press gallery's opening
+    upperWall(w, 0, S(PG), wallFloor(w)); upperWall(w, S(-PG), W, wallFloor(w));
+    cornice(w, 0, S(PG)); cornice(w, S(-PG), W);
+  }
 }
-for (const name of ['east', 'west']) {     // side walls: floor-level doors in the passage, galleries above
-  const w = WALLS[name], Y = y => name === 'east' ? D - y : y;
-  const pil = [1.8, 5.4, 9.0].map(Y);
-  lowerWall(w, pil, [[Math.min(Y(0), Y(1.8)) + (name === 'east' ? 0.25 : 0), Math.max(Y(0), Y(1.8)) - (name === 'west' ? 0.25 : 0), null],
-                     [Math.min(Y(1.8), Y(5.4)) + 0.25, Math.max(Y(1.8), Y(5.4)) - 0.25, 'door'],
-                     [Math.min(Y(5.4), Y(9.0)) + 0.25, Math.max(Y(5.4), Y(9.0)) - 0.25, null]]);
-  band(w, 0, D);
-  upperWall(w, 0, D, wallFloor(w));
-  cornice(w, 0, D);
+for (const name of ['east', 'west']) {
+  const w = WALLS[name], S = y => name === 'east' ? D - y : y, ys = [];
+  for (let y = 3.2; y < D - 1; y += 3.4) ys.push(y);
+  const edges = [0, ...ys, D];
+  const bays = edges.slice(1).map((y, i) => { const a = S(edges[i]), b = S(y); return [Math.min(a, b) + 0.25, Math.max(a, b) - 0.25, null]; });
+  lowerWall(w, ys.map(S), bays);
+  band(w, 0, D); upperWall(w, 0, D, wallFloor(w)); cornice(w, 0, D);
 }
-{ // north wall: only the upper level shows, above the top walkway
-  const w = WALLS.north;
-  band(w, 0, W);
-  upperWall(w, 0, W, wallFloor(w));
-  cornice(w, 0, W);
-}
+{ const w = WALLS.north; band(w, 0, W); upperWall(w, 0, W, wallFloor(w)); cornice(w, 0, W); }
 
-// the press gallery, recessed above the rostrum as today
-{
-  const PG = 18, back = -3.6, g = south;
+// the press gallery, recessed above the rostrum as today (only with the rostrum on the wall)
+if (!CENTRE) {
+  const PG = L.cut[0] - 0.4, back = -3.6, g = groups.south;
   const tiers = [[-0.975, 0, 6.0], [-1.825, -0.975, 6.42], [back, -1.825, 6.84]];
   for (const [y0, y1, z] of tiers) {
     const m = box(0, (y0 + y1) / 2, Z_LEDGE, 2 * PG, y1 - y0, z - Z_LEDGE, M.carpetSide, 0, g);
@@ -1063,22 +1129,22 @@ for (const name of ['east', 'west']) {     // side walls: floor-level doors in t
   }
   box(0, -0.08, Z_LEDGE, 2 * PG, 0.16, Z_UP - Z_LEDGE, M.walnut, 0, g);
   box(0, -0.08, Z_UP - 0.04, 2 * PG, 0.3, 0.07, M.brass, 0, g);
-  const seats = PRESS_SEATS;
+  // three straight rows of benches facing north (chamber.py counts the same seats)
+  const benches = [];
   [-0.55, -1.4, -2.25].forEach((y, k) => {
-    const z = tiers[k][2];
-    for (let x = -PG + 0.6; x <= PG - 0.6; x += 0.55) {
-      if ([-9, 0, 9].some(a => Math.abs(x - a) < 0.6)) continue;
-      seats.push({x, y, z, face: Math.PI / 2});
+    const z = tiers[k][2], xs = [], runs = [];
+    for (let x = -PG + 0.6; x <= PG - 0.6 + 1e-9; x += 0.55) if (Math.abs(x) >= 0.6) xs.push(x);
+    let cur = [];
+    for (const x of xs) { if (cur.length && x - cur[cur.length - 1] > 0.6) { runs.push(cur); cur = []; } cur.push(x); }
+    if (cur.length) runs.push(cur);
+    for (const run of runs) {
+      const seats = run.map((x, i) => ({x, y, z, face: Math.PI / 2, t: x, end_lo: i === 0, end_hi: i === run.length - 1}));
+      PRESS_SEATS.push(...seats);
+      benches.push({r: 0, z, depth: 0.85, seat_w: 0.55, t0: run[0] - 0.275, t1: run[run.length - 1] + 0.275,
+                    at: (t, r) => [t, y - r, 0, -1], seats});
     }
   });
-  seats.forEach((s, i) => { const p = seats[i - 1], n = seats[i + 1];
-    s.end_lo = !p || p.y !== s.y || s.x - p.x > 0.6; s.end_hi = !n || n.y !== s.y || n.x - s.x > 0.6; });
-  // straight benches: an arc around a far-away centre to the north
-  const byRow = {};
-  for (const s of seats) (byRow[s.y] = byRow[s.y] || []).push(s);
-  const benches = [];
-  for (const [y, list] of Object.entries(byRow)) benches.push(...benchesOf(list, 0, +y + 1e5));
-  buildBenches(benches, {depth: 0.85, upholstery: M.fabric, colorOf: () => jitter(blue)});
+  buildBenches(benches, {upholstery: M.fabric, colorOf: () => jitter(blue), parent: g});
   // back and side walls of the recess
   const pb = {o: [PG, back], t: [-1, 0], n: [0, 1], len: 2 * PG, rot: Math.PI, group: g};
   upperWall(pb, 0, 2 * PG, () => 6.84);
@@ -1095,11 +1161,11 @@ for (const name of ['east', 'west']) {     // side walls: floor-level doors in t
 // ------------------------------------------------------------------ ceiling
 
 {
-  const c = groups.ceiling, y0 = -3.6, depth = D - y0;
+  const c = groups.ceiling, y0 = CENTRE ? 0 : -3.6, depth = D - y0;
   const ceil = new THREE.Mesh(new THREE.PlaneGeometry(W, depth), M.plaster);
   ceil.rotation.x = Math.PI / 2; ceil.position.copy(V(0, y0 + depth / 2, H)); c.add(ceil);
-  const LAY = {x: 12.5, y0: 9.5, y1: 24.5};   // laylight half width and extent
-  const nx = 12, ny = 8, cw = W / nx, cd = depth / ny;
+  const LAY = {x: 9.4, y0: OCY - 5.6, y1: OCY + 5.6};   // laylight half width and extent
+  const nx = 9, ny = Math.round(depth / 4.6), cw = W / nx, cd = depth / ny;
   for (let i = 0; i <= nx; i++) {
     const x = -HW + i * cw;
     const b = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.5, depth), M.cream); b.position.copy(V(x, y0 + depth / 2, H - 0.25)); c.add(b);
@@ -1237,25 +1303,26 @@ function addPeople(people) {
   }
 }
 
+
 if (VIEW.sotu) {
   const people = [];
   const seated = (s, shift, extra) => people.push(randomPerson(Object.assign({m: seatMatrix(s, shift, 0)}, extra)));
-  const memberShift = 0.46 - L.rows[0].depth / 2;
-  // the front rows near the centre aisle: the justices and the Joint Chiefs on one side, the Cabinet on the other
-  const near = (row, east) => L.members.filter(s => s.row === row && (east ? s.angle < 90 : s.angle > 90))
-    .sort((a, b) => Math.abs(a.angle - 90) - Math.abs(b.angle - 90));
+  // the front rows on the east side of the north aisle: the justices, then the Joint Chiefs
+  const NORTH = 2.5 * Math.PI;
+  const lowerSeats = L.benches.filter(b => b.level === 'lower').flatMap(b => b.seats);
+  const near = row => lowerSeats.filter(s => s.row === row && s.t < NORTH).sort((a, b) => b.t - a.t);
   const special = new Map();
-  near(1, true).slice(0, 9).forEach(s => special.set(s, {suit: '#0e0f11', shirt: '#f4f2ee', tie: null}));
-  near(2, true).slice(0, 6).forEach(s => special.set(s, {suit: pick(PALETTE.uniform), shirt: '#d8d2c4', tie: '#1b1b1b', woman: false, hairStyle: 'short'}));
-  for (const s of L.members) seated(s, memberShift, special.get(s) || {});
-  for (const s of L.public) seated(s, 0.46 - L.rows.find(r => r.kind === 'public').depth / 2, {});
+  near(1).slice(0, 9).forEach(s => special.set(s, {suit: '#0e0f11', shirt: '#f4f2ee', tie: null}));
+  near(2).slice(0, 6).forEach(s => special.set(s, {suit: pick(PALETTE.uniform), shirt: '#d8d2c4', tie: '#1b1b1b', woman: false, hairStyle: 'short'}));
+  for (const b of L.benches) for (const s of b.seats) seated(s, 0.46 - b.depth / 2, special.get(s) || {});
   for (const s of PRESS_SEATS) seated(s, 0.46 - 0.85 / 2, {});
   // the President at the rostrum; the Vice President and the Speaker behind
   const at = (x, y, z, face, dy = 0) => new THREE.Matrix4().compose(V(x, y, z + dy), new THREE.Quaternion().setFromAxisAngle(UP, face), ONE);
-  people.push(randomPerson({pose: 'standing', m: at(0, 3.02, 0.72, Math.PI / 2), woman: false, hairStyle: 'short', hair: '#9a968e',
+  const [py, ly] = CENTRE ? [C - 0.02, C + 0.42] : [3.02, 3.6];
+  people.push(randomPerson({pose: 'standing', m: at(0, py, 0.72, Math.PI / 2), woman: false, hairStyle: 'short', hair: '#9a968e',
                             suit: '#1b2233', shirt: '#f2f2f0', tie: '#2a4b8d', skin: '#e8b996'}));
-  for (const x of [-0.62, 0.62]) people.push(randomPerson({m: at(x, 1.12, DAIS, Math.PI / 2, 0.1)}));
-  lectern(0, 3.6, 1.78, Math.PI / 2, {w: 0.85, d: 0.44});
+  for (const x of [-0.62, 0.62]) people.push(randomPerson({m: at(x, DAIS_Y + 0.02, DAIS, Math.PI / 2, 0.1)}));
+  lectern(0, ly, 1.78, Math.PI / 2, {w: 0.85, d: 0.44});
   addPeople(people);
 }
 
@@ -1263,18 +1330,27 @@ if (VIEW.sotu) {
 
 scene.add(new THREE.HemisphereLight('#fff3e0', '#4a3a2a', 0.42));
 const key = new THREE.DirectionalLight('#ffe9c8', 1.15);
-key.position.copy(V(-6, 12, 60)); key.target.position.copy(V(0, 17, 0));
+key.position.copy(V(-6, OCY - 4, 60)); key.target.position.copy(V(0, OCY, 0));
 key.castShadow = true; key.shadow.mapSize.set(4096, 4096);
-Object.assign(key.shadow.camera, {left: -34, right: 34, top: 26, bottom: -26, near: 20, far: 90});
+Object.assign(key.shadow.camera, {left: -26, right: 26, top: 20, bottom: -20, near: 20, far: 90});
 key.shadow.bias = -0.0002; key.shadow.normalBias = 0.02; key.shadow.radius = 2;
 scene.add(key, key.target);
 const fill = new THREE.DirectionalLight('#ffe9cc', 0.22);
-fill.position.copy(V(0, 45, 10)); fill.target.position.copy(V(0, 0, 3)); scene.add(fill, fill.target);
-for (const [x, y, z, power] of [[0, 8, 8.2, 0.55], [-16, 14, 8.2, 0.3], [16, 14, 8.2, 0.3], [0, 24, 8.2, 0.35], [-20, 28, 8.2, 0.25], [20, 28, 8.2, 0.25]]) {
-  const p = new THREE.PointLight('#ffdcb0', power, 30, 1.5); p.position.copy(V(x, y, z)); scene.add(p);
+fill.position.copy(V(0, D + 20, 10)); fill.target.position.copy(V(0, 0, 3)); scene.add(fill, fill.target);
+for (const [x, y, power] of [[0, OCY, 0.5], [-12, OCY, 0.32], [12, OCY, 0.32], [0, OCY + 8, 0.25], [0, OCY - 8, 0.25]]) {
+  const p = new THREE.PointLight('#ffdcb0', power, 26, 1.5); p.position.copy(V(x, y, 9.6)); scene.add(p);
+}
+{ // lamps under the mezzanine for the rows beneath it
+  const mz = L.rows.filter(r => r.level === 'mezzanine'), r = (mz[0].r + mz[mz.length - 1].r) / 2 - 1.0;
+  for (let k = 0; k < 6; k++) {
+    const t = T0 + 2 * Math.PI * (k + 0.5) / 6, [x, y] = ovalAt(t, r);
+    if (!keep(x, y)) continue;
+    const p = new THREE.PointLight('#ffe2bd', 0.3, 10, 1.5); p.position.copy(V(x, y, mz[0].z - 0.95)); groups.mezzanine.add(p);
+  }
 }
 const rostrumSpot = new THREE.SpotLight('#fff0d8', 0.22, 30, 0.55, 0.6, 1.2);
-rostrumSpot.position.copy(V(0, 14, 9.8)); rostrumSpot.target.position.copy(V(0, 1, 3)); scene.add(rostrumSpot, rostrumSpot.target);
+const RY = CENTRE ? C : 1;
+rostrumSpot.position.copy(V(0, RY + 12, 9.8)); rostrumSpot.target.position.copy(V(0, RY, 3)); scene.add(rostrumSpot, rostrumSpot.target);
 
 // ------------------------------------------------------------------ camera
 

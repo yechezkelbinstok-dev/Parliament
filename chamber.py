@@ -1,32 +1,38 @@
 #!/usr/bin/env python3
-"""Design and render an enlarged House of Representatives chamber.
+"""Two designs for a House of Representatives of 1,527 members inside today's chamber.
 
-Today's Hall of the House is 139 x 93 ft and 36 ft high, galleries included,
-in the middle of the House wing (238 ft 10 in x 142 ft 8 in outside). At real
-seat sizes, with rows 44 in apart, it could hold about 880 members even if all
-of it were seats, so 1,527 members cannot fit in it. This design takes the hall out to
-almost the whole wing, keeping the outer walls and a corridor round the room,
-and keeps the hall's look and fittings. There are no separate galleries: the
-members' benches rise in one continuous bowl from the well, and a few rows of
-public seating sit at the top behind a rail and a glass screen.
+Today's Hall of the House is 139 x 93 ft and 36 ft high, galleries included
+(Glenn Brown, History of the United States Capitol). Both designs keep that
+room and everything around it (the grand stairways and their murals, the
+Speaker's Lobby, the cloakrooms) and rebuild only its inside, in its present
+style. Members sit in oval rows around a long central floor, on two levels: a
+lower bowl and a mezzanine over most of it. The public sits in a ring at the
+top, behind a rail and a glass screen.
 
-    python chamber.py            # print the seat counts and render every view
-    python chamber.py --report   # just the seat counts
-    python chamber.py --views gallery-view
+- oval: today's seat size (pairs 52 1/2 in wide, 33 in deep). The rows go all
+  the way round, so the Speaker sits in the middle of the floor, with the flag,
+  columns, fasces, clock and portraits moved onto a marble screen behind the chair.
+- horseshoe: theatre-size seats. The rows stop short of the south wall, so
+  today's rostrum, frontispiece and press gallery stay where they are.
 
-Members' seats are coloured by party in the "party-seating" view, from
-parties/us-house.txt (left-wing parties on the Speaker's right, where
-Democrats sit today).
+    python chamber.py                                  # both designs: seat counts and every view
+    python chamber.py --design oval --report           # just the seat counts
+    python chamber.py --design horseshoe --views gallery-view --size 1280x720
+
+Members' seats are coloured by party in the party views, from
+parties/us-house.txt: left-wing parties from the Speaker's right (east, where
+Democrats sit today) round to right-wing parties on his left.
 """
 
 import argparse
 import base64
+import bisect
 import json
 import math
 import sys
 from pathlib import Path
 
-from shapely.geometry import Point, Polygon, box
+from shapely.geometry import Polygon, box
 
 ROOT = Path(__file__).resolve().parent
 OUT_DIR = ROOT / "chamber"
@@ -43,150 +49,71 @@ THREE_FILES = ["build/three.min.js", "examples/js/environments/RoomEnvironment.j
                "examples/js/postprocessing/ShaderPass.js", "examples/js/postprocessing/SAOPass.js"]
 
 FT = 0.3048
-# x runs west -> east, y south (rostrum wall) -> north, z up, metres.
-# Today's hall, galleries included (Glenn Brown, History of the United States Capitol),
-# and the House wing around it.
-TODAY_W, TODAY_D = 139 * FT, 93 * FT
-WING_W, WING_D = (238 + 10 / 12) * FT, (142 + 8 / 12) * FT
-# The new hall: the wing less its outer walls and a corridor round the room.
-HALL_W = 210 * FT
-HALL_D = 110 * FT
-HALL_H = 36 * FT
+# Today's hall. x runs west -> east, y south (rostrum wall) -> north, z up, metres.
+HALL_W, HALL_D, HALL_H = 139 * FT, 93 * FT, 36 * FT
 HALF_W = HALL_W / 2
+CX, CY = 0.0, HALL_D / 2
+WALK = 0.9                                   # walkway along the walls on every level
+OUTER_A, OUTER_B = HALF_W - WALK, CY - WALK  # outer edge of the seating
+SLAB = 0.45                                  # depth of a raised tier, floor to soffit
+HEADROOM = 2.3                               # clear height under the mezzanine and the public ring
+AISLES = 8                                   # radial aisles, evenly spaced round the oval
+AISLE_W, CENTRE_AISLE_W = 1.1, 1.6           # the north and south aisles are wider, with a runner
+PUBLIC = dict(seat_w=0.55, row_d=0.85, rows=3, rise=0.3)
 
-# Rostrum on the south wall, three tiers like today's.
-ROSTRUM_W = 12.5
-ROSTRUM_D = 5.2
-SPEAKER = (0.0, 2.6)  # the rows curve around this point
-
-# The members' bowl: curved benches on carpeted tiers.
-FIRST_ROW_R = 6.8       # radius of the first bench from the Speaker
-# Today's seats come in pairs 52 1/2 in wide and 33 in deep (House collection).
-SEAT_WIDTH = 0.67       # one place, arm to arm
-ROW_DEPTH = 1.12        # front of one bench to the next: the seat plus a passage
-CENTRE_AISLE = 1.7      # the wide aisle between the parties, with its runner
-AISLE = 1.05            # the other radial aisles
-AISLES = [24, 46, 68, 112, 134, 156]   # degrees from due east, seen from the Speaker
-MIN_ANGLE, MAX_ANGLE = 9.0, 171.0      # leaves a passage along the rostrum wall
-
-
-def rise(row):
-    """Height gained per tier: gentle near the well like today's floor,
-    steeper further out where the galleries were."""
-    if row < 9:
-        return 0.16
-    if row < 17:
-        return 0.24
-    return 0.34
-
-
-# Leadership tables at the front of each side, as today.
-TABLES = [(72, 87.2), (92.8, 108), (49, 65), (115, 131)]
-
-# Public seating: a few curved rows around the top, behind a walnut rail.
-TOP_AISLE = 1.2
-PUBLIC_ROWS = 4
-PUBLIC_ROW_DEPTH = 0.85
-PUBLIC_RISE = 0.42
-PUBLIC_SEAT_WIDTH = 0.55
+DESIGNS = {
+    "oval": dict(
+        title="Oval, today's seats",
+        seat_w=0.67, row_d=1.12,             # today's seats: pairs 52 1/2 x 33 in, rows ~44 in apart
+        well=3.0,                            # half the width of the central floor
+        mezz_from=0.2,                       # the mezzanine starts over the third lower row
+        lower_rise=0.16, mezz_rise=0.28,
+        cut=None, rostrum="centre"),
+    "horseshoe": dict(
+        title="Horseshoe, theatre seats",
+        seat_w=0.58, row_d=0.92,             # theatre seats: 23 in wide, rows 3 ft apart
+        well=4.5, mezz_from=0.15,
+        lower_rise=0.16, mezz_rise=0.28,
+        cut=8.0,                             # rows stop 8 m either side of the rostrum
+        rostrum="wall"),
+}
+# Leadership tables in the first row either side of the north aisle (arc metres from the aisle).
+TABLES = [(0.15, 3.75), (4.35, 7.95)]
 
 
-def region():
-    """Where tiers may be built: the hall, minus the rostrum and the passage
-    along the rostrum wall."""
-    hall = box(-HALF_W, 0, HALF_W, HALL_D)
-    sx, sy = SPEAKER
-    far = 200
-    pts = [(sx, sy)] + [(sx + far * math.cos(math.radians(a)), sy + far * math.sin(math.radians(a)))
-                        for a in [MIN_ANGLE + k * (MAX_ANGLE - MIN_ANGLE) / 64 for k in range(65)]]
-    sector = Polygon(pts)
-    rostrum = box(-ROSTRUM_W / 2 - 1.2, 0, ROSTRUM_W / 2 + 1.2, ROSTRUM_D + 0.8)
-    return hall.intersection(sector).difference(rostrum)
+class Oval:
+    """Rows are parallel curves, a constant distance r outside the central floor,
+    an ellipse a0 x b0 centred in the hall. t is the ellipse's angle parameter."""
+
+    def __init__(self, a0, b0):
+        self.a0, self.b0 = a0, b0
+
+    def at(self, t, r):
+        c, s = math.cos(t), math.sin(t)
+        nx, ny = self.b0 * c, self.a0 * s
+        n = math.hypot(nx, ny)
+        nx, ny = nx / n, ny / n
+        return CX + self.a0 * c + r * nx, CY + self.b0 * s + r * ny, nx, ny
+
+    def polygon(self, n=720):
+        return Polygon([(CX + self.a0 * math.cos(2 * math.pi * i / n), CY + self.b0 * math.sin(2 * math.pi * i / n))
+                        for i in range(n)])
+
+    def row(self, r, n=4000, start=1.5 * math.pi):
+        """Points along the row at offset r, from the south going east, north, west."""
+        ts = [start + 2 * math.pi * i / n for i in range(n + 1)]
+        pts = [self.at(t, r) for t in ts]
+        s = [0.0]
+        for i in range(1, len(pts)):
+            s.append(s[-1] + math.dist(pts[i][:2], pts[i - 1][:2]))
+        return ts, pts, s
 
 
-SEAT_REGION = None
-
-
-def seat_fits(x, y):
-    global SEAT_REGION
-    if SEAT_REGION is None:
-        SEAT_REGION = region().buffer(-0.75)   # keep a walkway along the walls
-    return SEAT_REGION.contains(Point(x, y))
-
-
-def bench_row(r, z, row, width, kind):
-    """Seats along one curved row, split into benches between the aisles."""
-    sx, sy = SPEAKER
-    bounds = [MIN_ANGLE] + AISLES + [90.0] + [MAX_ANGLE]
-    bounds = sorted(set(bounds))
-    seats = []
-    for a0, a1 in zip(bounds, bounds[1:]):
-        def half(a):
-            if a in (MIN_ANGLE, MAX_ANGLE):
-                return 0.0
-            w = CENTRE_AISLE if a == 90.0 else AISLE
-            return math.degrees(w / 2 / r)
-        lo, hi = a0 + half(a0), a1 - half(a1)
-        spans = [(lo, hi)]
-        if kind == "member" and row == 0:
-            # the leadership tables take the front row's place
-            for t0, t1 in TABLES:
-                spans = [piece for s0, s1 in spans for piece in
-                         ([(s0, s1)] if t1 <= s0 or t0 >= s1 else [(s0, t0), (t1, s1)]) if piece[1] > piece[0]]
-        for s0, s1 in spans:
-            n = int(math.radians(s1 - s0) * r // width)
-            if n <= 0:
-                continue
-            step = math.degrees(width / r)
-            start = (s0 + s1) / 2 - step * (n - 1) / 2
-            bench = []
-            for k in range(n):
-                a = math.radians(start + k * step)
-                x, y = sx + r * math.cos(a), sy + r * math.sin(a)
-                if seat_fits(x, y):
-                    bench.append({"x": round(x, 3), "y": round(y, 3), "z": round(z, 3), "row": row,
-                                  "angle": round(math.degrees(a), 3), "face": round(math.atan2(sy - y, sx - x), 4),
-                                  "kind": kind})
-                elif bench:
-                    break
-            # mark bench ends so the model can close them with an arm
-            for i, s in enumerate(bench):
-                s["end_lo"] = i == 0
-                s["end_hi"] = i == len(bench) - 1
-            seats.extend(bench)
-    return seats
-
-
-def build_rows(target):
-    """Member rows until every member has a seat, then a cross-aisle and the public rows.
-    The outer rows run on into the corners of the room."""
-    rows, seats = [], []
-    r, z = FIRST_ROW_R, 0.20
-    i = 0
-    while True:
-        row_seats = bench_row(r, z, i, SEAT_WIDTH, "member")
-        if not row_seats and i > 3:
-            break
-        rows.append({"r": r, "z": round(z, 3), "kind": "member", "depth": ROW_DEPTH})
-        seats.extend(row_seats)
-        if len(seats) >= target:
-            break
-        z += rise(i)
-        r += ROW_DEPTH
-        i += 1
-    members = len(seats)
-    # cross-aisle at the top of the members' bowl, then the public rows
-    r += ROW_DEPTH / 2 + TOP_AISLE + PUBLIC_ROW_DEPTH / 2
-    z += rise(i) + 0.15
-    aisle = {"r_in": rows[-1]["r"] + ROW_DEPTH / 2, "r_out": r - PUBLIC_ROW_DEPTH / 2,
-             "z": round(rows[-1]["z"] + 0.05, 3)}
-    for k in range(PUBLIC_ROWS):
-        row_seats = bench_row(r, z, len(rows), PUBLIC_SEAT_WIDTH, "public")
-        rows.append({"r": r, "z": round(z, 3), "kind": "public", "depth": PUBLIC_ROW_DEPTH})
-        seats.extend(row_seats)
-        r += PUBLIC_ROW_DEPTH
-        z += PUBLIC_RISE
-    return rows, seats[:members], seats[members:], aisle
+def interp(xs, ys, x):
+    i = min(max(bisect.bisect_left(xs, x), 1), len(xs) - 1)
+    x0, x1 = xs[i - 1], xs[i]
+    f = 0 if x1 == x0 else (x - x0) / (x1 - x0)
+    return ys[i - 1] + f * (ys[i] - ys[i - 1])
 
 
 def read_parties():
@@ -199,28 +126,6 @@ def read_parties():
         parties.append((name, int(seats), color))
     return parties
 
-
-def assign_parties(seats, parties):
-    """Give members the seats nearest the Speaker, then hand those out by angle.
-
-    Parties fill from the Speaker's right (east, where Democrats sit today) to
-    his left, in the order of the party file. The spare seats are the most
-    remote ones, at the top of the bowl.
-    """
-    sx, sy = SPEAKER
-    total = sum(n for _, n, _ in parties)
-    by_distance = sorted(range(len(seats)), key=lambda i: math.dist((seats[i]["x"], seats[i]["y"], seats[i]["z"]), (sx, sy, 2.2)))
-    used = sorted(by_distance[:total], key=lambda i: seats[i]["angle"])
-    assignment = [None] * len(seats)
-    pos = 0
-    for party_index, (_, n, _) in enumerate(parties):
-        for i in used[pos:pos + n]:
-            assignment[i] = party_index
-        pos += n
-    return assignment
-
-
-# ---------------------------------------------------------------- geometry for the 3D model
 
 def polygons(geom):
     if geom.is_empty:
@@ -235,144 +140,276 @@ def polygons(geom):
     return out
 
 
-def annulus(r_in, r_out):
-    sx, sy = SPEAKER
-    return Point(sx, sy).buffer(r_out, 256).difference(Point(sx, sy).buffer(max(r_in, 0.01), 256))
+class Design:
+    def __init__(self, name):
+        self.name = name
+        self.p = DESIGNS[name]
+        p = self.p
+        b0 = p["well"]
+        self.oval = Oval(b0 + OUTER_A - OUTER_B, b0)
+        self.depth = OUTER_B - b0             # how deep the band of seating is
+        self.cut_y = CY - b0                   # the horseshoe's open end reaches the central floor
+        self.speaker = (CX, CY) if p["rostrum"] == "centre" else (0.0, 2.6)
+        self.parties = read_parties()
+        self.target = sum(n for _, n, _ in self.parties)
+        self.hall = box(-HALF_W, 0, HALF_W, HALL_D)
+        self.region = self.hall
+        if p["cut"]:
+            self.region = self.hall.difference(box(-p["cut"], 0, p["cut"], self.cut_y))
+        self.aisles = self.aisle_positions()
+        self.rows = self.build_rows()
+        self.benches, self.tables = self.place_seats()
+        self.assign_parties()
+
+    def keep(self, x, y):
+        cut = self.p["cut"]
+        return not (cut and abs(x - CX) < cut and y < self.cut_y)
+
+    def aisle_positions(self):
+        """Evenly spaced round the middle of the band, one at the north and one at the south."""
+        ts, pts, s = self.oval.row(self.depth / 2, start=0.0)
+        out = []
+        for k in range(AISLES):
+            frac = (0.25 + k / AISLES) % 1.0
+            t = interp(s, ts, frac * s[-1])
+            centre = abs(math.sin(t)) > 0.999
+            out.append({"t": round(t % (2 * math.pi), 5), "w": CENTRE_AISLE_W if centre else AISLE_W})
+        return out
+
+    def build_rows(self):
+        p, rows = self.p, []
+        d = p["row_d"]
+        k, r = 0, d / 2
+        while r + d / 2 <= self.depth + 1e-9:
+            rows.append({"level": "lower", "kind": "member", "r": r, "z": round(0.15 + k * p["lower_rise"], 3),
+                         "depth": d, "seat_w": p["seat_w"], "index": k})
+            k, r = k + 1, r + d
+
+        def clear_above(r0, r1, below):
+            """Lowest floor for a raised tier over offsets r0..r1, given the rows below it."""
+            under = [b["z"] for b in below if b["r"] + b["depth"] / 2 > r0 and b["r"] - b["depth"] / 2 < r1]
+            return max(under, default=0) + HEADROOM + SLAB
+
+        lower = list(rows)
+        m0 = p["mezz_from"] * self.depth
+        j, r, z = 0, m0 + d / 2, None
+        while r + d / 2 <= self.depth + 1e-9:
+            zmin = clear_above(r - d / 2, r + d / 2, lower)
+            z = zmin if z is None else max(zmin, z + p["mezz_rise"])
+            rows.append({"level": "mezzanine", "kind": "member", "r": r, "z": round(z, 3), "depth": d,
+                         "seat_w": p["seat_w"], "index": j})
+            j, r = j + 1, r + d
+        mezz = [row for row in rows if row["level"] == "mezzanine"]
+        pd = PUBLIC["row_d"]
+        r, z = self.depth - PUBLIC["rows"] * pd + pd / 2, None
+        for i in range(PUBLIC["rows"]):
+            zmin = clear_above(r - pd / 2, r + pd / 2, mezz)
+            z = zmin if z is None else max(zmin, z + PUBLIC["rise"])
+            rows.append({"level": "public", "kind": "public", "r": r, "z": round(z, 3), "depth": pd,
+                         "seat_w": PUBLIC["seat_w"], "index": i})
+            r += pd
+        return rows
+
+    def place_seats(self):
+        """Seats along each row, in benches between the aisles (and the open end)."""
+        benches, tables = [], []
+        for row in self.rows:
+            r, w = row["r"], row["seat_w"]
+            ts, pts, s = self.oval.row(r)
+            blocked = []
+            for a in self.aisles:
+                t = (a["t"] - 1.5 * math.pi) % (2 * math.pi) + 1.5 * math.pi
+                sa = interp(ts, s, t)
+                blocked += [(sa - a["w"] / 2, sa + a["w"] / 2), (sa - a["w"] / 2 + s[-1], sa + a["w"] / 2 + s[-1]),
+                            (sa - a["w"] / 2 - s[-1], sa + a["w"] / 2 - s[-1])]
+            if row["level"] == "lower" and row["index"] == 0:
+                north = next(a for a in self.aisles if abs(a["t"] - math.pi / 2) < 1e-3)
+                sn = interp(ts, s, north["t"] + 2 * math.pi)
+                for t0, t1 in TABLES:
+                    for side in (-1, 1):
+                        a0, a1 = sorted((sn + side * (north["w"] / 2 + t0), sn + side * (north["w"] / 2 + t1)))
+                        blocked.append((a0, a1))
+                        tables.append({"r": r, "z": row["z"], "t0": round(interp(s, ts, a0), 5),
+                                       "t1": round(interp(s, ts, a1), 5)})
+            free = [self.keep(x, y) and not any(b0 <= si <= b1 for b0, b1 in blocked)
+                    for (x, y, _, _), si in zip(pts, s)]
+            runs, start = [], None
+            for i, f in enumerate(free + [False]):
+                if f and start is None:
+                    start = i
+                elif not f and start is not None:
+                    runs.append((s[start], s[i - 1]))
+                    start = None
+            for s0, s1 in runs:
+                n = int((s1 - s0 + 1e-9) // w)
+                if n < 1:
+                    continue
+                first = (s0 + s1) / 2 - w * (n - 1) / 2
+                seats = []
+                for i in range(n):
+                    t = interp(s, ts, first + i * w)
+                    x, y, nx, ny = self.oval.at(t, r)
+                    seats.append({"x": round(x, 3), "y": round(y, 3), "z": row["z"], "t": round(t, 5),
+                                  "face": round(math.atan2(-ny, -nx), 4), "level": row["level"], "kind": row["kind"],
+                                  "row": row["index"], "end_lo": i == 0, "end_hi": i == n - 1})
+                benches.append({"level": row["level"], "kind": row["kind"], "r": r, "z": row["z"], "depth": row["depth"],
+                                "seat_w": w, "t0": round(interp(s, ts, first - w / 2), 5),
+                                "t1": round(interp(s, ts, first + w * (n - 0.5)), 5), "seats": seats})
+        return benches, tables
+
+    def seats(self, kind):
+        return [s for b in self.benches if b["kind"] == kind for s in b["seats"]]
+
+    def assign_parties(self):
+        """Members get the seats nearest the Speaker; the parties then fill them round the oval
+        from the south-east (the Speaker's right) by way of the north to the south-west."""
+        members = self.seats("member")
+        sx, sy = self.speaker
+        near = sorted(members, key=lambda s: math.dist((s["x"], s["y"], s["z"]), (sx, sy, 2.0)))[:self.target]
+        near.sort(key=lambda s: s["t"])
+        pos = 0
+        for index, (_, n, _) in enumerate(self.parties):
+            for s in near[pos:pos + n]:
+                s["party"] = index
+            pos += n
+
+    # ------------------------------------------------------------ geometry for the 3D model
+
+    def bands(self):
+        """Carpeted tiers. Lower tiers stand on the floor; raised ones are slabs with a soffit.
+        The outermost tier of each level runs on to the walls."""
+        E = self.oval.polygon()
+        out = []
+        for level in ("lower", "mezzanine", "public"):
+            rows = [r for r in self.rows if r["level"] == level]
+            for i, row in enumerate(rows):
+                o0 = row["r"] - row["depth"] / 2
+                inner = E if o0 < 1e-6 else E.buffer(o0, 64)
+                outer = self.hall if i + 1 == len(rows) else E.buffer(rows[i + 1]["r"] - rows[i + 1]["depth"] / 2, 64)
+                geom = outer.difference(inner).intersection(self.region)
+                out.append({"level": level, "z0": 0 if level == "lower" else round(row["z"] - SLAB, 3), "z": row["z"],
+                            "polys": polygons(geom)})
+        return out
+
+    def fronts(self):
+        """The mezzanine's and the public ring's front parapets (the public one carries a glass screen)."""
+        out = []
+        for level in ("mezzanine", "public"):
+            first = next(r for r in self.rows if r["level"] == level)
+            out.append({"level": level, "r": round(first["r"] - first["depth"] / 2, 3),
+                        "z0": round(first["z"] - SLAB - 0.25, 3), "z1": round(first["z"] + 0.95, 3),
+                        "glass": level == "public"})
+        return out
+
+    def screens(self, bands):
+        """Walnut screens along both sides of the horseshoe's open end."""
+        cut = self.p["cut"]
+        if not cut:
+            return []
+        out = []
+        for side in (-1, 1):
+            strip = box(side * cut - 0.09, 0, side * cut + 0.09, self.cut_y)
+            for band in bands:
+                for poly in band["polys"]:
+                    g = Polygon(poly["outer"], poly["holes"]).intersection(strip)
+                    if not g.is_empty and g.area > 0.005:
+                        out.append({"level": band["level"], "z0": band["z0"], "z": band["z"], "polys": polygons(g)})
+        return out
+
+    def runners(self):
+        """The centre aisles' runners as (y, z) profiles along x = 0: up the north aisle of the
+        lower bowl, and either up the south aisle too (oval) or from the rostrum (horseshoe)."""
+        lower = [r for r in self.rows if r["level"] == "lower"]
+        b0 = self.oval.b0
+
+        def climb(sign):
+            pts, z = [], 0.0
+            for row in lower:
+                y = CY + sign * (b0 + row["r"] - row["depth"] / 2)
+                pts += [[round(y, 3), z], [round(y, 3), row["z"]]]
+                z = row["z"]
+            pts.append([round(CY + sign * (b0 + self.depth), 3), z])
+            return pts
+
+        if self.p["rostrum"] == "wall":
+            return [[[6.0, 0.0]] + climb(1)]
+        # from the central rostrum out to both centre aisles
+        return [[[CY + 1.8, 0.0]] + climb(1), [[CY - 2.0, 0.0]] + climb(-1)]
+
+    def layout(self):
+        bands = self.bands()
+        members, public = self.seats("member"), self.seats("public")
+        return {
+            "design": self.name, "title": self.p["title"], "rostrum": self.p["rostrum"],
+            "hall": {"w": HALL_W, "d": HALL_D, "h": HALL_H},
+            "centre": [CX, CY], "oval": {"a0": self.oval.a0, "b0": self.oval.b0, "depth": self.depth},
+            "cut": [self.p["cut"], self.cut_y] if self.p["cut"] else None,
+            "speaker": list(self.speaker),
+            "rows": self.rows, "aisles": self.aisles, "benches": self.benches, "tables": self.tables,
+            "bands": bands, "fronts": self.fronts(), "screens": self.screens(bands), "runners": self.runners(),
+            "parties": [{"name": n, "seats": s, "color": c} for n, s, c in self.parties],
+            "counts": {"members": len(members), "public": len(public), "target": self.target},
+        }
+
+    def report(self):
+        members = self.seats("member")
+        lower = sum(1 for s in members if s["level"] == "lower")
+        public = self.seats("public")
+        press = press_seats(self.name)
+        top = max(r["z"] for r in self.rows)
+        print(f"{self.name} ({self.p['title']}): seats {self.p['seat_w'] / 0.0254:.0f} in wide, rows "
+              f"{self.p['row_d'] / 0.0254:.0f} in apart; central floor {2 * self.oval.a0:.1f} x {2 * self.oval.b0:.1f} m")
+        print(f"  members: {len(members)} seats for {self.target} ({len(members) - self.target} spare): "
+              f"{lower} in the lower bowl, {len(members) - lower} on the mezzanine")
+        print(f"  public: {len(public)}; press: {press}; total {len(members) + len(public) + press}; "
+              f"top row {top:.2f} m up, {HALL_H - top:.2f} m below the ceiling")
 
 
-def tier_bands(rows, aisle):
-    """Carpeted platforms: one per row, the cross-aisle, and the top walkway."""
-    area = region()
-    bands = []
-    for i, row in enumerate(rows):
-        r_in = row["r"] - row["depth"] / 2
-        if i + 1 < len(rows):
-            nxt = rows[i + 1]
-            r_out = nxt["r"] - nxt["depth"] / 2
-        else:
-            r_out = 200
-        if row["kind"] == "member" and i + 1 < len(rows) and rows[i + 1]["kind"] == "public":
-            r_out = aisle["r_out"]   # this tier runs on into the cross-aisle
-        bands.append({"z": row["z"], "polys": polygons(annulus(r_in, r_out).intersection(area))})
-    return bands
+def press_seats(name):
+    """Today's press gallery above the rostrum survives in the horseshoe, narrowed to the
+    open end. Mirrors the seat placement in chamber_scene.js."""
+    if DESIGNS[name]["rostrum"] != "wall":
+        return 0
+    half = press_half_width(name)
+    xs, x = [], -half + 0.6
+    while x <= half - 0.6 + 1e-9:
+        xs.append(x)
+        x += 0.55
+    return 3 * sum(1 for x in xs if abs(x) >= 0.6)
 
 
-def rails(rows, aisle):
-    """Walnut rail between the members' bowl and the public rows."""
-    public = next(r for r in rows if r["kind"] == "public")
-    r = public["r"] - public["depth"] / 2
-    return {"z0": aisle["z"], "z": round(aisle["z"] + 1.0, 3),
-            "polys": polygons(annulus(r - 0.12, r).intersection(region()))}
-
-
-def leadership_tables(rows):
-    sx, sy = SPEAKER
-    r = rows[0]["r"]
-    out = []
-    for a0, a1 in TABLES:
-        pts_out = [(sx + (r + 0.42) * math.cos(math.radians(a)), sy + (r + 0.42) * math.sin(math.radians(a)))
-                   for a in [a0 + k * (a1 - a0) / 24 for k in range(25)]]
-        pts_in = [(sx + (r - 0.42) * math.cos(math.radians(a)), sy + (r - 0.42) * math.sin(math.radians(a)))
-                  for a in [a1 - k * (a1 - a0) / 24 for k in range(25)]]
-        mid = math.radians((a0 + a1) / 2)
-        out.append({"z": rows[0]["z"], "polys": polygons(Polygon(pts_out + pts_in)),
-                    "r": r, "a0": a0, "a1": a1,
-                    "lectern": [round(sx + r * math.cos(mid), 3), round(sy + r * math.sin(mid), 3)],
-                    "face": round(math.atan2(-math.sin(mid), -math.cos(mid)), 4)})
-    return out
-
-
-def build_layout():
-    parties = read_parties()
-    rows, members, public, aisle = build_rows(sum(n for _, n, _ in parties))
-    for seat, p in zip(members, assign_parties(members, parties)):
-        seat["party"] = p
-    return {
-        "hall": {"w": HALL_W, "d": HALL_D, "h": HALL_H},
-        "rostrum": {"w": ROSTRUM_W, "d": ROSTRUM_D},
-        "speaker": SPEAKER,
-        "rows": rows,
-        "members": members,
-        "public": public,
-        "aisle": aisle,
-        "parties": [{"name": n, "seats": s, "color": c} for n, s, c in parties],
-        "seat_width": SEAT_WIDTH, "public_seat_width": PUBLIC_SEAT_WIDTH,
-        "centre_aisle": CENTRE_AISLE, "aisle_width": AISLE, "aisles": AISLES,
-        "angles": [MIN_ANGLE, MAX_ANGLE],
-        "clearance": [ROSTRUM_W / 2 + 1.2, ROSTRUM_D + 0.8],
-    }
-
-
-def runner(rows, aisle):
-    """The centre aisle's runner: one strip per tier, from the well to the top."""
-    sx, sy = SPEAKER
-    strips = [{"y0": ROSTRUM_D + 0.8, "y1": sy + rows[0]["r"] - rows[0]["depth"] / 2, "z": 0.0}]
-    for i, row in enumerate(rows):
-        if row["kind"] != "member":
-            break
-        y0 = sy + row["r"] - row["depth"] / 2
-        if i + 1 < len(rows) and rows[i + 1]["kind"] == "member":
-            y1 = sy + rows[i + 1]["r"] - rows[i + 1]["depth"] / 2
-        else:
-            y1 = sy + aisle["r_out"]
-        strips.append({"y0": round(y0, 3), "y1": round(y1, 3), "z": row["z"]})
-    return strips
-
-
-def side_screens(rows, aisle):
-    """Walnut screens stepping up along both open ends of the bowl."""
-    sx, sy = SPEAKER
-    bands = tier_bands(rows, aisle)
-    screens = []
-    for angle in (MIN_ANGLE, MAX_ANGLE):
-        a = math.radians(angle)
-        ray = Polygon([(sx, sy), (sx + 200 * math.cos(a), sy + 200 * math.sin(a)),
-                       (sx + 200 * math.cos(a) + 0.01, sy + 200 * math.sin(a) + 0.01)]).buffer(0.09)
-        for band in bands:
-            for poly in band["polys"]:
-                g = Polygon(poly["outer"]).intersection(ray)
-                if not g.is_empty and g.area > 0.005:
-                    screens.append({"z": band["z"], "polys": polygons(g)})
-    return screens
-
-
-def model_data(layout):
-    data = dict(layout)
-    data["bands"] = tier_bands(layout["rows"], layout["aisle"])
-    data["rail"] = rails(layout["rows"], layout["aisle"])
-    data["tables"] = leadership_tables(layout["rows"])
-    data["runner"] = runner(layout["rows"], layout["aisle"])
-    data["screens"] = side_screens(layout["rows"], layout["aisle"])
-    return data
-
-
-def report(layout):
-    members, public, rows = layout["members"], layout["public"], layout["rows"]
-    total = sum(p["seats"] for p in layout["parties"])
-    member_rows = [r for r in rows if r["kind"] == "member"]
-    print(f"hall {HALL_W / FT:.0f} x {HALL_D / FT:.0f} ft ({HALL_W:.1f} x {HALL_D:.1f} m), {HALL_H / FT:.0f} ft high; "
-          f"today's hall is {TODAY_W / FT:.0f} x {TODAY_D / FT:.0f} ft, the House wing {WING_W / FT:.0f} x {WING_D / FT:.0f} ft")
-    print(f"members' bowl: {len(member_rows)} tiers of benches, rising to {member_rows[-1]['z']:.2f} m; "
-          f"{len(members)} seats for {total} members ({len(members) - total} spare)")
-    print(f"public: {len(public)} seats in {PUBLIC_ROWS} rows, top row at {rows[-1]['z']:.2f} m "
-          f"({HALL_H - rows[-1]['z']:.2f} m below the ceiling)")
-    print(f"total seats: {len(members) + len(public)}")
+def press_half_width(name):
+    return DESIGNS[name]["cut"] - 0.4
 
 
 # ---------------------------------------------------------------- rendering
 
-# Camera positions (x east, y north from the rostrum wall, z up).
-VIEWS = {
-    "gallery-view": dict(eye=(0, HALL_D - 2.6, 8.7), target=(0, 6.0, 0.4), fov=66),
-    "side-view": dict(eye=(28.6, 23.6, 9.2), target=(-3.0, 5.0, 1.2), fov=60),
-    "floor-view": dict(eye=(-4.6, 9.2, 1.55), target=(1.5, 2.6, 2.0), fov=62),
-    "speaker-view": dict(eye=(0, 1.6, 4.3), target=(0, 24, 3.4), fov=74),
-    "party-seating": dict(eye=(0, 3, 44), target=(0, 18.5, 0), fov=50, colors="party", hide=["ceiling"]),
-    # a joint session: every seat taken, the President at the rostrum
-    "sotu-gallery": dict(eye=(0, HALL_D - 2.6, 8.7), target=(0, 4.0, 1.4), fov=60, sotu=True),
-    "sotu-rostrum": dict(eye=(1.4, 0.5, 8.9), target=(0, 11.5, 0.6), fov=70, sotu=True),
-    "sotu-president": dict(eye=(0, 16.5, 3.4), target=(0, 2.0, 2.4), fov=30, sotu=True),
-}
+def views(d):
+    """Camera positions for a design (x east, y north from the rostrum wall, z up)."""
+    centre = d.p["rostrum"] == "centre"
+    pub = next(r for r in d.rows if r["level"] == "public")
+    rostrum = (0, CY - 0.6, 2.2) if centre else (0, 2.6, 2.4)
+    north_floor = CY + d.oval.b0
+    # just in front of the public ring's glass screen: at the north aisle, and on the east side
+    p0 = pub["r"] - pub["depth"] / 2 - 0.3
+    over = (0, north_floor + p0, pub["z"] + 2.3)
+    east = (CX + d.oval.a0 + p0, CY + 1.5, pub["z"] + 2.3)
+    return {
+        "gallery-view": dict(eye=over, target=(0, rostrum[1], 0.8), fov=72),
+        "side-view": dict(eye=east, target=(-5.0, CY - 1.5, 0.6) if centre else (-4.0, 3.5, 1.2), fov=66),
+        "floor-view": dict(eye=(-2.4, north_floor + 1.2, 1.55), target=(0.5, rostrum[1], 2.2), fov=62),
+        "speaker-view": dict(eye=(0, CY - 0.9, 3.0), target=(0, HALL_D, 3.6), fov=76) if centre
+        else dict(eye=(0, 1.6, 4.3), target=(0, HALL_D, 3.4), fov=74),
+        "party-lower": dict(eye=(0, CY - 6, 40), target=(0, CY + 0.5, 0), fov=44, colors="party",
+                            hide=["ceiling", "mezzanine", "public"]),
+        "party-mezzanine": dict(eye=(0, CY - 6, 40), target=(0, CY + 0.5, 0), fov=44, colors="party",
+                                hide=["ceiling", "public"]),
+        "sotu-gallery": dict(eye=over, target=(0, rostrum[1], 1.2), fov=64, sotu=True),
+        "sotu-president": dict(eye=(0, north_floor + 6.5, 4.4), target=rostrum, fov=30, sotu=True) if centre
+        else dict(eye=(0, north_floor + 3.0, 2.6), target=rostrum, fov=28, sotu=True),
+        "sotu-rostrum": dict(eye=(0.8, CY - 3.2, 5.6), target=(0, CY + 10, 0.8), fov=72, sotu=True) if centre
+        else dict(eye=(1.4, 0.5, 8.9), target=(0, CY - 2.5, 0.6), fov=70, sotu=True),
+    }
 
 
 def three_scripts():
@@ -389,7 +426,7 @@ def three_scripts():
     return paths
 
 
-def render_views(layout, names, size=(2560, 1440)):
+def render_views(layout, view_defs, names, size=(2560, 1440)):
     from playwright.sync_api import sync_playwright
 
     scripts = "".join(f'<script src="{p.as_uri()}"></script>' for p in three_scripts())
@@ -398,11 +435,12 @@ def render_views(layout, names, size=(2560, 1440)):
     with sync_playwright() as p:
         browser = p.chromium.launch(args=["--enable-unsafe-swiftshader", "--use-angle=swiftshader", "--ignore-gpu-blocklist"])
         for name in names:
+            stem = f"{layout['design']}-{name}"
             page_html = (f'<!doctype html><html><body style="margin:0;background:#000">'
                          f'<canvas id="c" width="{size[0]}" height="{size[1]}"></canvas>'
-                         f'<script>window.LAYOUT = {json.dumps(layout)}; window.VIEW = {json.dumps(VIEWS[name])};</script>'
+                         f'<script>window.LAYOUT = {json.dumps(layout)}; window.VIEW = {json.dumps(view_defs[name])};</script>'
                          f'{scripts}<script src="{SCENE_FILE.as_uri()}"></script></body></html>')
-            page_file = CACHE / f"{name}.html"
+            page_file = CACHE / f"{stem}.html"
             page_file.write_text(page_html, encoding="utf-8")
             page = browser.new_page(viewport={"width": size[0], "height": size[1]})
             errors = []
@@ -412,8 +450,8 @@ def render_views(layout, names, size=(2560, 1440)):
                 page.wait_for_function("window.RENDERED === true || window.FAILED", timeout=900_000)
             finally:
                 if errors:
-                    raise RuntimeError(f"{name}: {errors}")
-            out = OUT_DIR / f"chamber-{name}.png"
+                    raise RuntimeError(f"{stem}: {errors}")
+            out = OUT_DIR / f"{stem}.png"
             data_url = page.evaluate("document.getElementById('c').toDataURL('image/png')")
             out.write_bytes(base64.b64decode(data_url.split(",", 1)[1]))
             written.append(out)
@@ -424,17 +462,22 @@ def render_views(layout, names, size=(2560, 1440)):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--design", choices=list(DESIGNS), nargs="*", default=list(DESIGNS))
     parser.add_argument("--report", action="store_true", help="only print seat counts")
-    parser.add_argument("--views", nargs="*", default=list(VIEWS), help=f"views to render ({', '.join(VIEWS)})")
+    parser.add_argument("--views", nargs="*", help="views to render (default: all)")
     parser.add_argument("--size", default="2560x1440", help="image size, e.g. 1280x720 for a quick preview")
     args = parser.parse_args()
-    layout = build_layout()
-    report(layout)
-    if args.report:
-        return 0
     size = tuple(int(v) for v in args.size.split("x"))
-    for path in render_views(model_data(layout), args.views, size):
-        print(f"wrote {path}")
+    for name in args.design:
+        d = Design(name)
+        d.report()
+        if len(d.seats("member")) < d.target:
+            print("  not enough seats for every member", file=sys.stderr)
+        if args.report:
+            continue
+        v = views(d)
+        for path in render_views(d.layout(), v, args.views or list(v), size):
+            print(f"wrote {path}")
     return 0
 
 
