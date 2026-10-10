@@ -237,11 +237,12 @@ wide and 33 in deep (House collection). In today's half-circle layout, with rows
 
 So both designs rebuild only the inside of today's hall, and keep the room and
 everything around it: the grand stairways and their murals, the Speaker's
-Lobby, the cloakrooms. Members sit in oval rows around a long central floor, on
-two levels, which uses the long room far better than a half circle or a circle:
+Lobby, the cloakrooms. Both keep today's seat size. Members sit in oval rows
+around a small central floor, on two levels, and the outer rows run on into the
+ends and corners of the room, so no floor is left over:
 
 - a **lower bowl** rising gently from the floor;
-- a **mezzanine** over most of the lower bowl, like a theatre balcony;
+- a **mezzanine** over the outer part of the lower bowl, like a theatre balcony;
 - a **public ring** at the top, over the back of the mezzanine, behind a walnut
   rail with a laminated-glass security screen, since visitors sit close to the members.
 
@@ -252,24 +253,24 @@ headroom under each overhang.
 
 | | `oval` | `horseshoe` |
 | --- | --- | --- |
-| Seats | today's size (26¼ in wide, rows 44 in apart) | theatre size (23 in wide, rows 3 ft apart) |
-| Rows | all the way round | stop short of the south wall |
+| Seats | today's size (26¼ in wide, rows 44 in apart) | today's size |
+| Rows | all the way round | down both sides of the rostrum |
 | Speaker | in the middle of the floor | on today's rostrum against the south wall |
-| Members | 1,552 seats (25 spare): 828 below, 724 on the mezzanine | 1,578 seats (51 spare): 788 below, 790 on the mezzanine |
-| Public | 476 | 398 |
-| Press | in the public ring | 72, in today's press gallery above the rostrum |
-| Central floor | 66 x 20 ft | 76 x 30 ft |
+| Members | 1,550 seats (23 spare): 906 below, 644 on the mezzanine | 1,592 seats (65 spare): 854 below, 738 on the mezzanine |
+| Public | 304 | 236 |
+| Press | in the public ring | 75, in today's press gallery above the rostrum |
+| Central floor | 43 x 23 ft | 49 x 21 ft, plus the well in front of the rostrum |
 
 In the **oval**, the rows go round behind the Speaker, so nothing can stand on
 the south wall. The frontispiece moves onto a marble screen behind the Speaker's
 chair: the black columns, the flag, the fasces, the motto and the clock in
 front, and the portraits of Lafayette and Washington on its back, facing the
-members behind the Speaker. The mezzanine covers all but the first two rows of
-the lower bowl, so from the public ring you see mostly the mezzanine and the floor.
+members behind the Speaker.
 
-In the **horseshoe**, the rows stop 8 m either side of the rostrum, so today's
-rostrum, frontispiece and press gallery stay where they are, with the portraits
-beside the frontispiece. That costs space, which is why its seats are smaller.
+In the **horseshoe**, the floor sits in front of today's rostrum, frontispiece
+and press gallery, which stay where they are with the portraits beside the
+frontispiece. The rows come down both sides of the rostrum to the south wall,
+stopping 27 ft either side of the centre, behind walnut screens.
 
 Both keep today's fittings: walnut, the blue carpet with gold rosettes and the
 centre-aisle runner, benches with leather seats and walnut backs, leadership

@@ -9,11 +9,14 @@ style. Members sit in oval rows around a long central floor, on two levels: a
 lower bowl and a mezzanine over most of it. The public sits in a ring at the
 top, behind a rail and a glass screen.
 
-- oval: today's seat size (pairs 52 1/2 in wide, 33 in deep). The rows go all
-  the way round, so the Speaker sits in the middle of the floor, with the flag,
-  columns, fasces, clock and portraits moved onto a marble screen behind the chair.
-- horseshoe: theatre-size seats. The rows stop short of the south wall, so
-  today's rostrum, frontispiece and press gallery stay where they are.
+Both use today's seat size (pairs 52 1/2 in wide, 33 in deep), and keep the
+central floor small: the outer rows run on into the ends and corners of the room.
+
+- oval: the rows go all the way round, so the Speaker sits in the middle of the
+  floor, with the flag, columns, fasces, clock and portraits moved onto a marble
+  screen behind the chair.
+- horseshoe: the floor sits in front of today's rostrum, frontispiece and press
+  gallery, which stay on the south wall, and the rows come down both sides of it.
 
     python chamber.py                                  # both designs: seat counts and every view
     python chamber.py --design oval --report           # just the seat counts
@@ -59,22 +62,24 @@ SLAB = 0.45                                  # depth of a raised tier, floor to 
 HEADROOM = 2.3                               # clear height under the mezzanine and the public ring
 AISLES = 8                                   # radial aisles, evenly spaced round the oval
 AISLE_W, CENTRE_AISLE_W = 1.1, 1.6           # the north and south aisles are wider, with a runner
-PUBLIC = dict(seat_w=0.55, row_d=0.85, rows=3, rise=0.3)
+PUBLIC = dict(seat_w=0.55, row_d=0.85, rows=3, rise=0.25)
 
 DESIGNS = {
     "oval": dict(
-        title="Oval, today's seats",
+        title="Oval",
         seat_w=0.67, row_d=1.12,             # today's seats: pairs 52 1/2 x 33 in, rows ~44 in apart
-        well=3.0,                            # half the width of the central floor
-        mezz_from=0.2,                       # the mezzanine starts over the third lower row
-        lower_rise=0.16, mezz_rise=0.28,
+        floor=(6.5, 3.5),                    # half the length and width of the central floor
+        centre_y=CY,                         # the floor's centre, from the south wall
+        mezz_from=0.4,                       # the mezzanine starts 40% of the way out
+        lower_rise=0.16, mezz_rise=0.2,
         cut=None, rostrum="centre"),
     "horseshoe": dict(
-        title="Horseshoe, theatre seats",
-        seat_w=0.58, row_d=0.92,             # theatre seats: 23 in wide, rows 3 ft apart
-        well=4.5, mezz_from=0.15,
-        lower_rise=0.16, mezz_rise=0.28,
-        cut=8.0,                             # rows stop 8 m either side of the rostrum
+        title="Horseshoe",
+        seat_w=0.67, row_d=1.12,
+        floor=(7.4, 3.25), centre_y=8.5,     # in front of the rostrum
+        mezz_from=0.25,
+        lower_rise=0.16, mezz_rise=0.2,
+        cut=(8.3, 8.5),                      # open floor in front of the rostrum: 8.3 m either side, 8.5 m deep
         rostrum="wall"),
 }
 # Leadership tables in the first row either side of the north aisle (arc metres from the aisle).
@@ -83,20 +88,20 @@ TABLES = [(0.15, 3.75), (4.35, 7.95)]
 
 class Oval:
     """Rows are parallel curves, a constant distance r outside the central floor,
-    an ellipse a0 x b0 centred in the hall. t is the ellipse's angle parameter."""
+    an ellipse a0 x b0 centred at (CX, cy). t is the ellipse's angle parameter."""
 
-    def __init__(self, a0, b0):
-        self.a0, self.b0 = a0, b0
+    def __init__(self, a0, b0, cy=CY):
+        self.a0, self.b0, self.cy = a0, b0, cy
 
     def at(self, t, r):
         c, s = math.cos(t), math.sin(t)
         nx, ny = self.b0 * c, self.a0 * s
         n = math.hypot(nx, ny)
         nx, ny = nx / n, ny / n
-        return CX + self.a0 * c + r * nx, CY + self.b0 * s + r * ny, nx, ny
+        return CX + self.a0 * c + r * nx, self.cy + self.b0 * s + r * ny, nx, ny
 
     def polygon(self, n=720):
-        return Polygon([(CX + self.a0 * math.cos(2 * math.pi * i / n), CY + self.b0 * math.sin(2 * math.pi * i / n))
+        return Polygon([(CX + self.a0 * math.cos(2 * math.pi * i / n), self.cy + self.b0 * math.sin(2 * math.pi * i / n))
                         for i in range(n)])
 
     def row(self, r, n=4000, start=1.5 * math.pi):
@@ -145,25 +150,31 @@ class Design:
         self.name = name
         self.p = DESIGNS[name]
         p = self.p
-        b0 = p["well"]
-        self.oval = Oval(b0 + OUTER_A - OUTER_B, b0)
-        self.depth = OUTER_B - b0             # how deep the band of seating is
-        self.cut_y = CY - b0                   # the horseshoe's open end reaches the central floor
-        self.speaker = (CX, CY) if p["rostrum"] == "centre" else (0.0, 2.6)
+        a0, b0 = p["floor"]
+        cy = self.cy = p["centre_y"]
+        self.oval = Oval(a0, b0, cy)
+        # rows run out until they leave the room; the outer ones are cut short by the walls
+        self.gaps = {"side": OUTER_A - a0, "north": HALL_D - WALK - cy - b0, "south": cy - b0 - WALK}
+        self.depth = max(self.gaps.values())
+        self.speaker = (CX, cy) if p["rostrum"] == "centre" else (0.0, 2.6)
         self.parties = read_parties()
         self.target = sum(n for _, n, _ in self.parties)
         self.hall = box(-HALF_W, 0, HALF_W, HALL_D)
+        self.inner = box(-OUTER_A, WALK, OUTER_A, HALL_D - WALK)   # inside the walkway along the walls
         self.region = self.hall
         if p["cut"]:
-            self.region = self.hall.difference(box(-p["cut"], 0, p["cut"], self.cut_y))
+            self.cut_x, self.cut_y = p["cut"]
+            self.region = self.hall.difference(box(-self.cut_x, 0, self.cut_x, self.cut_y))
         self.aisles = self.aisle_positions()
         self.rows = self.build_rows()
         self.benches, self.tables = self.place_seats()
         self.assign_parties()
 
     def keep(self, x, y):
-        cut = self.p["cut"]
-        return not (cut and abs(x - CX) < cut and y < self.cut_y)
+        return not (self.p["cut"] and abs(x - CX) < self.cut_x and y < self.cut_y)
+
+    def inside(self, x, y):
+        return -OUTER_A - 1e-6 <= x <= OUTER_A + 1e-6 and WALK - 1e-6 <= y <= HALL_D - WALK + 1e-6
 
     def aisle_positions(self):
         """Evenly spaced round the middle of the band, one at the north and one at the south."""
@@ -231,8 +242,10 @@ class Design:
                         blocked.append((a0, a1))
                         tables.append({"r": r, "z": row["z"], "t0": round(interp(s, ts, a0), 5),
                                        "t1": round(interp(s, ts, a1), 5)})
-            free = [self.keep(x, y) and not any(b0 <= si <= b1 for b0, b1 in blocked)
-                    for (x, y, _, _), si in zip(pts, s)]
+            # a seat needs its whole place, back included, inside the walkway along the walls
+            backs = [self.oval.at(t, r + row["depth"] / 2) for t in ts]
+            free = [self.keep(x, y) and self.inside(bx, by) and not any(b0 <= si <= b1 for b0, b1 in blocked)
+                    for (x, y, _, _), (bx, by, _, _), si in zip(pts, backs, s)]
             runs, start = [], None
             for i, f in enumerate(free + [False]):
                 if f and start is None:
@@ -303,12 +316,11 @@ class Design:
 
     def screens(self, bands):
         """Walnut screens along both sides of the horseshoe's open end."""
-        cut = self.p["cut"]
-        if not cut:
+        if not self.p["cut"]:
             return []
         out = []
         for side in (-1, 1):
-            strip = box(side * cut - 0.09, 0, side * cut + 0.09, self.cut_y)
+            strip = box(side * self.cut_x - 0.09, 0, side * self.cut_x + 0.09, self.cut_y)
             for band in bands:
                 for poly in band["polys"]:
                     g = Polygon(poly["outer"], poly["holes"]).intersection(strip)
@@ -320,21 +332,24 @@ class Design:
         """The centre aisles' runners as (y, z) profiles along x = 0: up the north aisle of the
         lower bowl, and either up the south aisle too (oval) or from the rostrum (horseshoe)."""
         lower = [r for r in self.rows if r["level"] == "lower"]
-        b0 = self.oval.b0
+        b0, cy = self.oval.b0, self.cy
 
         def climb(sign):
+            gap = self.gaps["north" if sign > 0 else "south"]
             pts, z = [], 0.0
             for row in lower:
-                y = CY + sign * (b0 + row["r"] - row["depth"] / 2)
+                if row["r"] + row["depth"] / 2 > gap + 1e-6:
+                    break
+                y = cy + sign * (b0 + row["r"] - row["depth"] / 2)
                 pts += [[round(y, 3), z], [round(y, 3), row["z"]]]
                 z = row["z"]
-            pts.append([round(CY + sign * (b0 + self.depth), 3), z])
+            pts.append([round(cy + sign * (b0 + gap), 3), z])
             return pts
 
         if self.p["rostrum"] == "wall":
             return [[[6.0, 0.0]] + climb(1)]
         # from the central rostrum out to both centre aisles
-        return [[[CY + 1.8, 0.0]] + climb(1), [[CY - 2.0, 0.0]] + climb(-1)]
+        return [[[cy + 1.8, 0.0]] + climb(1), [[cy - 2.0, 0.0]] + climb(-1)]
 
     def layout(self):
         bands = self.bands()
@@ -342,8 +357,8 @@ class Design:
         return {
             "design": self.name, "title": self.p["title"], "rostrum": self.p["rostrum"],
             "hall": {"w": HALL_W, "d": HALL_D, "h": HALL_H},
-            "centre": [CX, CY], "oval": {"a0": self.oval.a0, "b0": self.oval.b0, "depth": self.depth},
-            "cut": [self.p["cut"], self.cut_y] if self.p["cut"] else None,
+            "centre": [CX, self.cy], "oval": {"a0": self.oval.a0, "b0": self.oval.b0, "depth": self.depth},
+            "cut": [self.cut_x, self.cut_y] if self.p["cut"] else None,
             "speaker": list(self.speaker),
             "rows": self.rows, "aisles": self.aisles, "benches": self.benches, "tables": self.tables,
             "bands": bands, "fronts": self.fronts(), "screens": self.screens(bands), "runners": self.runners(),
@@ -379,7 +394,7 @@ def press_seats(name):
 
 
 def press_half_width(name):
-    return DESIGNS[name]["cut"] - 0.4
+    return DESIGNS[name]["cut"][0] - 0.4
 
 
 # ---------------------------------------------------------------- rendering
@@ -387,31 +402,41 @@ def press_half_width(name):
 def views(d):
     """Camera positions for a design (x east, y north from the rostrum wall, z up)."""
     centre = d.p["rostrum"] == "centre"
-    pub = next(r for r in d.rows if r["level"] == "public")
-    rostrum = (0, CY - 0.6, 2.2) if centre else (0, 2.6, 2.4)
-    north_floor = CY + d.oval.b0
-    # just in front of the public ring's glass screen: at the north aisle, and on the east side
-    p0 = pub["r"] - pub["depth"] / 2 - 0.3
-    over = (0, north_floor + p0, pub["z"] + 2.3)
-    east = (CX + d.oval.a0 + p0, CY + 1.5, pub["z"] + 2.3)
+    cy, a0, b0 = d.cy, d.oval.a0, d.oval.b0
+    rostrum = (0, cy - 0.6, 2.2) if centre else (0, 2.6, 2.4)
+    north_floor = cy + b0
+
+    def top_front(gap):
+        """Standing at the front of the highest level that reaches a wall `gap` metres out:
+        returns (offset, height)."""
+        rows = [r for r in d.rows if r["r"] + r["depth"] / 2 <= gap + 1e-6]
+        level = "public" if any(r["level"] == "public" for r in rows) else "mezzanine"
+        first = next(r for r in rows if r["level"] == level)
+        return first["r"] - first["depth"] / 2 - 0.3, first["z"] + (2.3 if level == "public" else 1.7)
+
+    n_off, n_z = top_front(d.gaps["north"])
+    e_off, e_z = top_front(d.gaps["side"])
+    over = (0, north_floor + n_off, n_z)
+    east = (CX + a0 + e_off, cy + 1.5 if centre else cy + 4.0, e_z)
     mezz = next(r for r in d.rows if r["level"] == "mezzanine")
     balcony = (0, north_floor + mezz["r"] - mezz["depth"] / 2 - 0.3, mezz["z"] + 1.1)
+    mid = HALL_D / 2
     return {
         "gallery-view": dict(eye=over, target=(0, rostrum[1], 0.8), fov=72),
-        "side-view": dict(eye=east, target=(-5.0, CY - 1.5, 0.6) if centre else (-4.0, 3.5, 1.2), fov=66),
+        "side-view": dict(eye=east, target=(-5.0, cy - 1.5, 0.6) if centre else (-4.0, 3.5, 1.2), fov=66),
         "floor-view": dict(eye=(-2.4, north_floor + 1.2, 1.55), target=(0.5, rostrum[1], 2.2), fov=62),
-        "speaker-view": dict(eye=(0, CY - 0.9, 3.0), target=(0, HALL_D, 3.6), fov=76) if centre
+        "speaker-view": dict(eye=(0, cy - 0.9, 3.0), target=(0, HALL_D, 3.6), fov=76) if centre
         else dict(eye=(0, 1.6, 4.3), target=(0, HALL_D, 3.4), fov=74),
-        "party-lower": dict(eye=(0, CY - 6, 40), target=(0, CY + 0.5, 0), fov=44, colors="party",
+        "party-lower": dict(eye=(0, mid - 6, 40), target=(0, mid + 0.5, 0), fov=44, colors="party",
                             hide=["ceiling", "mezzanine", "public"]),
-        "party-mezzanine": dict(eye=(0, CY - 6, 40), target=(0, CY + 0.5, 0), fov=44, colors="party",
+        "party-mezzanine": dict(eye=(0, mid - 6, 40), target=(0, mid + 0.5, 0), fov=44, colors="party",
                                 hide=["ceiling", "public"]),
         "sotu-gallery": dict(eye=over, target=(0, rostrum[1], 1.2), fov=64, sotu=True),
         # the television camera's shot, from the front of the mezzanine on the north side
         "sotu-president": dict(eye=balcony, target=rostrum, fov=34 if centre else 24, sotu=True),
         # over the President's shoulder
-        "sotu-rostrum": dict(eye=(4.2, CY - 3.6, 6.4), target=(-1.0, CY + 8, 0.8), fov=70, sotu=True) if centre
-        else dict(eye=(1.4, 0.5, 8.9), target=(0, CY - 2.5, 0.6), fov=70, sotu=True),
+        "sotu-rostrum": dict(eye=(4.2, cy - 3.6, 6.4), target=(-1.0, cy + 8, 0.8), fov=70, sotu=True) if centre
+        else dict(eye=(1.4, 0.5, 8.9), target=(0, north_floor + 1.0, 0.6), fov=70, sotu=True),
     }
 
 

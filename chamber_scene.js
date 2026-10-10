@@ -549,7 +549,7 @@ for (const f of L.fronts) {
               innerUV: (s, l, z) => [s / 1.4, (z - f.z0) / (f.z1 - f.z0)], outer: wood, ends: wood, bottom: wood});
     curveBox({r0: f.r - 0.19, r1: f.r + 0.02, t0, t1, z0: f.z1, z1: f.z1 + 0.06, inner: cap, outer: cap, top: cap, ends: cap});
     if (!f.glass) continue;
-    const g0 = f.z1 + 0.06, g1 = g0 + 1.6, rg = f.r - 0.08;
+    const g0 = f.z1 + 0.06, g1 = g0 + 1.3, rg = f.r - 0.08;
     curveBox({r0: rg - 0.01, r1: rg + 0.01, t0, t1, z0: g0, z1: g1, inner: glass, outer: glass});
     curveBox({r0: rg - 0.04, r1: rg + 0.04, t0, t1, z0: g1, z1: g1 + 0.06, inner: frame, outer: frame, top: frame, ends: frame});
     const n = Math.max(1, Math.round((t1 - t0) * speed((t0 + t1) / 2, rg) / 1.8));
@@ -1164,7 +1164,7 @@ if (!CENTRE) {
   const c = groups.ceiling, y0 = CENTRE ? 0 : -3.6, depth = D - y0;
   const ceil = new THREE.Mesh(new THREE.PlaneGeometry(W, depth), M.plaster);
   ceil.rotation.x = Math.PI / 2; ceil.position.copy(V(0, y0 + depth / 2, H)); c.add(ceil);
-  const LAY = {x: 9.4, y0: OCY - 5.6, y1: OCY + 5.6};   // laylight half width and extent
+  const LAY = {x: 9.4, y0: D / 2 - 5.6, y1: D / 2 + 5.6};   // laylight half width and extent
   const nx = 9, ny = Math.round(depth / 4.6), cw = W / nx, cd = depth / ny;
   for (let i = 0; i <= nx; i++) {
     const x = -HW + i * cw;
@@ -1330,14 +1330,14 @@ if (VIEW.sotu) {
 
 scene.add(new THREE.HemisphereLight('#fff3e0', '#4a3a2a', 0.42));
 const key = new THREE.DirectionalLight('#ffe9c8', 1.15);
-key.position.copy(V(-6, OCY - 4, 60)); key.target.position.copy(V(0, OCY, 0));
+key.position.copy(V(-6, D / 2 - 4, 60)); key.target.position.copy(V(0, D / 2, 0));
 key.castShadow = true; key.shadow.mapSize.set(4096, 4096);
 Object.assign(key.shadow.camera, {left: -26, right: 26, top: 20, bottom: -20, near: 20, far: 90});
 key.shadow.bias = -0.0002; key.shadow.normalBias = 0.02; key.shadow.radius = 2;
 scene.add(key, key.target);
 const fill = new THREE.DirectionalLight('#ffe9cc', 0.22);
 fill.position.copy(V(0, D + 20, 10)); fill.target.position.copy(V(0, 0, 3)); scene.add(fill, fill.target);
-for (const [x, y, power] of [[0, OCY, 0.5], [-12, OCY, 0.32], [12, OCY, 0.32], [0, OCY + 8, 0.25], [0, OCY - 8, 0.25]]) {
+for (const [x, y, power] of [[0, D / 2, 0.5], [-12, D / 2, 0.32], [12, D / 2, 0.32], [0, D / 2 + 8, 0.25], [0, D / 2 - 8, 0.25]]) {
   const p = new THREE.PointLight('#ffdcb0', power, 26, 1.5); p.position.copy(V(x, y, 9.6)); scene.add(p);
 }
 { // lamps under the mezzanine for the rows beneath it
