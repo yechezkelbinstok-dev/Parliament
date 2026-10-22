@@ -10,8 +10,21 @@ Rules
   for polls with scenario rows the row covering the most active series is used, the first on a tie.
 - 2022 election row: RZP 7 and Otzma 6 seats as elected (the table shows their joint list's 14).
 """
-import json, re, csv, sys, collections, datetime
-from build import parse_val
+import json, re, csv, sys, datetime
+
+
+def parse_number(t):
+    """First number in the string, like readr::parse_number."""
+    m = re.search(r'-?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?|-?\.\d+', t)
+    return float(m.group(0).replace(',', '')) if m else None
+
+
+def parse_val(t):
+    t = t.strip()
+    v = parse_number(t)
+    if v is None:
+        return ('other', t)
+    return ('pct', v) if '(' in t else ('seats', v)
 
 SERIES = ["Likud", "Yesh Atid", "Blue & White", "Shas", "UTJ", "RZP-Zehut", "Otzma", "Yisrael Beiteinu",
           "Ra'am", "Hadash–Ta'al", "Labor", "Meretz", "Balad", "New Hope", "Dems", "Bennett 2026", "Yashar",
@@ -117,6 +130,7 @@ def build(rows_json):
     return out
 
 if __name__ == '__main__':
+    # usage: rebuild.py rows.json polls.json polls.csv   (rows.json from parse_wiki.py)
     polls = build(sys.argv[1])
     json.dump(polls, open(sys.argv[2], 'w'), ensure_ascii=False, indent=0)
     def fmt(v): return '' if v is None else (str(int(v)) if float(v).is_integer() else f"{v:g}")
