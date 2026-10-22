@@ -1,7 +1,7 @@
 # Opinion polls Israel 2026.svg
 # Seat projections since the 2022 election, with a LOESS trend line per party.
 #
-# Needs ggplot2 3.4.x and svglite 2.1.x (newer ggplot2 lays out the legend differently).
+# Needs ggplot2 3.4.x, svglite 2.1.x and the Arial font (newer ggplot2 lays out the legend differently).
 # Usage: Rscript opinion_polls_israel_2026.R [polls.csv] [output.svg]
 
 library(ggplot2)
@@ -18,23 +18,28 @@ outfile <- if (length(args) >= 2) args[2] else "Opinion polls Israel 2026.svg"
 
 # One row per poll, newest first, with the 2022 election result as the last row.
 # Seats as published; parties below the threshold as % * 1.2, rounded to 0.1.
-polls <- read.csv(infile, check.names = FALSE, stringsAsFactors = FALSE)
+polls <- read.csv(infile, check.names = FALSE, stringsAsFactors = FALSE, fileEncoding = "UTF-8")
 polls$Date <- as.Date(polls$Date)
 polls$shape <- ifelse(polls$`Polling firm` == "Election", 23, 19)
 polls$size  <- ifelse(polls$`Polling firm` == "Election", 3, 1.5)
 
+# Names as in the column headers of the Wikipedia poll tables.
 colours <- c(
-  Likud    = "#225A9E", YA       = "#203880", NU.BW    = "#0DAAFF", Shas     = "#000000",
-  UTJ      = "#003366", RZ       = "#4F9298", OY       = "#FF4500", YB       = "#9AC0E2",
-  Raam     = "#15793D", Hadash   = "#D42436", Labor    = "#EE1C25", Meretz   = "#40AE49",
-  Balad    = "#F6600C", NH       = "#0081B2", Dems     = "#2A38D7", Ben26    = "#44C5BF",
-  Yashar   = "#62B9F2", Res.ZH   = "#68692C", Together = "#2A2A78", Unity    = "#909958",
-  AY       = "#8F36BF", JL       = "#01B2AC", HP       = "#F5C518"
+  "Likud"            = "#225A9E", "Yesh Atid"     = "#203880", "Blue & White"  = "#0DAAFF",
+  "Shas"             = "#000000", "UTJ"           = "#003366", "RZP"           = "#4F9298",
+  "Otzma"            = "#FF4500", "Yisrael Beiteinu" = "#9AC0E2", "Ra'am"      = "#15793D",
+  "Hadash\u2013Ta'al"     = "#D42436", "Labor"         = "#EE1C25", "Meretz"        = "#40AE49",
+  "Balad"            = "#F6600C", "New Hope"      = "#0081B2", "Dems"          = "#2A38D7",
+  "Bennett 2026"     = "#44C5BF", "Yashar"        = "#62B9F2", "Reserv."       = "#68692C",
+  "Together"         = "#2A2A78", "Unity"         = "#909958", "Amcha Yisrael" = "#8F36BF",
+  "Joint List"       = "#01B2AC", "Haredi Public" = "#F5C518"
 )
 spans <- c(
-  Likud = 0.2, YA = 0.2, NU.BW = 0.2, Shas = 0.2, UTJ = 0.2, RZ = 0.2, OY = 0.2, YB = 0.2,
-  Raam = 0.2, Hadash = 0.2, Labor = 0.2, Meretz = 0.2, Balad = 0.2, NH = 0.4, Dems = 0.2,
-  Ben26 = 0.6, Yashar = 0.5, Res.ZH = 0.7, Together = 0.9, Unity = 1.1, AY = 1.1, JL = 1.1, HP = 1.1
+  "Likud" = 0.2, "Yesh Atid" = 0.2, "Blue & White" = 0.2, "Shas" = 0.2, "UTJ" = 0.2, "RZP" = 0.2,
+  "Otzma" = 0.2, "Yisrael Beiteinu" = 0.2, "Ra'am" = 0.2, "Hadash\u2013Ta'al" = 0.2, "Labor" = 0.2,
+  "Meretz" = 0.2, "Balad" = 0.2, "New Hope" = 0.4, "Dems" = 0.2, "Bennett 2026" = 0.6,
+  "Yashar" = 0.5, "Reserv." = 0.7, "Together" = 0.9, "Unity" = 1.1, "Amcha Yisrael" = 1.1,
+  "Joint List" = 1.1, "Haredi Public" = 1.1
 )
 parties <- names(colours)
 
@@ -58,6 +63,7 @@ for (party in parties) {
 
 p <- p +
   scale_colour_manual(values = colours, breaks = parties) +
+  guides(colour = guide_legend(ncol = 1)) +
   scale_x_date(date_breaks = "3 months", date_minor_breaks = "1 month", date_labels = "%b %Y") +
   expand_limits(y = 0) +
   labs(x = "", y = "Seats", colour = "") +
@@ -65,8 +71,9 @@ p <- p +
         axis.text.y = element_text(size = 12),
         axis.text.x = element_text(size = 11),
         axis.title.y = element_text(size = 16),
-        legend.text = element_text(size = 16, margin = margin(t = 5, b = 5)),
-        legend.key.size = unit(24, "pt"))
+        legend.text = element_text(size = 16),
+        legend.key.width = unit(24, "pt"),
+        legend.key.height = unit(22, "pt"))
 
 svglite(outfile, width = 18, height = 8)
 print(p)
