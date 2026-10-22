@@ -109,7 +109,7 @@ def build(rows_json):
             continue                          # note rows
         if d['dup'] != 'row' or cur is None:
             cur = {'article': r['article'], 'table': r['table'], 'date': end_date(d, r['article']),
-                   'firm': r['cells'][1]['text'], 'publisher': r['cells'][2]['text'] if r['cells'][2] else '',
+                   'firm': r['cells'][1]['text'].strip('` '), 'publisher': r['cells'][2]['text'] if r['cells'][2] else '',
                    'rows': []}
             polls.append(cur)
         cur['rows'].append(r)
