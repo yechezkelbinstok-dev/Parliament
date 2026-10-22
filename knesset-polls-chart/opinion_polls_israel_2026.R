@@ -26,19 +26,19 @@ polls$size  <- ifelse(polls$`Polling firm` == "Election", 3, 1.5)
 # Names as in the column headers of the Wikipedia poll tables.
 colours <- c(
   "Likud"            = "#225A9E", "Yesh Atid"     = "#203880", "Blue & White"  = "#0DAAFF",
-  "Shas"             = "#000000", "UTJ"           = "#003366", "RZP"           = "#4F9298",
+  "Shas"             = "#000000", "UTJ"           = "#003366", "RZP-Zehut"     = "#4F9298",
   "Otzma"            = "#FF4500", "Yisrael Beiteinu" = "#9AC0E2", "Ra'am"      = "#15793D",
   "Hadash\u2013Ta'al"     = "#D42436", "Labor"         = "#EE1C25", "Meretz"        = "#40AE49",
   "Balad"            = "#F6600C", "New Hope"      = "#0081B2", "Dems"          = "#2A38D7",
-  "Bennett 2026"     = "#44C5BF", "Yashar"        = "#62B9F2", "Reserv."       = "#68692C",
+  "Bennett 2026"     = "#44C5BF", "Yashar"        = "#62B9F2", "Reserv.-NEP"   = "#68692C",
   "Together"         = "#2A2A78", "Unity"         = "#909958", "Amcha Yisrael" = "#8F36BF",
   "Joint List"       = "#01B2AC", "Haredi Public" = "#F5C518"
 )
 spans <- c(
-  "Likud" = 0.2, "Yesh Atid" = 0.2, "Blue & White" = 0.2, "Shas" = 0.2, "UTJ" = 0.2, "RZP" = 0.2,
+  "Likud" = 0.2, "Yesh Atid" = 0.2, "Blue & White" = 0.2, "Shas" = 0.2, "UTJ" = 0.2, "RZP-Zehut" = 0.2,
   "Otzma" = 0.2, "Yisrael Beiteinu" = 0.2, "Ra'am" = 0.2, "Hadash\u2013Ta'al" = 0.2, "Labor" = 0.2,
   "Meretz" = 0.2, "Balad" = 0.2, "New Hope" = 0.4, "Dems" = 0.2, "Bennett 2026" = 0.6,
-  "Yashar" = 0.5, "Reserv." = 0.7, "Together" = 0.9, "Unity" = 1.1, "Amcha Yisrael" = 1.1,
+  "Yashar" = 0.5, "Reserv.-NEP" = 0.7, "Together" = 0.9, "Unity" = 1.1, "Amcha Yisrael" = 1.1,
   "Joint List" = 1.1, "Haredi Public" = 1.1
 )
 parties <- names(colours)
