@@ -1,0 +1,291 @@
+<title>Middle-earth Map Painter</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Alegreya+SC:wght@500;700&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: the map fills the window; tools dock in a right-hand column, and become a bottom sheet on phones. */
+:root {
+  --bg: #e8ebee;
+  --panel: #f6f7f8;
+  --raise: #ffffff;
+  --ink: #1c2027;
+  --muted: #5a6270;
+  --line: #d2d7dd;
+  --accent: #a2301f;
+  --accent-ink: #ffffff;
+  --focus: #2f6fb3;
+  --shadow: 0 1px 2px rgba(20, 24, 31, .08), 0 4px 16px rgba(20, 24, 31, .08);
+  --f-display: "Alegreya SC", "Palatino Linotype", Palatino, Georgia, serif;
+  --f-map: "Alegreya", "Palatino Linotype", Palatino, Georgia, serif;
+  --f-ui: "Alegreya Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --panel-w: 332px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1216; --panel: #161a20; --raise: #1e232b; --ink: #e5e8ec; --muted: #9aa2ad; --line: #2b3139;
+    --accent: #e2674f; --accent-ink: #1a0b08; --focus: #80b1ea;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1216; --panel: #161a20; --raise: #1e232b; --ink: #e5e8ec; --muted: #9aa2ad; --line: #2b3139;
+  --accent: #e2674f; --accent-ink: #1a0b08; --focus: #80b1ea;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.4 var(--f-ui); overflow: hidden; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.app { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) var(--panel-w); grid-template-rows: auto minmax(0, 1fr); }
+
+/* ---------- header ---------- */
+.bar { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--panel); border-bottom: 1px solid var(--line); position: relative; z-index: 3; }
+.brand { display: grid; gap: 0; min-width: 0; flex: 1 1 240px; }
+.title-input { font: 700 22px/1.15 var(--f-display); letter-spacing: .02em; border: 0; background: transparent; padding: 2px 4px; margin-left: -4px;
+  border-radius: 6px; width: 100%; min-width: 0; text-overflow: ellipsis; }
+.title-input:hover { background: var(--raise); }
+.brand small { color: var(--muted); font-size: 12.5px; letter-spacing: .02em; }
+.modes { display: inline-grid; grid-auto-flow: column; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 3px; gap: 2px; }
+.modes button { border: 0; background: transparent; border-radius: 7px; padding: 6px 12px; display: grid; justify-items: center; line-height: 1.1; min-width: 74px; }
+.modes button b { font-weight: 600; font-size: 14px; }
+.modes button span { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.modes button[aria-pressed="true"] { background: var(--raise); box-shadow: var(--shadow); }
+.modes button[aria-pressed="true"] b { color: var(--accent); }
+.acts { display: flex; gap: 6px; }
+.icon-btn { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 9px; border: 1px solid var(--line); background: var(--raise); }
+.icon-btn:disabled { opacity: .4; cursor: default; }
+.icon-btn svg { width: 18px; height: 18px; }
+
+/* ---------- map stage ---------- */
+.stage { position: relative; overflow: hidden; background: #b9c6cf; touch-action: none; user-select: none; -webkit-user-select: none; }
+:root[data-theme="dark"] .stage { background: #2a333b; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .stage { background: #2a333b; } }
+#map { position: absolute; inset: 0; width: 100%; height: 100%; transform-origin: 0 0; display: block; cursor: crosshair; }
+.stage.panning #map { cursor: grabbing; }
+#map .rlab { font-family: var(--f-display); font-weight: 700; fill: #2b2420; paint-order: stroke; stroke: #fff9ea; stroke-opacity: .8; stroke-linejoin: round; pointer-events: none; }
+#map .rlab.realm { letter-spacing: .14em; }
+#map .rlab.province { font-weight: 500; letter-spacing: .06em; }
+#map .rlab.district { font-family: var(--f-map); font-style: italic; font-weight: 500; }
+#map .rlab.water { fill: #1f4f73; stroke: #dff1fb; }
+
+.float { position: absolute; z-index: 2; }
+.search { top: 12px; left: max(12px, env(safe-area-inset-left, 0px)); width: min(320px, calc(100% - 24px)); }
+.search input { width: 100%; height: 40px; border-radius: 10px; border: 1px solid var(--line); background: var(--raise); padding: 0 12px 0 36px; box-shadow: var(--shadow); }
+.search .lens { position: absolute; left: 11px; top: 11px; width: 18px; height: 18px; color: var(--muted); pointer-events: none; }
+.results { margin: 6px 0 0; padding: 4px; list-style: none; background: var(--raise); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); max-height: 50vh; overflow: auto; }
+.results li { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 7px; cursor: pointer; }
+.results li:hover, .results li[aria-selected="true"] { background: var(--bg); }
+.results .nm { flex: 1; min-width: 0; }
+.results .nm small { display: block; color: var(--muted); font-size: 12px; }
+.results .kind { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.results .paint-it { border: 1px solid var(--line); background: var(--panel); border-radius: 6px; font-size: 12px; padding: 2px 8px; }
+.zoom { right: max(12px, env(safe-area-inset-right, 0px)); bottom: 14px; display: grid; gap: 6px; }
+.zoom .icon-btn { box-shadow: var(--shadow); width: 40px; height: 40px; }
+.status { left: max(12px, env(safe-area-inset-left, 0px)); bottom: 14px; max-width: calc(100% - 90px); background: var(--raise); border: 1px solid var(--line);
+  border-radius: 9px; padding: 6px 10px; font-size: 13px; box-shadow: var(--shadow); color: var(--muted); }
+.status b { color: var(--ink); font-weight: 600; }
+.tip { pointer-events: none; background: rgba(20, 22, 26, .92); color: #f4f1ea; border-radius: 8px; padding: 6px 9px; font-size: 13px; line-height: 1.3; max-width: 280px; z-index: 4; }
+.tip b { font-family: var(--f-map); font-size: 15px; font-weight: 700; display: block; }
+.tip span { color: #c9c3b8; display: block; }
+.tip em { color: #e9d9a8; font-style: normal; font-variant-numeric: tabular-nums; font-size: 12px; }
+
+/* ---------- panel ---------- */
+.panel { background: var(--panel); border-left: 1px solid var(--line); overflow: auto; overscroll-behavior: contain; z-index: 3; }
+.panel-inner { display: grid; gap: 4px; padding-block: 6px 24px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.sec { display: grid; gap: 10px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.sec:last-child { border-bottom: 0; }
+.sec h2 { font: 700 15px/1.2 var(--f-display); letter-spacing: .06em; margin: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.sec h2 small { font: 12px var(--f-ui); color: var(--muted); letter-spacing: 0; }
+.hint { color: var(--muted); font-size: 13px; margin: 0; }
+.tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.tool { border: 1px solid var(--line); background: var(--raise); border-radius: 9px; padding: 7px 4px 6px; display: grid; justify-items: center; gap: 2px; font-size: 12.5px; }
+.tool svg { width: 18px; height: 18px; }
+.tool[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.swatches { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
+.sw { aspect-ratio: 1; max-width: 100%; border-radius: 7px; border: 1px solid rgba(0, 0, 0, .18); padding: 0; position: relative; }
+.sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--ink); }
+.custom-row { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+.custom-row input[type=color] { width: 44px; height: 30px; border: 1px solid var(--line); border-radius: 7px; background: var(--raise); padding: 2px; }
+.current { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.current i { width: 18px; height: 18px; border-radius: 5px; border: 1px solid rgba(0, 0, 0, .2); display: inline-block; }
+
+.legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.legend li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 8px; }
+.legend .sw { width: 28px; }
+.legend input[type=text] { width: 100%; min-width: 0; border: 1px solid transparent; background: transparent; border-radius: 6px; padding: 4px 6px; }
+.legend input[type=text]:hover, .legend input[type=text]:focus { border-color: var(--line); background: var(--raise); }
+.legend .meta { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.legend .recolor { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.empty { border: 1px dashed var(--line); border-radius: 9px; padding: 12px; color: var(--muted); font-size: 13px; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.btn { border: 1px solid var(--line); background: var(--raise); border-radius: 9px; padding: 7px 11px; font-size: 13.5px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.btn.warn { color: var(--accent); }
+.toggles { display: grid; gap: 7px; }
+.tg { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 14px; }
+.tg input[type=checkbox] { width: 34px; height: 20px; appearance: none; -webkit-appearance: none; background: var(--line); border-radius: 20px; position: relative; flex: none; transition: background .15s; }
+.tg input[type=checkbox]::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--raise); box-shadow: 0 1px 2px rgba(0, 0, 0, .25); transition: transform .15s; }
+.tg input[type=checkbox]:checked { background: var(--accent); }
+.tg input[type=checkbox]:checked::after { transform: translateX(14px); }
+.tg select { border: 1px solid var(--line); background: var(--raise); border-radius: 7px; padding: 4px 6px; font-size: 13px; }
+.tg input[type=range] { width: 130px; accent-color: var(--accent); }
+.credit { font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+/* ---------- modal ---------- */
+.modal { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; background: rgba(10, 12, 15, .5); padding: 16px; }
+.dialog { background: var(--panel); color: var(--ink); border-radius: 14px; box-shadow: var(--shadow); width: min(560px, 100%); max-height: 90vh; overflow: auto; padding: 18px; display: grid; gap: 12px; }
+.dialog h3 { margin: 0; font: 700 18px var(--f-display); letter-spacing: .04em; }
+.dialog textarea { width: 100%; min-height: 120px; border: 1px solid var(--line); border-radius: 9px; background: var(--raise); padding: 8px; font: 12px/1.35 ui-monospace, Menlo, Consolas, monospace; word-break: break-all; }
+.dialog img { width: 100%; border-radius: 8px; border: 1px solid var(--line); }
+.dialog .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.dialog .choice { text-align: left; border: 1px solid var(--line); background: var(--raise); border-radius: 10px; padding: 10px; display: grid; gap: 2px; }
+.dialog .choice small { color: var(--muted); }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 30; background: var(--ink); color: var(--bg);
+  border-radius: 10px; padding: 9px 14px; font-size: 14px; box-shadow: var(--shadow); max-width: calc(100% - 32px); }
+
+/* ---------- phone ---------- */
+.sheet-toggle { display: none; }
+@media (max-width: 760px) {
+  .app { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .bar { gap: 8px; padding-block: 8px; }
+  .brand { flex-basis: 100%; }
+  .title-input { font-size: 19px; }
+  .brand small { display: none; }
+  .modes { flex: 1; }
+  .modes button { min-width: 0; padding: 5px 4px; }
+  .sheet-toggle { display: grid; }
+  .panel { position: fixed; left: 0; right: 0; bottom: 0; max-height: 72vh; border-left: 0; border-top: 1px solid var(--line); border-radius: 16px 16px 0 0;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, .2); transform: translateY(calc(100% - 64px - env(safe-area-inset-bottom, 0px))); transition: transform .25s ease; padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .panel.open { transform: none; }
+  .panel-handle { display: flex !important; }
+  .zoom { bottom: 80px; }
+  .status { bottom: 80px; }
+  .search { width: calc(100% - 24px); }
+}
+.panel-handle { display: none; align-items: center; gap: 10px; padding: 8px 16px 6px; position: sticky; top: 0; background: var(--panel); z-index: 1; border-bottom: 1px solid var(--line); }
+.panel-handle .grip { width: 38px; height: 4px; border-radius: 4px; background: var(--line); position: absolute; left: 50%; top: 4px; transform: translateX(-50%); }
+.panel-handle .mini { display: flex; gap: 5px; overflow-x: auto; flex: 1; padding: 6px 0 2px; }
+.panel-handle .mini .sw { width: 30px; flex: none; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="app" id="app">
+  <header class="bar">
+    <div class="brand">
+      <input id="mapTitle" class="title-input" type="text" value="Middle-earth" aria-label="Map title" spellcheck="false">
+      <small id="subtitle">Third Age · paint realms, provinces, districts or the fine grid</small>
+    </div>
+    <div class="modes" role="group" aria-label="Painting level" id="modes"></div>
+    <div class="acts">
+      <button class="icon-btn" id="undo" title="Undo (Ctrl+Z)" aria-label="Undo" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button>
+      <button class="icon-btn" id="redo" title="Redo (Ctrl+Shift+Z)" aria-label="Redo" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button>
+      <button class="icon-btn" id="exportBtn" title="Export image" aria-label="Export image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></button>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+    <svg id="map" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" role="img" aria-label="Map of Middle-earth in the Third Age"></svg>
+    <div class="float search">
+      <svg class="lens" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Find a place: Edoras, Lebennin…" autocomplete="off" aria-label="Find a place">
+      <ul class="results" id="results" role="listbox" hidden></ul>
+    </div>
+    <div class="float zoom">
+      <button class="icon-btn" id="zin" aria-label="Zoom in" title="Zoom in (+)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button class="icon-btn" id="zout" aria-label="Zoom out" title="Zoom out (−)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+      <button class="icon-btn" id="zfit" aria-label="Show whole map" title="Whole map (0)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    </div>
+    <div class="float status" id="status">Click a region to paint it. Drag to move, scroll or pinch to zoom.</div>
+    <div class="float tip" id="tip" hidden></div>
+  </main>
+
+  <aside class="panel" id="panel" aria-label="Tools">
+    <div class="panel-handle" id="handle">
+      <span class="grip"></span>
+      <div class="mini" id="miniSwatches"></div>
+      <button class="btn sheet-toggle" id="sheetBtn" aria-expanded="false">More</button>
+    </div>
+    <div class="panel-inner">
+      <section class="sec">
+        <h2>Paint <small id="activeName"></small></h2>
+        <div class="tools" role="group" aria-label="Tool">
+          <button class="tool" data-tool="paint" aria-pressed="true" title="Paint (P)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.4 2.6a2 2 0 0 1 2.9 2.9L12 15l-4-1 1-4Z"/><path d="M7 14c-2 0-3.5 1.6-3.5 3.5 0 1.5-1 2.5-1.5 3 3.5.5 7-1 7-4.5"/></svg>Paint</button>
+          <button class="tool" data-tool="erase" aria-pressed="false" title="Erase (E)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l6.6 6.6a1 1 0 0 1 0 1.4L13 21Z"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>Erase</button>
+          <button class="tool" data-tool="pick" aria-pressed="false" title="Pick a colour from the map (I)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 22 1-1h3l9-9"/><path d="M3 21v-3l9-9"/><path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3Z"/></svg>Pick</button>
+          <button class="tool" id="brushBtn" aria-pressed="false" title="Brush: drag to paint many regions (B)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-1 4-4 7-4s3 3 6 3 4-3 5-4"/><path d="M3 11c3-1 4-4 7-4s3 3 6 3 4-3 5-4"/></svg>Brush</button>
+        </div>
+        <div class="swatches" id="swatches" role="group" aria-label="Colours"></div>
+        <div class="custom-row"><input type="color" id="customColor" value="#7a4a22" aria-label="Custom colour"><label for="customColor">Any other colour</label></div>
+      </section>
+
+      <section class="sec">
+        <h2>Legend <small id="legendTotal"></small></h2>
+        <ul class="legend" id="legend"></ul>
+        <p class="empty" id="legendEmpty">Colours you use show up here. Name them (Free Peoples, Gondor, the Shadow) and the names go into your exported image.</p>
+      </section>
+
+      <section class="sec">
+        <h2>Quick fills</h2>
+        <p class="hint">Start from a filled map, then repaint what you like. Each one can be undone.</p>
+        <div class="btn-row">
+          <button class="btn" data-fill="realm">Colour all realms</button>
+          <button class="btn" data-fill="province">Colour all provinces</button>
+          <button class="btn" data-fill="district">Colour all districts</button>
+          <button class="btn" data-fill="war">War of the Ring</button>
+          <button class="btn warn" id="clearBtn">Clear map</button>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Map layers</h2>
+        <div class="toggles">
+          <label class="tg">Region names <input type="checkbox" id="lyLabels" checked></label>
+          <label class="tg">Place names from the map <input type="checkbox" id="lyPlaces" checked></label>
+          <label class="tg">The map's own region lettering <input type="checkbox" id="lyPolitical"></label>
+          <label class="tg">Mountains and forests <input type="checkbox" id="lyTerrain" checked></label>
+          <label class="tg">Rivers <input type="checkbox" id="lyRivers" checked></label>
+          <label class="tg">Roads <input type="checkbox" id="lyRoads" checked></label>
+          <label class="tg">Borders
+            <select id="lyBorders">
+              <option value="mode">Down to this level</option>
+              <option value="all">Every level</option>
+              <option value="realm">Realms only</option>
+              <option value="none">None</option>
+            </select>
+          </label>
+          <label class="tg">Colour strength <input type="range" id="lyOpacity" min="35" max="100" step="5" value="100"></label>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Save and share</h2>
+        <p class="hint">Your map saves itself in this browser. Keep a copy, or pass it to a friend, with a map file or a map code.</p>
+        <div class="btn-row">
+          <button class="btn primary" id="pngBtn">Export image</button>
+          <button class="btn" id="saveBtn">Save map file</button>
+          <button class="btn" id="openBtn">Open map file</button>
+          <button class="btn" id="codeBtn">Copy map code</button>
+          <button class="btn" id="pasteBtn">Paste map code</button>
+        </div>
+        <input type="file" id="fileIn" accept=".json,application/json" hidden>
+      </section>
+
+      <section class="sec">
+        <p class="credit">Base map: physical design by Chris Taylor, political designations by Chris Guerette, based on the works of J.R.R. Tolkien. Used for personal, non-commercial fun. Region borders, names and the grid are drawn for this tool; below the province level they follow the land, not canon.</p>
+      </section>
+    </div>
+  </aside>
+</div>
+
+<div class="modal" id="modal" hidden><div class="dialog" id="dialog" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast" hidden></div>
+<!--DATA-->
+<!--APP-->

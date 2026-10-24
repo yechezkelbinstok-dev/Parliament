@@ -1,2 +1,6 @@
 __pycache__/
 .cache/
+
+# Middle-earth Map Painter: map-derived files stay local (the base map is for personal use)
+middle-earth/app/data.js
+middle-earth/dist/
