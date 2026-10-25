@@ -24,7 +24,7 @@ central floor small: the outer rows run on into the ends and corners of the room
 
 Members' seats are coloured by party in the party views, from
 parties/us-house.txt: left-wing parties from the Speaker's right (east, where
-Democrats sit today) round to right-wing parties on his left.
+Democrats sit today) round to right-wing parties on the Speaker's left.
 """
 
 import argparse
@@ -35,7 +35,7 @@ import math
 import sys
 from pathlib import Path
 
-from shapely.geometry import Polygon, box
+from shapely.geometry import Point, Polygon, box
 
 ROOT = Path(__file__).resolve().parent
 OUT_DIR = ROOT / "chamber"
@@ -63,6 +63,16 @@ HEADROOM = 2.3                               # clear height under the mezzanine 
 AISLES = 8                                   # radial aisles, evenly spaced round the oval
 AISLE_W, CENTRE_AISLE_W = 1.1, 1.6           # the north and south aisles are wider, with a runner
 PUBLIC = dict(seat_w=0.55, row_d=0.85, rows=3, rise=0.25)
+
+# A State of the Union is a joint session. Besides the House come the Senate, the Cabinet, the
+# Supreme Court, the Joint Chiefs of Staff and the diplomatic corps, who sit in front of the
+# members: the Cabinet and the diplomats on the Speaker's left, the justices and the Joint Chiefs
+# on the Speaker's right (National Journal and NBC seating charts). One Cabinet member, two
+# senators and two representatives from each side stay away as designated survivors. The
+# President's guests sit in the First Lady's box in the gallery on the Speaker's left, the
+# Speaker's guests in a box opposite, and members' guests fill the rest of the gallery.
+SOTU = dict(house=4, senate=4, cabinet=1)           # designated survivors
+SOTU_GUESTS = dict(cabinet=24, justices=9, joint_chiefs=8, diplomats=16, first_lady_box=24, speaker_box=16)
 
 DESIGNS = {
     "oval": dict(
@@ -351,8 +361,104 @@ class Design:
         # from the central rostrum out to both centre aisles
         return [[[cy + 1.8, 0.0]] + climb(1), [[cy - 2.0, 0.0]] + climb(-1)]
 
+    def sotu(self, bands):
+        """A State of the Union: dignitaries in armchairs on the floor in front of the members,
+        House members and senators in the members' seats nearest the front, anyone left over
+        standing along the back wall as at today's joint sessions, the guests' boxes in the
+        gallery, and the television cameras."""
+        G = SOTU_GUESTS
+        centre = self.p["rostrum"] == "centre"
+        cy, a0, b0 = self.cy, self.oval.a0, self.oval.b0
+        lectern = (0.0, cy + 0.42) if centre else (0.0, 3.6)
+        # the floor, less the rostrum, the well lecterns and the centre aisle, clear of the first row
+        floor = self.oval.polygon()
+        if self.p["cut"]:
+            floor = floor.union(box(-self.cut_x, 0, self.cut_x, self.cut_y))
+        floor = floor.buffer(-0.55)
+        if centre:
+            floor = floor.difference(box(-4.3, cy - 2.4, 4.3, cy + 2.3))
+            for side in (-1, 1):
+                floor = floor.difference(Point(side * (a0 - 1.6), cy).buffer(0.8))
+        else:
+            floor = floor.difference(box(-6.9, 0, 6.9, 7.25))
+        floor = floor.difference(box(-0.85, 0, 0.85, HALL_D))
+        chairs = []
+        y = 7.65 if not centre else floor.bounds[1] + 0.3
+        while y < floor.bounds[3]:
+            for side in (-1, 1):
+                x = side * 1.2
+                while abs(x) < HALF_W:
+                    if floor.contains(box(x - 0.3, y - 0.3, x + 0.3, y + 0.3)):
+                        chairs.append({"x": round(x, 3), "y": round(y, 3),
+                                       "face": round(math.atan2(lectern[1] - y, lectern[0] - x), 4)})
+                    x += side * 0.66
+            y += 0.95
+        # the Speaker's left (west): the Cabinet, then the diplomats; right (east): the justices,
+        # then the Joint Chiefs; senators take any chairs left over
+        senators_on_floor = 0
+        for side, groups in ((-1, [("cabinet", G["cabinet"] - SOTU["cabinet"]), ("diplomat", G["diplomats"])]),
+                             (1, [("justice", G["justices"]), ("joint-chief", G["joint_chiefs"])])):
+            mine = sorted((c for c in chairs if c["x"] * side > 0), key=lambda c: (c["y"], abs(c["x"])))
+            roles = [role for role, n in groups for _ in range(n)]
+            for i, c in enumerate(mine):
+                c["role"] = roles[i] if i < len(roles) else "senator"
+                senators_on_floor += i >= len(roles)
+        # members of Congress in the members' seats, nearest the front first
+        needed = (self.target - SOTU["house"]) + (100 - SOTU["senate"] - senators_on_floor)
+        members = sorted(self.seats("member"), key=lambda s: math.dist((s["x"], s["y"]), lectern))
+        for s in members[needed:]:
+            s["sotu_empty"] = True
+        overflow = max(0, needed - len(members))
+        # the rest stand along the back of the members' levels, by the north wall (and the south
+        # wall in the oval), clear of the public ring
+        public_area = [Polygon(p["outer"], p["holes"]) for b in bands if b["level"] == "public" for p in b["polys"]]
+        def top(x, y):
+            if any(g.contains(Point(x, y)) for g in public_area):
+                return None
+            zs = [b["z"] for b in bands for p in b["polys"] if Polygon(p["outer"], p["holes"]).contains(Point(x, y))]
+            return max(zs) if zs else None
+        spots = []
+        for wall_y, ok in ((HALL_D - 0.45, True), (0.45, centre)):
+            if not ok:
+                continue
+            x = 0.9
+            while x < OUTER_A - 0.3:
+                for xx in (x, -x):
+                    z = top(xx, wall_y)
+                    if z is not None and z > 1.0:
+                        spots.append({"x": round(xx, 3), "y": wall_y, "z": z,
+                                      "face": round(math.atan2(lectern[1] - wall_y, lectern[0] - xx), 4)})
+                x += 0.6
+        spots.sort(key=lambda p: abs(p["x"]))
+        standing = spots[:overflow]
+        # the boxes: the public seats nearest the centre line on each side
+        public = self.seats("public")
+        north = any(s["y"] > cy + b0 + self.gaps["side"] for s in public)
+        for side, name, n in ((-1, "first-lady", G["first_lady_box"]), (1, "speaker", G["speaker_box"])):
+            ref = (0.0, HALL_D) if north else (side * HALF_W, cy)
+            mine = sorted((s for s in public if s["x"] * side > 0), key=lambda s: (s["row"], math.dist((s["x"], s["y"]), ref)))
+            for rank, s in enumerate(mine[:n]):
+                s["box"], s["box_rank"] = name, rank
+        # television cameras: the pool camera facing the rostrum from the top of the north aisle,
+        # and one filming the chamber from behind the rostrum
+        rows = [r for r in self.rows if r["r"] + r["depth"] / 2 <= self.gaps["north"] + 1e-6]
+        level = "public" if any(r["level"] == "public" for r in rows) else "mezzanine"
+        row = [r for r in rows if r["level"] == level][1 if level == "public" else -1]
+        cam_y = cy + b0 + row["r"]
+        cameras = [{"x": 0.0, "y": round(cam_y, 3), "z": row["z"], "face": -math.pi / 2}]
+        if centre:
+            srows = [r for r in self.rows if r["r"] + r["depth"] / 2 <= self.gaps["south"] + 1e-6 and r["level"] == "mezzanine"]
+            if srows:
+                cameras.append({"x": 0.0, "y": round(cy - b0 - srows[-1]["r"], 3), "z": srows[-1]["z"], "face": math.pi / 2})
+        else:
+            cameras.append({"x": 0.0, "y": -0.55, "z": 6.0, "face": math.pi / 2})
+        counts = {"floor": len(chairs), "senators_on_floor": senators_on_floor, "in_seats": min(needed, len(members)),
+                  "standing": overflow, "standing_spots": len(spots)}
+        return {"lectern": list(lectern), "chairs": chairs, "standing": standing, "cameras": cameras, "counts": counts}
+
     def layout(self):
         bands = self.bands()
+        sotu = self.sotu(bands)
         members, public = self.seats("member"), self.seats("public")
         return {
             "design": self.name, "title": self.p["title"], "rostrum": self.p["rostrum"],
@@ -364,6 +470,7 @@ class Design:
             "bands": bands, "fronts": self.fronts(), "screens": self.screens(bands), "runners": self.runners(),
             "parties": [{"name": n, "seats": s, "color": c} for n, s, c in self.parties],
             "counts": {"members": len(members), "public": len(public), "target": self.target},
+            "sotu": sotu,
         }
 
     def report(self):
@@ -378,6 +485,14 @@ class Design:
               f"{lower} in the lower bowl, {len(members) - lower} on the mezzanine")
         print(f"  public: {len(public)}; press: {press}; total {len(members) + len(public) + press}; "
               f"top row {top:.2f} m up, {HALL_H - top:.2f} m below the ceiling")
+        so = self.sotu(self.bands())
+        c = so["counts"]
+        roles = {}
+        for ch in so["chairs"]:
+            roles[ch["role"]] = roles.get(ch["role"], 0) + 1
+        print(f"  State of the Union: {c['floor']} armchairs on the floor ("
+              + ", ".join(f"{n} {r}" for r, n in roles.items()) + f"); {c['in_seats']} members of Congress in "
+              f"members' seats; {c['standing']} standing at the back")
 
 
 def press_seats(name):
