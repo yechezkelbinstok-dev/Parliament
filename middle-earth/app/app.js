@@ -209,47 +209,112 @@
     district: { font: 'italic 500 100px "Alegreya", Georgia, serif', track: 0, max: 6.5 },
   };
   const labelGroups = {};
-  function labelSize(lv, name, l) {
+  function textPer(lv, name) {
     const f = LABEL_FONT[lv];
     measure.font = f.font;
-    const per = measure.measureText(name).width / 100 + f.track * Math.max(0, name.length - 1);
-    const [, , r, w] = l;
-    return Math.max(0.5, Math.min(f.max, (w * 0.88) / per, r * 1.55));
+    return measure.measureText(name).width / 100 + f.track * Math.max(0, name.length - 1);
+  }
+  function sizeAt(lv, per, c) {
+    const f = LABEL_FONT[lv];
+    return Math.max(0.5, Math.min(f.max, (c[3] * 0.88) / per, c[2] * 1.55));
+  }
+  // The map's own lettering as boxes on a coarse grid: 1 its place names, 2 its region lettering, 4 always shown.
+  const GRID = 24;
+  function gridAdd(grid, b) {
+    for (let gx = Math.floor(b[0] / GRID); gx <= Math.floor(b[2] / GRID); gx++) {
+      for (let gy = Math.floor(b[1] / GRID); gy <= Math.floor(b[3] / GRID); gy++) {
+        const k = gx * 4096 + gy;
+        let l = grid.get(k);
+        if (!l) grid.set(k, (l = []));
+        l.push(b);
+      }
+    }
+  }
+  function gridHits(grid, b) {
+    for (let gx = Math.floor(b[0] / GRID); gx <= Math.floor(b[2] / GRID); gx++) {
+      for (let gy = Math.floor(b[1] / GRID); gy <= Math.floor(b[3] / GRID); gy++) {
+        const l = grid.get(gx * 4096 + gy);
+        if (l) for (const o of l) if (o[0] < b[2] && o[2] > b[0] && o[1] < b[3] && o[3] > b[1]) return true;
+      }
+    }
+    return false;
+  }
+  function shownLettering() { return 4 | (S.layers.places ? 1 : 0) | (S.layers.political ? 2 : 0); }
+  // Where each name goes and how big: off any name the map already prints there, and clear of the
+  // map's lettering and of each other where a unit has room elsewhere. Biggest names are placed first.
+  const planCache = {};
+  function labelPlan(lv) {
+    const vis = shownLettering();
+    const key = lv + vis;
+    if (planCache[key]) return planCache[key];
+    const f = LABEL_FONT[lv];
+    const grid = new Map();
+    for (const k of [1, 2, 4]) {
+      const a = (vis & k) && D.obst[k];
+      if (a) for (let i = 0; i < a.length; i += 4) gridAdd(grid, [a[i], a[i + 1], a[i + 2], a[i + 3]]);
+    }
+    const units = UNITS[lv];
+    const items = units.map((u, i) => {
+      const name = f.upper ? u.n.toUpperCase() : u.n;
+      const per = textPer(lv, name);
+      return { i, name, per, fs0: sizeAt(lv, per, u.l) };
+    }).sort((a, b) => b.fs0 - a.fs0);
+    const plan = new Array(units.length).fill(null);
+    for (const it of items) {
+      const u = units[it.i];
+      if (u.x & vis) continue; // the map prints this name here already
+      const cands = [u.l];
+      if (u.c) for (let k = 0; k < u.c.length; k += 4) cands.push(u.c.slice(k, k + 4));
+      let best = null;
+      for (const c of cands) {
+        const fs = sizeAt(lv, it.per, c);
+        const hw = (it.per * fs) / 2, hh = fs * 0.42;
+        const box = [c[0] - hw, c[1] - hh, c[0] + hw, c[1] + hh];
+        const score = fs * (gridHits(grid, box) ? 0.35 : 1);
+        if (!best || score > best.score) best = { x: c[0], y: c[1], fs, box, score, name: it.name };
+      }
+      // a district with no clear spot goes unlabelled (hovering still names it); realms and provinces always show
+      if (lv === 'district' && best.score !== best.fs) continue;
+      plan[it.i] = best;
+      gridAdd(grid, best.box);
+    }
+    planCache[key] = plan;
+    return plan;
   }
   function buildLabels(lv) {
     if (labelGroups[lv]) labelGroups[lv].remove();
     const g = svgEl('g', null, regionLabelRoot);
     labelGroups[lv] = g;
+    g.__vis = shownLettering();
     if (lv === 'cell') return g;
-    const f = LABEL_FONT[lv];
     const frag = document.createDocumentFragment();
-    UNITS[lv].forEach((unit, i) => {
-      const name = f.upper ? unit.n.toUpperCase() : unit.n;
-      const fs = labelSize(lv, name, unit.l);
+    labelPlan(lv).forEach((p, i) => {
+      if (!p) return;
       const t = document.createElementNS(NS, 'text');
-      t.setAttribute('x', unit.l[0]);
-      t.setAttribute('y', unit.l[1]);
-      t.setAttribute('font-size', fs.toFixed(2));
-      t.setAttribute('stroke-width', (fs * 0.2).toFixed(2));
+      t.setAttribute('x', p.x);
+      t.setAttribute('y', p.y);
+      t.setAttribute('font-size', p.fs.toFixed(2));
+      t.setAttribute('stroke-width', (p.fs * 0.2).toFixed(2));
       t.setAttribute('text-anchor', 'middle');
       t.setAttribute('dominant-baseline', 'central');
       t.setAttribute('class', `rlab ${lv}` + (isWaterUnit(lv, i) ? ' water' : ''));
-      t.__dup = lv === 'realm' && isWaterUnit(lv, i); // the map already letters its seas and lakes
-      t.textContent = name;
-      t.__fs = fs;
+      t.textContent = p.name;
+      t.__fs = p.fs;
       frag.appendChild(t);
     });
     g.appendChild(frag);
     return g;
   }
   function updateLabelVis() {
+    const g0 = labelGroups[S.mode];
+    if (S.layers.labels && (!g0 || g0.__vis !== shownLettering())) buildLabels(S.mode);
     for (const lv in labelGroups) labelGroups[lv].style.display = (lv === S.mode && S.layers.labels) ? '' : 'none';
     const g = labelGroups[S.mode];
     if (!g || !S.layers.labels) return;
     const k = cam.k;
     for (const t of g.children) {
       const px = t.__fs * k;
-      t.style.display = px >= 7.5 && px <= 160 && !(t.__dup && S.layers.places) ? '' : 'none';
+      t.style.display = px >= 7.5 && px <= 160 ? '' : 'none';
     }
   }
 
@@ -673,7 +738,13 @@
       if (area[v] <= 0) continue;
       let best = -1, ba = 0;
       for (let r = 0; r < D.realms.length; r++) { const a = realmArea.get(v * 1000 + r) || 0; if (a > ba) { ba = a; best = r; } }
-      rows.push({ v, hex: S.swatches[v - 1], area: area[v] * SQMI, hint: best >= 0 ? D.realms[best].n : '' });
+      rows.push({ v, hex: S.swatches[v - 1], area: area[v] * SQMI, best, share: ba / area[v], hint: '' });
+    }
+    // a colour that mostly covers one realm suggests that realm's name, and each name is suggested once
+    const used = new Set(Object.values(S.labels).filter(Boolean).map(norm));
+    for (const r of rows.slice().sort((a, b) => b.share - a.share)) {
+      const n = r.best >= 0 ? D.realms[r.best].n : '';
+      if (n && r.share >= 0.6 && !used.has(norm(n))) { r.hint = n; used.add(norm(n)); }
     }
     return rows;
   }
@@ -741,15 +812,16 @@
     for (const [u, k] of col) for (const c of MEMBERS[lv][u]) vals[c] = idxs[k];
     return vals;
   }
+  const WAR_NAMES = { '#2f5d9b': 'Free Peoples', '#6e1f1a': 'Sauron and his allies' };
+  const WAR_TITLES = ['War of the Ring, T.A. 3019 (example)', 'War of the Ring, T.A. 3019'];
   const WAR = {
-    free: ['gondor', 'rohan', 'lorien', 'woodland_realm', 'dale', 'erebor', 'iron_hills', 'shire', 'lindon', 'imladris', 'druedain', 'fangorn', 'woodmen', 'anduin_vales', 'bree', 'ered_luin'],
-    shadow: ['mordor', 'isengard', 'dol_guldur', 'gundabad', 'near_harad', 'khand', 'rhun', 'dunland', 'harondor', 'hithaeglir', 'moria'],
+    free: ['gondor', 'rohan', 'lorien', 'woodland_realm', 'dale', 'erebor', 'iron_hills', 'shire', 'lindon', 'imladris', 'fangorn', 'woodmen', 'anduin_vales', 'bree', 'ered_luin'],
+    shadow: ['mordor', 'isengard', 'dol_guldur', 'gundabad', 'near_harad', 'khand', 'rhun', 'dunland', 'harondor', 'misty', 'moria'],
   };
   function warVals() {
     const vals = new Uint16Array(N);
     const a = swatchIdx('#2f5d9b'), b = swatchIdx('#6e1f1a');
-    S.labels['#2f5d9b'] = S.labels['#2f5d9b'] || 'Free Peoples';
-    S.labels['#6e1f1a'] = S.labels['#6e1f1a'] || 'Sauron and his allies';
+    for (const hex in WAR_NAMES) S.labels[hex] = S.labels[hex] || WAR_NAMES[hex];
     D.realms.forEach((r, i) => {
       const v = WAR.free.includes(r.id) ? a : WAR.shadow.includes(r.id) ? b : 0;
       if (v) for (const c of MEMBERS.realm[i]) vals[c] = v;
@@ -767,7 +839,7 @@
       const k = b.dataset.fill;
       if (k === 'war') {
         fillAll(warVals(), 'the War of the Ring fill');
-        if (/^Middle-earth$/.test(S.title)) setTitle('War of the Ring, T.A. 3019');
+        if (S.title === 'Middle-earth' || S.title === WAR_TITLES[0]) setTitle(WAR_TITLES[1]);
         note('Filled the realms by their side in the War of the Ring. Unaligned lands stay blank.');
       } else {
         fillAll(graphColor(k, SOFT), `the ${k} fill`);
@@ -781,6 +853,10 @@
   clearBtn.onclick = () => {
     if (Date.now() - clearArmed < 3500) {
       fillAll(new Uint16Array(N), 'clearing the map');
+      // the example's title and legend names go with its colours
+      if (WAR_TITLES.includes(S.title)) setTitle('Middle-earth');
+      for (const hex in WAR_NAMES) if (S.labels[hex] === WAR_NAMES[hex]) delete S.labels[hex];
+      renderPalette(); renderLegend(); scheduleSave();
       clearArmed = 0; clearBtn.textContent = 'Clear map';
       note('Cleared the map. Undo brings it back.');
     } else {
@@ -960,14 +1036,18 @@
   }
   function load(o, opts) {
     if (!o || o.app !== 'middle-earth-map-painter' || !Array.isArray(o.runs) || !Array.isArray(o.swatches)) throw new Error('This is not a Middle-earth Map Painter file.');
-    if (o.cells !== N) throw new Error('This map file was made for a different version of the regions.');
-    const vals = new Uint16Array(N);
+    // a map from an earlier build of the regions: each cell now takes the colour of the old cell under it
+    const mig = o.cells !== N && D.migrate && o.cells === D.migrate.n ? D.migrate.map : null;
+    if (o.cells !== N && !mig) throw new Error('This map file was made for a different version of the regions.');
+    const M = mig ? o.cells : N;
+    const read = new Uint16Array(M);
     const idxs = o.swatches.map((c) => swatchIdx(String(c)));
     for (let k = 0; k + 2 < o.runs.length; k += 3) {
       const s = o.runs[k], n = o.runs[k + 1], v = idxs[o.runs[k + 2] - 1];
-      if (!(s >= 0 && n > 0 && s + n <= N && v)) continue;
-      vals.fill(v, s, s + n);
+      if (!(s >= 0 && n > 0 && s + n <= M && v)) continue;
+      read.fill(v, s, s + n);
     }
+    const vals = mig ? Uint16Array.from(mig, (j) => read[j]) : read;
     if (o.labels && typeof o.labels === 'object') for (const c in o.labels) S.labels[c.toLowerCase()] = String(o.labels[c]).slice(0, 60);
     if (typeof o.title === 'string') setTitle(o.title.slice(0, 120));
     if (o.layers && typeof o.layers === 'object') Object.assign(S.layers, o.layers);
@@ -1199,19 +1279,16 @@
     const lv = S.mode, f = LABEL_FONT[lv];
     ctx.setTransform(base);
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineJoin = 'round';
-    UNITS[lv].forEach((unit, i) => {
-      const name = f.upper ? unit.n.toUpperCase() : unit.n;
-      const fs = labelSize(lv, name, unit.l);
-      if (fs * scale < 7) return;
-      if (lv === 'realm' && isWaterUnit(lv, i) && S.layers.places) return;
-      ctx.font = f.font.replace('100px', fs.toFixed(2) + 'px');
-      if ('letterSpacing' in ctx) ctx.letterSpacing = (f.track * fs).toFixed(2) + 'px';
+    labelPlan(lv).forEach((p, i) => {
+      if (!p || p.fs * scale < 7) return;
+      ctx.font = f.font.replace('100px', p.fs.toFixed(2) + 'px');
+      if ('letterSpacing' in ctx) ctx.letterSpacing = (f.track * p.fs).toFixed(2) + 'px';
       const water = isWaterUnit(lv, i);
-      ctx.lineWidth = fs * 0.2;
+      ctx.lineWidth = p.fs * 0.2;
       ctx.strokeStyle = water ? 'rgba(223,241,251,.8)' : 'rgba(255,249,234,.8)';
-      ctx.strokeText(name, unit.l[0], unit.l[1]);
+      ctx.strokeText(p.name, p.x, p.y);
       ctx.fillStyle = water ? '#1f4f73' : '#2b2420';
-      ctx.fillText(name, unit.l[0], unit.l[1]);
+      ctx.fillText(p.name, p.x, p.y);
     });
     if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
   }
@@ -1293,7 +1370,11 @@
         h('button', { class: 'btn', onclick: closeModal }, 'Cancel')));
   }
   function exportSVG() {
+    // the names a standard-size PNG would show, whatever the zoom on screen
+    const lg = S.layers.labels && labelGroups[S.mode];
+    if (lg) for (const t of lg.children) t.style.display = t.__fs >= 7 ? '' : 'none';
     const clone = svg.cloneNode(true);
+    updateLabelVis();
     clone.setAttribute('viewBox', `${FX0} ${FY0} ${FW} ${FH}`);
     clone.setAttribute('width', Math.round(FW));
     clone.setAttribute('height', Math.round(FH));
@@ -1322,14 +1403,15 @@
       try { const raw = localStorage.getItem(STORE); if (raw) saved = JSON.parse(raw); } catch (e) { saved = null; }
     }
     let loaded = false;
-    if (saved) { try { load(saved); loaded = true; } catch (e) { loaded = false; } }
+    const oldExample = saved && saved.cells !== N && saved.title === WAR_TITLES[0];
+    if (saved && !oldExample) { try { load(saved); loaded = true; } catch (e) { loaded = false; } }
     if (!loaded) {
       // first visit: show what the tool does with a filled example
       const vals = warVals();
       const idx = new Int32Array(N);
       for (let i = 0; i < N; i++) idx[i] = i;
       setCells(idx, vals);
-      setTitle('War of the Ring, T.A. 3019 (example)');
+      setTitle(WAR_TITLES[0]);
       changed();
       setMode('realm');
       note('An example to start from: the realms by side in the War of the Ring. <b>Clear map</b> starts fresh.');
@@ -1344,7 +1426,7 @@
       Promise.all([
         document.fonts.load('700 20px "Alegreya SC"'), document.fonts.load('500 20px "Alegreya SC"'),
         document.fonts.load('italic 500 20px "Alegreya"'),
-      ]).then(() => { for (const lv in labelGroups) { const vis = lv === S.mode; buildLabels(lv); if (!vis) labelGroups[lv].style.display = 'none'; } updateLabelVis(); }).catch(() => {});
+      ]).then(() => { for (const k in planCache) delete planCache[k]; for (const lv in labelGroups) { buildLabels(lv); if (lv !== S.mode) labelGroups[lv].style.display = 'none'; } updateLabelVis(); }).catch(() => {});
     }
   }
   if (hot && typeof hot.ready === 'function') hot.ready(start);

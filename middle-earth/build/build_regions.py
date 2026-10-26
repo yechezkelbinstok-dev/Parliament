@@ -317,7 +317,7 @@ class Build:
                     c = f.representative_point()
                     self.notes.append(f'sliver of {f.area:.0f} at ({c.x:.0f},{c.y:.0f}) joined to a neighbour')
         n0 = len(faces)
-        faces, keys = geom.merge_small(faces, keys, min_area=0)
+        faces, keys = geom.merge_small(faces, keys, min_area=0, group=wet_face)
         log('faces', n0, '->', len(faces), '%.1fs' % (time.time() - t))
         tree = STRtree(faces)
         claims = defaultdict(list)  # face -> [(point, pid)]
@@ -359,7 +359,8 @@ class Build:
                 self.warn.append(f'{" and ".join(pids)} share one region near ({c.x:.0f},{c.y:.0f}): a border is missing')
                 self.bad_faces.append(f)
                 pieces.append(f); owner.append(pids[0])
-        faces, owner = geom.merge_small(pieces, owner, min_area=0)
+        faces, owner = geom.merge_small(pieces, owner, min_area=0,
+                                        group=[not land.contains(p.representative_point()) for p in pieces])
         prov = defaultdict(list)
         for f, k in zip(faces, owner):
             prov[k].append(f)

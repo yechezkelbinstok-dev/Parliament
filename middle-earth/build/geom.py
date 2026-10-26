@@ -159,9 +159,9 @@ def faces_of(linework, within=None, min_area=0.0):
     return [f for f in fs if f.area > min_area]
 
 
-def merge_small(faces, keys, min_area, protect=None):
-    """Merge faces smaller than min_area (or without key) into the neighbour sharing most border.
-    Returns (faces, keys)."""
+def merge_small(faces, keys, min_area, protect=None, group=None):
+    """Merge faces smaller than min_area (or without key) into the neighbour sharing most border,
+    one of the same group (land or water, say) where there is one. Returns (faces, keys)."""
     import numpy as np
     faces = list(faces); keys = list(keys)
     n = len(faces)
@@ -178,18 +178,29 @@ def merge_small(faces, keys, min_area, protect=None):
         b = B[i]
         cand = np.where(alive & (B[:, 0] <= b[2] + 0.1) & (B[:, 2] >= b[0] - 0.1) &
                         (B[:, 1] <= b[3] + 0.1) & (B[:, 3] >= b[1] - 0.1))[0]
-        best, bl = None, 0.0
         fb = f.boundary
+        shared = []
         for j in cand:
             if j == i:
                 continue
             inter = fb.intersection(faces[j].buffer(0.05))
             L = 0 if inter.is_empty else inter.length
-            if L > bl:
-                bl, best = L, j
-        if best is None:
+            if L > 0:
+                shared.append((L, j))
+        if not shared:
             continue
-        faces[best] = unary_union([faces[best], f]).buffer(0)
+        if group is not None:
+            same = [x for x in shared if group[x[1]] == group[i]]
+            shared = same or shared
+        # most shared border first, but a neighbour it only touches at a point would leave it a loose piece
+        shared.sort(reverse=True)
+        best, u = shared[0][1], None
+        for _, j in shared:
+            uj = unary_union([faces[j], f]).buffer(0)
+            if uj.geom_type == 'Polygon':
+                best, u = j, uj
+                break
+        faces[best] = u if u is not None else unary_union([faces[best], f]).buffer(0)
         B[best] = faces[best].bounds
         if keys[best] is None:
             keys[best] = keys[i]
