@@ -1,6 +1,7 @@
 """Debug crops: python dbg.py x0 y0 x1 y1 out.png [grid] [maxpx] [layers]
 layers: comma list of feat (rivers/forests/ranges ids), regions (latest build), labels"""
 import sys, pickle, json, os
+from shapely.geometry import LineString
 from PIL import Image, ImageDraw, ImageFont
 Image.MAX_IMAGE_PIXELS = None
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -20,7 +21,7 @@ def main(x0, y0, x1, y1, out, grid=25, maxpx=1600, layers='feat'):
     im = Image.open(os.path.join(C, 'ref4x.png')).convert('RGB')
     S = im.width / 2448
     c = im.crop((int(x0 * S), int(y0 * S), int(x1 * S), int(y1 * S)))
-    k = min(1.0, maxpx / max(c.width, c.height))
+    k = min(3.0, maxpx / max(c.width, c.height))
     c = c.resize((int(c.width * k), int(c.height * k)), Image.LANCZOS)
     sc = S * k
     T = lambda x, y: ((x - x0) * sc, (y - y0) * sc)
@@ -37,12 +38,29 @@ def main(x0, y0, x1, y1, out, grid=25, maxpx=1600, layers='feat'):
         for i, g in enumerate(R):
             for r in rings(g): dr.line([T(*q) for q in r], fill=(160, 70, 0, 220), width=2)
             p = g.representative_point(); dr.text(T(p.x, p.y), 'M%d' % i, fill=(130, 40, 0, 255), font=f)
+        for (i, kk), r in F.get('roads', {}).items():
+            dr.line([T(*q) for q in r.coords], fill=(110, 0, 200, 170), width=2)
+            for t in (0.1, 0.5, 0.9):
+                m = r.interpolate(t, normalized=True)
+                if x0 <= m.x <= x1 and y0 <= m.y <= y1:
+                    dr.text(T(m.x, m.y), 'R%d' % i, fill=(110, 0, 200, 255), font=f)
         for (i, kk), r in F['rivers'].items():
             dr.line([T(*q) for q in r['line'].coords], fill=(230, 0, 0, 160), width=2)
             for t in (0.25, 0.75):
                 m = r['line'].interpolate(t, normalized=True)
                 if x0 <= m.x <= x1 and y0 <= m.y <= y1:
                     dr.text(T(m.x, m.y), '%d' % i, fill=(200, 0, 0, 255), font=f)
+    if 'bad' in L and os.path.exists(os.path.join(C, 'dbg_regions.pkl')):
+        D = pickle.load(open(os.path.join(C, 'dbg_regions.pkl'), 'rb'))
+        for g in D.get('bad', []):
+            for r in rings(g): dr.polygon([T(*q) for q in r], fill=(255, 0, 0, 70), outline=(255, 0, 0, 255))
+    if 'net' in L and os.path.exists(os.path.join(C, 'dbg_regions.pkl')):
+        D = pickle.load(open(os.path.join(C, 'dbg_regions.pkl'), 'rb'))
+        for name, cs in D.get('net', []):
+            dr.line([T(*q) for q in cs], fill=(220, 0, 90, 230), width=2)
+            m = LineString(cs).interpolate(0.5, normalized=True)
+            if x0 <= m.x <= x1 and y0 <= m.y <= y1:
+                dr.text(T(m.x, m.y), name, fill=(150, 0, 60, 255), font=fs)
     if 'regions' in L and os.path.exists(os.path.join(C, 'dbg_regions.pkl')):
         D = pickle.load(open(os.path.join(C, 'dbg_regions.pkl'), 'rb'))
         for lvl, col, w in (('district', (40, 40, 200, 150), 1), ('province', (0, 0, 0, 230), 2), ('realm', (200, 0, 120, 255), 4)):

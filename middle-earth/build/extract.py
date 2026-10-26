@@ -67,6 +67,12 @@ def features(P):
             for k, (s, _) in enumerate(p['subs']):
                 if len(s) > 1:
                     rivers[(p['idx'], k)] = dict(line=LineString(s).simplify(0.1), w=p['sw'])
+    roads = {}
+    for p in P:
+        if p['stroke'] == '#939598':
+            for k, (s, _) in enumerate(p['subs']):
+                if len(s) > 1:
+                    roads[(p['idx'], k)] = LineString(s).simplify(0.1)
     trees, edges, mts = [], [], []
     for p in P:
         for s, _ in p['subs']:
@@ -85,7 +91,7 @@ def features(P):
     ranges = mount.buffer(12).buffer(-11).simplify(0.6)
     ranges = sorted((fill_holes(g) for g in getattr(ranges, 'geoms', [ranges]) if g.area > 150),
                     key=lambda g: -g.area)
-    return dict(frame=FRAME, sea=sea, lakes=lakes, land=land, water=water, rivers=rivers,
+    return dict(frame=FRAME, sea=sea, lakes=lakes, land=land, water=water, rivers=rivers, roads=roads,
                 anduin_poly=poly(P, ANDUIN_FILL), forest=forest, ranges=ranges)
 
 

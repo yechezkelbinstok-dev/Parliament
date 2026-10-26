@@ -113,6 +113,45 @@ def snap_ends(coords, target, tol=14.0, over=1.5):
     return c
 
 
+def catmull(pts, step=2.0):
+    """Centripetal Catmull-Rom curve through the points, sampled about every `step`."""
+    P = [tuple(map(float, p)) for p in pts]
+    if len(P) < 3:
+        return P
+    P = [(2 * P[0][0] - P[1][0], 2 * P[0][1] - P[1][1])] + P + [(2 * P[-1][0] - P[-2][0], 2 * P[-1][1] - P[-2][1])]
+    out = [P[1]]
+    for i in range(1, len(P) - 2):
+        p0, p1, p2, p3 = P[i - 1], P[i], P[i + 1], P[i + 2]
+        def tj(ti, a, b):
+            return ti + max(math.dist(a, b), 1e-6) ** 0.5
+        t0 = 0.0; t1 = tj(t0, p0, p1); t2 = tj(t1, p1, p2); t3 = tj(t2, p2, p3)
+        n = max(2, int(math.dist(p1, p2) / step))
+        for k in range(1, n + 1):
+            t = t1 + (t2 - t1) * k / n
+            def lerp(a, b, ta, tb):
+                w = (t - ta) / (tb - ta)
+                return (a[0] + (b[0] - a[0]) * w, a[1] + (b[1] - a[1]) * w)
+            a1 = lerp(p0, p1, t0, t1); a2 = lerp(p1, p2, t1, t2); a3 = lerp(p2, p3, t2, t3)
+            b1 = lerp(a1, a2, t0, t2); b2 = lerp(a2, a3, t1, t3)
+            out.append(lerp(b1, b2, t1, t2))
+    return out
+
+
+def snap_end(c, end, target, tol, over=1.5):
+    """Bring one end of a polyline onto target if it is within tol, then run on past it a little."""
+    c = [tuple(x) for x in c]
+    p = Point(c[end])
+    if target is None or target.is_empty or target.distance(p) > tol:
+        return c
+    q = shapely.ops.nearest_points(target, p)[0]
+    prev = c[1] if end == 0 else c[-2]
+    L = math.dist((q.x, q.y), prev) or 1
+    qq = (q.x + (q.x - prev[0]) / L * over, q.y + (q.y - prev[1]) / L * over)
+    if end == 0:
+        return [qq, (q.x, q.y)] + (c[1:] if p.distance(q) > 1e-9 else c[1:])
+    return c[:-1] + [(q.x, q.y), qq]
+
+
 def faces_of(linework, within=None, min_area=0.0):
     fs = list(polygonize(unary_union(linework)))
     if within is not None:
