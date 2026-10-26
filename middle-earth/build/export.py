@@ -323,9 +323,9 @@ def main():
     # maps saved with an earlier build of the regions (see migrate.py)
     mig = os.path.join(CACHE, 'migrate.json')
     if os.path.exists(mig):
-        m = json.load(open(mig))
-        if len(m['map']) == len(cells):
-            data['migrate'] = m
+        ms = [m for m in json.load(open(mig)) if len(m['map']) == len(cells)]
+        if ms:
+            data['migrate'] = ms
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     js = 'window.ME_DATA=' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + ';\n'
     with open(OUT, 'w') as f:

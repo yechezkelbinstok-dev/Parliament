@@ -512,10 +512,10 @@ HINTS = [
     (1591, 1486, 'Crossings of Poros'), (1517, 1247, 'Amon Dîn'), (1480, 1258, 'Stonewain Valley'), (1387, 1222, 'Calenhad'),
     (1415, 1232, 'Min-Rimmon'), (1447, 1244, 'Nardol'), (1479, 1234, 'Eilenach'), (1360, 1470, 'Ethir Anduin'),
     (1258, 1535, 'Tolfalas'), (1513, 1280, 'Mindolluin'), (1470, 1330, 'Lossarnach'), (1250, 1430, 'Belfalas Heights'),
-    (1180, 1300, 'Blackroot Vale'), (900, 1360, 'Langstrand'), (735, 1420, 'Ras Morthil'), (840, 1365, 'Mouth of Lefnui'),
+    (1180, 1300, 'Blackroot Vale'), (900, 1360, 'Langstrand'), (675, 1420, 'Ras Morthil'), (840, 1365, 'Mouth of Lefnui'),
     (1543, 1631, 'Harad Road'),
     # Rhovanion
-    (1631, 309, 'Erebor'), (1626, 342, 'Dale'), (1612, 365, 'Esgaroth'), (1570, 343, "Thranduil's Halls"),
+    (1631, 309, 'Erebor'), (1626, 342, 'Dale'), (1612, 365, 'Esgaroth'), (1570, 343, "Elvenking's Halls"),
     (1357, 430, "Beorn's House"), (1322, 435, 'Carrock'), (1354, 479, 'Old Ford'), (1368, 453, 'Rhosgobel'),
     (1415, 745, 'Dol Guldur'), (1320, 630, 'Loeg Ningloron'), (1324, 866, 'Field of Celebrant'), (1384, 900, 'North Undeep'),
     (1420, 945, 'South Undeep'), (1423, 1095, 'Tol Brandir'), (1395, 1105, 'Amon Hen'), (1446, 1074, 'Amon Lhaw'),

@@ -7,7 +7,7 @@ A MapChart-style colouring map of Middle-earth in the late Third Age. Click a re
 | Realms | 50 | Gondor, Rohan, Mordor, Lindon, the Shire, the seas and lakes, … |
 | Provinces | 154 | Anfalas, Westfold, Lebennin, the Farthings, Nurn, Gorgoroth, … |
 | Districts | 741 | Named places (Edoras, Pelargir, Hobbiton, …), river vales, woods, hills, coasts and compass divisions |
-| Grid | 6,375 | Small cells inside every district, for the finest detail |
+| Grid | 6,373 | Small cells inside every district, for the finest detail |
 
 Realm and province borders follow the lore: rivers, mountain crests and feet, forest eaves, roads and coasts named as borders in the books (the Isen and the Adorn for Rohan's west, the Mering Stream between Rohan and Gondor, the crest of the Ephel Dúath for Mordor, …), with a drawn line only where no feature is given. They sit on the base map's own rivers, coasts and outlines, so the colours fit it without seams. Below the province level the divisions follow the land, not canon.
 
@@ -25,7 +25,7 @@ Needs Python 3 with `pymupdf`, `shapely`, `scipy`, `numpy` and `networkx`.
 cd middle-earth/build
 python extract.py path/to/Map-of-Middle-Earth-3RD-Age.pdf   # vector layers, coast, rivers, forests, ranges, labels
 python build_regions.py --cells                               # realms, provinces, districts and grid cells
-python migrate.py old.html                                    # optional: let maps saved with an earlier build open
+python migrate.py old.html [older.html ...]                   # optional: let maps saved with earlier builds open
 python export.py                                              # app/data.js
 python build_app.py --standalone                              # dist/middle-earth-map-painter(.standalone).html
 ```

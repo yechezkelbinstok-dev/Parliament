@@ -1037,7 +1037,8 @@
   function load(o, opts) {
     if (!o || o.app !== 'middle-earth-map-painter' || !Array.isArray(o.runs) || !Array.isArray(o.swatches)) throw new Error('This is not a Middle-earth Map Painter file.');
     // a map from an earlier build of the regions: each cell now takes the colour of the old cell under it
-    const mig = o.cells !== N && D.migrate && o.cells === D.migrate.n ? D.migrate.map : null;
+    const from = o.cells !== N && (D.migrate || []).find((m) => m.n === o.cells);
+    const mig = from ? from.map : null;
     if (o.cells !== N && !mig) throw new Error('This map file was made for a different version of the regions.');
     const M = mig ? o.cells : N;
     const read = new Uint16Array(M);
@@ -1404,7 +1405,13 @@
     }
     let loaded = false;
     const oldExample = saved && saved.cells !== N && saved.title === WAR_TITLES[0];
-    if (saved && !oldExample) { try { load(saved); loaded = true; } catch (e) { loaded = false; } }
+    if (saved && !oldExample) {
+      try { load(saved); loaded = true; } catch (e) {
+        // never overwrite a map we cannot read: it stays in the browser under a second name
+        try { if (!snapshot) localStorage.setItem(STORE + '-unread', JSON.stringify(saved)); } catch (e2) { /* storage may be off */ }
+        loaded = false;
+      }
+    }
     if (!loaded) {
       // first visit: show what the tool does with a filled example
       const vals = warVals();

@@ -1,9 +1,9 @@
 """Let maps saved with an earlier build of the regions open in this one.
 
-python migrate.py old.html     (an earlier dist/middle-earth-map-painter.html)
+python migrate.py old.html [older.html ...]     (earlier dist/middle-earth-map-painter.html files)
 
-Writes .cache/migrate.json: for every cell of the current build, the cell of the old build under it.
-export.py ships the table, and the app uses it to carry an old map's colours over.
+Writes .cache/migrate.json: for each earlier build, and every cell of the current build, the cell of the
+old build under it. export.py ships the tables, and the app uses them to carry an old map's colours over.
 """
 import json, os, pickle, re, sys
 
@@ -35,7 +35,7 @@ def rings(path):
     return out
 
 
-def main(old_html):
+def table(old_html, R):
     html = open(old_html, encoding='utf8').read()
     i = html.index('window.ME_DATA=') + len('window.ME_DATA=')
     j = html.index(';\n', i)
@@ -47,7 +47,6 @@ def main(old_html):
             geoms.append(r); owner.append(k)
     tree = STRtree(geoms)
     owner = np.array(owner)
-    R = pickle.load(open(os.path.join(CACHE, 'regions.pkl'), 'rb'))
     pts = [c['poly'].representative_point() for c in R['cells']]
     out = []
     for p in pts:
@@ -61,10 +60,20 @@ def main(old_html):
             out.append(int(inside[0]))
         else:
             out.append(int(owner[tree.nearest(p)]))
-    json.dump({'n': len(paths), 'map': out}, open(os.path.join(CACHE, 'migrate.json'), 'w'))
-    print('old cells', len(paths), 'new cells', len(out), 'mapped by containment',
+    print(old_html, 'old cells', len(paths), 'new cells', len(out), 'mapped by containment',
           sum(1 for p in pts if len(tree.query(p, predicate='within'))), 'of', len(pts))
+    return {'n': len(paths), 'map': out}
+
+
+def main(files):
+    R = pickle.load(open(os.path.join(CACHE, 'regions.pkl'), 'rb'))
+    tables = {}
+    for f in files:
+        t = table(f, R)
+        if t['n'] != len(R['cells']):
+            tables[t['n']] = t
+    json.dump(list(tables.values()), open(os.path.join(CACHE, 'migrate.json'), 'w'))
 
 
 if __name__ == '__main__':
-    main(sys.argv[1])
+    main(sys.argv[1:])
