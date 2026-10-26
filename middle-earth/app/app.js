@@ -205,7 +205,7 @@
   const measure = document.createElement('canvas').getContext('2d');
   const LABEL_FONT = {
     realm: { font: '700 100px "Alegreya SC", Georgia, serif', track: 0.14, max: 30, upper: true },
-    province: { font: '500 100px "Alegreya SC", Georgia, serif', track: 0.06, max: 13 },
+    province: { font: '500 100px "Alegreya SC", Georgia, serif', track: 0.06, max: 18 },
     district: { font: 'italic 500 100px "Alegreya", Georgia, serif', track: 0, max: 6.5 },
   };
   const labelGroups = {};
@@ -267,14 +267,19 @@
       if (u.c) for (let k = 0; k < u.c.length; k += 4) cands.push(u.c.slice(k, k + 4));
       let best = null;
       for (const c of cands) {
-        const fs = sizeAt(lv, it.per, c);
-        const hw = (it.per * fs) / 2, hh = fs * 0.42;
-        const box = [c[0] - hw, c[1] - hh, c[0] + hw, c[1] + hh];
-        const score = fs * (gridHits(grid, box) ? 0.35 : 1);
-        if (!best || score > best.score) best = { x: c[0], y: c[1], fs, box, score, name: it.name };
+        // a little smaller is better than on top of other lettering
+        for (const k of [1, 0.85, 0.7]) {
+          const fs = sizeAt(lv, it.per, c) * k;
+          const hw = (it.per * fs) / 2, hh = fs * 0.42;
+          const box = [c[0] - hw, c[1] - hh, c[0] + hw, c[1] + hh];
+          const clear = !gridHits(grid, box);
+          const score = fs * (clear ? 1 : 0.35 * k);
+          if (!best || score > best.score) best = { x: c[0], y: c[1], fs, box, score, clear, name: it.name };
+          if (clear) break;
+        }
       }
       // a district with no clear spot goes unlabelled (hovering still names it); realms and provinces always show
-      if (lv === 'district' && best.score !== best.fs) continue;
+      if (lv === 'district' && !best.clear) continue;
       plan[it.i] = best;
       gridAdd(grid, best.box);
     }

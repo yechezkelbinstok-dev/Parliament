@@ -115,7 +115,7 @@ def label_cands(g, k=8):
 
 
 KIND_BIT = {'place': 1, 'region': 2, 'political': 2, 'decor': 4}
-GENERIC = {'marsh', 'marshes', 'fields', 'field', 'downs', 'hills', 'hill', 'woods', 'wood', 'forest'}
+GENERIC = {'marsh', 'marshes', 'fields', 'field', 'downs', 'hills', 'hill', 'woods', 'wood', 'forest', 'land'}
 
 
 def simple(t):
