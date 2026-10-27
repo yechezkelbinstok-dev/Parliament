@@ -539,8 +539,10 @@
       const chain = unitChain(lv, u);
       const v = S.cells[c];
       const painted = v ? (S.labels[colorOf(v)] || '') : '';
+      // a city's disc is a marker, not its true extent: name its kind instead of an area
+      const city = (lv === 'district' || lv === 'cell') && D.districts[cellDist[c]].k;
       tip.innerHTML = `<b>${esc(unitTitle(lv, u))}</b>` + (chain.length ? `<span>${esc(chain.join(' · '))}</span>` : '') +
-        `<em>≈ ${fmtInt(areaOf(lv, u))} sq mi${painted ? ' · ' + esc(painted) : ''}</em>`;
+        `<em>${city ? esc(city) : `≈ ${fmtInt(areaOf(lv, u))} sq mi`}${painted ? ' · ' + esc(painted) : ''}</em>`;
     }
     if (clientX != null) {
       tip.hidden = false;
@@ -820,7 +822,7 @@
   const WAR_NAMES = { '#2f5d9b': 'Free Peoples', '#6e1f1a': 'Sauron and his allies' };
   const WAR_TITLES = ['War of the Ring, T.A. 3019 (example)', 'War of the Ring, T.A. 3019'];
   const WAR = {
-    free: ['gondor', 'rohan', 'lorien', 'woodland_realm', 'dale', 'erebor', 'iron_hills', 'shire', 'lindon', 'imladris', 'fangorn', 'woodmen', 'anduin_vales', 'bree', 'ered_luin'],
+    free: ['gondor', 'rohan', 'lorien', 'woodland_realm', 'dale', 'erebor', 'iron_hills', 'shire', 'lindon', 'imladris', 'fangorn', 'woodmen', 'beornings', 'bree', 'ered_luin'],
     shadow: ['mordor', 'isengard', 'dol_guldur', 'gundabad', 'near_harad', 'khand', 'rhun', 'dunland', 'harondor', 'misty', 'moria'],
   };
   function warVals() {
@@ -901,7 +903,7 @@
   const index = [];
   D.realms.forEach((r, i) => index.push({ n: r.n, lv: 'realm', u: i, kind: 'Realm' }));
   D.provinces.forEach((p, i) => index.push({ n: p.n, lv: 'province', u: i, kind: 'Province' }));
-  D.districts.forEach((d, i) => index.push({ n: d.n, lv: 'district', u: i, kind: 'District' }));
+  D.districts.forEach((d, i) => index.push({ n: d.n, lv: 'district', u: i, kind: d.k || 'District' }));
   const seenPlace = new Set(index.map((x) => norm(x.n)));
   for (const [t, d] of D.places) {
     const n = t.replace(/\s+/g, ' ').replace(/^\(|\)$/g, '').trim();

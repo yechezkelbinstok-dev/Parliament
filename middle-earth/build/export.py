@@ -232,7 +232,9 @@ def main():
     # a realm's name in big letters is not doubled by a small town of the same name
     realms = [unit(defs.REALMS[r], realm_geo[r], min_size=14, w=int(r in defs.WATER), id=r) for r in realm_ids]
     provinces = [unit(defs.PROV[p]['name'], R['prov'][p], r=r_index[defs.PROV[p]['realm']], id=p) for p in prov_ids]
-    districts = [unit(d['name'], d['poly'], p=p_index[d['province']]) for d in D]
+    # a city's disc carries its kind (City, Town, Fortress, ...)
+    districts = [unit(d['name'], d['poly'], p=p_index[d['province']], **({'k': d['city']} if d.get('city') else {}))
+                 for d in D]
     log('labels', '%.1fs' % (time.time() - t), 'named by the map:',
         {lv: sum(1 for u in us if u.get('x')) for lv, us in (('realm', realms), ('province', provinces), ('district', districts))})
 
@@ -279,7 +281,10 @@ def main():
             continue
         wa = realms[cell_realm[a]]['w']; wb = realms[cell_realm[b]]['w']
         if wa != wb:
-            continue  # coastline: the base map draws it
+            # coastline: the base map draws it; but a city out on the water (a haven, Lake-town) needs its rim
+            if 'k' in districts[cell_d[a]] or 'k' in districts[cell_d[b]]:
+                buckets[('district', 'l')].append(s)
+            continue
         if cell_realm[a] != cell_realm[b]:
             lvl = 'realm'
         elif cell_prov[a] != cell_prov[b]:

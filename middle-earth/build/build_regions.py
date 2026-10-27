@@ -380,6 +380,47 @@ class Build:
                 self.warn.append(f'{pid} is in {len(parts)} pieces, smaller ones {[round(a) for a in small]}')
         log('provinces', len(self.prov), '%.1fs' % (time.time() - t))
 
+    # ---------- cities ----------
+    def province_at(self, P):
+        hit = [pid for pid, g in self.prov.items() if g.contains(P)]
+        return hit[0] if hit else min(self.prov, key=lambda pid: self.prov[pid].distance(P))
+
+    def carve_cities(self):
+        """Every town and fortress the base map marks becomes a small disc of its own, cut out of its province.
+        A disc keeps inside the province its centre lies in; an entry may name provinces the disc takes in
+        (a city on both banks of a border river, or out on a lake), the first of which owns it."""
+        pts = [Point(c[1]) for c in self.D.CITIES]
+        rad = [self.D.CITY_RADII.get(c[0], self.D.CITY_RADIUS) for c in self.D.CITIES]
+        self.cities = []
+        for i, c in enumerate(self.D.CITIES):
+            name, P, kind, R = c[0], pts[i], c[2], rad[i]
+            disc = P.buffer(R, quad_segs=12)
+            # two cities whose discs overlap part along the line where the discs cross
+            for j, Q in enumerate(pts):
+                d = P.distance(Q)
+                if j != i and d < R + rad[j]:
+                    t = (d * d + R * R - rad[j] * rad[j]) / (2 * d * d)
+                    disc = disc.intersection(geom.halfplane(P, Q, 4 * R, t))
+            pids = c[3] if len(c) > 3 else [self.province_at(P)]
+            for pid in pids:
+                if pid not in self.prov:
+                    raise ValueError(f'city {name}: no province {pid}')
+            disc = disc.intersection(unary_union([self.prov[p] for p in pids]))
+            parts = polys(disc)
+            if not parts:
+                self.warn.append(f'city {name} has no ground in {pids}')
+                continue
+            piece = min(parts, key=lambda p: p.distance(P) - 1e-3 * p.area)
+            if piece.area < 0.6 * math.pi * R * R:
+                self.notes.append(f'city {name} keeps {piece.area / (math.pi * R * R):.0%} of its disc')
+            owner = pids[0]
+            for pid in pids[1:]:
+                if self.prov[pid].intersects(piece):
+                    self.prov[pid] = self.prov[pid].difference(piece)
+            self.prov[owner] = unary_union([self.prov[owner], piece])
+            self.cities.append(dict(name=name, kind=kind, province=owner, poly=piece))
+        log('cities', len(self.cities))
+
     # ---------- districts ----------
     def internal_lines(self):
         """Natural features that make good district borders inside a province."""
@@ -422,8 +463,14 @@ class Build:
         t = time.time()
         self.int_lines = self.internal_lines()
         self.tree_lines = STRtree(self.int_lines)
-        self.districts = []  # dict(id, name, province, poly)
+        self.districts = []  # dict(id, name, province, poly[, city])
         self.used_names = {p['name'] for p in self.D.PROV.values()}
+        # a city's name is its disc's; the place names around it give way
+        city_geo = defaultdict(list)
+        for c in self.cities:
+            city_geo[c['province']].append(c['poly'])
+            self.used_names.add(c['name'])
+        self.hints = [h for h in self.D.HINTS if h[2] not in self.used_names]
         self.river_list = [(idx, r['line']) for (idx, k), r in self.F['rivers'].items()]
         self.river_tree = STRtree([l for _, l in self.river_list])
         self.named_features = [(kind, self.find(kind, pt), nm) for kind, pt, nm in self.D.FEATURE_NAMES]
@@ -438,10 +485,12 @@ class Build:
         order = sorted(self.prov, key=lambda pid: self.D.PROV[pid]['realm'] in self.D.WATER)
         for pid in order:
             g = self.prov[pid]
+            if pid in city_geo:
+                g = unary_union([p for p in polys(g.difference(unary_union(city_geo[pid])).buffer(0)) if p.area > 1.0])
             pdef = self.D.PROV[pid]
             wet = pdef['realm'] in self.D.WATER
             target = self.D.DISTRICT_AREA * (self.D.WATER_FACTOR if wet else 1) * pdef.get('scale', 1.0)
-            n_hints = sum(1 for h in self.D.HINTS if g.contains(Point(h[0], h[1])))
+            n_hints = sum(1 for h in self.hints if g.contains(Point(h[0], h[1])))
             target = max(target, g.area / (8 + n_hints))
             parts = polys(g)
             manual = self.D.DISTRICTS.get(pid)
@@ -458,12 +507,24 @@ class Build:
                         for p in polys(gg):
                             pieces.append((p, nm))
             else:
+                slivers = []
                 for k, part in enumerate(parts):
-                    hs = [h for h in self.D.HINTS if part.contains(Point(h[0], h[1]))]
+                    hs = [h for h in self.hints if part.contains(Point(h[0], h[1]))]
                     if part.area < 0.12 * target and len(parts) > 1 and not hs:
-                        pieces.append((part, None))  # sliver: joins a neighbour below
+                        slivers.append(part)
                         continue
                     pieces += self.split_geo(part, target, f'{pid}{k}', hs)
+                # a sliver cut off from the rest of the province (by a city's disc, say) joins the piece it
+                # touches most, or else the biggest piece: it is not worth a name of its own
+                for sl in slivers:
+                    if not pieces:
+                        pieces.append((sl, None))
+                        continue
+                    touch = [(sl.boundary.intersection(p.buffer(0.05)).length, i) for i, (p, _) in enumerate(pieces)]
+                    L, i = max(touch)
+                    if L <= 0:
+                        i = max(range(len(pieces)), key=lambda j: pieces[j][0].area)
+                    pieces[i] = (unary_union([pieces[i][0], sl]), pieces[i][1])
             # attach tiny unnamed slivers of manual provinces to the biggest named piece
             names = self.name_districts(pid, [p for p, _ in pieces], [n for _, n in pieces], g)
             merged = defaultdict(list)
@@ -481,6 +542,8 @@ class Build:
                 merged[k if k is not None else back.get(id(f))].append(f)
             for nm, ps in merged.items():
                 self.districts.append(dict(name=nm, province=pid, poly=unary_union(ps)))
+        for c in self.cities:
+            self.districts.append(dict(name=c['name'], province=c['province'], poly=c['poly'], city=c['kind']))
         for i, d in enumerate(self.districts):
             d['id'] = 'd%d' % i
         log('districts', len(self.districts), '%.1fs' % (time.time() - t))
@@ -503,7 +566,7 @@ class Build:
         for i, p in enumerate(pieces):
             if names[i]:
                 continue
-            for (x, y, nm) in self.D.HINTS:
+            for (x, y, nm) in self.hints:
                 if nm not in used and p.contains(Point(x, y)):
                     names[i] = nm
                     used.add(nm)
@@ -597,8 +660,14 @@ class Build:
             wet = self.D.PROV[d['province']]['realm'] in self.D.WATER
             target = self.D.CELL_AREA * (self.D.WATER_FACTOR if wet else 1)
             k = 0
-            for part in polys(d['poly']):
-                n = int(round(part.area / target))
+            parts = polys(d['poly'])
+            # a scrap of a district cut off from the rest (by a city's disc) is no cell of its own
+            scraps = [p for p in parts if p.area < 0.1 * target and len(parts) > 1]
+            first = len(self.cells)
+            for part in parts:
+                if any(part is s for s in scraps):
+                    continue
+                n = 1 if d.get('city') else int(round(part.area / target))
                 if n < 2:
                     pieces = [part]
                 else:
@@ -611,6 +680,13 @@ class Build:
                 for p in pieces:
                     self.cells.append(dict(district=d['id'], poly=p))
                     k += 1
+            for s in scraps:
+                own = self.cells[first:]
+                c = min(own, key=lambda c: c['poly'].distance(s)) if own else None
+                if c is None:
+                    self.cells.append(dict(district=d['id'], poly=s))
+                else:
+                    c['poly'] = unary_union([c['poly'], s])
         for i, c in enumerate(self.cells):
             c['id'] = i
         log('cells', len(self.cells), '%.1fs' % (time.time() - t))
@@ -678,6 +754,7 @@ def main():
     fast = '--fast' in sys.argv
     B = Build(defs)
     B.build_provinces()
+    B.carve_cities()
     extra = {}
     if not fast:
         B.build_districts()

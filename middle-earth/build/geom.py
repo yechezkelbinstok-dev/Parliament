@@ -152,6 +152,16 @@ def snap_end(c, end, target, tol, over=1.5):
     return c[:-1] + [(q.x, q.y), qq]
 
 
+def halfplane(P, Q, size, t=0.5):
+    """The square of side 2*size on P's side of the line across PQ at fraction t of the way from P to Q."""
+    mx, my = P.x + (Q.x - P.x) * t, P.y + (Q.y - P.y) * t
+    L = math.hypot(P.x - Q.x, P.y - Q.y) or 1
+    ux, uy = (P.x - Q.x) / L, (P.y - Q.y) / L
+    vx, vy = -uy, ux
+    return Polygon([(mx + vx * size, my + vy * size), (mx + (vx + ux) * size, my + (vy + uy) * size),
+                    (mx + (ux - vx) * size, my + (uy - vy) * size), (mx - vx * size, my - vy * size)])
+
+
 def faces_of(linework, within=None, min_area=0.0):
     fs = list(polygonize(unary_union(linework)))
     if within is not None:
