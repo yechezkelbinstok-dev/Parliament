@@ -18,7 +18,8 @@ REALMS = {
     'fangorn': 'Fangorn', 'lorien': 'Lothlórien', 'anduin_vales': 'Vales of Anduin',
     'woodland_realm': 'Woodland Realm', 'woodmen': 'Woodmen', 'mirkwood': 'Mirkwood', 'dol_guldur': 'Dol Guldur',
     'eotheod': 'Éothéod', 'beornings': 'Beornings',
-    'ered_mithrin': 'Ered Mithrin', 'erebor': 'Erebor', 'dale': 'Dale', 'iron_hills': 'Iron Hills',
+    'ered_mithrin': 'Ered Mithrin', 'grey_foothills': 'Grey Mountain Foothills',
+    'erebor': 'Erebor', 'dale': 'Dale', 'iron_hills': 'Iron Hills',
     'rhovanion': 'Rhovanion', 'brown_lands': 'Brown Lands', 'emyn_muil': 'Emyn Muil', 'dagorlad': 'Dagorlad',
     'rohan': 'Rohan', 'gondor': 'Gondor', 'harondor': 'Harondor', 'mordor': 'Mordor',
     'near_harad': 'Near Harad', 'khand': 'Khand', 'rhun': 'Rhûn', 'dorwinion': 'Dorwinion',
@@ -33,7 +34,8 @@ _P = [
     ('forlindon', 'Forlindon', 'lindon', [(160, 400), (220, 200), (210, 300)]),
     ('harlindon', 'Harlindon', 'lindon', [(280, 650), (300, 760)]),
     ('lhun_vale', 'Lhûn Vale', 'lindon', [(440, 300), (425, 420)]),
-    ('mithlond', 'Mithlond', 'lindon', [(437, 495), (440, 470)]),
+    # the Grey Havens: seaports on both sides of the end of the Gulf of Lune, by the mouth of the Lune
+    ('mithlond', 'Mithlond', 'lindon', [(437, 495), (440, 470), (410, 472), (385, 540)]),
     ('emyn_beraid', 'Emyn Beraid', 'lindon', [(482, 520)]),
     ('himling', 'Himling', 'lindon', [(116, 174)]),
     # ---------------- Ered Luin; north of the Little Lune the land is the Dwarves' (Lindon ends at its inflow) ----------------
@@ -44,12 +46,15 @@ _P = [
     ('cape_forochel', 'Cape of Forochel', 'forochel', [(495, 150), (470, 125), (420, 82)]),
     ('forochel', 'Forochel', 'forochel', [(620, 178), (740, 140)]),
     # ---------------- Arthedain: between the Lune and the Brandywine, and north of the Road to the Weather Hills ----------------
-    ('emyn_uial', 'Emyn Uial', 'arthedain', [(580, 300), (520, 250), (575, 400)]),
+    # hills and downs are their own outlines; the open land round them has plain descriptive names
+    ('emyn_uial', 'Emyn Uial', 'arthedain', [(580, 300), (600, 260), (575, 400)]),
+    ('western_arthedain', 'Western Arthedain', 'arthedain', [(500, 300), (510, 250), (500, 360)]),
     ('north_arthedain', 'Northern Arthedain', 'arthedain', [(760, 250), (720, 210)]),
-    ('north_downs', 'North Downs', 'arthedain', [(800, 340), (820, 400), (760, 360)]),
-    ('upper_baranduin', 'Upper Baranduin', 'arthedain', [(730, 420), (720, 380)]),
+    ('north_downs', 'North Downs', 'arthedain', [(800, 340), (760, 355)]),
+    ('central_arthedain', 'Central Arthedain', 'arthedain', [(820, 400), (860, 380), (790, 420), (840, 450)]),
+    ('upper_baranduin', 'Upper Baranduin', 'arthedain', [(730, 420), (712, 385), (682, 392)]),
     ('westmarch', 'Westmarch', 'arthedain', [(505, 470), (510, 530), (505, 430)]),
-    ('midgewater', 'Midgewater Marshes', 'arthedain', [(840, 470)]),
+    ('midgewater', 'Midgewater Marshes', 'arthedain', [(840, 480)]),
     ('weather_hills', 'Weather Hills', 'arthedain', [(870, 455)]),
     ('lower_baranduin', 'Lower Baranduin', 'arthedain', [(560, 600), (650, 625), (700, 615)]),
     ('baranduin_mouths', 'Mouths of Baranduin', 'arthedain', [(560, 700), (520, 700)]),
@@ -63,25 +68,28 @@ _P = [
     # ---------------- Bree-land ----------------
     ('bree', 'Bree-land', 'bree', [(795, 480), (790, 495)]),
     # ---------------- Cardolan: between the Brandywine, the Greyflood and the Great Road ----------------
-    ('old_forest', 'Old Forest', 'cardolan', [(712, 520), (705, 495), (725, 535)]),
-    ('barrow_downs', 'Barrow-downs', 'cardolan', [(755, 530), (750, 580)]),
-    ('south_downs', 'South Downs', 'cardolan', [(850, 550), (950, 560), (920, 620)]),
+    # the Old Forest runs from the High Hay to the Barrow-downs; the downs are their outline; south of them the
+    # land between the rivers is Minhiriath
+    ('old_forest', 'Old Forest', 'cardolan', [(712, 520), (705, 495), (722, 525)]),
+    ('barrow_downs', 'Barrow-downs', 'cardolan', [(750, 510), (760, 520), (766, 495)]),
+    ('south_downs', 'South Downs', 'cardolan', [(850, 550)]),
+    ('eastern_cardolan', 'Eastern Cardolan', 'cardolan', [(950, 560), (920, 620), (860, 600), (900, 510)]),
     ('gwathlo_vale', 'Gwathló Vale', 'cardolan', [(900, 680), (885, 715)]),
-    ('minhiriath', 'Minhiriath', 'cardolan', [(700, 760), (620, 840), (780, 700), (700, 880)]),
+    ('minhiriath', 'Minhiriath', 'cardolan', [(700, 760), (620, 840), (780, 700), (700, 880), (755, 580)]),
     ('eryn_vorn', 'Eryn Vorn', 'cardolan', [(506, 868)]),
     # ---------------- Rhudaur: between the Ettenmoors, the Weather Hills and the Misty Mountains, and the Angle ----------------
     ('lone_lands', 'Lone-lands', 'rhudaur', [(960, 440), (990, 400)]),
     ('ettenmoors', 'Ettenmoors', 'rhudaur', [(1000, 335), (1150, 350)]),
     ('coldfells', 'Coldfells', 'rhudaur', [(1120, 400), (1160, 410)]),
-    ('trollshaws', 'Trollshaws', 'rhudaur', [(1090, 465), (1070, 445)]),
+    ('trollshaws', 'Trollshaws', 'rhudaur', [(1090, 465), (1070, 470)]),
     ('the_angle', 'The Angle', 'rhudaur', [(1050, 540), (1080, 520)]),
     # ---------------- Imladris ----------------
     ('imladris', 'Imladris', 'imladris', [(1170, 470)]),
     # ---------------- Angmar ----------------
     ('north_angmar', 'Northern Angmar', 'angmar', [(900, 160), (860, 113), (960, 150)]),
-    ('angmar_wastes', 'Angmar Wastes', 'angmar', [(870, 250), (950, 270), (840, 240)]),
+    ('angmar_wastes', 'Angmar Wastes', 'angmar', [(870, 250), (950, 270), (840, 240), (1080, 240)]),
     ('mountains_of_angmar', 'Mountains of Angmar', 'angmar', [(1060, 175), (1000, 150)]),
-    ('mount_gram', 'Mount Gram', 'angmar', [(1060, 300), (1110, 305), (1100, 245), (1060, 240)]),
+    ('mount_gram', 'Mount Gram', 'angmar', [(1060, 300), (1110, 305)]),
     # ---------------- Misty Mountains, Gundabad, Khazad-dûm ----------------
     ('gundabad', 'Mount Gundabad', 'gundabad', [(1195, 235)]),
     ('misty_north', 'Northern Misty Mountains', 'misty', [(1230, 330), (1240, 400), (1190, 331)]),
@@ -96,6 +104,8 @@ _P = [
     ('central_forodwaith', 'Central Forodwaith', 'forodwaith', [(1250, 120), (1100, 100)]),
     ('eastern_forodwaith', 'Eastern Forodwaith', 'forodwaith', [(1750, 150), (1600, 130)]),
     ('far_forodwaith', 'Far Forodwaith', 'forodwaith', [(2200, 150)]),
+    # the open land between the forest and the Grey Mountains, east of the Forest River: the books give it no name
+    ('grey_foothills', 'Grey Mountain Foothills', 'grey_foothills', [(1470, 266), (1420, 262), (1500, 265)]),
     # ---------------- The old land of the Éothéod: between the Misty Mountains and the Forest River,
     # down to the meeting of the Greylin and the Langwell (empty since they rode south) ----------------
     ('eotheod', 'Éothéod', 'eotheod', [(1310, 280), (1345, 270)]),
@@ -105,17 +115,21 @@ _P = [
     ('western_vale', 'Western Vale', 'beornings', [(1300, 530), (1315, 520)]),
     ('eastern_vale', 'Eastern Vale', 'beornings', [(1370, 530), (1365, 480)]),
     # ---------------- Vales of Anduin (south of the Gladden, largely deserted), Lothlórien, Fangorn ----------------
-    ('gladden_fields', 'Gladden Fields', 'anduin_vales', [(1300, 640), (1270, 700), (1330, 620)]),
-    ('southern_vale', 'Southern Vale', 'anduin_vales', [(1360, 700), (1340, 780), (1380, 640)]),
-    ('field_of_celebrant', 'Field of Celebrant', 'anduin_vales', [(1300, 850), (1250, 830)]),
-    ('nimrodel', 'Nimrodel', 'lorien', [(1250, 795), (1215, 785), (1190, 750)]),
-    ('egladil', 'Egladil', 'lorien', [(1250, 755), (1270, 765), (1225, 735)]),
+    # the Gladden Fields are the fens at the Gladden's mouth; Lórien is the Golden Wood, the Angle (Egladil)
+    # between the Silverlode and the Anduin and the wood south of the Silverlode
+    ('gladden_fields', 'Gladden Fields', 'anduin_vales', [(1326.8, 610.4), (1353.1, 598.3), (1338.6, 589.1),
+                                                          (1375, 625)]),
+    ('west_lower_vale', 'Western Lower Vale', 'anduin_vales', [(1300, 645), (1270, 700), (1230, 725)]),
+    ('southern_vale', 'Eastern Lower Vale', 'anduin_vales', [(1360, 700), (1340, 780), (1400, 665)]),
+    ('field_of_celebrant', 'Field of Celebrant', 'anduin_vales', [(1300, 850), (1250, 830), (1190, 780)]),
+    ('southern_lorien', 'Southern Lórien', 'lorien', [(1250, 795), (1240, 780)]),
+    ('egladil', 'Egladil', 'lorien', [(1250, 755), (1270, 765), (1235, 750)]),
     ('fangorn_forest', 'Fangorn Forest', 'fangorn', [(1183, 918), (1220, 900)]),
     # ---------------- Mirkwood ----------------
     # Thranduil holds the north-east beyond the Enchanted River; the Mountains are haunted, the rest is wild;
     # the Woodmen live south of the Old Forest Road near the western eaves
     ('woodland_realm', 'Woodland Realm', 'woodland_realm', [(1570, 380), (1560, 340), (1525, 362)]),
-    ('northern_mirkwood', 'Northern Mirkwood', 'mirkwood', [(1420, 330), (1475, 390), (1380, 300), (1470, 266), (1400, 430)]),
+    ('northern_mirkwood', 'Northern Mirkwood', 'mirkwood', [(1420, 330), (1475, 390), (1380, 300), (1400, 430)]),
     ('mountains_of_mirkwood', 'Mountains of Mirkwood', 'mirkwood', [(1549, 417)]),
     ('woodmen', 'Woodmen-lands', 'woodmen', [(1400, 500), (1420, 600)]),
     ('central_mirkwood', 'Central Mirkwood', 'mirkwood', [(1520, 520), (1580, 440), (1500, 620)]),
@@ -126,7 +140,7 @@ _P = [
     ('hollin', 'Hollin', 'eregion', [(1050, 650), (1000, 680), (1100, 600), (915, 705)]),
     ('sirannon', 'Sirannon', 'eregion', [(1050, 755), (1080, 735)]),
     # ---------------- Dunland, Enedwaith, Isengard, Drúwaith Iaur ----------------
-    ('swanfleet', 'Swanfleet', 'dunland', [(915, 745), (950, 750)]),
+    ('swanfleet', 'Swanfleet', 'dunland', [(910, 736), (925, 738)]),  # the fens south of the Glanduin
     ('northern_dunland', 'Northern Dunland', 'dunland', [(960, 820), (1000, 800), (930, 800)]),
     ('southern_dunland', 'Southern Dunland', 'dunland', [(950, 950), (975, 1015), (940, 900)]),
     ('nan_curunir', 'Nan Curunír', 'isengard', [(1055, 1012)]),
@@ -170,7 +184,7 @@ _P = [
     ('west_harondor', 'Western Harondor', 'harondor', [(1400, 1550), (1350, 1600), (1450, 1640)]),
     ('east_harondor', 'Eastern Harondor', 'harondor', [(1650, 1620), (1600, 1520), (1700, 1600), (1630, 1510)]),
     # ---------------- Mordor ----------------
-    ('imlad_morgul', 'Imlad Morgul', 'mordor', [(1602, 1280), (1615, 1275)]),
+    ('imlad_morgul', 'Imlad Morgul', 'mordor', [(1600, 1270), (1603, 1288), (1612, 1263)]),  # the vale round Minas Morgul
     ('udun', 'Udûn', 'mordor', [(1635, 1135)]),
     ('morgai', 'The Morgai', 'mordor', [(1620, 1195)]),
     ('ephel_duath', 'Ephel Dúath', 'mordor', [(1650, 1400)]),
@@ -205,7 +219,9 @@ _P = [
     ('n_brown', 'North Brown Lands', 'brown_lands', [(1450, 860), (1550, 850)]),
     ('s_brown', 'South Brown Lands', 'brown_lands', [(1500, 980), (1450, 1000), (1580, 980)]),
     ('dagorlad', 'Dagorlad', 'dagorlad', [(1650, 1070), (1700, 1050)]),
-    ('dead_marshes', 'Dead Marshes', 'dagorlad', [(1560, 1100), (1580, 1125)]),
+    # the Dead Marshes are the fens the map marks; south-east of them, before the Morannon, the Noman-lands
+    ('dead_marshes', 'Dead Marshes', 'dagorlad', [(1560, 1100), (1540, 1090)]),
+    ('noman_lands', 'Noman-lands', 'dagorlad', [(1550, 1150), (1595, 1125), (1545, 1157)]),
     ('w_emyn_muil', 'Western Emyn Muil', 'emyn_muil', [(1395, 1085)]),
     ('e_emyn_muil', 'Eastern Emyn Muil', 'emyn_muil', [(1470, 1060), (1510, 1025)]),
     ('nindalf', 'Nindalf', 'emyn_muil', [(1490, 1150), (1470, 1130)]),
@@ -231,16 +247,19 @@ LINES = [
     ('ered_luin_n', ('range_at', (327, 276))),
     ('ered_luin_s', ('range_at', (374, 623))),
     ('tower_neck', ('poly', [(459, 550), (468, 559)])),
-    ('mithlond_w', ('poly', [(409, 535), (396, 518)])),
+    ('mithlond_w', ('poly', [(357.3, 549.8), (361.6, 555.6), (366.0, 561.5)])),
+    ('mithlond_n', ('hand', [(401.5, 471.7), (415, 462), (428, 450), (437.3, 440)], 0.4)),
     ('forochel_w', ('poly', [(385, 111), (378, 84)])),
-    ('harlindon_e', ('hand', [(432, 749), (430, 790), (428, 828)])),
+    # Harlindon keeps the whole wood round the mountains' southern end; east of it lie the Mouths of Baranduin
+    ('harlindon_e', ('edge', (472, 725), (431.0, 663.6), (470.1, 755.0), (484.2, 735))),
+    ('harlindon_se', ('hand', [(470.1, 755.0), (488, 759), (506, 761)], 0.3)),
     ('lhun_10', ('river', 10)),
     ('little_lune', ('river', 12, (360.7, 278.0), (462.9, 275.4))),
     ('lhun_9', ('river', 9)),
     ('lhun_8', ('river', 8)),
     ('mithlond_e', ('hand', [(452, 430), (463, 452), (473, 474), (480, 496)])),
     ('forochel_s', ('hand', [(468, 192), (500, 201), (560, 203), (630, 199), (700, 192), (738, 178), (752, 122)])),
-    ('forochel_cape', ('hand', [(516, 136), (519, 168), (521, 205)])),
+    ('forochel_cape', ('hand', [(516, 136), (522, 150), (516, 168), (523, 186), (521, 205)])),
     ('forochel_e', ('hand', [(778, 103), (765, 84), (767, 44)], 0.5)),
     # ---------- Angmar, Arthedain, Rhudaur ----------
     ('angmar_hills', ('range_at', (859, 113))),
@@ -249,13 +268,16 @@ LINES = [
     ('rhudaur_w', ('hand', [(896, 305), (886, 335), (871, 365), (856, 392), (846, 408)])),
     ('weathertop_s', ('poly', [(895, 490), (897, 509)])),
     ('weather_hills', ('range_at', (869, 452))),
-    ('evendim_e', ('hand', [(705, 194), (703, 240), (700, 290), (701, 340), (699, 390)])),
+    ('emyn_uial', ('range_at', (580, 300))),  # the Hills of Evendim
+    ('evendim_nw', ('hand', [(552, 201), (554, 220), (556.5, 237)], 0.5)),
     ('brandywine_up', ('river', 19)),
-    ('evendim_s', ('hand', [(476, 409), (500, 400), (527.1, 389.1)])),
-    ('moors_s', ('hand', [(701, 325), (735, 321), (770, 312), (805, 302), (850, 300), (896, 305)])),
-    ('downs_w', ('hand', [(735, 321), (736, 340), (737, 356), (738.5, 368), (743, 375.5), (751, 376.5)])),  # Fornost on the Downs
+    ('evendim_s', ('hand', [(476, 409), (488, 402), (500, 404), (514, 393), (527.1, 389.1)])),
+    ('north_downs', ('range_at', (800, 340))),
+    ('moors_w', ('hand', [(651.8, 319.4), (675, 323), (701, 325), (725, 329), (748.3, 340.4)])),
+    ('moors_e', ('hand', [(875.6, 314.7), (886, 309), (896, 305)], 0.5)),
+    ('midgewater', ('marsh_at', (835, 480), 9)),
     ('greenway_n', ('road', 65)),
-    ('bree_ring', ('hand', [(777, 456), (797, 451), (816, 457), (828, 472), (829, 488), (827, 503)])),
+    ('bree_ring', ('hand', [(777, 456), (797, 451), (809, 456), (818.7, 468.7)])),  # to the Midgewater fens
     ('downs_s', ('hand', [(797, 451), (815, 441), (832, 428)])),
     ('east_road', ('road', 74, (682, 486), (1143, 494))),
     ('westmarch_s', ('hand', [(562.1, 555.6), (540, 566), (505, 573), (440, 581)])),
@@ -264,18 +286,21 @@ LINES = [
     # ---------- The Shire ----------
     ('shire_n', ('foot', (580, 400), (527.1, 389.1), (676.4, 406.0), (590, 418))),  # the foot of the Hills of Evendim
     ('shire_ne', ('hand', [(676.4, 406.0), (683, 409.5), (691, 413.2)], 0.4)),
-    ('shire_w', ('hand', [(527.1, 389.1), (528.5, 420), (530, 455), (530.5, 490), (531.7, 515.7)], 0.6)),
+    ('shire_w', ('hand', [(527.1, 389.1), (531, 410), (527, 432), (533, 455), (528, 478), (533, 500), (531.7, 515.7)], 0.6)),
     ('far_downs_w', ('foot', (560, 530), (531.7, 515.7), (562.1, 555.6), (535.9, 530.4))),  # the Far Downs' western foot
     ('shire_sw', ('hand', [(562.1, 555.6), (575, 566), (590, 575), (615, 590), (650, 603), (690, 609), (736, 603)])),
     ('farthing_we', ('hand', [S, (645.5, 495.5), N], 0.3)),  # Bywater, at the Pool, is the Westfarthing's
     ('farthing_wn', ('hand', [N, (636, 479), (628, 470), (618, 462), (606, 452), (595, 443), (582, 437), (565, 434),
                              (545, 433), (530, 432)])),
-    ('farthing_ne', ('hand', [N, (649, 477), (655, 465), (661, 453), (669.0, 441)])),
-    ('farthing_ws', ('hand', [S, (628, 512), (610, 525), (590, 540), (570, 551), (562.1, 555.6)])),
+    ('farthing_ne', ('hand', [(642.3, 488.2), (647, 476), (656, 467), (659, 453), (669.0, 441)])),
+    ('farthing_ws', ('hand', [S, (628, 512), (610, 525), (597, 534), (587.6, 541.4)])),
+    ('far_downs_se', ('foot', (560, 530), (587.6, 541.4), (562.1, 555.6), (584.6, 553.8))),  # the Far Downs are all Westfarthing
     ('farthing_es', ('hand', [S, (640.5, 513), (637.9, 524.2)], 0.4)),
     ('shirebourn', ('river', 528)),
     ('high_hay', ('hand', [(690, 479), (693, 490), (694.5, 500), (692.5, 509), (688, 516), (683, 521)], 0.4)),
-    ('old_forest_e', ('hand', [(737, 479), (741, 500), (739, 522), (728, 543)])),
+    ('downs_m13', ('range_at', (760, 515))),  # the Barrow-downs and the South Downs, parted by the Greenway at Andrath
+    ('old_forest_s', ('poly', [(738.5, 529.3), (731, 537), (723.4, 544.5)])),
+    ('barrow_nw', ('poly', [(731.6, 488.4), (731.2, 485), (730.8, 481.4)])),  # the downs run up to the Road
     # ---------- Cardolan ----------
     ('brandywine_low', ('river', 16)),
     ('sarn_road', ('road', 4478, (735, 604), (781, 627))),
@@ -285,39 +310,42 @@ LINES = [
     ('bruinen_up', ('river', 730)),
     ('mitheithel', ('river', 726)),
     ('greyflood', ('river', 54)),
-    ('tharbad_n', ('hand', [(832, 662), (870, 663), (905, 668), (938, 668)])),
+    ('tharbad_n', ('hand', [(832, 662), (850, 657), (870, 666), (890, 662), (905, 671), (922, 664), (938, 668)])),
     ('eryn_vorn', ('forest_at', (506, 868))),
     # ---------- Rhudaur, Imladris ----------
-    ('ettenmoors_s', ('hand', [(872, 362), (920, 369), (975, 368), (1030, 366), (1080, 369), (1118, 360)])),
-    ('coldfells_n', ('hand', [(1118, 360), (1150, 371), (1203, 382)])),
-    ('trollshaws_n', ('hand', [(1048, 428), (1095, 431), (1140, 436), (1203, 438)])),
-    ('imladris_w', ('hand', [(1141, 435), (1146, 462), (1144, 486)])),
+    ('ettenmoors_s', ('hand', [(872, 362), (905, 372), (940, 366), (975, 374), (1010, 365), (1045, 371), (1080, 364),
+                               (1118, 360)])),
+    ('coldfells_n', ('hand', [(1118, 360), (1140, 372), (1165, 370), (1185, 380), (1203, 382)])),
+    # the Trollshaws: the wooded hills north of the Road, their northern eaves the border with the Coldfells
+    ('trollshaws_n', ('edge', (1090, 465), (1048.4, 466.6), (1134.5, 463.0), (1111.3, 442.4))),
+    ('trollshaws_w', ('poly', [(1036.0, 466.6), (1042, 466.6), (1048.4, 466.6)])),
+    ('trollshaws_e', ('hand', [(1134.5, 463.0), (1140, 474), (1144.3, 485.5)], 0.4)),
+    ('bruinen_n', ('river', 729, (1144.3, 485.5), (1213.1, 457.6))),  # Rivendell's valley lies between the Bruinen's arms
     # ---------- Misty Mountains ----------
     ('misty', ('range_at', (1195, 584))),
     ('gram_cut', ('poly', [(1154, 287), (1178, 315), (1196, 347)])),
     # ---------- Misty Mountains, Gundabad, the Grey Mountains ----------
     ('angmar_arm_cut', ('poly', [(1168, 203), (1158, 222), (1147, 244)])),
     ('grey_cut', ('poly', [(1236, 214), (1237, 233), (1240, 253)])),
-    ('gundabad_s', ('poly', [(1146, 258), (1190, 258), (1236, 262)])),
+    ('gundabad_s', ('hand', [(1146, 258), (1168, 263), (1190, 256), (1212, 263), (1236, 262)], 0.4)),
     ('carn_dum_n', ('poly', [(958, 113), (970, 120), (982, 127)])),
     ('carn_dum_s', ('hand', [(783, 232), (840, 214), (900, 204), (950, 192), (986, 176)])),
-    ('gram_vale_w', ('hand', [(1000, 183), (1006, 240), (1021, 291)])),
-    ('high_pass', ('poly', [(1200, 470), (1235, 468), (1275, 466)])),
-    ('redhorn', ('poly', [(1113, 655), (1150, 662), (1216, 668)])),
-    ('moria_s', ('poly', [(1090, 778), (1130, 778), (1177, 776)])),
+    ('high_pass', ('hand', [(1200, 470), (1218, 466), (1235, 470), (1255, 465), (1275, 466)], 0.4)),
+    ('redhorn', ('hand', [(1113, 655), (1132, 662), (1150, 658), (1175, 667), (1196, 663), (1216, 668)], 0.4)),
+    ('moria_s', ('hand', [(1090, 778), (1110, 782), (1130, 775), (1155, 780), (1177, 776)], 0.4)),
     ('bruinen_src', ('poly', [(1189, 486), (1204, 487)])),
     ('grey_w_cut', ('poly', [(1381, 214.9), (1383, 249.5)])),
-    ('heath_cut', ('poly', [(1480, 175), (1480, 211.5), (1482, 249)])),
+    ('heath_cut', ('hand', [(1480, 175), (1485, 193), (1478, 212), (1485, 231), (1482, 249)], 0.4)),
     ('heath_e', ('hand', [(1626.5, 213), (1639, 228), (1650.5, 242.3)], 0.5)),
     # ---------- Forodwaith ----------
     ('forod_1', ('hand', [(1000, 44), (991, 75), (1003, 105), (1004, 135)])),
     ('forod_2', ('hand', [(1480, 44), (1470, 90), (1486, 130), (1480, 175)])),
     # the waste comes down to the Iron Hills' northern foot
-    ('forod_s_w', ('hand', [(1680, 256), (1722, 259), (1765, 263)])),
-    ('forod_s_e', ('hand', [(2060, 261.5), (2150, 257), (2250, 252), (2406, 248)])),
-    ('forod_3', ('hand', [(2000, 44), (1990, 100), (2008, 150), (1995, 205), (2003, 255), (2000, 299)])),
+    ('forod_s_w', ('hand', [(1680, 256), (1700, 252), (1722, 260), (1745, 258), (1765, 263)])),
+    ('forod_s_e', ('hand', [(2060, 261.5), (2100, 252), (2150, 260), (2200, 250), (2250, 257), (2300, 247), (2350, 254), (2406, 248)])),
+    ('forod_3', ('hand', [(2000, 44), (1990, 100), (2008, 150), (2020, 200), (2045, 240), (2060, 261.5)])),
     # ---------- Vales of Anduin, Lothlórien, Fangorn ----------
-    ('eotheod_s', ('hand', [(1288.7, 301.7), (1310, 302), (1332, 301), (1354, 300)])),
+    ('eotheod_s', ('hand', [(1288.7, 301.7), (1305, 306), (1322, 299), (1340, 304), (1354, 300)])),
     ('forest_river_up', ('river', 817, (1327.0, 250.1), (1389.6, 288.7))),
     ('carrock_n', ('hand', [(1262, 372), (1290, 373), (1305, 375), (1325, 380), (1346, 384)])),
     ('anduin_upper', ('river', 1892, (1305, 375), (1347, 604))),
@@ -326,20 +354,21 @@ LINES = [
     ('forest_road_w', ('road', 4103, (1272, 466), (1450.2, 457.0))),
     ('gladden', ('river', 1899)),
     ('gladden_up', ('river', 1900)),
-    ('east_vale_s', ('hand', [(1350, 603), (1372, 604), (1425, 603)])),
+    ('east_vale_s', ('hand', [(1350, 603), (1365, 598), (1385, 606), (1405, 599), (1425, 603)])),
     ('silverlode', ('river', 1904, (1181, 718), (1289, 794))),
-    ('lorien_n', ('hand', [(1238, 723), (1260, 732), (1285, 738), (1305.7, 737)])),
-    ('lorien_s', ('hand', [(1166.3, 800), (1195, 806), (1230, 811), (1265, 811), (1301, 813)])),
+    ('lorien_wood', ('forest_at', (1250, 770))),  # the Golden Wood
+    # Loeg Ningloron: the fens at the Gladden's mouth, on both banks where the map letters them
+    ('gladden_marsh', ('marsh_at', (1330, 600), 12, 32, [(1366, 612), (1384, 622), (1370, 634)])),
     ('limlight', ('river', 1902)),
     ('fangorn', ('forest_at', (1183, 918), {'minus_at': [('range', (1195, 584))]})),
-    ('brown_n', ('hand', [(1302, 826), (1340, 816), (1380, 802), (1396, 797)])),
+    ('brown_n', ('hand', [(1302, 826), (1320, 817), (1340, 820), (1362, 806), (1380, 806), (1396, 797)])),
     # ---------- Mirkwood ----------
     ('mirkwood', ('union_at', 'forest', [('forest', (1422, 364)), ('forest', (1486, 636)), ('range', (1549, 417))], 5)),
     ('elf_path', ('road', 5534)),
     ('enchanted_river', ('river', 2998)),
     ('mts_mirkwood', ('range_at', (1549, 417))),
     ('woodmen_e2', ('hand', [(1455, 426), (1446, 470), (1455, 520), (1443, 570), (1449, 620), (1440, 663)])),
-    ('narrows', ('hand', [(1415, 663), (1470, 660), (1520, 657), (1552, 655)])),
+    ('narrows', ('hand', [(1415, 663), (1442, 668), (1470, 661), (1497, 664), (1520, 656), (1552, 655)])),
     ('dol_guldur_e', ('hand', [(1470, 660), (1455, 700), (1465, 745), (1448, 790), (1442, 822)])),
     ('bight_e', ('poly', [(1585, 625), (1598, 650), (1585, 678)])),
     ('thranduil_n', ('poly', [(1526, 351), (1538, 338), (1548, 325)])),
@@ -350,14 +379,14 @@ LINES = [
     # ---------- Seas ----------
     ('ice_bay_w', ('poly', [(482, 57), (482, 47)])),
     ('gulf_mouth', ('poly', [(186, 537), (203, 565)])),
-    ('belfalas_mouth', ('hand', [(650, 1453.8), (651, 1520), (655, 1600), (652, 1692)])),
+    ('belfalas_mouth', ('hand', [(588.0, 1450.8), (592, 1520), (598, 1600), (600, 1692)])),  # from Ras Morthil
     # ---------- Dunland, Enedwaith, Isengard, Drúwaith Iaur ----------
     ('greenway_sw', ('road', 4478, (878, 736), (1058, 1058.7))),
     ('isen', ('river', 4472, (1064.7, 1006.4), (889, 1082))),
     ('isen_mouth', ('river', 4441)),
     ('adorn', ('river', 4473)),
     ('curunir_s', ('poly', [(1042.8, 1036.1), (1055, 1020), (1067.8, 1002.1)])),
-    ('swanfleet_s', ('hand', [(890.2, 775), (920, 782), (950, 777), (980, 768), (1006, 747)])),
+    ('swanfleet', ('marsh_at', (915, 725))),  # Nîn-in-Eilph
     ('dunland_mid', ('hand', [(914.5, 870), (940, 880), (965, 866), (990, 876), (1014.6, 870)])),
     ('lond_daer_e', ('hand', [(760.9, 830), (775, 880), (785, 950), (790, 1010), (790, 1083.6)])),
     ('white_mts', ('range_at', (1113, 1152))),
@@ -373,13 +402,13 @@ LINES = [
                                               (1520, 1275)])),
     ('adorn_spur', ('poly', [(1049.8, 1138.7), (1052, 1158), (1055, 1176.8)])),
     ('harrowdale_e', ('hand', [(1219.1, 1179.9), (1217, 1191), (1214, 1201)])),
-    ('folde_e', ('hand', [(1270, 1129), (1256, 1143), (1243, 1155), (1231, 1168), (1219.1, 1179.9)])),
+    ('folde_e', ('hand', [(1270, 1129), (1259, 1138), (1256, 1150), (1243, 1158), (1236, 1170), (1219.1, 1179.9)])),
     ('halifirien', ('poly', [(1339.9, 1223.5), (1340, 1235), (1340, 1247)])),
     ('tail_cut', ('poly', [(1034, 1177.5), (1035, 1192), (1035.9, 1208.2)])),
     ('blackroot_w', ('hand', [(1029.8, 1239.8), (1031, 1260), (1033.5, 1280.1)])),
     ('pinnath_hills', ('range_at', (950, 1310))),
     ('pinnath_w', ('hand', [(858.1, 1326.8), (845, 1340), (837.4, 1358.7)])),
-    ('blackroot_s', ('hand', [(1108.5, 1316.5), (1130, 1305), (1155, 1293), (1177, 1281.4)])),
+    ('blackroot_s', ('hand', [(1108.5, 1316.5), (1122, 1306), (1138, 1304), (1155, 1293), (1166, 1290), (1177, 1281.4)])),
     ('morthond_low', ('river', 4477, (1133, 1302), (1186, 1344))),
     ('tarlang', ('crest', (1113, 1152), [(1220, 1210), (1212, 1238), (1200, 1256), (1200, 1266), (1200.7, 1288.9)])),
     ('ciril_ringlo', ('hand', [(1235.6, 1327.8), (1246, 1318), (1255, 1308), (1264, 1298), (1272, 1287), (1279, 1275),
@@ -423,11 +452,13 @@ LINES = [
     ('druadan_wood', ('forest_at', (1470, 1240))),
     ('ithilien_n', ('hand', [(1516, 1205), (1535, 1182), (1558, 1172), (1572, 1152), (1588.1, 1140.3)])),
     ('morgul_road', ('road', 4910, (1567.4, 1278.9), (1593.5, 1276.6))),
-    ('morgul_mouth', ('poly', [(1591.9, 1262.1), (1593.5, 1278), (1596.1, 1295.8)])),
-    ('morgul_n', ('hand', [(1600, 1263.7), (1612, 1258), (1625.8, 1255)])),
-    ('morgul_s', ('hand', [(1604.5, 1294.8), (1620, 1299), (1636, 1300)])),
+    # Imlad Morgul: the vale the mountains close round Minas Morgul, shut across its mouth; above it the pass
+    # parts North and South Ithilien up to the crest
+    ('morgul_vale', ('hollow', (1600, 1278), 3.5, (1540, 1180, 1720, 1360),
+                     ((1640, 1400), (1591.9, 1262.1), (1596.1, 1295.8), (1613, 1281)))),
+    ('morgul_pass', ('hand', [(1619.0, 1265.5), (1624.5, 1265.2), (1630.1, 1266.0)], 0.3)),
     ('poros', ('river', 4588)),
-    ('poros_src', ('poly', [(1606.3, 1457.0), (1625, 1457), (1642.8, 1457)])),
+    ('poros_src', ('hand', [(1606.3, 1457.0), (1615, 1452.5), (1625, 1455), (1634, 1451.5), (1642.8, 1457)], 0.4)),
     ('harad_road', ('road', 4479, (1572.9, 1471.2), (1548, 1690))),
     ('harnen', ('river', 5118)),
     # ---------- Mordor ----------
@@ -437,13 +468,16 @@ LINES = [
                                              (1635.4, 1309), (1638.9, 1343), (1642.8, 1365), (1645.4, 1391),
                                              (1642.8, 1432), (1642.8, 1468), (1650.5, 1489), (1653.1, 1530),
                                              (1642.8, 1540), (1637.7, 1556), (1630.9, 1568.5)])),
-    ('udun_w', ('hand', [(1611.3, 1115.7), (1622, 1135), (1633, 1150), (1642.7, 1162.8)])),
-    ('udun_e', ('hand', [(1640.0, 1110.3), (1648, 1130), (1654, 1146), (1659.8, 1159.9)])),
+    # Udûn: the vale the Ephel Dúath and the Ered Lithui close round, shut by the Black Gate and the Isenmouthe
+    ('udun', ('hollow', (1640, 1140), 5, (1560, 1060, 1760, 1220))),
+    ('udun_n', ('poly', [(1630.2, 1121.6), (1628.8, 1119.8), (1627.4, 1118.0)])),
+    ('udun_s', ('poly', [(1654.7, 1157.8), (1654.9, 1159.2), (1655.1, 1160.7)])),
     ('morgai_s', ('poly', [(1630.9, 1268), (1645, 1269), (1659.7, 1270)])),
     ('ephel_corner', ('poly', [(1653.1, 1530), (1670, 1515), (1685.7, 1502.3)])),
-    ('gorgoroth_s', ('hand', [(1836, 1322), (1800, 1335), (1758.6, 1350)])),
-    ('lithui_cut', ('poly', [(2000, 1125.2), (2012, 1160), (2025, 1190.3)])),
-    ('lithlad_s', ('hand', [(1957, 1262), (2000, 1260), (2050, 1258), (2110, 1262), (2170, 1265), (2229, 1268)])),
+    ('gorgoroth_s', ('hand', [(1836, 1322), (1818, 1333), (1800, 1333), (1780, 1345), (1758.6, 1350)])),
+    ('lithui_cut', ('hand', [(2000, 1125.2), (2010, 1140), (2006, 1158), (2017, 1175), (2025, 1190.3)], 0.4)),
+    ('lithlad_s', ('hand', [(1957, 1262), (1990, 1268), (2025, 1257), (2065, 1266), (2105, 1256), (2145, 1266),
+                            (2190, 1259), (2229, 1268)])),
     ('nurn_n', ('river', 5122)),
     ('nurn_s', ('river', 5123)),
     ('mordor_east', ('hand', [(2256.3, 1112.3), (2245, 1170), (2232, 1240), (2226, 1300), (2232, 1360), (2240.5, 1420.3)])),
@@ -452,15 +486,15 @@ LINES = [
     ('khand_n', ('hand', [(2241.1, 1422.7), (2290, 1440), (2340, 1428), (2406, 1445)])),
     ('rhun_khand', ('hand', [(2256.3, 1112.3), (2300, 1128), (2345, 1115), (2406, 1132)])),
     ('rhun_se', ('hand', [(2235.3, 870), (2255, 920), (2240, 985), (2262, 1050), (2256.3, 1112.3)])),
-    ('rhun_ne', ('hand', [(2326.5, 710.1), (2360, 712), (2406, 712)])),
+    ('rhun_ne', ('hand', [(2326.5, 710.1), (2345, 704), (2365, 714), (2385, 706), (2406, 712)])),
     ('rhun_w', ('hand', [(1990, 932.3), (1975, 980), (1988, 1030), (1972, 1085), (1975, 1133.5)])),
-    ('dorwinion_s', ('poly', [(2068.0, 850), (2074, 850), (2080.3, 850)])),
+    ('dorwinion_s', ('poly', [(2079.6, 885.9), (2081, 885.5), (2082.7, 885.1)])),  # where the hills reach the shore
     ('hills_rhun', ('range_at', (2030, 860))),
     ('rhun_forest', ('forest_at', (2290, 650), {'to_water': 7})),
     # ---------- Erebor, Dale, the Iron Hills ----------
     ('erebor', ('range_at', (1612, 317))),
-    ('eotheod_e', ('poly', [(1545.2, 289.6), (1545.1, 275), (1545, 259.7)])),
-    ('thranduil_ne', ('hand', [(1547.5, 326), (1562, 333), (1580, 336), (1598, 342), (1613.4, 349.2)])),
+    ('dale_w', ('poly', [(1545.2, 289.6), (1545.1, 275), (1545, 259.7)])),
+    ('thranduil_ne', ('hand', [(1547.5, 326), (1556, 334), (1570, 333), (1580, 339), (1592, 338), (1600, 345), (1613.4, 349.2)])),
     ('thranduil_se', ('poly', [(1603.2, 418.8), (1605.5, 416.5), (1607.5, 413.9)])),
     ('dale_s', ('hand', [(1615.5, 368), (1670, 398), (1740, 408), (1800, 438), (1850, 440), (1895, 450)])),
     ('dale_e', ('hand', [(1765, 263), (1758, 285), (1761, 305), (1762.1, 324.3)])),
@@ -477,11 +511,13 @@ LINES = [
     ('rhov_mid', ('hand', [(1627.1, 700), (1700, 722), (1780, 718), (1860, 738), (1930, 733), (1990, 740)])),
     ('brown_e', ('hand', [(1600, 761.3), (1615, 815), (1607, 870), (1625, 925), (1632, 950), (1628, 985), (1640, 1020)])),
     ('brown_mid', ('hand', [(1397.4, 948), (1450, 958), (1510, 944), (1570, 956), (1632, 950)])),
-    ('dead_n', ('hand', [(1543.4, 1022.5), (1570, 1030), (1598, 1035)])),
-    ('dead_e', ('hand', [(1598, 1035), (1601, 1060), (1606, 1090), (1611.3, 1115.7)])),
+    ('dead_marsh', ('marsh_at', (1545, 1095), 12, 22, [(1560, 1094)])),
+    ('dead_marsh_w', ('poly', [(1490.5, 1081.0), (1494, 1082.5), (1497.5, 1084.0)])),
+    ('dead_marsh_e', ('hand', [(1593.5, 1084.7), (1598.5, 1082), (1603.8, 1079.2)], 0.3)),
+    ('dead_e', ('hand', [(1598, 1035), (1604, 1050), (1600, 1068), (1608, 1090), (1606, 1104), (1611.3, 1115.7)])),
     ('dagorlad_n', ('hand', [(1598, 1035), (1640, 1020), (1690, 1010), (1735, 1005)])),
     ('dagorlad_e', ('hand', [(1735, 1005), (1728, 1045), (1742, 1090), (1738, 1139.3)])),
-    ('nindalf_e', ('hand', [(1490, 1092), (1505, 1130), (1522, 1160), (1545, 1179)])),
+    ('nindalf_e', ('hand', [(1515.2, 1123.0), (1517, 1140), (1524, 1160), (1545, 1179)])),  # the Wetwang meets the Dead Marshes
 ]
 
 SNAP = {}
@@ -515,9 +551,9 @@ CITIES = [
     ('Minas Tirith', (1538.0, 1276.0), 'City'), ('Cair Andros', (1538.0, 1221.0), 'Fortress'),
     ('Osgiliath', (1563.0, 1279.1), 'Ruins', ['pelennor', 'north_ithilien', 'south_ithilien']),
     ('Minas Morgul', (1606.0, 1274.0), 'Fortress'), ('Cirith Ungol', (1635.7, 1267.5), 'Tower', ['morgai', 'ephel_duath', 'imlad_morgul']),
-    ('Morannon', (1627.0, 1117.4), 'Gate', ['udun', 'dagorlad']), ('Durthang', (1619.7, 1165.7), 'Fortress'),
+    ('Morannon', (1627.0, 1117.4), 'Gate', ['udun', 'dagorlad', 'morgai', 'w_lithui']), ('Durthang', (1619.7, 1165.7), 'Fortress'),
     ('Isenmouthe', (1655.0, 1159.9), 'Gate', ['udun', 'gorgoroth', 'w_lithui']), ('Barad-dûr', (1762.5, 1195.5), 'Fortress'),
-    ('Caras Galadhon', (1268.0, 775.0), 'City'), ('Dol Guldur', (1414.0, 744.0), 'Fortress'),
+    ('Caras Galadhon', (1258.0, 767.0), 'City'), ('Dol Guldur', (1414.0, 744.0), 'Fortress'),
     ("Beorn's House", (1351.3, 435.0), 'House'),
     ('Rhosgobel', (1385.3, 442.7), 'House', ['carrock', 'northern_mirkwood']),
     ('Halls of Thranduil', (1561.8, 354.2), 'Halls'), ('Dale', (1614.5, 340.1), 'City'),
@@ -525,9 +561,9 @@ CITIES = [
 ]
 CITY_RADIUS = 6.0
 # a city whose map symbol is bigger than a dot gets a disc that shows round the symbol
-CITY_RADII = {'Minas Tirith': 14, 'Minas Morgul': 14, 'Barad-dûr': 14, 'Dol Guldur': 14, 'Isengard': 13,
+CITY_RADII = {'Minas Tirith': 14, 'Minas Morgul': 9, 'Barad-dûr': 14, 'Dol Guldur': 14, 'Isengard': 13,
               'Dol Amroth': 9.5, 'Grey Havens': 9, 'Fornost': 9, "Beorn's House": 9, 'Annúminas': 8.5,
-              'Carn Dûm': 8.5, 'Edhellond': 7.5}
+              'Carn Dûm': 8.5, 'Edhellond': 7.5, 'Bucklebury': 4.5}
 
 # District names: a point names whichever district it falls in (earlier entries win). Places from the books,
 # set where the base map letters them or where the books put them; a city's own name belongs to its disc.
@@ -542,10 +578,10 @@ HINTS = [
     (640, 430, 'Oatbarton'), (655, 452, 'Bindbole Wood'), (580, 420, 'North Moors'),
     (662, 463, 'Scary'), (656, 494, 'Frogmorton'), (678, 506, 'The Marish'), (652, 521, 'Woody End'),
     (628, 527, 'Green Hill Country'), (590, 566, 'Pincup'), (640, 585, 'Longbottom'), (703, 551, 'Overbourn Marshes'),
-    (688, 489, 'Newbury'), (686, 514, 'Haysend'),
+
     # Bree-land, Arthedain, Cardolan
-    (792, 499, 'Staddle'), (806, 497, 'Combe'), (814, 476, 'Archet'),
-    (790, 560, 'Andrath'), (716, 610, 'Sarn Ford'),
+    (790, 495, 'Staddle'), (807, 492, 'Combe'), (800, 462, 'Archet'),
+    (790, 527, 'Andrath'), (716, 610, 'Sarn Ford'),
     # Rhudaur, Angmar, the Misty Mountains
     (1039, 502, 'Last Bridge'), (1150, 510, 'Ford of Bruinen'), (1135, 345, 'Ettendales'),
     (1250, 462, 'High Pass'), (1235, 450, 'Goblin-town'), (1258, 438, "Eagles' Eyrie"),
@@ -564,7 +600,7 @@ HINTS = [
     (1479, 1234, 'Eilenach'), (1513, 1280, 'Mindolluin'), (840, 1365, 'Mouth of Lefnui'), (1543, 1631, 'Harad Road'),
     # Rhovanion
     (1282, 286, 'Framsburg'), (1322, 438, 'Ford of Carrock'), (1354, 479, 'Old Ford'),
-    (1320, 630, 'Loeg Ningloron'), (1384, 900, 'North Undeep'), (1420, 945, 'South Undeep'),
+    (1384, 900, 'North Undeep'), (1420, 945, 'South Undeep'),
     (1423, 1095, 'Tol Brandir'), (1446, 1074, 'Amon Lhaw'), (1413, 1064, 'Sarn Gebir'),
     (1480, 375, 'Enchanted River'), (1520, 455, 'Old Forest Road'),
     # Mordor

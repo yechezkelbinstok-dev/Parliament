@@ -114,6 +114,64 @@ class Build:
         cs = geom.chaikin(list(ln.coords), 2)
         return [tuple(pts[0])] + cs + [tuple(pts[-1])]
 
+    def art(self, layer, bbox):
+        """The base map's drawing of one layer (mountain strokes, say) inside bbox, as shapes."""
+        import json, re
+        import mepdf
+        if not hasattr(self, '_base'):
+            self._base = json.load(open(os.path.join(CACHE, 'base.json')))
+        out = []
+        for grp in self._base['layers'][layer]:
+            m = list(map(float, re.findall(r'-?\d+(?:\.\d+)?', grp.get('t', '')))) or [1, 0, 0, 1, 0, 0]
+            a, b, c, d, e, f = m
+            filled = grp['a'].get('fill', 'none') != 'none'
+            for pts, closed in mepdf.parse_d(grp['d'], tol=0.2):
+                P = [(a * x + c * y + e, b * x + d * y + f) for x, y in pts]
+                if len(P) < 2 or not shapely.box(*bbox).intersects(LineString(P)):
+                    continue
+                out.append(Polygon(P).buffer(0) if filled and closed and len(P) > 2 else LineString(P).buffer(0.8))
+        return out
+
+    def hollow(self, pt, r, bbox, mouth=None):
+        """Open ground the map's mountains close round (the vale of Udûn): the gap in their drawing that holds
+        pt, once the spaces between neighbouring strokes (under 2r) are filled. A vale that opens out of the
+        range (Imlad Morgul) is shut across its mouth: mouth = (a point in the range, the mouth's two ends
+        on the range outline, a point on the outline inside the notch)."""
+        parts = self.art('mountain', bbox)
+        if mouth:
+            rng = self.find('range', mouth[0])
+            notch = Polygon(self.ring_part(rng.exterior, mouth[1], mouth[2], mouth[3])).buffer(0)
+            parts.append(shapely.box(*bbox).difference(unary_union([rng, notch]).buffer(0.01)))
+        m = unary_union(parts).buffer(r).buffer(-r)
+        P = Point(pt)
+        for p in polys(m):
+            for h in p.interiors:
+                if Polygon(h).contains(P):
+                    return Polygon(h).simplify(0.3)
+        raise ValueError(f'no hollow in the mountains round {pt}')
+
+    def marsh(self, pt, margin=12.0, link=32.0, extra=()):
+        """The fen the map's marsh symbols mark round pt: the tufts linked to the one nearest pt (each within
+        `link` of the next), and any `extra` points (where the map letters the fen's name), wrapped in a
+        smooth outline `margin` outside them."""
+        import networkx as nx
+        if not hasattr(self, '_tufts'):
+            u = unary_union(self.art('marsh', (0, 0, 2448, 1728)))
+            self._tufts = [p.centroid for p in polys(u)]
+        T = self._tufts
+        G = nx.Graph()
+        G.add_nodes_from(range(len(T)))
+        for i in range(len(T)):
+            for j in range(i + 1, len(T)):
+                if T[i].distance(T[j]) < link:
+                    G.add_edge(i, j)
+        P = Point(pt)
+        start = min(range(len(T)), key=lambda i: T[i].distance(P))
+        cl = [T[i] for i in nx.node_connected_component(G, start)] + [Point(q) for q in extra]
+        hull = shapely.concave_hull(shapely.MultiPoint(cl), ratio=0.5)
+        g = hull.buffer(margin, quad_segs=12).buffer(-margin / 2).buffer(margin / 2).simplify(0.3)
+        return g.difference(self.F['water']).buffer(0)
+
     def hand(self, name, pts, wig=1.0):
         """A drawn border through the given points: a smooth curve with a little natural unevenness."""
         cs = geom.catmull(pts, step=2.0)
@@ -163,6 +221,11 @@ class Build:
             return [(list(r.coords), True) for r in [g.exterior] + list(g.interiors)]
         if kind == 'crest':
             return [(self.spine(self.find('range', spec[1]), spec[2]), False)]
+        if kind == 'hollow':
+            return [(list(self.hollow(*spec[1:]).exterior.coords), True)]
+        if kind == 'marsh_at':
+            g = max(polys(self.marsh(*spec[1:])), key=lambda p: p.area)
+            return [(list(g.exterior.coords), True)]
         if kind == 'axis':
             poly = max(polys(self.F['anduin_poly'].buffer(0)), key=lambda p: p.area)
             return [(self.spine(poly, spec[1]), False)]
@@ -413,6 +476,19 @@ class Build:
             piece = min(parts, key=lambda p: p.distance(P) - 1e-3 * p.area)
             if piece.area < 0.6 * math.pi * R * R:
                 self.notes.append(f'city {name} keeps {piece.area / (math.pi * R * R):.0%} of its disc')
+            # a scrap of land or water the disc cuts off from the rest of its province (the tip of a lake,
+            # a strip of shore) goes with the city rather than standing alone
+            for pid in pids:
+                rest = polys(self.prov[pid].difference(piece).buffer(0))
+                if len(rest) < 2:
+                    continue
+                main = max(rest, key=lambda p: p.area)
+                for p in rest:
+                    if p is not main and p.area < 0.5 * math.pi * R * R and p.distance(piece) < 0.05:
+                        u = unary_union([piece, p]).buffer(0)
+                        if u.geom_type == 'Polygon':
+                            piece = u
+                            self.prov[pid] = self.prov[pid].difference(p).buffer(0)
             owner = pids[0]
             for pid in pids[1:]:
                 if self.prov[pid].intersects(piece):
@@ -523,7 +599,8 @@ class Build:
                     touch = [(sl.boundary.intersection(p.buffer(0.05)).length, i) for i, (p, _) in enumerate(pieces)]
                     L, i = max(touch)
                     if L <= 0:
-                        i = max(range(len(pieces)), key=lambda j: pieces[j][0].area)
+                        pieces.append((sl, None))  # touches nothing else of its province: a district of its own
+                        continue
                     pieces[i] = (unary_union([pieces[i][0], sl]), pieces[i][1])
             # attach tiny unnamed slivers of manual provinces to the biggest named piece
             names = self.name_districts(pid, [p for p, _ in pieces], [n for _, n in pieces], g)
