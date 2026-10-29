@@ -1,254 +1,256 @@
 == Results ==
 {{Election results
-|image=<!--[[File:Israeli Knesset Composition 2026.svg]]-->
-|reporting=91.731
+|image=[[File:Israeli Knesset Composition 2026.svg]]
+|reporting=93.829
 
 |header1=By party{{efn|Seat changes for lists formed or split since 2022 are counted from their predecessors' seats: the Joint List from [[Hadash–Ta'al]] (5), Together from [[Yesh Atid]] (24), the Democrats from [[Israeli Labor Party|Labor]] (4), and Otzma Yehudit (6), RZP–Zehut (7) and Noam (1) from their shares of the 14 seats won by the [[Religious Zionist Party]] joint list.}}
 
 |party2=[[Likud]]
-|votes2=1075555
-|seats2=
-|sc2=−6
+|votes2=1097210
+|seats2=26
+|sc2=−10
 
 |party3=[[Yashar (political party)|Yashar]]
-|votes3=840233
-|seats3=
+|votes3=858953
+|seats3=21
 |sc3=New
 
-|party4=[[Joint List]]
-|votes4=476327
-|seats4=
-|sc4=+6
+|party4=[[Together (Israel)|Together]]
+|votes4=485082
+|seats4=12
+|sc4=−12
 
-|party5=[[Together (Israel)|Together]]
-|votes5=470049
-|seats5=
-|sc5=−12
+|party5=[[Joint List]]
+|votes5=483329
+|seats5=11
+|sc5=+6
 
 |party6=[[The Democrats (Israel)|The Democrats]]
-|votes6=337176
-|seats6=
+|votes6=344604
+|seats6=8
 |sc6=+4
 
 |party7=[[Ra'am]]
-|votes7=317999
-|seats7=
+|votes7=322230
+|seats7=8
 |sc7=+3
 
 |party8=[[Yisrael Beiteinu]]
-|votes8=308740
-|seats8=
+|votes8=315661
+|seats8=7
 |sc8=+1
 
-|party9=[[United Torah Judaism]]
-|votes9=291969
-|seats9=
+|party9=[[Otzma Yehudit]]
+|votes9=297789
+|seats9=7
 |sc9=0
 
-|party10=[[Otzma Yehudit]]
-|votes10=289703
-|seats10=
-|sc10=+1
+|party10=[[United Torah Judaism]]
+|votes10=297552
+|seats10=7
+|sc10=0
 
 |party11=[[Shas]]
-|votes11=275613
-|seats11=
+|votes11=281218
+|seats11=7
 |sc11=−4
 
 |party12=[[Religious Zionist Party|Religious Zionism]]–[[Zehut]]
-|votes12=246661
-|seats12=
+|votes12=256708
+|seats12=6
 |sc12=−1
 
 |party13=[[The Reservists (political party)|The Reservists]]–[[New Economic Party|New Economic]]
-|votes13=137183
-|seats13=
+|votes13=141343
+|seats13=0
 |sc13=New
 
 |party14=[[Amcha Yisrael]]
-|votes14=83761
-|seats14=
+|votes14=86476
+|seats14=0
 |sc14=New
 
 |party15=[[Jerusalem Faction|The Color Black]]
-|votes15=10049
-|seats15=
+|votes15=10367
+|seats15=0
 |sc15=New
 |color15=black
 
 |party16=[[Haredi Public]]
-|votes16=9417
-|seats16=
+|votes16=9695
+|seats16=0
 |sc16=New
 |color16=#f5c518
 
 |party17=[[Noam (political party)|Noam]]
-|votes17=8005
-|seats17=
+|votes17=8428
+|seats17=0
 |sc17=−1
 
 |party18=[[Tzomet]]–[[Gadi Yevarkan|Beit Yisrael]]
-|votes18=5246
-|seats18=
+|votes18=5366
+|seats18=0
 |sc18=0
 
 |party19=Partnership for Everyone
-|votes19=3855
-|seats19=
+|votes19=3960
+|seats19=0
 |sc19=New
 |color19=teal
 
 |party20=Sharshar for Love and Unity of the People
-|votes20=1870
-|seats20=
+|votes20=1928
+|seats20=0
 |sc20=New
 |color20=salmon
 
 |party21=Together We Will Succeed
-|votes21=1324
-|seats21=
+|votes21=1372
+|seats21=0
 |sc21=New
 |color21=#D01A21
 
 |party22=Hakahal Party
-|votes22=930
-|seats22=
+|votes22=965
+|seats22=0
 |sc22=New
 |color22=#7FD3F3
 
 |party23=[[Israel First]]–[[Ale Yarok]]
-|votes23=892
-|seats23=
+|votes23=907
+|seats23=0
 |sc23=New
 
-|party24=Fixing the Electoral and Governing System
-|votes24=869
-|seats24=
-|sc24=New
-|color24=#E14227
+|party24=[[Pirate Party of Israel]]
+|votes24=906
+|seats24=0
+|sc24=0
 
-|party25=Garden of Eden
-|votes25=866
-|seats25=
+|party25=Fixing the Electoral and Governing System
+|votes25=883
+|seats25=0
 |sc25=New
-|color25=#ABEC03
+|color25=#E14227
 
-|party26=[[Pirate Party of Israel]]
-|votes26=866
-|seats26=
-|sc26=0
+|party26=Garden of Eden
+|votes26=876
+|seats26=0
+|sc26=New
+|color26=#ABEC03
 
 |party27=New Order
-|votes27=859
-|seats27=
+|votes27=874
+|seats27=0
 |sc27=0
 |color27=#00FFF0
 
 |party28=Ani VeAta
-|votes28=774
-|seats28=
+|votes28=807
+|seats28=0
 |sc28=New
 |color28=#101B68
 
 |party29=Shema
-|votes29=730
-|seats29=
+|votes29=742
+|seats29=0
 |sc29=0
 |color29=#6FA4E8
 
 |party30=Just Law
-|votes30=689
-|seats30=
+|votes30=717
+|seats30=0
 |sc30=New
 |color30=beige
 
 |party31=Dawn's Light
-|votes31=673
-|seats31=
+|votes31=693
+|seats31=0
 |sc31=New
 |color31=#FFF700
 
 |party32=Women's Voice
-|votes32=631
-|seats32=
+|votes32=647
+|seats32=0
 |sc32=New
 |color32=pink
 
 |party33=Redemption
-|votes33=523
-|seats33=
+|votes33=536
+|seats33=0
 |sc33=New
 |color33=orange
 
 |party34=Social Security
-|votes34=423
-|seats34=
+|votes34=442
+|seats34=0
 |sc34=New
 |color34=#964B00
 
 |party35=Personal Security
-|votes35=415
-|seats35=
+|votes35=433
+|seats35=0
 |sc35=New
 |color35=indigo
 
 |party36=[[Bible Bloc Party|The Bible Bloc]]
-|votes36=380
-|seats36=
+|votes36=388
+|seats36=0
 |sc36=0
 
 |party37=[[Brit Olam|Eternal Covenant]]
-|votes37=229
-|seats37=
+|votes37=237
+|seats37=0
 |sc37=New
 |color37=#12304C
 
 |party38=Achi <i>(withdrawn)</i>
-|votes38=48
+|votes38=49
 |color38=#E8F48C
 
 |party39=[[Blue and White (political party)|Blue and White]] <i>(withdrawn)</i>
-|votes39=27
+|votes39=31
 
 |total_sc=0
+|sc39=−8
 
-|invalid=23171
+|invalid=23794
 |electorate=7331981
-|totalvotes=5695682 <!-- CEC turnout figure (77.7%), double-envelope voters included; 5,224,730 of these counted so far -->
+|totalvotes=5695682 <!-- CEC turnout figure (77.7%), double-envelope voters included; 5,344,198 of these counted so far -->
 |source=[[Central Elections Committee]]<ref name="CEC-results">{{cite web |title=Results of the Elections for the 26th Knesset: National Results |url=https://votes26.bechirot.gov.il/nationalresults?lang=en |website=votes26.bechirot.gov.il |publisher=[[Central Elections Committee]] |access-date=29 October 2026 |archive-url=https://web.archive.org/web/20261028122525/https://votes26.bechirot.gov.il/nationalresults?lang=en |archive-date=28 October 2026 |url-status=live}}</ref>
 
-<!--|embedded={{Election results|embed=y
+|embedded={{Election results|embed=y
 |image=[[File:Israeli Knesset Blocs 2026.svg]]
 
 |header1=By bloc{{efn|Seat changes are counted from the blocs' seats in the [[2022 Israeli legislative election|2022 election]]: 64 for the Netanyahu bloc, 46 for the non-Arab parties of the [[Change bloc|anti-Netanyahu bloc]] ([[Yesh Atid]], [[National Unity (Israel)|National Unity]], [[Yisrael Beiteinu]] and [[Israeli Labor Party|Labor]]), and 10 for the Arab parties ([[Ra'am]] and [[Hadash–Ta'al]]).}}
 
 |party2=[[National camp|Netanyahu's bloc]] ([[Likud]] + [[United Torah Judaism|UTJ]] + [[Otzma Yehudit|Otzma]] + [[Shas]] + [[Religious Zionist Party|RZP]]–[[Zehut]])
-|votes2=2179501
+|votes2=2230477
 |seats2=53
 |sc2=−11
 |color2={{party color|Likud}}
 
 |party3=[[Change bloc|Eisenkot's bloc]] ([[Yashar (political party)|Yashar]] + [[Together (Israel)|Together]] + [[The Democrats (Israel)|Democrats]] + [[Yisrael Beiteinu]])
-|votes3=1956198
+|votes3=2004300
 |seats3=48
 |sc3=+2
 |color3={{party color|Yashar (political party)}}
 
 |party4=Arab parties ([[Joint List]] + [[Ra'am]])
-|votes4=794326
+|votes4=805559
 |seats4=19
 |sc4=+9
 |color4=#007A3D
 
 |party5=Others
-|votes5=271534
+|votes5=280068
 |seats5=0
 |sc5=0
 |color5=#dcdcdc
 
 |total_sc=0
 |source=[[Central Elections Committee]]<ref name="CEC-results"/>
-}}-->}}
+}}
+}}
 
 ===Exit polls===
 As of 02:17 [[Israel Standard Time]] on 28 October 2026, seven [[exit poll]]s were released and updated:
