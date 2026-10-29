@@ -1,0 +1,102 @@
+title: 2026 Israeli legislative election
+languages: 40
+---
+{{Short description|none}}
+{{current election|date=October 2026}}
+{{pp-semi-indef|small=yes}}
+{{Use dmy dates|date=October 2026}}
+{{Infobox legislative election
+| country = Israel
+| previous_election = [[2022 Israeli legislative election|2022]]
+| next_election = ''Next''
+| election_date = {{Start date|2026|10|27|df=y}}
+| opinion_polls = Opinion polling for the 2026 Israeli legislative election
+| seats_for_election = All 120 seats in the [[Knesset]]
+| ongoing = no
+| majority_seats = 61
+| turnout = 77.7% ({{increase}} 7.07pp)
+| reporting = 90.54
+| last_update = 02:00, 29 October 2026
+| time_zone = [[Israel Standard Time|IST]]
+| heading1 = [[National camp|Netanyahu's bloc]] (53 seats)
+| party1 = [[Likud]]{{efn|In a vote-sharing agreement with RZP-Zehut}}
+| leader1 = [[Benjamin Netanyahu]]
+| percentage1 = 20.66
+| seats1 = 26
+| last_election1 = 32
+| party2 = United Torah Judaism
+| leader2 = [[Ya'akov Asher]]
+| percentage2 = 5.65
+| seats2 = 7
+| last_election2 = 7
+| party3 = Otzma Yehudit
+| leader3 = [[Itamar Ben-Gvir]]
+| percentage3 = 5.53
+| seats3 = 7
+| last_election3 = 6
+| party4 = Shas
+| leader4 = [[Aryeh Deri]]
+| percentage4 = 5.30
+| seats4 = 7
+| last_election4 = 11
+| party5 = [[Religious Zionist Party|RZP]]–<wbr>[[Zehut]]{{efn|In a vote-sharing agreement with Likud}}
+| leader5 = [[Bezalel Smotrich]]{{efn|Zehut is led by [[Moshe Feiglin]].}}
+| percentage5 = 4.70
+| seats5 = 6
+| last_election5 = 7
+| heading6 = [[Change bloc|Eisenkot's bloc]] (48 seats)
+| party6 = [[Yashar (political party)|Yashar]]{{efn|In a vote-sharing agreement with the Democrats}}
+| leader6 = [[Gadi Eisenkot]]
+| percentage6 = 16.21
+| seats6 = 21
+| last_election6 = New
+| party7 = Together (Israel)
+| leader7 = [[Naftali Bennett]]{{efn|Together is a joint list between [[Bennett 2026]], headed by Bennett, and [[Yesh Atid]], headed by [[Yair Lapid]], with Bennett heading the combined list.<ref>{{cite web|url=https://www.timesofisrael.com/naftali-bennett-and-yair-lapid-announce-united-run-under-bennett-in-2026-elections/|title=Naftali Bennett and Yair Lapid announce united run under Bennett in 2026 elections|date=26 April 2026|access-date=25 May 2026|work=The Times of Israel|last1=Sokol|first1=Sam}}</ref>}}
+| percentage7 = 9.03
+| seats7 = 12
+| last_election7 = 24
+| party8 = [[The Democrats (Israel)|Democrats]]{{efn|In a vote-sharing agreement with Yashar.}}
+| leader8 = [[Yair Golan]]
+| percentage8 = 6.52
+| seats8 = 8
+| last_election8 = 4
+| party9 = Yisrael Beiteinu
+| leader9 = [[Avigdor Lieberman]]
+| percentage9 = 5.94
+| seats9 = 7
+| last_election9 = 6
+| heading10 = Arab parties (19 seats)
+| party10 = [[Joint List]]{{efn|The alliance includes [[Balad (political party)|Balad]], [[Hadash]], and [[Ta'al]].}}
+| leader10 = [[Yousef Jabareen]]
+| percentage10 = 9.19
+| seats10 = 12
+| last_election10 = 5
+| party11 = Ra'am
+| leader11 = [[Mansour Abbas]]
+| percentage11 = 6.06
+| seats11 = 7
+| last_election11 = 5
+<!--
+| party12 = [[The Reservists (political party)|Reservists]]–<wbr>[[New Economic Party|NEP]]
+| leader12 = [[Yoaz Hendel]]{{efn|The New Economic Party is led by [[Yaron Zelekha]].}}
+| percentage12 = 2.63
+| seats12 = 0
+| last_election12 = 0
+-->| title = [[Prime Minister of Israel|Prime Minister]]
+| before_election = [[Benjamin Netanyahu]]
+| before_party = [[Likud]]
+| after_election =
+| after_party =
+}}
+
+Legislative elections were held in [[Israel]] on 27 October 2026 to elect all 120 members of the [[26th Knesset]] and determine the governing coalition that succeeds the [[Thirty-seventh government of Israel|37th government]] led by Prime Minister [[Benjamin Netanyahu]].
+
+The outgoing [[25th Knesset]] became the first Israeli legislature to complete its full four-year term without early dissolution since 1988, ending the prolonged [[2018–2022 Israeli political crisis|political crisis of 2018–2022]] that saw five consecutive snap elections. However, the government's tenure was marked by political turmoil, including [[2023 Israeli judicial reform protests|mass protests]] over [[2023 Israeli judicial reform|judicial reform]], the [[7 October attacks]] and the subsequent [[Gaza war]], and recurring coalition crises over [[Haredi conscription in Israel|Haredi military conscription]].
+
+In this [[proportional representation]] system, parties must meet a 3.25% [[electoral threshold]] to enter the legislature.<ref name=nbc>{{cite web |title=High turnout in Israel’s election and Trump administration seeks to block alleged noncitizen votes: Morning Rundown |url=https://www.nbcnews.com/news/us-news/israel-election-netanyahu-trump-noncitizen-votes-morning-rundown-rcna605877 |website=NBC News |access-date=27 October 2026}}</ref>
+
+== Notes ==
+{{Notelist}}
+
+== References ==
+{{Reflist}}
