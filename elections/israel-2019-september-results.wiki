@@ -1,0 +1,134 @@
+== Results ==
+{{Election results
+|image=[[File:Israel Knesset Sept 2019.svg]]
+|party1=[[Blue and White (political alliance)|Blue and White]]|votes1=1151214|seats1=33|sc1=–2
+|party2=[[Likud]]|votes2=1113617|seats2=32|sc2=–6
+|party3=[[Joint List]]|votes3=470211|seats3=13|sc3=+3
+|party4=[[Shas]]|votes4=330199|seats4=9|sc4=+1
+|party5=[[Yisrael Beiteinu]]|votes5=310154|seats5=8|sc5=+3
+|party6=[[United Torah Judaism]]|votes6=268775|seats6=7|sc6=–1
+|party7=[[Yamina]]|color7=#b7cc15|votes7=260655|seats7=7|sc7=+1
+|party8=[[Israeli Labor Party|Labor]]–[[Gesher (2019 political party)|Gesher]]|votes8=212782|seats8=6|sc8=0
+|party9=[[Democratic Union (Israel)|Democratic Union]]|votes9=192495|seats9=5|sc9=+1
+|party10=[[Otzma Yehudit]]|votes10=83609|seats10=0|sc10=0
+|party11=[[Tzomet]]|votes11=14805|seats11=0|sc11=0
+|party12=Popular Unity|votes12=5946|seats12=0|sc12=New
+|party13=Red and White|votes13=4358|seats13=0|sc13=New|color13=#ffc0cb
+|party14=Justice|votes14=3053|seats14=0|sc14=New
+|party15=[[Secular Right]]|votes15=2395|seats15=0|sc15=New|color15=#22254E
+|party16=Respect and Equality|votes16=1545|seats16=0|sc16=New
+|party17=Our Rights In Our Vote|votes17=1473|seats17=0|sc17=0|color17=gray
+|party18=[[Pirate Party of Israel|Pirate Party]]|votes18=1236|seats18=0|sc18=0|color18=black
+|party19=Economic Power|votes19=1193|seats19=0|sc19=New
+|party20=[[Leader (political party)|Liberal Democratic Progressive Party]]|votes20=1033|seats20=0|sc20=New
+|party21=Kama|votes21=994|seats21=0|sc21=New
+|party22=New Order|votes22=928|seats22=0|sc22=0
+|party23=Democracy Party|votes23=736|seats23=0|sc23=New
+|party24=North|votes24=725|seats24=0|sc24=New
+|party25=[[Ihud Bnei HaBrit|Liberal Christian Movement]]|votes25=610|seats25=0|sc25=0
+|party26=[[Da'am Workers Party]]|votes26=592|seats26=0|sc26=0
+|party27=Human Dignity|votes27=542|seats27=0|sc27=0|color27=lightskyblue
+|party28=[[Bible Bloc Party|Bible Bloc]]|votes28=497|seats28=0|sc28=0|color28=orange
+|party29=Social Leadership|votes29=434|seats29=0|sc29=New|color29=#bdb76b
+|invalid=28362
+|total_sc=0
+|electorate=6394030
+|source=[https://votes22.bechirot.gov.il/nationalresults CEC], [https://www.timesofisrael.com/checked-and-double-checked-elections-committee-publishes-final-results/ The Times of Israel]
+
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs September 2019.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these lists or their predecessors won in the [[April 2019 Israeli legislative election|April 2019 election]]: 60 for the right-wing bloc (Likud 35 and [[Kulanu]] 4, which merged; Shas 8; UTJ 8; the [[Union of Right-Wing Parties]] 5, now part of Yamina), 45 for the center-left bloc (Blue and White 35, Labor 6, Meretz 4), 10 for the two Arab lists that formed the Joint List, and 5 for Yisrael Beiteinu, then counted in the right-wing bloc.}}
+
+|party2=[[National camp|Right-wing bloc]] ([[Likud]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[Yamina]])
+|votes2=1973246
+|seats2=55
+|sc2=−5
+|color2={{party color|Likud}}
+
+|party3=[[Change bloc|Center-left bloc]] ([[Blue and White (political alliance)|Blue and White]] + [[Israeli Labor Party|Labor]]–[[Gesher (2019 political party)|Gesher]] + [[Democratic Union (Israel)|Democratic Union]])
+|votes3=1556491
+|seats3=44
+|sc3=−1
+|color3=#FF454C
+
+|party4=Arab parties ([[Joint List]])
+|votes4=470211
+|seats4=13
+|sc4=+3
+|color4=#007A3D
+
+|party5=[[Yisrael Beiteinu]]
+|votes5=310154
+|seats5=8
+|sc5=+3
+|color5=#A0A0A0
+
+|party6=Others
+|votes6=126704
+|seats6=0
+|sc6=0
+|color6=#dcdcdc
+
+|total_sc=0
+|source=[https://votes22.bechirot.gov.il/nationalresults CEC], [https://www.timesofisrael.com/checked-and-double-checked-elections-committee-publishes-final-results/ The Times of Israel]
+}}
+}}
+
+===Members of the Knesset who lost their seats===
+{| class="wikitable sortable" style="font-size: 95%;"
+!colspan=2|Party
+!Name
+!Year elected
+!Notes
+|-
+! rowspan=1 style="background-color: #0085FF" |
+| rowspan=1|[[The Jewish Home]]
+|[[Eli Ben-Dahan]] 
+|[[2013 Israeli legislative election|2013]]
+|
+|-
+! rowspan=1 style="background-color: {{party color|Meretz}}" |
+| rowspan=1|[[Meretz]]
+|[[Issawi Frej]]
+|[[2013 Israeli legislative election|2013]]
+|
+|-
+! rowspan=2 style="background-color: {{party color|Blue and White (political alliance)}}" |
+| rowspan=2|[[Blue and White (political alliance)|Blue and White]]
+|[[Yorai Lahav-Hertzanu]] 
+|[[April 2019 Israeli legislative election|2019]]
+|
+|-
+|[[Idan Roll]] 
+|[[April 2019 Israeli legislative election|2019]]
+|
+|-
+! rowspan=5 style="background-color: {{party color|Likud}}" |
+| rowspan=5|[[Likud]]
+|[[Uzi Dayan]]
+|[[April 2019 Israeli legislative election|2019]]
+|<ref name=toi19sept/>
+|-
+|[[May Golan]]
+|[[April 2019 Israeli legislative election|2019]]
+|<ref name=toi19sept/>
+|-
+|[[Osnat Mark]]
+|2018
+|<ref name=toi19sept/>
+|-
+|[[Fateen Mulla]]
+|[[April 2019 Israeli legislative election|2019]]
+|<ref name=toi19sept/>
+|-
+|[[Ariel Kellner]]
+|[[April 2019 Israeli legislative election|2019]]
+|<ref name=toi19sept/>
+|-
+! style="background-color: {{party color|United Torah Judaism}}" |
+| [[United Torah Judaism]]
+|[[Yitzhak Pindros]]
+|[[April 2019 Israeli legislative election|2019]]
+|<ref>{{cite web|url=https://www.israelnationalnews.com/News/News.aspx/269393|title=Likud wins additional Knesset seat|work=[[Arutz Sheva]]|date=24 September 2019|access-date=24 September 2019}}</ref>
+|}

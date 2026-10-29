@@ -1,0 +1,205 @@
+==Results==
+{{Election results
+|image=[[File:April Election Result.svg]]
+|party1=[[Likud]]|votes1=1140370|seats1=35|sc1=+5
+|party2=[[Blue and White (political alliance)|Blue and White]]|votes2=1125881|seats2=35|sc2=+24
+|party3=[[Shas]]|votes3=258275|seats3=8|sc3=+1
+|party4=[[United Torah Judaism]]|votes4=249049|seats4=8|sc4=+2
+|party5=[[Hadash]]–[[Ta'al]]|votes5=193442|seats5=6|sc5=0
+|party6=[[Israeli Labor Party|Labor Party]]|votes6=190870|seats6=6|sc6=–13
+|party7=[[Yisrael Beiteinu]]|votes7=173004|seats7=5|sc7=–1
+|party8=[[Union of Right-Wing Parties]]|votes8=159468|seats8=5|sc8=–3
+|party9=[[Meretz]]|votes9=156473|seats9=4|sc9=–1
+|party10=[[Kulanu]]|votes10=152756|seats10=4|sc10=–6
+|party11=[[United Arab List]]–[[Balad (political party)|Balad]]|votes11=143666|seats11=4|sc11=–3
+|party12=[[New Right (Israel)|New Right]]|votes12=138598|seats12=0|sc12=New
+|party13=[[Zehut]]|votes13=118031|seats13=0|sc13=New
+|party14=[[Gesher (2019 political party)|Gesher]]|votes14=74701|seats14=0|sc14=New
+|party15=Social Security|votes15=4618|seats15=0|sc15=New|color15=#e5aa70
+|party16=The Arab List ([[Arab Democratic Party (Israel)|Mada]]–[[Arab National Party|ANP]])|votes16=4135|seats16=0|sc16=0
+|party17=[[Social Justice (political party)|Social Justice]]|votes17=3843|seats17=0|sc17=New|color17=brown
+|party18=Shield of Israel|votes18=3394|seats18=0|sc18=New|color18=#960000
+|party19=Justice for All|votes19=3281|seats19=0|sc19=New|color19=#0ff
+|party20=[[Tzomet]]|votes20=2417|seats20=0|sc20=New
+|party21=Yashar|votes21=1438|seats21=0|sc21=New|color21=#fef478
+|party22=Zekhuyotenu BeKoleinu|votes22=1316|seats22=0|sc22=New|color22=gray
+|party23=Veteran Civil|votes23=1168|seats23=0|sc23=New|color23=#808000
+|party24=Kol Yisrael Ahim|votes24=1140|seats24=0|sc24=New|color24=#cc668d
+|party25=[[Pirate Party of Israel|Pirate Party]]|votes25=819|seats25=0|sc25=0|color25=black
+|party26=Pashut Ahava|votes26=733|seats26=0|sc26=New|color26=#ff355e
+|party27=[[Eretz Yisrael Shelanu]]|votes27=701|seats27=0|sc27=New
+|party28=We are all friends [[Na Nach]]|votes28=624|seats28=0|sc28=0|color28=lightblue
+|party29=MeHathala|votes29=603|seats29=0|sc29=New|color29=#ff91af
+|party30=Hope for Change|votes30=562|seats30=0|sc30=0|color30=#799a00
+|party31=[[Da'am Workers Party|Green Economy – One Nation]]|votes31=556|seats31=0|sc31=0
+|party32=Education|votes32=518|seats32=0|sc32=New|color32=plum
+|party33=Ahrayut LaMeyasdim|votes33=428|seats33=0|sc33=New|color33=#7b3f00
+|party34=Human Dignity|votes34=404|seats34=0|sc34=New|color34=lightskyblue
+|party35=Shavim|votes35=401|seats35=0|sc35=New|color35=lightgreen
+|party36=Social Leadership|votes36=385|seats36=0|sc36=New|color36=#bdb76b
+|party37=Ani VeAta|votes37=368|seats37=0|sc37=New|color37=#eb6109
+|party38=[[Bible Bloc Party|Bible Bloc]]|votes38=353|seats38=0|sc38=New|color38=orange
+|party39=[[Ihud Bnei HaBrit]]|votes39=265|seats39=0|sc39=New|color39=#C6A973
+|party40=[[Brit Olam]]|votes40=216|seats40=0|sc40=0
+|invalid=30983|color40=darkblue
+|total_sc=0
+|electorate=6339729
+|source=[https://web.archive.org/web/20190411205835/https://votes21.bechirot.gov.il/ CEC]
+
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs April 2019.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these lists or their predecessors won in the [[2015 Israeli legislative election|2015 election]]: 67 for the right-wing bloc (Likud 30, Kulanu 10, the [[The Jewish Home|Jewish Home]] 8, Shas 7, Yisrael Beiteinu 6, UTJ 6), 40 for the center-left bloc (the [[Zionist Union]] 24, [[Yesh Atid]] 11, Meretz 5) and 13 for the [[Joint List]], which split into the two Arab lists.}}
+
+|party2=[[National camp|Right-wing bloc]] ([[Likud]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[Yisrael Beiteinu]] + [[Union of Right-Wing Parties|URWP]] + [[Kulanu]])
+|votes2=2132922
+|seats2=65
+|sc2=−2
+|color2={{party color|Likud}}
+
+|party3=[[Change bloc|Center-left bloc]] ([[Blue and White (political alliance)|Blue and White]] + [[Israeli Labor Party|Labor]] + [[Meretz]])
+|votes3=1473224
+|seats3=45
+|sc3=+5
+|color3=#FF454C
+
+|party4=Arab parties ([[Hadash]]–[[Ta'al]] + [[United Arab List|Ra'am]]–[[Balad (political party)|Balad]])
+|votes4=337108
+|seats4=10
+|sc4=−3
+|color4=#007A3D
+
+|party5=Others
+|votes5=366016
+|seats5=0
+|sc5=0
+|color5=#dcdcdc
+
+|total_sc=0
+|source=[https://web.archive.org/web/20190411205835/https://votes21.bechirot.gov.il/ CEC]
+}}
+}}
+
+===Members of the Knesset who lost their seats===
+{| class="wikitable sortable" style="font-size: 95%;"
+!colspan=2|Party
+!Name
+!Year elected
+|-
+! rowspan=1 style="background-color: {{party color|Blue and White (political alliance)}}" |
+| rowspan=1|[[Blue and White (political alliance)|Blue and White]]
+|[[Aliza Lavie]] 
+|[[2013 Israeli legislative election|2013]]
+|-
+! rowspan=1 style="background-color: {{party color|Gesher (2019 political party)}}" |
+| rowspan=1|[[Gesher (2019 political party)|Gesher]]
+|[[Orly Levy]]
+|[[2009 Israeli legislative election|2009]]
+|-
+! rowspan=4 style="background-color: {{party color|Kulanu}}" |
+| rowspan=4|[[Kulanu]]
+|[[Tali Ploskov]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Meirav Ben-Ari]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Akram Hasson]]
+|2016
+|-
+|[[Fentahun Seyoum]]
+|2019
+|-
+! rowspan=11 style="background-color: {{party color|Israeli Labor Party}}" |
+| rowspan=11|[[Israeli Labor Party|Labor]]
+|[[Merav Michaeli]]
+|[[2013 Israeli legislative election|2013]]
+|-
+|[[Omer Bar-Lev]]
+|[[2013 Israeli legislative election|2013]]
+|-
+|[[Revital Swid]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Haim Jelin]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Michal Biran]]
+|[[2013 Israeli legislative election|2013]]
+|-
+|[[Eitan Cabel]]
+|[[1996 Israeli general election|1996]]<ref name="cabel">{{cite web |title=Knesset Member, Eitan Cabel |url=https://www.knesset.gov.il/mk/eng/mk_eng.asp?mk_individual_id_t=64 |website=Knesset |access-date=9 May 2019}}</ref>
+|-
+|[[Yael Cohen Paran]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Saleh Saad]]
+|2017
+|-
+|[[Leah Fadida]]
+|2017
+|-
+|[[Nachman Shai]]
+|[[2009 Israeli legislative election|2009]]
+|-
+|[[Moshe Mizrahi (politician)|Moshe Mizrahi]]
+|2018
+|-
+! rowspan=7 style="background-color: {{party color|Likud}}" |
+| rowspan=7|[[Likud]]
+|[[Ayoob Kara]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Yehuda Glick]]
+|2016
+|-
+|[[Nurit Koren]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Anat Berko]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Yaron Mazuz]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Avraham Neguise]]
+|[[2015 Israeli legislative election|2015]]
+|-
+|[[Nava Boker]]
+|[[2015 Israeli legislative election|2015]]
+|-
+! rowspan=1 style="background-color: {{party color|Meretz}}" |
+| rowspan=1|[[Meretz]]
+|[[Mossi Raz]] 
+|2017
+|-
+! rowspan=3 style="background-color: #0085FF" |
+| rowspan=3|[[New Right (Israel)|New Right]]
+|[[Naftali Bennett]]
+|[[2013 Israeli legislative election|2013]]
+|-
+|[[Ayelet Shaked]]
+|[[2013 Israeli legislative election|2013]]
+|-
+|[[Shuli Mualem]]
+|[[2013 Israeli legislative election|2013]]
+|-
+! style="background-color: {{party color|Tzomet}}" |
+| [[Tzomet]]
+|[[Oren Hazan]]
+|[[2015 Israeli legislative election|2015]]
+|-
+! rowspan=2 style="background-color: #15793D" |
+| rowspan=2|[[United Arab List]]
+|[[Talab Abu Arar]]
+|[[2013 Israeli legislative election|2013]]
+|-
+|[[Said al-Harumi]]
+|2017
+|-
+! rowspan=1 style="background-color: {{party color|Yisrael Beiteinu}}" |
+| rowspan=1|[[Yisrael Beiteinu]]
+|[[Hamad Amar]]
+|[[2009 Israeli legislative election|2009]]
+|-
+|}

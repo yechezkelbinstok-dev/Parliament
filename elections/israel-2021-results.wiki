@@ -1,0 +1,210 @@
+==Results==
+[[File:2021 Israel Election Results by Coalition.svg|thumb|upright=0.9|24th Knesset election result map of winning coalition,{{efn|Unity coalition comprises Yesh Atid, Blue and White, Yamina, Israeli Labor Party, Yisrael Beiteinu, New Hope, Meretz, and Ra'am; the Netanyahu coalition comprises Likud, Shas, United Torah Judaism, and Religious Zionist Party}} by regional election committee:
+{{legend|#850309|Unity coalition—70–80%}}
+{{legend|#d00a12|Unity coalition—60–70%}}
+{{legend|#ff454c|Unity coalition—50–60%}}
+{{legend|#ff8487|Unity coalition—40–50%}}
+{{legend|#89afe2|Netanyahu coalition—40–50%}}
+{{legend|#4c82c4|Netanyahu coalition—50–60%}}
+{{legend|#1e4882|Netanyahu coalition—60–70%}}
+]]
+{{multiple image
+ | width = 125
+ | image1 = Winning party by district in the 2021 Israeli legislative election.svg
+ | alt1 = Winning party by district
+ | image2 = Winning party by sub-district in the 2021 Israeli legislative election.svg
+ | alt2 = Winning party by sub-district
+ | footer = Largest party by [[Districts of Israel|Administrative district (left) and sub-district (right)]]
+{{Legend|#1f5aa5|[[Likud]]}}
+{{Legend|#163a9d|[[Yesh Atid]]}}
+{{Legend|#123262|[[United Torah Judaism]]}}
+{{Legend|#01B2AC|[[Joint List]]}}
+}}
+[[File:Reuven Rivlin receiving the official results of the 24th Knesset election in Israel, March 2021 (GPOABG 8002).jpg|thumb|The [[Central Elections Committee]] chairman [[Uzi Vogelman]] (left) presents the election results to President [[Reuven Rivlin]] (right). [[Beit HaNassi]], 31 March 2021.]]
+{{Election results
+|image=[[File:Israel Knesset 2021 Français.svg]]
+|party1=[[Likud]]|votes1=1066892|seats1=30|sc1=–7
+|party2=[[Yesh Atid]]|votes2=614112|seats2=17|sc2=+4
+|party3=[[Shas]]|votes3=316008|seats3=9|sc3=0
+|party4=[[Blue and White (political party)|Blue and White]]|votes4=292257|seats4=8|sc4=–7
+|party5=[[Yamina]]|votes5=273836|seats5=7|sc5=+4
+|party6=[[Israeli Labor Party]]|votes6=268767|seats6=7|sc6=+4
+|party7=[[United Torah Judaism]]|votes7=248391|seats7=7|sc7=0
+|party8=[[Yisrael Beiteinu]]|votes8=248370|seats8=7|sc8=0
+|party9=[[Religious Zionist Party]]|votes9=225641|seats9=6|sc9=+4
+|party10=[[Joint List]]|votes10=212583|seats10=6|sc10=–5
+|party11=[[New Hope (Israel)|New Hope]]|votes11=209161|seats11=6|sc11=New
+|party12=[[Meretz]]|votes12=202218|seats12=6|sc12=+3
+|party13=[[Ra'am]]|votes13=167064|seats13=4|sc13=0
+|party14=[[New Economic Party]]|color14=#FEB414|votes14=34883|seats14=0|sc14=New
+|party15=Rapeh only Health|color15=#63BC46|votes15=17346|seats15=0|sc15=New
+|party16=[[Pirate Party of Israel|Pirate Party]]|votes16=1309|seats16=0|sc16=0
+|party17=Me and You|color17=#101B68|votes17=1291|seats17=0|sc17=0
+|party18=Hope for Change|color18=#557711|votes18=1189|seats18=0|sc18=New
+|party19=Social Bang – Pensioners|color19=#0083C4|votes19=811|seats19=0|sc19=New
+|party20=Mishpat Tzedek|color20=#591A2D|votes20=729|seats20=0|sc20=0
+|party21=[[Tzomet]]|votes21=663|seats21=0|sc21=0
+|party22=Am Shalem|color22=#005189|votes22=592|seats22=0|sc22=New
+|party23=New Order|color23=#112DE9|votes23=514|seats23=0|sc23=0
+|party24=Kama|color24=#51BEED|votes24=486|seats24=0|sc24=0
+|party25=The Impossible – Possible|color25=#126DFF|votes25=463|seats25=0|sc25=New
+|party26=Jewish Heart|color26=#0001FC|votes26=443|seats26=0|sc26=0
+|party27=Atzmeinu|color27=#19265a|votes27=441|seats27=0|sc27=New
+|party28=[[Bible Bloc Party|Bible Bloc]]|color28=#205FD0|votes28=429|seats28=0|sc28=0
+|party29=New World|color29=#F8993F|votes29=429|seats29=0|sc29=New
+|party30=[[Ihud Bnei HaBrit|Common Alliance]]|color30=#C6A973|votes30=408|seats30=0|sc30=0
+|party31=The Israelis|color31=#0E4190|votes31=395|seats31=0|sc31=New
+|party32=Shama|color32=#6FA4E8|votes32=395|seats32=0|sc32=0
+|party33=[[Da'am Workers Party]]|votes33=385|seats33=0|sc33=0
+|party34=Social Leadership|color34=#bdb76b|votes34=256|seats34=0|sc34=0
+|party35=[[Ma'an – Together for a New Era]]|color35=#19204C|votes35=253|seats35=0|sc35=New
+|party36=[[Hetz (political party)|Hetz]]|votes36=226|seats36=0|sc36=New
+|party37=Us|color37=#AE002E|votes37=220|seats37=0|sc37=New
+|party38=Human Dignity|color38=lightskyblue|votes38=196|seats38=0|sc38=0
+|total_sc=0
+|invalid=26313
+|electorate=6578084
+|source=[https://votes24.bechirot.gov.il/ CEC]
+
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs 2021.svg]]
+
+|header1=By bloc{{efn|Seat changes are not given: the lists changed too much after the [[2020 Israeli legislative election|2020 election]], when Blue and White and Yesh Atid split, [[New Hope (Israel)|New Hope]] was founded, [[Ra'am]] left the [[Joint List]] and the [[Religious Zionist Party]] ran separately from Yamina.}}
+
+|party2=[[Change bloc|Anti-Netanyahu bloc]] ([[Yesh Atid]] + [[Blue and White (political party)|Blue and White]] + [[Israeli Labor Party|Labor]] + [[Yisrael Beiteinu]] + [[Joint List]] + [[New Hope (Israel)|New Hope]] + [[Meretz]])
+|votes2=2047468
+|seats2=57
+|sc2=–
+|color2=#FF454C
+
+|party3=[[National camp|Netanyahu bloc]] ([[Likud]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[Religious Zionist Party|RZP]])
+|votes3=1856932
+|seats3=52
+|sc3=–
+|color3={{party color|Likud}}
+
+|party4=[[Yamina]]
+|votes4=273836
+|seats4=7
+|sc4=–
+|color4=#A0A0A0
+
+|party5=[[Ra'am]]
+|votes5=167064
+|seats5=4
+|sc5=–
+|color5=#A0A0A0
+
+|party6=Others
+|votes6=64752
+|seats6=0
+|sc6=–
+|color6=#dcdcdc
+
+|source=[https://votes24.bechirot.gov.il/ CEC]
+}}
+}}
+
+===Members of the Knesset who lost their seats===
+{| class="wikitable sortable" style="font-size: 95%;"
+!colspan=2|Party
+!Name
+!Year elected
+!Source
+|-
+! rowspan=1 style="background-color: {{party color|Blue and White (political party)}}" |
+| rowspan=1|[[Blue and White (political party)|Blue and White]]
+|[[Ruth Wasserman Lande]]
+|2021
+|<ref name=toi30march>{{cite web|url=https://www.timesofisrael.com/renegades-rabble-rousers-tv-anchors-army-chiefs-the-mks-who-wont-be-back/|title=Renegades, rabble-rousers, TV anchors, army chiefs: The MKs who won't be back|website=[[The Times of Israel]] |date=30 March 2021|access-date=5 April 2021}}</ref>
+|-
+! rowspan=4 style="background-color: {{party color|Joint List}}" |
+| rowspan=4|[[Joint List]]
+|[[Heba Yazbak]]
+|[[September 2019 Israeli legislative election|2019]]
+|<ref name=h25march>{{cite news|url=https://www.haaretz.com/israel-news/elections/2021-03-25/ty-article/.premium/israel-election-results-bid-farewell-to-these-lawmakers/0000017f-db0b-dee4-a9ff-ff7b4d020000|title=Israel Election Results: Voters Left These Lawmakers Out of the Next Knesset|newspaper=Haaretz |date=25 March 2021|access-date=17 April 2021}}</ref>
+|-
+|[[Yousef Jabareen]]
+|[[2015 Israeli legislative election|2015]]
+|<ref name=h25march/>
+|-
+|[[Sondos Saleh]]
+|2020
+|<ref name=h26march>{{cite news|url=https://www.haaretz.com/israel-news/elections/2021-03-26/ty-article/.premium/israel-election-results-arab-parties-take-stock-after-failure-in-polls/0000017f-dbc4-d3ff-a7ff-fbe4a0fe0000|title=Israel Election Results: Arab Parties Take Stock After Failure in Polls|newspaper=Haaretz |date=26 March 2021|access-date=17 April 2021}}</ref>
+|-
+|[[Jabar Asakla]]
+|[[September 2019 Israeli legislative election|2019]]
+|<ref name=h26march/>
+|-
+! rowspan=9 style="background-color: {{party color|Likud}}" |
+| rowspan=9|[[Likud]]
+|[[Tali Ploskov]]
+|2020
+|<ref name=toi30march/>
+|-
+|[[Uzi Dayan]]
+|2020
+|<ref name=toi30march/>
+|-
+|[[Ariel Kallner]]
+|2020
+|<ref name=toi30march/>
+|-
+|[[Osnat Mark]]
+|2020
+|<ref name=toi30march/>
+|-
+|[[Amit Halevi]]
+|2020
+|<ref name=toi30march/>
+|-
+|[[Nissim Vaturi]]
+|2020
+|<ref name=toi30march/>
+|-
+|[[Shevah Stern]]
+|2020
+|<ref name=toi30march/>
+|-
+|[[Ayoob Kara]]
+|2020
+|<ref name=toi30march/>
+|-
+|[[Matti Yogev]]
+|2020
+|<ref name=toi30march/>
+|-
+! rowspan=1 style="background-color: {{party color|New Hope (Israel)}}" |
+| rowspan=1|[[New Hope (Israel)|New Hope]]
+|[[Zvi Hauser]] 
+|[[September 2019 Israeli legislative election|2019]]
+|<ref name=h25march/>
+|-
+! style="background-color: {{party color|Shas}}" |
+| [[Shas]]
+|[[Yosef Taieb]]
+|2020
+|
+|-
+! style="background-color: {{party color|Ra'am}}" |
+| [[Ra'am]]
+|[[Iman Khatib-Yasin]]
+|2020
+|
+|-
+! rowspan=2 style="background-color: {{party color|United Torah Judaism}}" |
+| rowspan=2|[[United Torah Judaism]]
+|[[Ya'akov Tessler]] 
+|[[September 2019 Israeli legislative election|2019]]
+|
+|-
+|[[Eliyahu Baruchi]]
+|2020
+|
+|-
+! style="background-color: {{party color|Yesh Atid}}" |
+| [[Yesh Atid]]
+|[[Moshe Tur-Paz]]
+|2020
+|
+|}

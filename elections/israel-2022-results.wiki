@@ -1,0 +1,350 @@
+== Results ==
+[[File:2022 Israel Election Results by Coalition.svg|thumb|upright=0.9|25th Knesset election result map of winning coalition,{{efn|Netanyahu coalition is composed of Likud, Religious Zionist Party, Shas, and United Torah Judaism; the incumbent governing coalition is composed of Yesh Atid, National Unity, Yisrael Beiteinu, Ra'am, Israeli Labor Party, and Meretz.}} by regional election committee:
+{{legend|#122c52|Netanyahu coalition—70–80%}}
+{{legend|#1e4882|Netanyahu coalition—60–70%}}
+{{legend|#4c82c4|Netanyahu coalition—50–60%}}
+{{legend|#89afe2|Netanyahu coalition—40–50%}}
+{{legend|#ff8487|Governing coalition—40–50%}}
+{{legend|#ff454c|Governing coalition—50–60%}}
+{{legend|#d00a12|Governing coalition—60–70%}}
+]]
+[[File:Winning party by Locality in the 2022 Israeli legislative election (English).png|thumb|25th Knesset election result map of winning party, by locality]]
+[[File:Political profiling of the statistical areas in the elections to the 25th Knesset.jpg|thumb|The map shows statistical areas with consolidated support for a particular political tendency and leading parties.<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>]]
+
+The official body administering the elections, the [[Central Elections Committee|Central Election Committee]] for the 25th Knesset, released the final official results of the elections on 9 November and the chairman of the committee, Supreme Court Justice [[Yitzhak Amit]], presented them to the President Herzog.<ref name="gov.il">{{cite web |title=President Herzog receives the official results of the elections to the Twenty-Fifth Knesset|date=9 November 2022|website=gov.il | url=https://www.gov.il/en/departments/news/president-herzog-receives-official-results-of-elections-to-the-25th-knesset-9-nov-2022}}</ref>
+
+The official results showed that of 6,788,804 total eligible voters, 4,794,593 cast their ballots, representing a 70.63% turnout rate. 0.62% were declared invalid or spoiled. The detailed breakdown of results is as follows:<ref>{{cite web | title=תוצאות ארציות |trans-title=National Results| website=Central Election Committee for the 25th Knesset|url=https://votes25.bechirot.gov.il/ | language=he}}</ref>
+
+{{Election results
+| image  = [[File: November 2022 Knesset.svg]]
+| party1 = [[Likud]]
+| votes1 = 1115336
+| seats1 = 32
+| sc1    = +2
+
+| party2 = [[Yesh Atid]]
+| votes2 = 847435
+| seats2 = 24
+| sc2 = +7
+
+| party3 = [[Religious Zionist Party|Religious Zionism]]-[[Otzma Yehudit]]
+| votes3 = 516470
+| seats3 = 14
+| sc3 = +8
+
+| party4 = [[National Unity (Israel)|National Unity]]
+| votes4 = 432482
+| seats4 = 12
+| sc4 = –2
+
+| party5 = [[Shas]]
+| votes5 = 392964
+| seats5 = 11
+| sc5 = +2
+
+| party6 = [[United Torah Judaism]]
+| votes6 = 280194
+| seats6 =7
+| sc6 = 0
+
+| party7 = [[Yisrael Beiteinu]]
+| votes7 = 213687
+| seats7 = 6
+| sc7 = –1
+
+| party8 = [[Ra'am]]
+| votes8 = 194047
+| seats8 = 5
+| sc8 = +1
+
+| party9 = [[Hadash–Ta'al]]
+| votes9 = 178735
+| seats9 = 5
+| sc9 = 0
+
+| party10 = [[Israeli Labor Party]]
+| votes10 = 175992
+| seats10 = 4
+| sc10 = –3
+
+| party11 = [[Meretz]]
+| color11 = #23e164
+| votes11 = 150793
+| seats11 = 0
+| sc11 = –6
+
+|party12=[[Balad (political party)|Balad]]|votes12=138617 |seats12=0|sc12=–1
+|party13=[[The Jewish Home]]|votes13=56775|seats13=0|sc13=–7
+|party14=[[Abir Kara|Economic Freedom]]|color14=#3D7FCA|votes14=15801|seats14=0|sc14=New
+|party15=With Courage for You|color15=#F8993F|votes15=14694|seats15=0|sc15=New
+|party16=[[New Economic Party]]|color16=#FEB414|votes16=13920|seats16=0|sc16=0
+|party17=Fiery Youth|color17=#FF0000|votes17=8800|seats17=0|sc17=New
+|party18=[[Pirate Party of Israel|Pirate Party]]|votes18=1728|seats18=0|sc18=0
+|party19=Voice of the Environment and the Living|color19=#59E059|votes19=1618|seats19=0|sc19=New
+|party20=[[Ale Yarok]]–Islamic Family|color20=#799A00|votes20=1524|seats20=0|sc20=New
+|party21=Nativ|color21=#19204C|votes21=1354|seats21=0|sc21=New
+|party22=Every Vote Counts|color22=lightskyblue|votes22=1292|seats22=0|sc22=New
+|party23=There's a Direction|color23=#E8F48C|votes23=1215|seats23=0|sc23=New
+|party24=[[Free Democratic Israel]]|color24=#5FA5BF|votes24=1157|seats24=0|sc24=New
+|party25=New Order|color25=#00FFF0|votes25=1078|seats25=0|sc25=0
+|party26=The New Independents|color26=#AAAAAA|votes26=1020|seats26=0|sc26=New
+|party27={{ill|Social Leadership|he|מנהיגות חברתית (מפלגה)}}|color27=#bdb76b|votes27=988|seats27=0|sc27=0
+|party28=30/40|color28=#B10277|votes28=939|seats28=0|sc28=New
+|party29=Me and You|color29=#101B68|votes29=746|seats29=0|sc29=0
+|party30=Dawn Social Power|color30=#FFF700|votes30=430|seats30=0|sc30=New
+|party31=Jewish Heart|color31=#0001FC|votes31=415|seats31=0|sc31=0
+|party32=[[Bible Bloc Party|Bible Bloc]]|color32=#205FD0|votes32=411|seats32=0|sc32=0
+|party33=Respect for Humanity|color33=#ED0963|votes33=350|seats33=0|sc33=New
+|party34=Us|color34=#AE002E|votes34=334|seats34=0|sc34=0
+|party35=[[Tzomet]]|votes35=292|seats35=0|sc35=0
+|party36=Order of the Hour|color36=#AE002E|votes36=262|seats36=0|sc36=New
+|party37=Shama|color37=#6FA4E8|votes37=255|seats37=0|sc37=0
+|party38=[[Ihud Bnei HaBrit|Common Alliance]]|color38=#C6A973|votes38=234|seats38=0|sc38=0
+|party39=Kama|color39=#aeda91|votes39=205|seats39=0|sc39=New
+|party40=[[Koah Lehashpi'a]]|color40=#7B3F00|votes40=153|seats40=0|sc40=New
+|total_sc=0
+|invalid=29851
+|electorate=6788804
+|source=[https://votes25.bechirot.gov.il/ CEC]
+
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs 2022.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these lists or their predecessors won in the [[2021 Israeli legislative election|2021 election]]: 52 for the Netanyahu bloc (Likud 30, Shas 9, UTJ 7, the Religious Zionist Party 6), 49 for the anti-Netanyahu bloc (Yesh Atid 17, [[Blue and White (political party)|Blue and White]] 8 and [[New Hope (Israel)|New Hope]] 6 for National Unity, Labor 7, Yisrael Beiteinu 7, Ra'am 4) and 5 for Hadash–Ta'al's share of the Joint List's 6. [[Meretz]] (6), [[Yamina]] (7) and [[Balad (political party)|Balad]] (1) won no seats.}}
+
+|party2=[[National camp|Netanyahu bloc]] ([[Likud]] + [[Religious Zionist Party|RZP]]–[[Otzma Yehudit|Otzma]] + [[Shas]] + [[United Torah Judaism|UTJ]])
+|votes2=2304964
+|seats2=64
+|sc2=+12
+|color2={{party color|Likud}}
+
+|party3=[[Change bloc|Anti-Netanyahu bloc]] ([[Yesh Atid]] + [[National Unity (Israel)|National Unity]] + [[Yisrael Beiteinu]] + [[Ra'am]] + [[Israeli Labor Party|Labor]])
+|votes3=1863643
+|seats3=51
+|sc3=+2
+|color3=#FF454C
+
+|party4=[[Hadash–Ta'al]]
+|votes4=178735
+|seats4=5
+|sc4=0
+|color4=#A0A0A0
+
+|party5=Others
+|votes5=417400
+|seats5=0
+|sc5=−14
+|color5=#dcdcdc
+
+|total_sc=0
+|source=[https://votes25.bechirot.gov.il/ CEC]
+}}
+}}
+
+===Coalition results by district===
+{| class="wikitable"
+!District
+!Right-wing{{efn|Consisting of [[Likud]], [[Religious Zionist Party]]/[[Otzma Yehudit]], [[Shas]], and [[United Torah Judaism|UTJ]].}}
+!Center-left{{efn|Consisting of [[Yesh Atid]], [[National Unity (Israel)|National Unity]], [[Yisrael Beiteinu]], [[Israeli Labor Party|Labor]], and [[Meretz]].}}
+!Arab parties{{efn|Consisting of [[Ra'am]], [[Hadash-Ta'al]], and [[Balad (political party)|Balad]].}}
+!Other parties
+!Total votes<ref>{{cite web |author=<!-- not stated --> |date= 1 November 2022|title= The true results of the elections for the 25th Knesset|url= https://votes25.bechirot.gov.il/|website= |location= Israel|publisher= Central Elections Committee|access-date= 7 July 2026}}</ref>
+|-
+| [[Central District (Israel)|Central]]
+| align="center"| '''545,900'''
+| align="center"| 531,824
+| align="center"| 70,400
+| align="center"| 34,537
+| align="center"| 1,182,751
+|-
+| [[Haifa District|Haifa]]
+| align="center"| 195,696
+| align="center"| '''222,510'''
+| align="center"| 74,172
+| align="center"| 12,293
+| align="center"| 504,671
+|-
+| [[Jerusalem District|Jerusalem]]
+| align="center"| '''268,662'''
+| align="center"| 76,033
+| align="center"| 9,135
+| align="center"| 9,973
+| align="center"| 363,803
+|-
+| [[Judea and Samaria Area|Judea and Samaria]]
+| align="center"| '''164,167'''
+| align="center"| 26,156
+| align="center"| 95
+| align="center"| 9,444
+| align="center"| 199,862
+|-
+| [[Northern District (Israel)|Northern]]
+| align="center"| 205,279
+| align="center"| 191,125
+| align="center"| '''252,129'''
+| align="center"| 14,080
+| align="center"| 663,413
+|-
+| [[Southern District (Israel)|Southern]]
+| align="center"| '''358,752'''
+| align="center"| 170,080
+| align="center"| 70,814
+| align="center"| 13,047
+| align="center"| 612,693
+|-
+| [[Tel Aviv District|Tel Aviv]]
+| align="center"| 339,124
+| align="center"| '''411,340'''
+| align="center"| 11,498
+| align="center"| 16,873
+| align="center"| 778,835
+|-
+| "Double envelopes" voting (Soldiers, police, prisoners, etc.)<ref>{{cite web |author=<!-- not stated --> |date= 22 September 2026|title= Voting with Outer (Double) Envelopes|url= https://www.gov.il/en/pages/election-about-info?chapterIndex=3|website= The Central Elections Committee|location= Israel|publisher= Central Elections Committee|access-date= 21 October 2026}}</ref><ref>{{cite web |author=Emanuel Fabian |date= 21 October 2026|title= Israeli soldiers cast election ballots at bases, outposts and beyond borders|url= https://www.timesofisrael.com/israeli-soldiers-cast-election-ballots-at-bases-outposts-and-beyond-borders/|website= |location= Israel|publisher= [[The Times of Israel]]|access-date=21 October 2026}}</ref>
+| align="center"| '''227,194'''
+| align="center"| 190,521
+| align="center"| 23,156
+| align="center"| 17,743
+| align="center"| 458,714
+|-
+| Total
+| align="center"| '''2,304,964'''
+| align="center"| 1,820,390
+| align="center"| 511,399
+| align="center"| 127,990
+| align="center"| 4,764,742
+|}
+
+=== Members of the Knesset who lost their seats ===
+{| class="wikitable sortable" style="font-size: 95%;"
+|-
+! colspan="2" |Party
+!Name
+!Year first elected
+|-
+! rowspan="1" style="background-color: {{party color|Balad (political party)}}" |
+||[[Balad (political party)|Balad]]
+|[[Sami Abu Shehadeh]]<ref name=":0">{{Cite news |last=Fox |first=Nina |date=3 November 2022 |title=שרים מכהנים, ח"כים שזגזגו: הנציגים שלא יחזרו לכנסת |language=he |work=Ynet |url=https://www.ynet.co.il/news/election2022/article/bjuyozbss |access-date=20 November 2022}}</ref>
+|[[April 2019 Israeli legislative election|2019]]
+|-
+! rowspan="1" style="background-color:#3D7FCA |
+|[[Abir Kara|Economic Freedom Party]]
+|[[Abir Kara]]<ref name=":1">{{Cite web |title=הרשימה המלאה: השרים והח"כים שנשארו מחוץ לכנסת |url=https://www.bhol.co.il/news/1458736 |access-date=20 November 2022 |website=בחדרי חרדים |date=20 July 2016 |language=he}}</ref>
+|[[2021 Israeli legislative election|2021]]
+|-
+! rowspan="2" style="background-color: {{party color|The Jewish Home}}" |
+| rowspan="2" |[[The Jewish Home]]
+|[[Yomtob Kalfon]]<ref name=":1" />
+|2021
+|-
+|[[Orna Starkmann]]<ref name=":0" />
+|2022
+|-
+! rowspan="3" style="background-color: {{party color|Israeli Labor Party}}" |
+| rowspan="3" |[[Israeli Labor Party]]
+|[[Ram Shefa]]<ref name=":0" />
+|2019
+|-
+|[[Emilie Moatti]]<ref name=":0" />
+|2021
+|-
+|[[Ibtisam Mara'ana]]<ref name=":0" />
+|2021
+|-
+! rowspan="5" style="background-color: {{party color|Likud}}" |
+| rowspan="5" |[[Likud]]
+|[[Eti Atiya]]<ref name=":0" />
+|2019
+|-
+|[[Keti Shitrit]]<ref name=":0" />
+|2019
+|-
+|[[Tzachi Hanegbi]]<ref name=":1" />
+|[[1988 Israeli legislative election|1988]]
+|-
+|[[Keren Barak]]<ref name=":0" />
+|2019
+|-
+|[[Orly Levy-Abekasis]]<ref name=":0" />
+|[[2009 Israeli legislative election|2009]]
+|-
+! rowspan="6" style="background-color: {{party color|Meretz}}" |
+| rowspan="6" |[[Meretz]]
+|[[Mossi Raz]]<ref name=":0" />
+|2021
+|-
+|[[Michal Rozin]]<ref name=":0" />
+|2021
+|-
+|[[Ali Salalha]]<ref name=":0" />
+|2021
+|-
+|[[Yair Golan]]<ref name=":0" />
+|2019
+|-
+|[[Gaby Lasky]]<ref name=":0" />
+|2021
+|-
+|[[Nitzan Horowitz]]<ref name=":0" />
+|2019
+|-
+|-
+! rowspan="7" style="background-color: {{party color|National Unity (Israel)}}" |
+| rowspan="7" |[[National Unity (Israel)|National Unity Party]]
+|[[Michel Buskila]]<ref name=":1" />
+|2022
+|-
+|[[Eitan Ginzburg]]<ref name=":0" />
+|2019
+|-
+|[[Yael Ron Ben-Moshe]]<ref name=":0" />
+|2020
+|-
+|[[Mufid Mari]]<ref name=":0" />
+|2021
+|-
+|[[Ruth Wasserman Lande]]<ref name=":0" />
+|2021
+|-
+|[[Shirly Pinto]]<ref name=":1" />
+|2021
+|-
+|[[Alon Tal]]<ref name=":0" />
+|2021
+|-
+! rowspan="1" style="background-color: {{party color|United Torah Judaism}}" |
+| rowspan="1" |[[United Torah Judaism]]
+|[[Yitzhak Pindrus]]<ref name=":1" />
+|2021
+|-
+! rowspan="5" style="background-color: {{party color|Yisrael Beiteinu}}" |
+| rowspan="5" |[[Yisrael Beiteinu]]
+|[[Alex Kushnir]]<ref name=":0" />
+|2019
+|-
+|[[Yossi Shain]]<ref name=":0" />
+|2019
+|-
+|[[Limor Magen Telem]]<ref name=":1" />
+|2021
+|-
+|[[Elina Bardach-Yalov]]<ref name=":0" />
+|2021
+|-
+|[[Sharon Roffe Ofir]]<ref name=":0" />
+|2021
+|}
+<gallery>
+File:Likud (ha'Likud) electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Likud Party in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:Yesh Atid electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Yesh Atid Party in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:Religious Zionism-Otzma Yehudit (ha'Tzionut ha'Datit-Otzma Yehudit) electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Religious Zionism-Otzma Yehudit joint list in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:National Unity (ha'Machane ha'Mamlakhti) electoral support in the elections to the 25th Knesset.jpg|Electoral support for the National Unity Party in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:Shas electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Shas Party in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:United Torah Judaism (Yahadut ha'Tora) electoral support in the elections to the 25th Knesset.jpg|Electoral support for the United Torah Judaism alliance in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:Yisrael Beitenu electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Yisrael Beiteinu Party in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:Ra'am electoral support in the elections to the 25th Knesset.jpg|Electoral support for Ra'am in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:Hadash-Ta'al electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Hadash-Ta'al  joint list in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:Israel Labor Party (haAvoda) electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Israel Labor Party in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:Meretz electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Meretz party in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:Balad electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Balad party in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+File:The Jewish Home (ha'Bait ha'Yehudi) electoral support in the elections to the 25th Knesset.jpg|Electoral support for the Jewish Home Party in the elections to the 25th Knesset<ref name="The 25th Knesset elections, Results by polling station">{{cite web|url=https://media25.bechirot.gov.il/files/expb.csv|title="25th Knesset elections, Results by polling station"|publisher=The 25th Knesset Central Elections Committee (Israel)}}</ref>
+</gallery>

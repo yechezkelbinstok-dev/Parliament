@@ -1,0 +1,87 @@
+==Results==
+{{multiple image
+ | width = 125
+ | image1 = Winning party by district in the 2020 Israeli legislative election.svg
+ | alt1 = Winning party by district
+ | image2 = Winning party by sub-district in the 2020 Israeli legislative election.svg
+ | alt2 = Winning party by sub-district
+ | footer = Largest party by [[Districts of Israel|Administrative district (left) and sub-district (right)]]
+{{Legend|#1f5aa5|[[Likud]]}}
+{{Legend|#04BEEF|[[Blue and White (political alliance)|Blue and White]]}}
+{{Legend|#01B2AC|[[Joint List]]}}
+}}
+{{Election results
+|image=[[File:Israel Knesset 2020.svg]]
+|party1=[[Likud]]|votes1=1352449|seats1=36|sc1=+4
+|party2=[[Blue and White (political alliance)|Blue and White]]|votes2=1220381|seats2=33|sc2=0
+|party3=[[Joint List]]|votes3=581507|seats3=15|sc3=+2
+|party4=[[Shas]]|votes4=352853|seats4=9|sc4=0
+|party5=[[United Torah Judaism]]|votes5=274437|seats5=7|sc5=0
+|party6=[[Labor-Gesher-Meretz]]|votes6=267480|seats6=7|sc6=–3
+|party7=[[Yisrael Beiteinu]]|votes7=263365|seats7=7|sc7=–1
+|party8=[[Yamina]]|color8=#b7cc15|votes8=240689|seats8=6|sc8=–1
+|party9=[[Otzma Yehudit]]|votes9=19402|seats9=0|sc9=0
+|party10=Liberal–Economic Power|votes10=3781|seats10=0|sc10=New|color10=#FEC80A
+|party11=Women's Voice|votes11=2773|seats11=0|sc11=New|color11=#86478C
+|party12=[[Pirate Party of Israel|The Pirates – For Democracy Click Here]]<!-- This is the name of the party as it appeared on the ballot. -->|votes12=1473|seats12=0|sc12=0|color12=black
+|party13=Mishpat Tzedek|votes13=1375|seats13=0|sc13=New|color13=#1B1464
+|party14=Israelist – Our Rights in Our Vote|votes14=980|seats14=0|sc14=0|color14=grey
+|party15=Me and You|votes15=812|seats15=0|sc15=New|color15=#232D82
+|party16=[[Ihud Bnei HaBrit|Ihud HaBrit VeHaShutafut]]|votes16=677|seats16=0|sc16=0|color16=#C6A973
+|party17=New Order|votes17=677|seats17=0|sc17=0|color17=#1BCAF7
+|party18=[[Koah Lehashpi'a]]|votes18=667|seats18=0|sc18=New|color18=#56719E
+|party19=[[Leader (political party)|Mitkademet]]|votes19=622|seats19=0|sc19=0|color19=#82C0C5
+|party20=[[Da'am Workers Party|Da'am–Green Economy–One Nation]]|votes20=612|seats20=0|sc20=0
+|party21=Jewish Heart|votes21=516|seats21=0|sc21=New|color21=#DA7722
+|party22=Shama|votes22=442|seats22=0|sc22=New|color22=#4800FF
+|party23=[[Bible Bloc Party|Bible Bloc]]|votes23=389|seats23=0|sc23=0|color23=orange
+|party24=Kama|votes24=350|seats24=0|sc24=0|color24=#5BC3EF
+|party25=Red and White|votes25=342|seats25=0|sc25=0|color25=#ffc0cb
+|party26=Vision|votes26=308|seats26=0|sc26=New
+|party27=Social Leadership|votes27=271|seats27=0|sc27=0|color27=#bdb76b
+|party28=Human Dignity|votes28=222|seats28=0|sc28=0|color28=lightskyblue
+|party29=Action for Israel|votes29=210|seats29=0|sc29=New
+|invalid=25073
+|total_sc=0
+|electorate=6453255
+|source=[https://votes23.bechirot.gov.il/ CEC] (votes), [https://www.timesofisrael.com/final-results-confirm-likud-with-36-seats-right-short-of-majority-with-58/ Times of Israel] (seats)
+
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs 2020.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these lists won in the [[September 2019 Israeli legislative election|September 2019 election]], with Labor–Gesher (6) and the Democratic Union (5) together for Labor-Gesher-Meretz.}}
+
+|party2=[[National camp|Right-wing bloc]] ([[Likud]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[Yamina]])
+|votes2=2220428
+|seats2=58
+|sc2=+3
+|color2={{party color|Likud}}
+
+|party3=[[Change bloc|Center-left bloc]] ([[Blue and White (political alliance)|Blue and White]] + [[Labor-Gesher-Meretz]])
+|votes3=1487861
+|seats3=40
+|sc3=−4
+|color3=#FF454C
+
+|party4=Arab parties ([[Joint List]])
+|votes4=581507
+|seats4=15
+|sc4=+2
+|color4=#007A3D
+
+|party5=[[Yisrael Beiteinu]]
+|votes5=263365
+|seats5=7
+|sc5=−1
+|color5=#A0A0A0
+
+|party6=Others
+|votes6=36901
+|seats6=0
+|sc6=0
+|color6=#dcdcdc
+
+|total_sc=0
+|source=[https://votes23.bechirot.gov.il/ CEC] (votes), [https://www.timesofisrael.com/final-results-confirm-likud-with-36-seats-right-short-of-majority-with-58/ Times of Israel] (seats)
+}}
+}}
