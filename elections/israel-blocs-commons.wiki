@@ -6,7 +6,7 @@
 {{legend|#007A3D|Arab parties (Ra'am–Ta'al, Hadash, Balad): 11 seats}}
 {{legend|#1F5AA5|Right-wing bloc (Likud, Yisrael Beiteinu, Shas, UTJ, National Union, Jewish Home): 65 seats}}
 |date = 2026-10-29
-|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|source = {{own}}
 |author = ~~~
 |permission =
 |other versions = [[:File:Israel Knesset 2009.svg]] (by party)
@@ -27,7 +27,7 @@
 {{legend|#007A3D|Arab parties (Hadash–Ta'al, Ra'am–Balad): 10 seats}}
 {{legend|#1F5AA5|Right-wing bloc (Likud, Shas, UTJ, Yisrael Beiteinu, URWP, Kulanu): 65 seats}}
 |date = 2026-10-29
-|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|source = {{own}}
 |author = ~~~
 |permission =
 |other versions = [[:File:April Election Result.svg]] (by party)
@@ -49,7 +49,7 @@
 {{legend|#A0A0A0|Other (Yisrael Beiteinu): 8 seats}}
 {{legend|#1F5AA5|Right-wing bloc (Likud, Shas, UTJ, Yamina): 55 seats}}
 |date = 2026-10-29
-|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|source = {{own}}
 |author = ~~~
 |permission =
 |other versions = [[:File:Israel Knesset Sept 2019.svg]] (by party)
@@ -71,7 +71,7 @@
 {{legend|#A0A0A0|Other (Yisrael Beiteinu): 7 seats}}
 {{legend|#1F5AA5|Right-wing bloc (Likud, Shas, UTJ, Yamina): 58 seats}}
 |date = 2026-10-29
-|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|source = {{own}}
 |author = ~~~
 |permission =
 |other versions = [[:File:Israel Knesset 2020.svg]] (by party)
@@ -92,7 +92,7 @@
 {{legend|#A0A0A0|Other (Yamina, Ra'am): 11 seats}}
 {{legend|#1F5AA5|Netanyahu bloc (Likud, Shas, UTJ, Religious Zionist Party): 52 seats}}
 |date = 2026-10-29
-|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|source = {{own}}
 |author = ~~~
 |permission =
 |other versions = [[:File:Israel Knesset 2021 Français.svg]] (by party)
@@ -113,7 +113,7 @@
 {{legend|#A0A0A0|Other (Hadash–Ta'al): 5 seats}}
 {{legend|#1F5AA5|Netanyahu bloc (Likud, RZP–Otzma, Shas, UTJ): 64 seats}}
 |date = 2026-10-29
-|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|source = {{own}}
 |author = ~~~
 |permission =
 |other versions = [[:File:November 2022 Knesset.svg]] (by party)
