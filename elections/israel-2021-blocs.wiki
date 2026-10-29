@@ -15,23 +15,11 @@
 |sc3=–
 |color3={{party color|Likud}}
 
-|party4=[[Yamina]]
-|votes4=273836
-|seats4=7
+|party4=Others (incl. [[Yamina]] and [[Ra'am]])
+|votes4=505652
+|seats4=11
 |sc4=–
 |color4=#A0A0A0
-
-|party5=[[Ra'am]]
-|votes5=167064
-|seats5=4
-|sc5=–
-|color5=#A0A0A0
-
-|party6=Others
-|votes6=64752
-|seats6=0
-|sc6=–
-|color6=#dcdcdc
 
 |source=[https://votes24.bechirot.gov.il/ CEC]
 }}

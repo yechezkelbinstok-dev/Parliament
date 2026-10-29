@@ -69,17 +69,11 @@
 |sc4=+2
 |color4=#007A3D
 
-|party5=[[Yisrael Beiteinu]]
-|votes5=263365
+|party5=Others (incl. [[Yisrael Beiteinu]])
+|votes5=300266
 |seats5=7
 |sc5=−1
 |color5=#A0A0A0
-
-|party6=Others
-|votes6=36901
-|seats6=0
-|sc6=0
-|color6=#dcdcdc
 
 |total_sc=0
 |source=[https://votes23.bechirot.gov.il/ CEC] (votes), [https://www.timesofisrael.com/final-results-confirm-likud-with-36-seats-right-short-of-majority-with-58/ Times of Israel] (seats)

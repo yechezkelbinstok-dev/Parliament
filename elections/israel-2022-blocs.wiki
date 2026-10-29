@@ -15,17 +15,11 @@
 |sc3=+2
 |color3=#FF454C
 
-|party4=[[Hadash–Ta'al]]
-|votes4=178735
+|party4=Others (incl. [[Hadash–Ta'al]])
+|votes4=596135
 |seats4=5
-|sc4=0
+|sc4=−14
 |color4=#A0A0A0
-
-|party5=Others
-|votes5=417400
-|seats5=0
-|sc5=−14
-|color5=#dcdcdc
 
 |total_sc=0
 |source=[https://votes25.bechirot.gov.il/ CEC]

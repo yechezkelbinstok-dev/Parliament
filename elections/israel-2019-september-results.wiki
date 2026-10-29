@@ -58,17 +58,11 @@
 |sc4=+3
 |color4=#007A3D
 
-|party5=[[Yisrael Beiteinu]]
-|votes5=310154
+|party5=Others (incl. [[Yisrael Beiteinu]])
+|votes5=436858
 |seats5=8
 |sc5=+3
 |color5=#A0A0A0
-
-|party6=Others
-|votes6=126704
-|seats6=0
-|sc6=0
-|color6=#dcdcdc
 
 |total_sc=0
 |source=[https://votes22.bechirot.gov.il/nationalresults CEC], [https://www.timesofisrael.com/checked-and-double-checked-elections-committee-publishes-final-results/ The Times of Israel]
