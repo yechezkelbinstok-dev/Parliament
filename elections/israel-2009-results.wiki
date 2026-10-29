@@ -1,0 +1,77 @@
+==Results==
+[[Image:Benjamin Netanyahu portrait.jpg|thumb|right|200px|The [[Likud]] Party chairman [[Benjamin Netanyahu]]. Although the Likud party placed second in the 2009 elections, the [[right-wing]] parties won a majority; thus, Netanyahu managed to form a coalition government after the elections, and thus became the new Prime Minister.]]
+[[Image:Kalpi israel 18.JPG|thumb|right|200px|Ballot papers]]
+
+{{Election results
+|image=[[File:Israel Knesset 2009.svg]]
+|party1=[[Kadima]]|votes1=758032|seats1=28|sc1=−1
+|party2=[[Likud]]|votes2=729054|seats2=27|sc2=+15
+|party3=[[Yisrael Beiteinu]]|votes3=394577|seats3=15|sc3=+4
+|party4=[[Israeli Labor Party|Labor Party]]|votes4=334900|seats4=13|sc4=–6
+|party5=[[Shas]]|votes5=286300|seats5=11|sc5=–1
+|party6=[[United Torah Judaism]]|votes6=147954|seats6=5|sc6=–1
+|party7=[[United Arab List]]–[[Ta'al]]|votes7=113954|seats7=4|sc7=0
+|party8=[[National Union (Israel)|National Union]]|votes8=112570|seats8=4|sc8=0
+|party9=[[Hadash]]|votes9=112130|seats9=4|sc9=+1
+|party10=[[Meretz|New Movement-Meretz]]|votes10=99611|seats10=3|sc10=–2
+|party11=[[The Jewish Home]]|votes11=96765|seats11=3|sc11=0
+|party12=[[Balad (political party)|Balad]]|votes12=83739|seats12=3|sc12=0
+|party13=[[Green Party (Israel)|The Green Movement]]–[[Meimad]]|votes13=27737|seats13=0|sc13=–1
+|party14=[[Dor (political party)|Gil]]|votes14=17571|seats14=0|sc14=–7
+|party15=[[Ale Yarok]]|votes15=13132|seats15=0|sc15=0
+|party16=[[The Greens (Israel)|The Greens]]|votes16=12378|seats16=0|sc16=0
+|party17=[[Yisrael Hazaka]]|votes17=6722|seats17=0|sc17=New
+|party18=Tzabar|votes18=4752|seats18=0|sc18=New
+|party19=[[Koah LeHashpi'a]]|votes19=3696|seats19=0|sc19=New
+|party20=[[Da'am Workers Party]]|votes20=2645|seats20=0|sc20=0
+|party21=[[Yisrael HaMithadeshet]]|votes21=2572|seats21=0|sc21=New
+|party22=[[Holocaust Survivors and Grown-Up Green Leaf Party]]|votes22=2346|seats22=0|sc22=New
+|party23=[[Leader (political party)|Leader]]|votes23=1887|seats23=0|sc23=0
+|party24=[[Tzomet]]|votes24=1520|seats24=0|sc24=0
+|party25=[[Koah HaKesef]]|votes25=1008|seats25=0|sc25=0
+|party26=[[Man's Rights in the Family Party]]|votes26=921|seats26=0|sc26=0
+|party27=[[HaYisraelim]]|votes27=856|seats27=0|sc27=New
+|party28=[[Or (political party)|Or]]|votes28=815|seats28=0|sc28=New
+|party29=[[Ahrayut]]|votes29=802|seats29=0|sc29=New
+|party30=[[Brit Olam]]|votes30=678|seats30=0|sc30=0
+|party31=[[Lev LaOlim]]|votes31=632|seats31=0|sc31=0
+|party32=[[Lazuz (political party)|Lazuz]]|votes32=623|seats32=0|sc32=New
+|party33=[[Lehem]]|votes33=611|seats33=0|sc33=New
+|invalid=43097
+|total_sc=0
+|electorate=5278985
+|source=[http://www.knesset.gov.il/elections18/heb/results/main_Results.aspx Knesset Board of Elections]
+
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs 2009.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these parties won in the [[2006 Israeli legislative election|2006 election]]: 50 for the right-wing bloc (Likud 12, Shas 12, Yisrael Beiteinu 11, the [[National Union (Israel)|National Union]]–[[National Religious Party|NRP]] list 9, UTJ 6), 53 for the center-left bloc (Kadima 29, Labor 19, Meretz 5) and 10 for the Arab parties. The other 7 seats were won by [[Dor (political party)|Gil]].}}
+
+|party2=[[National camp|Right-wing bloc]] ([[Likud]] + [[Yisrael Beiteinu]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[National Union (Israel)|National Union]] + [[The Jewish Home|Jewish Home]])
+|votes2=1767220
+|seats2=65
+|sc2=+15
+|color2={{party color|Likud}}
+
+|party3=Center-left bloc ([[Kadima]] + [[Israeli Labor Party|Labor]] + [[Meretz]])
+|votes3=1192543
+|seats3=44
+|sc3=−9
+|color3=#FF454C
+
+|party4=Arab parties ([[United Arab List|Ra'am]]–[[Ta'al]] + [[Hadash]] + [[Balad (political party)|Balad]])
+|votes4=309823
+|seats4=11
+|sc4=+1
+|color4=#007A3D
+
+|party5=Others
+|votes5=103904
+|seats5=0
+|sc5=−7
+|color5=#dcdcdc
+
+|total_sc=0
+|source=[http://www.knesset.gov.il/elections18/heb/results/main_Results.aspx Knesset Board of Elections]
+}}
+}}
