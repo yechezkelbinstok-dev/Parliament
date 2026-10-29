@@ -4,9 +4,9 @@
     <!-- Created with parliamentarch (https://github.com/Gouvernathor/parliamentarch/) -->
     <text x="180" y="175.0"
           style="font-size:36px;font-weight:bold;text-align:center;text-anchor:middle;font-family:sans-serif">120</text>
-    <g style="fill:#15793d"
-       id="0-Arab-parties">
-        <title>Arab parties</title>
+    <g style="fill:#62b9f2"
+       id="0-Eisenkot-s-bloc">
+        <title>Eisenkot&#x27;s bloc</title>
         <circle cx="13.14" cy="172.05" r="6.36"/>
         <circle cx="29.07" cy="172.05" r="6.36"/>
         <circle cx="45.01" cy="172.05" r="6.36"/>
@@ -26,10 +26,6 @@
         <circle cx="27.01" cy="112.92" r="6.36"/>
         <circle cx="43.82" cy="114.44" r="6.36"/>
         <circle cx="88.06" cy="132.68" r="6.36"/>
-    </g>
-    <g style="fill:#62b9f2"
-       id="1-Eisenkot-s-bloc">
-        <title>Eisenkot&#x27;s bloc</title>
         <circle cx="62.14" cy="113.70" r="6.36"/>
         <circle cx="36.30" cy="94.83" r="6.36"/>
         <circle cx="105.24" cy="134.54" r="6.36"/>
@@ -59,6 +55,10 @@
         <circle cx="150.70" cy="97.55" r="6.36"/>
         <circle cx="140.86" cy="67.28" r="6.36"/>
         <circle cx="131.02" cy="37.02" r="6.36"/>
+    </g>
+    <g style="fill:#15793d"
+       id="1-Arab-parties">
+        <title>Arab parties</title>
         <circle cx="129.90" cy="20.65" r="6.36"/>
         <circle cx="139.73" cy="50.91" r="6.36"/>
         <circle cx="149.56" cy="81.17" r="6.36"/>

@@ -2,14 +2,16 @@
 # Central Elections Committee count as of 29 October 2026 02:00: 5,157,014 of the
 # 5,695,682 votes cast (90.5%), double-envelope ballots not yet counted. Seats by the
 # Bader-Ofer method with the five surplus-vote agreements, the same seats as
-# File:Israeli Knesset Composition 2026.svg and in the same seat order:
+# File:Israeli Knesset Composition 2026.svg:
+#   Eisenkot's bloc 48 (Yashar 21, Together 12, The Democrats 8, Yisrael Beiteinu 7)
 #   Arab parties 19 (Joint List 12, Ra'am 7)
-#   Eisenkot's bloc 48 (The Democrats 8, Yashar 21, Together 12, Yisrael Beiteinu 7)
-#   Netanyahu's bloc 53 (Likud 26, RZP-Zehut 6, Otzma Yehudit 7, Shas 7, UTJ 7)
-# Each bloc is in its leading party's Wikipedia colour (Likud, Yashar), as in the
-# composition diagram; the Arab parties in Ra'am's green.
+#   Netanyahu's bloc 53 (Likud 26, UTJ 7, Otzma Yehudit 7, Shas 7, RZP-Zehut 6)
+# The Arab parties belong to neither bloc, so they sit between the two, as in Israeli
+# media's bloc graphics; the middle of the chamber falls to them.
+# Each bloc is in its leading party's Wikipedia colour (Yashar, Likud), the Arab
+# parties in Ra'am's green.
 title: 26th Knesset by bloc (provisional, 90.5% counted)
 
-Arab parties, 19, #15793D
 Eisenkot's bloc, 48, #62B9F2
+Arab parties, 19, #15793D
 Netanyahu's bloc, 53, #1F5AA5
