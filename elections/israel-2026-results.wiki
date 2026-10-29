@@ -1,128 +1,128 @@
 == Results ==
 {{Election results
 |image=[[File:Israeli Knesset Composition 2026.svg]]
-|reporting=90.5 <!-- 5,157,014 of the 5,695,682 votes cast (CEC turnout, double envelopes included) counted as of 02:00, 29 October. Most of the rest are the 430,000–480,000 double-envelope ballots. -->
+|reporting=91.0 <!-- 5,183,415 of the 5,695,682 votes cast (CEC turnout, double envelopes included) counted as of 05:57, 29 October. Most of the rest are the 430,000–480,000 double-envelope ballots. -->
 
 |header1=By party{{efn|Seat changes for lists formed or split since 2022 are counted from their predecessors' seats: the Joint List from [[Hadash–Ta'al]] (5), Together from [[Yesh Atid]] (24), the Democrats from [[Israeli Labor Party|Labor]] (4), and Otzma Yehudit (6), RZP–Zehut (7) and Noam (1) from their shares of the 14 seats won by the [[Religious Zionist Party]] joint list.}}
 
 |party2=[[Likud]]
-|votes2=1060865
+|votes2=1066982
 |seats2=26
 |sc2=−6
 
 |party3=[[Yashar (political party)|Yashar]]
-|votes3=832433
+|votes3=834653
 |seats3=21
 |sc3=New
 
 |party4=[[Joint List]]
-|votes4=471977
-|seats4=12
-|sc4=+7
+|votes4=474446
+|seats4=11
+|sc4=+6
 
 |party5=[[Together (Israel)|Together]]
-|votes5=463723
+|votes5=464828
 |seats5=12
 |sc5=−12
 
 |party6=[[The Democrats (Israel)|The Democrats]]
-|votes6=334705
+|votes6=335244
 |seats6=8
 |sc6=+4
 
 |party7=[[Ra'am]]
-|votes7=311242
-|seats7=7
-|sc7=+2
+|votes7=316981
+|seats7=8
+|sc7=+3
 
 |party8=[[Yisrael Beiteinu]]
-|votes8=304966
+|votes8=306209
 |seats8=7
 |sc8=+1
 
 |party9=[[United Torah Judaism]]
-|votes9=290035
+|votes9=291001
 |seats9=7
 |sc9=0
 
 |party10=[[Otzma Yehudit]]
-|votes10=283882
+|votes10=285954
 |seats10=7
 |sc10=+1
 
 |party11=[[Shas]]
-|votes11=271908
+|votes11=273708
 |seats11=7
 |sc11=−4
 
 |party12=[[Religious Zionist Party|Religious Zionism]]–[[Zehut]]
-|votes12=241312
+|votes12=242185
 |seats12=6
 |sc12=−1
 
 |party13=[[The Reservists (political party)|The Reservists]]–[[New Economic Party|New Economic]]
-|votes13=135013
+|votes13=135574
 |seats13=0
 |sc13=New
 
 |party14=[[Amcha Yisrael]]
-|votes14=82312
+|votes14=82651
 |seats14=0
 |sc14=New
 
 |party15=[[Jerusalem Faction|The Color Black]]
-|votes15=10012
+|votes15=10022
 |seats15=0
 |sc15=New
 |color15=black
 
 |party16=[[Haredi Public]]
-|votes16=9286
+|votes16=9310
 |seats16=0
 |sc16=New
 |color16=#f5c518
 
 |party17=[[Noam (political party)|Noam]]
-|votes17=7769
+|votes17=7852
 |seats17=0
 |sc17=−1
 
 |party18=[[Tzomet]]–[[Gadi Yevarkan|Beit Yisrael]]
-|votes18=5176
+|votes18=5202
 |seats18=0
 |sc18=0
 
 |party19=Partnership for Everyone
-|votes19=3817
+|votes19=3832
 |seats19=0
 |sc19=New
 |color19=teal
 
 |party20=Sharshar for Love and Unity of the People
-|votes20=1843
+|votes20=1849
 |seats20=0
 |sc20=New
 |color20=salmon
 
 |party21=Together We Will Succeed
-|votes21=1311
+|votes21=1317
 |seats21=0
 |sc21=New
 |color21=#D01A21
 
 |party22=Hakahal Party
-|votes22=924
+|votes22=927
 |seats22=0
 |sc22=New
 |color22=#7FD3F3
 
 |party23=[[Israel First]]–[[Ale Yarok]]
-|votes23=884
+|votes23=886
 |seats23=0
 |sc23=New
 
 |party24=Fixing the Electoral and Governing System
-|votes24=862
+|votes24=865
 |seats24=0
 |sc24=New
 |color24=#E14227
@@ -134,66 +134,66 @@
 |color25=#ABEC03
 
 |party26=New Order
-|votes26=850
+|votes26=858
 |seats26=0
 |sc26=0
 |color26=#00FFF0
 
 |party27=[[Pirate Party of Israel]]
-|votes27=840
+|votes27=853
 |seats27=0
 |sc27=0
 
 |party28=Ani VeAta
-|votes28=761
+|votes28=764
 |seats28=0
 |sc28=New
 |color28=#101B68
 
 |party29=Shema
-|votes29=728
+|votes29=729
 |seats29=0
 |sc29=0
 |color29=#6FA4E8
 
 |party30=Just Law
-|votes30=676
+|votes30=681
 |seats30=0
 |sc30=New
 |color30=beige
 
 |party31=Dawn's Light
-|votes31=670
+|votes31=671
 |seats31=0
 |sc31=New
 |color31=#FFF700
 
 |party32=Women's Voice
-|votes32=626
+|votes32=629
 |seats32=0
 |sc32=New
 |color32=pink
 
 |party33=Redemption
-|votes33=515
+|votes33=519
 |seats33=0
 |sc33=New
 |color33=orange
 
 |party34=Social Security
-|votes34=408
+|votes34=415
 |seats34=0
 |sc34=New
 |color34=#964B00
 
 |party35=Personal Security
-|votes35=402
+|votes35=407
 |seats35=0
 |sc35=New
 |color35=indigo
 
 |party36=[[Bible Bloc Party|The Bible Bloc]]
-|votes36=370
+|votes36=377
 |seats36=0
 |sc36=0
 
@@ -212,9 +212,9 @@
 
 |total_sc=0
 
-|invalid=22770
+|invalid=22893
 |electorate=7331981
-|totalvotes=5695682 <!-- CEC turnout figure (77.7%), double-envelope voters included; 5,157,014 of these counted so far -->
+|totalvotes=5695682 <!-- CEC turnout figure (77.7%), double-envelope voters included; 5,183,415 of these counted so far -->
 |source=[[Central Elections Committee]]<ref name="CEC-results">{{cite web |title=Results of the Elections for the 26th Knesset: National Results |url=https://votes26.bechirot.gov.il/nationalresults?lang=en |website=votes26.bechirot.gov.il |publisher=[[Central Elections Committee]] |access-date=29 October 2026}}</ref>
 
 |embedded={{Election results|embed=y
@@ -223,25 +223,25 @@
 |header1=By bloc{{efn|Seat changes are counted from the blocs' seats in the [[2022 Israeli legislative election|2022 election]]: 64 for the Netanyahu bloc, 46 for the non-Arab parties of the [[Change bloc|anti-Netanyahu bloc]] ([[Yesh Atid]], [[National Unity (Israel)|National Unity]], [[Yisrael Beiteinu]] and [[Israeli Labor Party|Labor]]), and 10 for the Arab parties ([[Ra'am]] and [[Hadash–Ta'al]]).}}
 
 |party2=[[National camp|Netanyahu's bloc]] ([[Likud]] + [[United Torah Judaism|UTJ]] + [[Otzma Yehudit|Otzma]] + [[Shas]] + [[Religious Zionist Party|RZP]]–[[Zehut]])
-|votes2=2148002
+|votes2=2159830
 |seats2=53
 |sc2=−11
 |color2={{party color|Likud}}
 
 |party3=[[Change bloc|Eisenkot's bloc]] ([[Yashar (political party)|Yashar]] + [[Together (Israel)|Together]] + [[The Democrats (Israel)|Democrats]] + [[Yisrael Beiteinu]])
-|votes3=1935827
+|votes3=1940934
 |seats3=48
 |sc3=+2
 |color3={{party color|Yashar (political party)}}
 
 |party4=Arab parties ([[Joint List]] + [[Ra'am]])
-|votes4=783219
+|votes4=791427
 |seats4=19
 |sc4=+9
 |color4=#007A3D
 
 |party5=Others
-|votes5=267196
+|votes5=268331
 |seats5=0
 |sc5=0
 |color5=#dcdcdc
