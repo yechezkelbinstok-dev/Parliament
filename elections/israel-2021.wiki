@@ -52,7 +52,7 @@ title: 2021 Israeli legislative election
 | seats7 = 6
 | last_election7 = 3<!--Of the first seven candidates on the L-G-M list, 3 were from Meretz-->
 
-| heading8 = [[National camp|Pro-Netanyahu bloc]] (52 seats)
+| heading8 = [[National camp|Netanyahu's bloc]] (52 seats)
 | party8 = Likud
 | leader8 = [[Benjamin Netanyahu]]
 | percentage8 = 24.19
