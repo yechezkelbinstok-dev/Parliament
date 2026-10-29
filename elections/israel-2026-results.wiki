@@ -1,7 +1,7 @@
 == Results ==
 {{Election results
 |image=[[File:Israeli Knesset Composition 2026.svg]]
-|reporting=91.0 <!-- 5,183,415 of the 5,695,682 votes cast (CEC turnout, double envelopes included) counted as of 05:57, 29 October. Most of the rest are the 430,000–480,000 double-envelope ballots. -->
+|reporting=91.006
 
 |header1=By party{{efn|Seat changes for lists formed or split since 2022 are counted from their predecessors' seats: the Joint List from [[Hadash–Ta'al]] (5), Together from [[Yesh Atid]] (24), the Democrats from [[Israeli Labor Party|Labor]] (4), and Otzma Yehudit (6), RZP–Zehut (7) and Noam (1) from their shares of the 14 seats won by the [[Religious Zionist Party]] joint list.}}
 
@@ -215,7 +215,7 @@
 |invalid=22893
 |electorate=7331981
 |totalvotes=5695682 <!-- CEC turnout figure (77.7%), double-envelope voters included; 5,183,415 of these counted so far -->
-|source=[[Central Elections Committee]]<ref name="CEC-results">{{cite web |title=Results of the Elections for the 26th Knesset: National Results |url=https://votes26.bechirot.gov.il/nationalresults?lang=en |website=votes26.bechirot.gov.il |publisher=[[Central Elections Committee]] |access-date=29 October 2026}}</ref>
+|source=[[Central Elections Committee]]<ref name="CEC-results">{{cite web |title=Results of the Elections for the 26th Knesset: National Results |url=https://votes26.bechirot.gov.il/nationalresults?lang=en |website=votes26.bechirot.gov.il |publisher=[[Central Elections Committee]] |access-date=29 October 2026 |archive-url=https://web.archive.org/web/20261028122525/https://votes26.bechirot.gov.il/nationalresults?lang=en |archive-date=28 October 2026 |url-status=live}}</ref>
 
 |embedded={{Election results|embed=y
 |image=[[File:Israeli Knesset Blocs 2026.svg]]
@@ -249,3 +249,38 @@
 |total_sc=0
 |source=[[Central Elections Committee]]<ref name="CEC-results"/>
 }}}}
+
+===Exit polls===
+As of 02:17 [[Israel Standard Time]] on 28 October 2026, seven [[exit poll]]s were released and updated:
+
+{{legend|#D9D9F8|Government bloc parties}}
+{|class=wikitable
+|-
+! Party !! [[Kan 11|Ch. 11]]<ref>{{Cite news |title=Kan 11 updates exit poll, pro-Netanyahu bloc pulls even with opposition |url=https://www.timesofisrael.com/liveblog_entry/kan-11-updates-exit-poll-pro-netanyahu-bloc-pulls-even-with-opposition/ |access-date=28 October 2026 |work=The Times of Israel |language=en-US |issn=0040-7909}}</ref> !! [[Channel 12 (Israel)|Ch. 12]]<ref>{{Cite news |title=In reversal, pro-Netanyahu bloc rises to 52 seats in updated exit poll to overtake opposition bloc |url=https://www.timesofisrael.com/liveblog_entry/channel-12-updates-exit-poll-pro-netanyahu-bloc-rises-to-52-seats/ |access-date=28 October 2026 |work=The Times of Israel |language=en-US |issn=0040-7909}}</ref> !! [[Channel 13 (Israel)|Ch. 13]]<ref>{{Cite news |title=Pro-Netanyahu bloc rises to 51 seats in updated Channel 13 exit poll, pulling even with anti-Netanyahu bloc |url=https://www.timesofisrael.com/liveblog_entry/pro-netanyahu-bloc-rises-to-51-seats-in-updated-channel-13-exit-poll-pulling-even-with-anti-netanyahu-bloc/ |access-date=28 October 2026 |work=The Times of Israel |language=en-US |issn=0040-7909}}</ref> !! [[Channel 14 (Israel)|Ch. 14]]<ref name=nonmainstreamExit>{{cite news|url=https://www.timesofisrael.com/liveblog_entry/three-more-exit-polls-by-non-mainstream-networks-diverge-wildly-with-one-projecting-60-seats-for-pms-bloc/|title=Three exit polls by non-mainstream networks diverge wildly, with solidly pro-Netanyahu Channel 14 projecting majority for PM's bloc|newspaper=The Times of Israel|date=27 October 2026}}</ref> !! [[I24NEWS (Israeli TV channel)|i24]]<ref>{{cite news |date=27 October 2026 |title=i24NEWS Exit Poll: Likud wins 27 seats, Yashar 20; coalition bloc reaches 55 seats, opposition 49, and Arab parties 16 |url=https://www.i24news.tv/en/news/israeli-elections/artc-i24news-exit-poll-likud-wins-27-seats-yashar-20-coalition-bloc-reaches-55-seats-opposition-49-and-arab-parties-16 |access-date=27 October 2026 |work=i24NEWS |language=en |archive-url=https://web.archive.org/web/20261028073523/https://www.i24news.tv/en/news/israeli-elections/artc-i24news-exit-poll-likud-wins-27-seats-yashar-20-coalition-bloc-reaches-55-seats-opposition-49-and-arab-parties-16 |archive-date=28 October 2026 |url-status=live}}</ref> !! [[Channel 16 (Israel)|Ch. 16]]<ref name=nonmainstreamExit/> !! [[Channel 9 (Israel)|Ch. 9]]<ref>{{Cite news |title=Экзитполы: "Ликуд" лидирует, но коалиция уступает оппозиции
+ |url=https://www.9tv.co.il/item/271021/ |access-date=28 October 2026 |work=Channel 9 |language=ru}}</ref>
+|-
+| style="background:#D9D9F8"| Likud || 27 || 27 || 27 || 31 || 27 || 25 || 24
+|-
+| Yashar || 21 || 21 || 22 || 20 || 20 || 22 || 22
+|-
+| Together || 13 || 12 || 13 || 11 || 15 || 13 || 12
+|-
+| Joint List || 11 || 12 || 11 || 11 || 9 || 11 || 11
+|-
+| Democrats || 9 || 9 || 9 || 9 || 9 || 11 || 9
+|-
+| Yisrael Beiteinu || 8 || 7 || 7 || 0 || 5 || 6 || 9
+|-
+| Ra'am || 7 || 7 || 7 || 7 || 7 || 5 || 7
+|-
+| style="background:#D9D9F8"| Shas || 6 || 7 || 6 || 10 || 8 || 7 || 8
+|-
+| style="background:#D9D9F8"| Otzma Yehudit || 6 || 6 || 6 || 7 || 7 || 7 || 6
+|-
+| style="background:#D9D9F8"| United Torah Judaism || 6 || 6 || 6 || 7 || 7 || 7 || 6
+|-
+| style="background:#D9D9F8"| Religious Zionists-Zehut || 6 || 6 || 6 || 7 || 6 || 7 || 6
+|-
+!Government
+|51 || 52 || 51 || style="background:#D9D9F8"| 62 || 55 || 53 || 50
+|}
