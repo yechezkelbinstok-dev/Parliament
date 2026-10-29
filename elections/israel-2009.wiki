@@ -1,0 +1,95 @@
+title: 2009 Israeli legislative election
+---
+{{Infobox legislative election
+| previous_election = [[2006 Israeli legislative election|2006]]
+| next_election = [[2013 Israeli legislative election|2013]]
+| election_date = 10 February 2009
+| seats_for_election = All 120 seats in the [[Knesset]]
+| majority_seats = 61
+| turnout = 64.72% ({{increase}} 1.17[[Percentage point|pp]])
+| country = Israel
+
+| heading1 = [[National camp|Right-wing bloc]] (65 seats)
+| party1 = [[Likud]]–[[Ahi (political party)|Ahi]]
+| leader1 = [[Benjamin Netanyahu]]
+| seats1 = 27
+| last_election1 = 12
+| percentage1 = 21.61
+
+| party2 = Yisrael Beiteinu
+| leader2 = [[Avigdor Lieberman]]
+| seats2 = 15
+| last_election2 = 11
+| percentage2 = 11.70
+
+| party3 = Shas
+| leader3 = [[Eli Yishai]]
+| seats3 = 11
+| last_election3 = 12
+| percentage3 = 8.49
+
+| party4 = United Torah Judaism
+| leader4 = [[Yaakov Litzman]]
+| seats4 = 5
+| last_election4 = 6
+| percentage4 = 4.39
+
+| party5 = National Union (Israel)
+| leader5 = [[Ya'akov Katz (politician born 1951)|Yaakov Katz]]
+| seats5 = 4
+| last_election5 = 6
+| percentage5 = 3.34
+
+| party6 = [[The Jewish Home|Jewish Home]]
+| leader6 = [[Daniel Hershkowitz]]
+| seats6 = 3
+| last_election6 = 3
+| percentage6 = 2.87
+
+| heading7 = Center-left bloc (44 seats)
+| party7 = Kadima
+| leader7 = [[Tzipi Livni]]
+| seats7 = 28
+| last_election7 = 29
+| percentage7 = 22.47
+
+| party8 = Israeli Labor Party
+| leader8 = [[Ehud Barak]]
+| seats8 = 13
+| last_election8 = 19
+| percentage8 = 9.93
+
+| party9 = Meretz
+| leader9 = [[Haim Oron]]
+| seats9 = 3
+| last_election9 = 5
+| percentage9 = 2.95
+
+| heading10 = Arab parties (11 seats)
+| party10 = [[United Arab List|Ra'am]]–[[Ta'al]]
+| leader10 = [[Ibrahim Sarsur]]
+| seats10 = 4
+| last_election10 = 4
+| percentage10 = 3.38
+
+| party11 = Hadash
+| leader11 = {{nowrap|[[Mohammad Barakeh]]}}
+| seats11 = 4
+| last_election11 = 3
+| percentage11 = 3.32
+
+| party12 = Balad (political party)
+| leader12 = [[Jamal Zahalka]]
+| seats12 = 3
+| last_election12 = 3
+| percentage12 = 2.48
+
+| title = [[Prime Minister of Israel|Prime Minister]]
+| before_election = [[Ehud Olmert]]
+| before_party = Kadima
+| after_election = [[Benjamin Netanyahu]]
+| after_party = Likud
+}}
+
+== References ==
+{{Reflist}}
