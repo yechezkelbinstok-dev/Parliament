@@ -1,0 +1,101 @@
+title: 2021 Israeli legislative election
+---
+{{Infobox legislative election
+| country = Israel
+| previous_election = [[2020 Israeli legislative election|2020]]
+| next_election = [[2022 Israeli legislative election|2022]]
+| election_date = 23 March 2021<ref name="results">{{cite news|url=https://www.haaretz.com/israel-news/elections/EXT-MAGAZINE-israel-election-results-exit-polls-and-live-vote-count-updates-1.9647405|archive-url=https://web.archive.org/web/20210323183914/https://www.haaretz.com/israel-news/elections/EXT-MAGAZINE-israel-election-results-exit-polls-and-live-vote-count-updates-1.9647405|url-status=dead|archive-date=23 March 2021|title=Israel Election Results: Exit Polls and Real-time Vote Count Updates|website=[[Haaretz]]|access-date=25 March 2021}}</ref>
+| seats_for_election = All 120 seats in the [[Knesset]]
+| majority_seats = 61
+| turnout = 67.44% ({{decrease}} 4.08[[Percentage point|pp]])
+
+| heading1 = [[Change bloc|Anti-Netanyahu bloc]] (57 seats)
+| party1 = [[Yesh Atid]]
+| leader1 = [[Yair Lapid]]
+| percentage1 = 13.93
+| seats1 = 17
+| last_election1 = 13<!--Of the first 33 candidates on the B&W list, 13 were from Yesh Atid-->
+
+| party2 = Blue and White (political party)
+| leader2 = [[Benny Gantz]]
+| percentage2 = 6.63
+| seats2 = 8
+| last_election2 = 15<!--Of the first 33 candidates on the B&W list, 15 were from Resilience-->
+
+| party3 = Israeli Labor Party
+| leader3 = [[Merav Michaeli]]
+| percentage3 = 6.09
+| seats3 = 7
+| last_election3 = 3<!--Of the first seven candidates on the L-G-M list, 3 were from Labor-->
+
+| party4 = Yisrael Beiteinu
+| leader4 = [[Avigdor Lieberman]]
+| percentage4 = 5.63
+| seats4 = 7
+| last_election4 = 7
+
+| party5 = Joint List
+| leader5 = [[Ayman Odeh]]
+| percentage5 = 4.82
+| seats5 = 6
+| last_election5 = 11
+
+| party6 = New Hope (Israel)
+| leader6 = [[Gideon Sa'ar]]
+| percentage6 = 4.74
+| seats6 = 6
+| last_election6 = new
+
+| party7 = Meretz
+| leader7 = [[Nitzan Horowitz]]
+| percentage7 = 4.59
+| seats7 = 6
+| last_election7 = 3<!--Of the first seven candidates on the L-G-M list, 3 were from Meretz-->
+
+| heading8 = [[National camp|Pro-Netanyahu bloc]] (52 seats)
+| party8 = Likud
+| leader8 = [[Benjamin Netanyahu]]
+| percentage8 = 24.19
+| seats8 = 30
+| last_election8 = 37<!--Likud+Gesher-->
+
+| party9 = Shas
+| leader9 = [[Aryeh Deri]]
+| percentage9 = 7.17
+| seats9 = 9
+| last_election9 = 9
+
+| party10 = United Torah Judaism
+| leader10 = [[Moshe Gafni]]
+| percentage10 = 5.63
+| seats10 = 7
+| last_election10 = 7
+
+| party11 = Religious Zionist Party
+| leader11 = [[Bezalel Smotrich]]
+| percentage11 = 5.12
+| seats11 = 6
+| last_election11 = 2
+
+| heading12 = Outside the blocs (11 seats)
+| party12 = [[Yamina]]
+| leader12 = [[Naftali Bennett]]
+| percentage12 = 6.21
+| seats12 = 7
+| last_election12 = 3
+
+| party13 = Ra'am
+| leader13 = [[Mansour Abbas]]
+| percentage13 = 3.79
+| seats13 = 4
+| last_election13 = 4
+
+| title = [[Prime Minister of Israel|Prime Minister]]
+| before_election = [[Benjamin Netanyahu]]
+| before_party = Likud
+| after_election = [[Naftali Bennett]]
+| after_party = [[Yamina]]
+}}
+
+== References ==
+{{Reflist}}

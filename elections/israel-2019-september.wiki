@@ -1,0 +1,79 @@
+title: September 2019 Israeli legislative election
+---
+{{Infobox legislative election
+| country = Israel
+| previous_election = [[April 2019 Israeli legislative election|Apr&nbsp;2019]]
+| next_election = [[2020 Israeli legislative election|2020]]
+| election_date = 17 September 2019
+| seats_for_election = All 120 seats in the [[Knesset]]
+| majority_seats = 61
+| turnout = 69.83% ({{gain}}1.37[[Percentage point|pp]])
+
+| heading1 = [[National camp|Right-wing bloc]] (55 seats)
+| party1 = Likud
+| leader1 = [[Benjamin Netanyahu]]
+| percentage1 = 25.10
+| seats1 = 32
+| last_election1 = 38<!-- Likud + Kulanu minus Ahi -->
+
+| party2 = Shas
+| leader2 = [[Aryeh Deri]]
+| percentage2 = 7.44
+| seats2 = 9 
+| last_election2 = 8
+
+| party3 = United Torah Judaism
+| leader3 = [[Yaakov Litzman]]
+| percentage3 = 6.06
+| seats3 = 7 
+| last_election3 = 8
+
+| party4 = Yamina
+| color4 = #CAD93B
+| leader4 = [[Ayelet Shaked]]
+| percentage4 = 5.87
+| seats4 = 7
+| last_election4 = 6<!-- URWP + Ahi -->
+
+| heading5 = [[Change bloc|Center-left bloc]] (44 seats)
+| party5 = Blue and White (political alliance)
+| leader5 = {{nowrap|[[Benny Gantz]]}}
+| percentage5 = 25.95
+| seats5 = 33
+| last_election5 = 35
+
+| party6 = [[Israeli Labor Party|Labor]]–[[Gesher (2019 political party)|Gesher]]
+| leader6 = [[Amir Peretz]]
+| percentage6 = 4.80
+| seats6 = 6 
+| last_election6 = 6
+
+| party7 = [[Democratic Union (Israel)|Democratic Union]]
+| leader7 = [[Nitzan Horowitz]]
+| percentage7 = 4.34
+| seats7 = 5 
+| last_election7 = 4
+
+| heading8 = Arab parties (13 seats)
+| party8 = Joint List
+| leader8 = [[Ayman Odeh]]
+| percentage8 = 10.60
+| seats8 = 13
+| last_election8 = 10
+
+| heading9 = Outside the blocs (8 seats)
+| party9 = Yisrael Beiteinu
+| leader9 = [[Avigdor Lieberman]]
+| percentage9 = 6.99
+| seats9 = 8
+| last_election9 = 5
+
+| title = [[Prime Minister of Israel|Prime Minister]]
+| before_election = [[Benjamin Netanyahu]]<br>([[caretaker government]])
+| before_party = Likud
+| after_election = [[Benjamin Netanyahu]]<br>([[caretaker government]])
+| after_party = Likud
+}}
+
+== References ==
+{{Reflist}}

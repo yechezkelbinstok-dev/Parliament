@@ -1,0 +1,76 @@
+title: 2022 Israeli legislative election
+---
+{{Infobox legislative election
+| country = Israel
+| previous_election = [[2021 Israeli legislative election|2021]]
+| next_election = [[2026 Israeli legislative election|2026]]
+| opinion_polls = Opinion polling for the 2022 Israeli legislative election
+| election_date = 1 November 2022
+| seats_for_election = All 120 seats in the [[Knesset]]
+| majority_seats = 61
+| turnout = 70.63% ({{increase}} 3.19[[Percentage point|pp]])
+| heading1 = [[National camp|Netanyahu bloc]] (64 seats)
+| party1 = Likud
+| leader1 = [[Benjamin Netanyahu]]
+| percentage1 = 23.41
+| seats1 = 32
+| last_election1 = 30
+| party2 = [[Religious Zionist Party|RZP]]–<wbr>[[Otzma Yehudit|Otzma]]
+| leader2 = [[Bezalel Smotrich]]
+| percentage2 = 10.84
+| seats2 = 14
+| last_election2 = 6
+| party3 = Shas
+| leader3 = [[Aryeh Deri]]
+| percentage3 = 8.25
+| seats3 = 11
+| last_election3 = 9
+| party4 = United Torah Judaism
+| leader4 = [[Yitzhak Goldknopf]]
+| percentage4 = 5.88
+| seats4 = 7
+| last_election4 = 7
+| heading5 = [[Change bloc|Anti-Netanyahu bloc]] (56 seats)
+| party5 = Yesh Atid
+| leader5 = [[Yair Lapid]]
+| percentage5 = 17.78
+| seats5 = 24
+| last_election5 = 17
+| party6 = National Unity (Israel)
+| leader6 = [[Benny Gantz]]
+| percentage6 = 9.08
+| seats6 = 12
+| last_election6 = 14
+| party7 = Yisrael Beiteinu
+| leader7 = [[Avigdor Lieberman]]
+| percentage7 = 4.48
+| seats7 = 6
+| last_election7 = 7
+| party8 = Ra'am
+| leader8 = [[Mansour Abbas]]
+| percentage8 = 4.07
+| seats8 = 5
+| last_election8 = 4
+| party9 = [[Hadash–Ta'al]]
+| leader9 = [[Ayman Odeh]]
+| percentage9 = 3.75
+| seats9 = 5
+| last_election9 = 5
+| party10 = Israeli Labor Party
+| leader10 = [[Merav Michaeli]]
+| percentage10 = 3.69
+| seats10 = 4
+| last_election10 = 7
+| map_image = 2022 Israeli legislative election (results by district, bloc and vote percentage).svg
+| map_caption = Results by [[Districts of Israel|district]] and bloc
+| title = [[Prime Minister of Israel|Prime Minister]]
+| before_election = [[Yair Lapid]]
+| before_party = [[Yesh Atid]]
+| before_image = 
+| after_election = [[Benjamin Netanyahu]]
+| after_party = [[Likud]]
+| after_image = 
+}}
+
+== References ==
+{{Reflist}}

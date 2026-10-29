@@ -1,0 +1,79 @@
+title: April 2019 Israeli legislative election
+---
+{{Infobox legislative election
+| country = Israel
+| previous_election = [[2015 Israeli legislative election|2015]]
+| next_election = [[September 2019 Israeli legislative election|Sept&nbsp;2019]]
+| election_date = 9 April 2019
+| seats_for_election= All 120 seats in the [[Knesset]]
+| majority_seats = 61 
+| turnout = 68.46% ({{decrease}} 3.88[[Percentage point|pp]])
+| heading1 = [[National camp|Right-wing bloc]] (65 seats)
+| party1 = Likud
+| leader1 = {{nowrap|[[Benjamin Netanyahu]]}}
+| percentage1 = 26.46
+| last_election1 = 30
+| seats1 = 35
+| party2 = Shas
+| leader2 = [[Aryeh Deri]]
+| percentage2 = 5.99
+| last_election2 = 7
+| seats2 = 8
+| party3 = United Torah Judaism
+| leader3 = [[Yaakov Litzman]]
+| percentage3 = 5.78
+| last_election3 = 6
+| seats3 = 8
+| party4 = Yisrael Beiteinu
+| leader4 = [[Avigdor Lieberman]]
+| percentage4 = 4.01
+| last_election4 = 6<!--Seats won in last election – see guidance at Template:Infobox legislative election-->
+| seats4 = 5
+| party5 = [[Union of Right-Wing Parties|URWP]]
+| leader5 = [[Rafi Peretz]]
+| percentage5 = 3.70
+| last_election5 = 8<!--Seats won in last election – see guidance at Template:Infobox legislative election-->
+| seats5 = 5
+| party6 = Kulanu
+| leader6 = [[Moshe Kahlon]]
+| percentage6 = 3.54
+| last_election6 = 10
+| seats6 = 4
+| heading7 = [[Change bloc|Center-left bloc]] (45 seats)
+| party7 = [[Blue and White (political alliance)|Blue and White]]
+| leader7 = [[Benny Gantz]]
+| percentage7 = 26.13
+| last_election7 = 11
+| seats7 = 35
+| party8 = Israeli Labor Party
+| leader8 = [[Avi Gabbay]]
+| percentage8 = 4.43
+| last_election8 = 19
+| seats8 = 6
+| party9 = Meretz
+| leader9 = [[Tamar Zandberg]]
+| percentage9 = 3.63
+| last_election9 = 5
+| seats9 = 4
+| heading10 = Arab parties (10 seats)
+| party10 = [[Hadash]]–[[Ta'al]]
+| leader10 = [[Ayman Odeh]]
+| percentage10 = 4.49
+| last_election10 = 6
+| seats10 = 6
+| party11 = [[United Arab List|Ra'am]]–[[Balad (political party)|Balad]]
+| color11 = {{party color|United Arab List}}
+| leader11 = [[Mansour Abbas]]
+| percentage11 = 3.33
+| last_election11 = 7
+| seats11 = 4
+
+| title = [[Prime Minister of Israel|Prime Minister]]
+| before_election = [[Benjamin Netanyahu]]
+| before_party = Likud
+| after_election = [[Benjamin Netanyahu]] ([[caretaker government]])
+| after_party = Likud
+}}
+
+== References ==
+{{Reflist}}

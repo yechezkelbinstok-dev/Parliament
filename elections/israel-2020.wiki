@@ -1,0 +1,73 @@
+title: 2020 Israeli legislative election
+---
+{{Infobox legislative election
+| country = Israel
+| previous_election = [[September 2019 Israeli legislative election|Sept&nbsp;2019]]
+| next_election = [[2021 Israeli legislative election|2021]]
+| election_date = 2 March 2020
+| seats_for_election = All 120 seats in the [[Knesset]]
+| majority_seats = 61
+| turnout = 71.52% ({{increase}}1.69[[Percentage point|pp]])
+
+| heading1 = [[National camp|Right-wing bloc]] (58 seats)
+| party1 = Likud
+| leader1 = {{nowrap|[[Benjamin Netanyahu]]}}
+| percentage1 = 29.46
+| seats1 = 36
+| last_election1 = 32
+
+| party2 = Shas
+| leader2 = [[Aryeh Deri]]
+| percentage2 = 7.69
+| seats2 = 9
+| last_election2 = 9
+
+| party3 = United Torah Judaism
+| leader3 = [[Yaakov Litzman]]
+| percentage3 = 5.98
+| seats3 = 7 
+| last_election3 = 7
+
+| party4 = Yamina
+| leader4 = [[Naftali Bennett]]
+| percentage4 = 5.24
+| seats4 = 6
+| last_election4 = 7
+| color4 = #CAD93B
+
+| heading5 = [[Change bloc|Center-left bloc]] (40 seats)
+| party5 = Blue and White (political alliance)
+| leader5 = [[Benny Gantz]]
+| percentage5 = 26.59
+| seats5 = 33
+| last_election5 = 33
+
+| party6 = Labor-Gesher-Meretz
+| leader6 = [[Amir Peretz]]
+| percentage6 = 5.83
+| seats6 = 7
+| last_election6 = 10<!--Labor, Gesher, Meretz and Yair Goland held 10 seats in the last Knesset. The Green Party (1 seat) did not run with them in this election-->
+
+| heading7 = Arab parties (15 seats)
+| party7 = Joint List
+| leader7 = [[Ayman Odeh]]
+| percentage7 = 12.67
+| seats7 = 15
+| last_election7 = 13
+
+| heading8 = Outside the blocs (7 seats)
+| party8 = Yisrael Beiteinu
+| leader8 = [[Avigdor Lieberman]]
+| percentage8 = 5.74
+| seats8 = 7
+| last_election8 = 8
+
+| title = [[Prime Minister of Israel|Prime Minister]]
+| before_election = [[Benjamin Netanyahu]] ([[caretaker government|caretaker]])
+| before_party = Likud
+| after_election = [[Benjamin Netanyahu]]
+| after_party = Likud
+}}
+
+== References ==
+{{Reflist}}
