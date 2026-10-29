@@ -77,7 +77,7 @@ title: 2021 Israeli legislative election
 | seats11 = 6
 | last_election11 = 2
 
-| heading12 = Outside the blocs (11 seats)
+| heading12 = Other (11 seats)
 | party12 = [[Yamina]]
 | leader12 = [[Naftali Bennett]]
 | percentage12 = 6.21

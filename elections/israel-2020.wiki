@@ -55,7 +55,7 @@ title: 2020 Israeli legislative election
 | seats7 = 15
 | last_election7 = 13
 
-| heading8 = Outside the blocs (7 seats)
+| heading8 = Other (7 seats)
 | party8 = Yisrael Beiteinu
 | leader8 = [[Avigdor Lieberman]]
 | percentage8 = 5.74

@@ -61,7 +61,7 @@ title: September 2019 Israeli legislative election
 | seats8 = 13
 | last_election8 = 10
 
-| heading9 = Outside the blocs (8 seats)
+| heading9 = Other (8 seats)
 | party9 = Yisrael Beiteinu
 | leader9 = [[Avigdor Lieberman]]
 | percentage9 = 6.99
