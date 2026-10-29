@@ -9,7 +9,7 @@ title: 2022 Israeli legislative election
 | seats_for_election = All 120 seats in the [[Knesset]]
 | majority_seats = 61
 | turnout = 70.63% ({{increase}} 3.19[[Percentage point|pp]])
-| heading1 = [[National camp|Netanyahu's bloc]] (64 seats)
+| heading1 = [[National camp|Netanyahu bloc]] (64 seats)
 | party1 = Likud
 | leader1 = [[Benjamin Netanyahu]]
 | percentage1 = 23.41
