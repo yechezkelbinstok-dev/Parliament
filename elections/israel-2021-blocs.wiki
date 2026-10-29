@@ -1,0 +1,37 @@
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs 2021.svg]]
+
+|header1=By bloc{{efn|Seat changes are not given: the lists changed too much after the [[2020 Israeli legislative election|2020 election]], when Blue and White and Yesh Atid split, [[New Hope (Israel)|New Hope]] was founded, [[Ra'am]] left the [[Joint List]] and the [[Religious Zionist Party]] ran separately from Yamina.}}
+
+|party2=[[Change bloc|Anti-Netanyahu bloc]] ([[Yesh Atid]] + [[Blue and White (political party)|Blue and White]] + [[Israeli Labor Party|Labor]] + [[Yisrael Beiteinu]] + [[Joint List]] + [[New Hope (Israel)|New Hope]] + [[Meretz]])
+|votes2=2047468
+|seats2=57
+|sc2=–
+|color2=#FF454C
+
+|party3=[[National camp|Netanyahu bloc]] ([[Likud]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[Religious Zionist Party|RZP]])
+|votes3=1856932
+|seats3=52
+|sc3=–
+|color3={{party color|Likud}}
+
+|party4=[[Yamina]]
+|votes4=273836
+|seats4=7
+|sc4=–
+|color4=#A0A0A0
+
+|party5=[[Ra'am]]
+|votes5=167064
+|seats5=4
+|sc5=–
+|color5=#A0A0A0
+
+|party6=Others
+|votes6=64752
+|seats6=0
+|sc6=–
+|color6=#dcdcdc
+
+|source=[https://votes24.bechirot.gov.il/ CEC]
+}}

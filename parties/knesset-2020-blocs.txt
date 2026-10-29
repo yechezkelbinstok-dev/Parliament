@@ -1,0 +1,9 @@
+# Knesset, 2020 election: seats by bloc, grouped as in the infobox (elections/israel-2020.wiki).
+# Left to right: Center-left bloc 40; Arab parties 15; Other: Yisrael Beiteinu 7; Right-wing bloc 58.
+# Parties outside both blocs sit between them, in grey. The crisis elections (2019-2022) use blue for Netanyahu's side and red for the other.
+title: 23rd Knesset by bloc (2020 election)
+
+Center-left bloc, 40, #FF454C
+Arab parties, 15, #007A3D
+Other: Yisrael Beiteinu, 7, #A0A0A0
+Right-wing bloc, 58, #1F5AA5

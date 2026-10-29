@@ -1,0 +1,38 @@
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs September 2019.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these lists or their predecessors won in the [[April 2019 Israeli legislative election|April 2019 election]]: 60 for the right-wing bloc (Likud 35 and [[Kulanu]] 4, which merged; Shas 8; UTJ 8; the [[Union of Right-Wing Parties]] 5, now part of Yamina), 45 for the center-left bloc (Blue and White 35, Labor 6, Meretz 4), 10 for the two Arab lists that formed the Joint List, and 5 for Yisrael Beiteinu, then counted in the right-wing bloc.}}
+
+|party2=[[National camp|Right-wing bloc]] ([[Likud]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[Yamina]])
+|votes2=1973246
+|seats2=55
+|sc2=−5
+|color2={{party color|Likud}}
+
+|party3=[[Change bloc|Center-left bloc]] ([[Blue and White (political alliance)|Blue and White]] + [[Israeli Labor Party|Labor]]–[[Gesher (2019 political party)|Gesher]] + [[Democratic Union (Israel)|Democratic Union]])
+|votes3=1556491
+|seats3=44
+|sc3=−1
+|color3=#FF454C
+
+|party4=Arab parties ([[Joint List]])
+|votes4=470211
+|seats4=13
+|sc4=+3
+|color4=#007A3D
+
+|party5=[[Yisrael Beiteinu]]
+|votes5=310154
+|seats5=8
+|sc5=+3
+|color5=#A0A0A0
+
+|party6=Others
+|votes6=126704
+|seats6=0
+|sc6=0
+|color6=#dcdcdc
+
+|total_sc=0
+|source=[https://votes22.bechirot.gov.il/nationalresults CEC], [https://www.timesofisrael.com/checked-and-double-checked-elections-committee-publishes-final-results/ The Times of Israel]
+}}

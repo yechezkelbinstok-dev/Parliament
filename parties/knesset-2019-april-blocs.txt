@@ -1,0 +1,8 @@
+# Knesset, April 2019 election: seats by bloc, grouped as in the infobox (elections/israel-2019-april.wiki).
+# Left to right: Center-left bloc 45; Arab parties 10; Right-wing bloc 65.
+# Parties outside both blocs sit between them, in grey. The crisis elections (2019-2022) use blue for Netanyahu's side and red for the other.
+title: 21st Knesset by bloc (April 2019 election)
+
+Center-left bloc, 45, #FF454C
+Arab parties, 10, #007A3D
+Right-wing bloc, 65, #1F5AA5

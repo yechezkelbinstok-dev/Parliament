@@ -1,0 +1,32 @@
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs 2009.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these parties won in the [[2006 Israeli legislative election|2006 election]]: 50 for the right-wing bloc (Likud 12, Shas 12, Yisrael Beiteinu 11, the [[National Union (Israel)|National Union]]–[[National Religious Party|NRP]] list 9, UTJ 6), 53 for the center-left bloc (Kadima 29, Labor 19, Meretz 5) and 10 for the Arab parties. The other 7 seats were won by [[Dor (political party)|Gil]].}}
+
+|party2=[[National camp|Right-wing bloc]] ([[Likud]] + [[Yisrael Beiteinu]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[National Union (Israel)|National Union]] + [[The Jewish Home|Jewish Home]])
+|votes2=1767220
+|seats2=65
+|sc2=+15
+|color2={{party color|Likud}}
+
+|party3=Center-left bloc ([[Kadima]] + [[Israeli Labor Party|Labor]] + [[Meretz]])
+|votes3=1192543
+|seats3=44
+|sc3=−9
+|color3=#62B9F2
+
+|party4=Arab parties ([[United Arab List|Ra'am]]–[[Ta'al]] + [[Hadash]] + [[Balad (political party)|Balad]])
+|votes4=309823
+|seats4=11
+|sc4=+1
+|color4=#007A3D
+
+|party5=Others
+|votes5=103904
+|seats5=0
+|sc5=−7
+|color5=#dcdcdc
+
+|total_sc=0
+|source=[http://www.knesset.gov.il/elections18/heb/results/main_Results.aspx Knesset Board of Elections]
+}}

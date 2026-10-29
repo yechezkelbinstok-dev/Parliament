@@ -1,0 +1,38 @@
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs 2020.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these lists won in the [[September 2019 Israeli legislative election|September 2019 election]], with Labor–Gesher (6) and the Democratic Union (5) together for Labor-Gesher-Meretz.}}
+
+|party2=[[National camp|Right-wing bloc]] ([[Likud]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[Yamina]])
+|votes2=2220428
+|seats2=58
+|sc2=+3
+|color2={{party color|Likud}}
+
+|party3=[[Change bloc|Center-left bloc]] ([[Blue and White (political alliance)|Blue and White]] + [[Labor-Gesher-Meretz]])
+|votes3=1487861
+|seats3=40
+|sc3=−4
+|color3=#FF454C
+
+|party4=Arab parties ([[Joint List]])
+|votes4=581507
+|seats4=15
+|sc4=+2
+|color4=#007A3D
+
+|party5=[[Yisrael Beiteinu]]
+|votes5=263365
+|seats5=7
+|sc5=−1
+|color5=#A0A0A0
+
+|party6=Others
+|votes6=36901
+|seats6=0
+|sc6=0
+|color6=#dcdcdc
+
+|total_sc=0
+|source=[https://votes23.bechirot.gov.il/ CEC] (votes), [https://www.timesofisrael.com/final-results-confirm-likud-with-36-seats-right-short-of-majority-with-58/ Times of Israel] (seats)
+}}

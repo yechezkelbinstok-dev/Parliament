@@ -1,0 +1,9 @@
+# Knesset, September 2019 election: seats by bloc, grouped as in the infobox (elections/israel-2019-september.wiki).
+# Left to right: Center-left bloc 44; Arab parties 13; Other: Yisrael Beiteinu 8; Right-wing bloc 55.
+# Parties outside both blocs sit between them, in grey. The crisis elections (2019-2022) use blue for Netanyahu's side and red for the other.
+title: 22nd Knesset by bloc (September 2019 election)
+
+Center-left bloc, 44, #FF454C
+Arab parties, 13, #007A3D
+Other: Yisrael Beiteinu, 8, #A0A0A0
+Right-wing bloc, 55, #1F5AA5

@@ -1,0 +1,32 @@
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs April 2019.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these lists or their predecessors won in the [[2015 Israeli legislative election|2015 election]]: 67 for the right-wing bloc (Likud 30, Kulanu 10, the [[The Jewish Home|Jewish Home]] 8, Shas 7, Yisrael Beiteinu 6, UTJ 6), 40 for the center-left bloc (the [[Zionist Union]] 24, [[Yesh Atid]] 11, Meretz 5) and 13 for the [[Joint List]], which split into the two Arab lists.}}
+
+|party2=[[National camp|Right-wing bloc]] ([[Likud]] + [[Shas]] + [[United Torah Judaism|UTJ]] + [[Yisrael Beiteinu]] + [[Union of Right-Wing Parties|URWP]] + [[Kulanu]])
+|votes2=2132922
+|seats2=65
+|sc2=−2
+|color2={{party color|Likud}}
+
+|party3=[[Change bloc|Center-left bloc]] ([[Blue and White (political alliance)|Blue and White]] + [[Israeli Labor Party|Labor]] + [[Meretz]])
+|votes3=1473224
+|seats3=45
+|sc3=+5
+|color3=#FF454C
+
+|party4=Arab parties ([[Hadash]]–[[Ta'al]] + [[United Arab List|Ra'am]]–[[Balad (political party)|Balad]])
+|votes4=337108
+|seats4=10
+|sc4=−3
+|color4=#007A3D
+
+|party5=Others
+|votes5=366016
+|seats5=0
+|sc5=0
+|color5=#dcdcdc
+
+|total_sc=0
+|source=[https://web.archive.org/web/20190411205835/https://votes21.bechirot.gov.il/ CEC]
+}}

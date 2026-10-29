@@ -1,0 +1,8 @@
+# Knesset, 2022 election: seats by bloc, grouped as in the infobox (elections/israel-2022.wiki).
+# Left to right: Anti-Netanyahu bloc 51; Other: Hadash–Ta'al 5; Netanyahu bloc 64.
+# Parties outside both blocs sit between them, in grey. The crisis elections (2019-2022) use blue for Netanyahu's side and red for the other.
+title: 25th Knesset by bloc (2022 election)
+
+Anti-Netanyahu bloc, 51, #FF454C
+Other: Hadash–Ta'al, 5, #A0A0A0
+Netanyahu bloc, 64, #1F5AA5

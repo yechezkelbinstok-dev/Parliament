@@ -1,0 +1,128 @@
+<!-- Israeli Knesset Blocs 2009.svg: https://commons.wikimedia.org/w/index.php?title=Special:Upload&uploadformstyle=basic&wpDestFile=Israeli_Knesset_Blocs_2009.svg -->
+== {{int:filedesc}} ==
+{{Information
+|description = Seats in the 18th [[:en:Knesset|Knesset]] by bloc after the [[:en:2009 Israeli legislative election|2009 Israeli legislative election]]. Left to right:
+{{legend|#62B9F2|Center-left bloc (Kadima, Labor, Meretz): 44 seats}}
+{{legend|#007A3D|Arab parties (Ra'am–Ta'al, Hadash, Balad): 11 seats}}
+{{legend|#1F5AA5|Right-wing bloc (Likud, Yisrael Beiteinu, Shas, UTJ, National Union, Jewish Home): 65 seats}}
+|date = 2026-10-29
+|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|author = ~~~
+|permission =
+|other versions = [[:File:Israel Knesset 2009.svg]] (by party)
+}}
+
+== {{int:license-header}} ==
+{{PD-shape}}
+
+[[Category:Election apportionment diagrams of Israel]]
+[[Category:Election apportionment diagrams with 120 seats]]
+[[Category:2009 elections in Israel]]
+
+<!-- Israeli Knesset Blocs April 2019.svg: https://commons.wikimedia.org/w/index.php?title=Special:Upload&uploadformstyle=basic&wpDestFile=Israeli_Knesset_Blocs_April_2019.svg -->
+== {{int:filedesc}} ==
+{{Information
+|description = Seats in the 21st [[:en:Knesset|Knesset]] by bloc after the [[:en:April 2019 Israeli legislative election|April 2019 Israeli legislative election]]. Left to right:
+{{legend|#FF454C|Center-left bloc (Blue and White, Labor, Meretz): 45 seats}}
+{{legend|#007A3D|Arab parties (Hadash–Ta'al, Ra'am–Balad): 10 seats}}
+{{legend|#1F5AA5|Right-wing bloc (Likud, Shas, UTJ, Yisrael Beiteinu, URWP, Kulanu): 65 seats}}
+|date = 2026-10-29
+|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|author = ~~~
+|permission =
+|other versions = [[:File:April Election Result.svg]] (by party)
+}}
+
+== {{int:license-header}} ==
+{{PD-shape}}
+
+[[Category:Election apportionment diagrams of Israel]]
+[[Category:Election apportionment diagrams with 120 seats]]
+[[Category:2019 elections in Israel]]
+
+<!-- Israeli Knesset Blocs September 2019.svg: https://commons.wikimedia.org/w/index.php?title=Special:Upload&uploadformstyle=basic&wpDestFile=Israeli_Knesset_Blocs_September_2019.svg -->
+== {{int:filedesc}} ==
+{{Information
+|description = Seats in the 22nd [[:en:Knesset|Knesset]] by bloc after the [[:en:September 2019 Israeli legislative election|September 2019 Israeli legislative election]]. Left to right:
+{{legend|#FF454C|Center-left bloc (Blue and White, Labor–Gesher, Democratic Union): 44 seats}}
+{{legend|#007A3D|Arab parties (Joint List): 13 seats}}
+{{legend|#A0A0A0|Other (Yisrael Beiteinu): 8 seats}}
+{{legend|#1F5AA5|Right-wing bloc (Likud, Shas, UTJ, Yamina): 55 seats}}
+|date = 2026-10-29
+|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|author = ~~~
+|permission =
+|other versions = [[:File:Israel Knesset Sept 2019.svg]] (by party)
+}}
+
+== {{int:license-header}} ==
+{{PD-shape}}
+
+[[Category:Election apportionment diagrams of Israel]]
+[[Category:Election apportionment diagrams with 120 seats]]
+[[Category:2019 elections in Israel]]
+
+<!-- Israeli Knesset Blocs 2020.svg: https://commons.wikimedia.org/w/index.php?title=Special:Upload&uploadformstyle=basic&wpDestFile=Israeli_Knesset_Blocs_2020.svg -->
+== {{int:filedesc}} ==
+{{Information
+|description = Seats in the 23rd [[:en:Knesset|Knesset]] by bloc after the [[:en:2020 Israeli legislative election|2020 Israeli legislative election]]. Left to right:
+{{legend|#FF454C|Center-left bloc (Blue and White, Labor-Gesher-Meretz): 40 seats}}
+{{legend|#007A3D|Arab parties (Joint List): 15 seats}}
+{{legend|#A0A0A0|Other (Yisrael Beiteinu): 7 seats}}
+{{legend|#1F5AA5|Right-wing bloc (Likud, Shas, UTJ, Yamina): 58 seats}}
+|date = 2026-10-29
+|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|author = ~~~
+|permission =
+|other versions = [[:File:Israel Knesset 2020.svg]] (by party)
+}}
+
+== {{int:license-header}} ==
+{{PD-shape}}
+
+[[Category:Election apportionment diagrams of Israel]]
+[[Category:Election apportionment diagrams with 120 seats]]
+[[Category:2020 elections in Israel]]
+
+<!-- Israeli Knesset Blocs 2021.svg: https://commons.wikimedia.org/w/index.php?title=Special:Upload&uploadformstyle=basic&wpDestFile=Israeli_Knesset_Blocs_2021.svg -->
+== {{int:filedesc}} ==
+{{Information
+|description = Seats in the 24th [[:en:Knesset|Knesset]] by bloc after the [[:en:2021 Israeli legislative election|2021 Israeli legislative election]]. Left to right:
+{{legend|#FF454C|Anti-Netanyahu bloc (Yesh Atid, Blue and White, Labor, Yisrael Beiteinu, Joint List, New Hope, Meretz): 57 seats}}
+{{legend|#A0A0A0|Other (Yamina, Ra'am): 11 seats}}
+{{legend|#1F5AA5|Netanyahu bloc (Likud, Shas, UTJ, Religious Zionist Party): 52 seats}}
+|date = 2026-10-29
+|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|author = ~~~
+|permission =
+|other versions = [[:File:Israel Knesset 2021 Français.svg]] (by party)
+}}
+
+== {{int:license-header}} ==
+{{PD-shape}}
+
+[[Category:Election apportionment diagrams of Israel]]
+[[Category:Election apportionment diagrams with 120 seats]]
+[[Category:2021 elections in Israel]]
+
+<!-- Israeli Knesset Blocs 2022.svg: https://commons.wikimedia.org/w/index.php?title=Special:Upload&uploadformstyle=basic&wpDestFile=Israeli_Knesset_Blocs_2022.svg -->
+== {{int:filedesc}} ==
+{{Information
+|description = Seats in the 25th [[:en:Knesset|Knesset]] by bloc after the [[:en:2022 Israeli legislative election|2022 Israeli legislative election]]. Left to right:
+{{legend|#FF454C|Anti-Netanyahu bloc (Yesh Atid, National Unity, Yisrael Beiteinu, Ra'am, Labor): 51 seats}}
+{{legend|#A0A0A0|Other (Hadash–Ta'al): 5 seats}}
+{{legend|#1F5AA5|Netanyahu bloc (Likud, RZP–Otzma, Shas, UTJ): 64 seats}}
+|date = 2026-10-29
+|source = {{own}}, made with [https://github.com/Gouvernathor/parliamentarch parliamentarch], the library behind the [https://parliamentdiagram.toolforge.org/archinputform Parliament diagram tool]
+|author = ~~~
+|permission =
+|other versions = [[:File:November 2022 Knesset.svg]] (by party)
+}}
+
+== {{int:license-header}} ==
+{{PD-shape}}
+
+[[Category:Election apportionment diagrams of Israel]]
+[[Category:Election apportionment diagrams with 120 seats]]
+[[Category:2022 elections in Israel]]
+

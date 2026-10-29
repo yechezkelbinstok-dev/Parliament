@@ -1,0 +1,32 @@
+|embedded={{Election results|embed=y
+|image=[[File:Israeli Knesset Blocs 2022.svg]]
+
+|header1=By bloc{{efn|Seat changes are counted from the seats these lists or their predecessors won in the [[2021 Israeli legislative election|2021 election]]: 52 for the Netanyahu bloc (Likud 30, Shas 9, UTJ 7, the Religious Zionist Party 6), 49 for the anti-Netanyahu bloc (Yesh Atid 17, [[Blue and White (political party)|Blue and White]] 8 and [[New Hope (Israel)|New Hope]] 6 for National Unity, Labor 7, Yisrael Beiteinu 7, Ra'am 4) and 5 for Hadash–Ta'al's share of the Joint List's 6. [[Meretz]] (6), [[Yamina]] (7) and [[Balad (political party)|Balad]] (1) won no seats.}}
+
+|party2=[[National camp|Netanyahu bloc]] ([[Likud]] + [[Religious Zionist Party|RZP]]–[[Otzma Yehudit|Otzma]] + [[Shas]] + [[United Torah Judaism|UTJ]])
+|votes2=2304964
+|seats2=64
+|sc2=+12
+|color2={{party color|Likud}}
+
+|party3=[[Change bloc|Anti-Netanyahu bloc]] ([[Yesh Atid]] + [[National Unity (Israel)|National Unity]] + [[Yisrael Beiteinu]] + [[Ra'am]] + [[Israeli Labor Party|Labor]])
+|votes3=1863643
+|seats3=51
+|sc3=+2
+|color3=#FF454C
+
+|party4=[[Hadash–Ta'al]]
+|votes4=178735
+|seats4=5
+|sc4=0
+|color4=#A0A0A0
+
+|party5=Others
+|votes5=417400
+|seats5=0
+|sc5=−14
+|color5=#dcdcdc
+
+|total_sc=0
+|source=[https://votes25.bechirot.gov.il/ CEC]
+}}
