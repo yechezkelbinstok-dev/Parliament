@@ -1,8 +1,8 @@
 # Knesset, 2009 election: seats by bloc, grouped as in the infobox (elections/israel-2009.wiki).
 # Left to right: Center-left bloc 44; Arab parties 11; Right-wing bloc 65.
-# Parties outside both blocs sit between them, in grey. 2009 keeps the 2026 scheme: Likud blue against a light blue.
+# Parties outside both blocs sit between them, in grey. Red for the center-left bloc (Kadima's colours are navy, red and white; its navy is too close to Likud's blue), as in the 2019-2022 diagrams.
 title: 18th Knesset by bloc (2009 election)
 
-Center-left bloc, 44, #62B9F2
+Center-left bloc, 44, #FF454C
 Arab parties, 11, #007A3D
 Right-wing bloc, 65, #1F5AA5

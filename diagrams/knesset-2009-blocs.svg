@@ -4,7 +4,7 @@
     <!-- Created with parliamentarch (https://github.com/Gouvernathor/parliamentarch/) -->
     <text x="180" y="175.0"
           style="font-size:36px;font-weight:bold;text-align:center;text-anchor:middle;font-family:sans-serif">120</text>
-    <g style="fill:#62b9f2"
+    <g style="fill:#ff454c"
        id="0-Center-left-bloc">
         <title>Center-left bloc</title>
         <circle cx="13.14" cy="172.05" r="6.36"/>
@@ -139,7 +139,7 @@
     </g>
     <text x="180.00" y="19" style="font-size:14.0px;font-weight:bold;text-anchor:middle;font-family:sans-serif">18th Knesset by bloc (2009 election)</text>
     <g style="font-size:9px;font-family:sans-serif">
-        <rect x="42.60" y="214.00" width="8" height="8" rx="1.5" style="fill:#62B9F2;stroke:#888;stroke-width:0.5"/>
+        <rect x="42.60" y="214.00" width="8" height="8" rx="1.5" style="fill:#FF454C;stroke:#888;stroke-width:0.5"/>
         <text x="54.60" y="221.50">Center-left bloc (44)</text>
         <rect x="42.60" y="227.00" width="8" height="8" rx="1.5" style="fill:#007A3D;stroke:#888;stroke-width:0.5"/>
         <text x="54.60" y="234.50">Arab parties (11)</text>

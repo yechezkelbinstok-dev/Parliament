@@ -13,7 +13,7 @@
 |votes3=1192543
 |seats3=44
 |sc3=−9
-|color3=#62B9F2
+|color3=#FF454C
 
 |party4=Arab parties ([[United Arab List|Ra'am]]–[[Ta'al]] + [[Hadash]] + [[Balad (political party)|Balad]])
 |votes4=309823

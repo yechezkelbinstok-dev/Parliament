@@ -2,7 +2,7 @@
 == {{int:filedesc}} ==
 {{Information
 |description = Seats in the 18th [[:en:Knesset|Knesset]] by bloc after the [[:en:2009 Israeli legislative election|2009 Israeli legislative election]]. Left to right:
-{{legend|#62B9F2|Center-left bloc (Kadima, Labor, Meretz): 44 seats}}
+{{legend|#FF454C|Center-left bloc (Kadima, Labor, Meretz): 44 seats}}
 {{legend|#007A3D|Arab parties (Ra'am–Ta'al, Hadash, Balad): 11 seats}}
 {{legend|#1F5AA5|Right-wing bloc (Likud, Yisrael Beiteinu, Shas, UTJ, National Union, Jewish Home): 65 seats}}
 |date = 2026-10-29
