@@ -56,7 +56,7 @@
         <circle cx="140.86" cy="67.28" r="6.36"/>
         <circle cx="131.02" cy="37.02" r="6.36"/>
     </g>
-    <g style="fill:#15793d"
+    <g style="fill:#007a3d"
        id="1-Arab-parties">
         <title>Arab parties</title>
         <circle cx="129.90" cy="20.65" r="6.36"/>
@@ -141,7 +141,7 @@
     <g style="font-size:9px;font-family:sans-serif">
         <rect x="42.60" y="214.00" width="8" height="8" rx="1.5" style="fill:#62B9F2;stroke:#888;stroke-width:0.5"/>
         <text x="54.60" y="221.50">Eisenkot&#x27;s bloc (48)</text>
-        <rect x="42.60" y="227.00" width="8" height="8" rx="1.5" style="fill:#15793D;stroke:#888;stroke-width:0.5"/>
+        <rect x="42.60" y="227.00" width="8" height="8" rx="1.5" style="fill:#007A3D;stroke:#888;stroke-width:0.5"/>
         <text x="54.60" y="234.50">Arab parties (19)</text>
         <rect x="180.00" y="214.00" width="8" height="8" rx="1.5" style="fill:#1F5AA5;stroke:#888;stroke-width:0.5"/>
         <text x="192.00" y="221.50">Netanyahu&#x27;s bloc (53)</text>

@@ -238,7 +238,7 @@
 |votes4=783219
 |seats4=19
 |sc4=+9
-|color4=#15793D
+|color4=#007A3D
 
 |party5=Others
 |votes5=267196

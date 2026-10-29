@@ -9,9 +9,9 @@
 # The Arab parties belong to neither bloc, so they sit between the two, as in Israeli
 # media's bloc graphics; the middle of the chamber falls to them.
 # Each bloc is in its leading party's Wikipedia colour (Yashar, Likud), the Arab
-# parties in Ra'am's green.
+# parties in pan-Arab green (as in the Palestinian and Jordanian flags).
 title: 26th Knesset by bloc (provisional, 90.5% counted)
 
 Eisenkot's bloc, 48, #62B9F2
-Arab parties, 19, #15793D
+Arab parties, 19, #007A3D
 Netanyahu's bloc, 53, #1F5AA5
