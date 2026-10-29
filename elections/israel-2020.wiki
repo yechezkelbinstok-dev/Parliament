@@ -35,24 +35,25 @@ title: 2020 Israeli legislative election
 | last_election4 = 7
 | color4 = #CAD93B
 
-| heading5 = [[Change bloc|Center-left bloc]] (55 seats)
+| heading5 = [[Change bloc|Center-left bloc]] (40 seats)
 | party5 = Blue and White (political alliance)
 | leader5 = [[Benny Gantz]]
 | percentage5 = 26.59
 | seats5 = 33
 | last_election5 = 33
 
-| party6 = Joint List
-| leader6 = [[Ayman Odeh]]
-| percentage6 = 12.67
-| seats6 = 15
-| last_election6 = 13
+| party6 = Labor-Gesher-Meretz
+| leader6 = [[Amir Peretz]]
+| percentage6 = 5.83
+| seats6 = 7
+| last_election6 = 10<!--Labor, Gesher, Meretz and Yair Goland held 10 seats in the last Knesset. The Green Party (1 seat) did not run with them in this election-->
 
-| party7 = Labor-Gesher-Meretz
-| leader7 = [[Amir Peretz]]
-| percentage7 = 5.83
-| seats7 = 7
-| last_election7 = 10<!--Labor, Gesher, Meretz and Yair Goland held 10 seats in the last Knesset. The Green Party (1 seat) did not run with them in this election-->
+| heading7 = Arab parties (15 seats)
+| party7 = Joint List
+| leader7 = [[Ayman Odeh]]
+| percentage7 = 12.67
+| seats7 = 15
+| last_election7 = 13
 
 | heading8 = Other (7 seats)
 | party8 = Yisrael Beiteinu
