@@ -537,7 +537,7 @@ for pid in FREE:
 # (name, centre of the map's symbol, kind[, provinces the disc may take in, the first owning it])
 # A disc stays inside the province its centre is in, unless the entry names provinces.
 CITIES = [
-    ('Grey Havens', (402.5, 511.0), 'Haven', ['mithlond', 'gulf_of_lhun']), ('Weathertop', (884.0, 487.0), 'Ruins'), ('Michel Delving', (580.0, 502.4), 'Town'),
+    ('Grey Havens', (402.5, 511.0), 'Haven', ['mithlond']), ('Weathertop', (884.0, 487.0), 'Ruins'), ('Michel Delving', (580.0, 502.4), 'Town'),
     ('Annúminas', (620.8, 387.7), 'Ruins'), ('Hobbiton', (634.8, 489.9), 'Village'),
     ('Bucklebury', (688.5, 501.9), 'Village'), ('Bree', (781.5, 500.4), 'Town'), ('Fornost', (750.3, 369.0), 'Ruins'),
     ('Tharbad', (880.0, 733.4), 'Ruins', ['gwathlo_vale', 'minhiriath', 'swanfleet', 'enedwaith']),

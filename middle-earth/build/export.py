@@ -277,7 +277,13 @@ def main():
     L_, R_ = side(nl), side(nr)
     buckets = defaultdict(list)
     for s, a, b in zip(segs, L_, R_):
-        if a < 0 or b < 0 or a == b:
+        if (a < 0) != (b < 0):
+            # the edge of the land: the base map draws the coast, but a city standing out on the water
+            # (Lake-town) needs its own rim there
+            if 'k' in districts[cell_d[max(a, b)]]:
+                buckets[('district', 'l')].append(s)
+            continue
+        if a < 0 or a == b:
             continue
         wa = realms[cell_realm[a]]['w']; wb = realms[cell_realm[b]]['w']
         if wa != wb:

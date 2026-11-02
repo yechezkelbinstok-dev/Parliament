@@ -843,10 +843,17 @@ def main():
             extra['district_labels'].append((c.x, c.y, d['name']))
         if '--cells' in sys.argv:
             B.build_cells()
-        pickle.dump(dict(prov=B.prov, districts=B.districts, cells=getattr(B, 'cells', None)),
-                    open(os.path.join(CACHE, 'regions.pkl'), 'wb'))
+        # seas and lakes are the base map's own drawing, not regions to paint: only land is kept
+        land = {pid: g for pid, g in B.prov.items() if defs.PROV[pid]['realm'] not in defs.WATER}
+        dists = [d for d in B.districts if d['province'] in land]
+        keep = {d['id'] for d in dists}
+        cells = [c for c in getattr(B, 'cells', None) or [] if c['district'] in keep] or None
+        for i, c in enumerate(cells or []):
+            c['id'] = i
+        pickle.dump(dict(prov=land, districts=dists, cells=cells), open(os.path.join(CACHE, 'regions.pkl'), 'wb'))
     else:
-        pickle.dump(dict(prov=B.prov, districts=[], cells=None), open(os.path.join(CACHE, 'regions.pkl'), 'wb'))
+        land = {pid: g for pid, g in B.prov.items() if defs.PROV[pid]['realm'] not in defs.WATER}
+        pickle.dump(dict(prov=land, districts=[], cells=None), open(os.path.join(CACHE, 'regions.pkl'), 'wb'))
     extra['net'] = [(n, list(l.coords)) for n, l in zip(B.hard_names, B.hard)]
     extra['bad'] = B.bad_faces
     B.debug_dump(extra)
