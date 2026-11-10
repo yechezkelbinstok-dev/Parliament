@@ -113,6 +113,21 @@ Westminster style only (defaults match the web tool):
 
 Parties with 0 seats are left out of the diagram and the legend.
 
+### Seat-by-seat plans
+
+For a chamber that is neither an arch nor Westminster benches, `seating_plan.py`
+draws one dot per member where that member actually sits. The seats are given as
+straight blocks (a row or a column), each from its first seat's centre to its
+last one's, followed by one line per seat: `Party: member`, or `-` for a seat
+with no member.
+
+```sh
+python seating_plan.py parties/knesset-26-seating.txt --png
+python seating_plan.py parties/knesset-26-seating.txt -s legend=no -s title= -o diagrams/knesset-26-seating-plain.svg
+```
+
+![Knesset seating plan](diagrams/knesset-26-seating.png)
+
 ## Wikipedia election pages
 
 `wikishot.py` turns wikitext into screenshots of a Wikipedia article, the

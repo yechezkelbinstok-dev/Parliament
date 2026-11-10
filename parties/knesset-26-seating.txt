@@ -1,0 +1,202 @@
+# 26th Knesset: where each of the 120 members sits in the plenum, one dot per member.
+# From the Knesset's seating plan, updated 10 November 2026 (before the new government is sworn in,
+# so the outgoing ministers sit at the government table). Seats are drawn in the plan's
+# positions, with the plenum's centre line at x = 548. Seats with no member (empty seats and
+# ministers who were not re-elected: May Golan, Idit Silman, Avi Dichter, Ze'ev Elkin, Ofir Sofer)
+# keep their place but get no dot.
+# Seats: Likud 27, Yashar 21, Together 12, Joint List 11, Ra'am 8, Democrats 8, Yisrael Beiteinu 7,
+# Otzma Yehudit 7, UTJ 7, Shas 6, Religious Zionist Party 5, Zehut 1.
+title: 26th Knesset seating plan
+radius: 13
+center: 548
+
+# Parties in legend order, with Wikipedia's colours (Module:Political party).
+party: Likud, #1f5aa5
+party: Yashar, #62B9F2
+party: Together, #2A2A78
+party: Joint List, #01B2AC
+party: Ra'am, #15793D
+party: The Democrats, #2A38D7
+party: Yisrael Beiteinu, #23C2EB
+party: Otzma Yehudit, #FF4500
+party: United Torah Judaism, #003366
+party: Shas, #000000
+party: Religious Zionist Party, #4F9298
+party: Zehut, #6AC7DF
+
+# "block: name | x,y | x,y" is a straight line of seats from the first seat's centre to the last's.
+# Then one line per seat, in that order: "Party: Member", or "-" for a seat with no member.
+
+# The four back rows, left to right as seen from the Speaker's chair at the bottom.
+block: Back row 1 | 151.4,56 | 944.6,56
+-
+-
+-
+United Torah Judaism: אליקים שטארק
+United Torah Judaism: יהודה ווייספיש
+Ra'am: יאסר חוג'יראת
+Ra'am: איברהים אל טורי
+Ra'am: עבד אלכרים מסרי
+The Democrats: מיכל רוזין
+-
+Joint List: האיתם זחאלקה
+Joint List: חסן אלנסאסרה
+Joint List: נהאיה ושאחי
+Joint List: אחמד דראושה
+-
+-
+
+block: Back row 2 | 331.6,126 | 764.4,126
+United Torah Judaism: מאיר פרוש
+United Torah Judaism: משה רוזנטל
+Ra'am: ואליד אלהואשלה
+Ra'am: אימאן ח'טיב יאסין
+The Democrats: עמרי רונן
+The Democrats: גבי לסקי
+The Democrats: יאיא (יאיר) פינק
+Joint List: מהא כרכבי סבאח
+Joint List: יוסף עטאונה
+Joint List: עופר כסיף
+
+block: Back row 3 | 397.5,201.5 | 698.5,201.5
+United Torah Judaism: יצחק גולדקנופ
+United Torah Judaism: יצחק פינדרוס
+Ra'am: יואב סגלוביץ'
+Ra'am: ווליד טאהא
+The Democrats: אפרת רייטן מרום
+The Democrats: גלעד קריב
+Joint List: בכר עוואודה
+Joint List: פאתן גטאס
+
+block: Back row 4 | 452.3,273 | 643.7,273
+United Torah Judaism: יעקב אשר
+Ra'am: מנסור עבאס
+The Democrats: נעמה לזימי
+The Democrats: יאיר גולן
+Joint List: אחמד טיבי
+Joint List: יוסף ג'בארין
+
+# Side columns, top to bottom. (The far-left column has no members, so it is not drawn.)
+block: Left column 1 | 195,183.4 | 195,651.4
+Shas: יוסף טייב
+Shas: אוריאל בוסו
+Shas: חיים ביטון
+Shas: יואב בן צור
+Religious Zionist Party: איתמר איתם
+Religious Zionist Party: צבי מור
+Otzma Yehudit: חנמאל דורפמן
+-
+Likud: ארז תדמור
+Likud: אלי גולדשמידט
+Likud: דוד ביטן
+
+block: Left column 2 | 270.75,251.5 | 270.75,591.3
+Shas: מיכאל מלכיאלי
+Religious Zionist Party: שמחה רוטמן
+Otzma Yehudit: יצחק קרויזר
+Otzma Yehudit: לימור סון הר מלך
+Likud: בועז ביסמוט
+Likud: חוה אתי עטייה
+Likud: משה סעדה
+Likud: דוד פטר
+Likud: אלישע מדן
+
+block: Left column 3 | 342,309.4 | 342,538.2
+Shas: ינון אזולאי
+Zehut: משה פייגלין
+Otzma Yehudit: טלי גוטליב
+Likud: אלמוג כהן
+Likud: יעקב ברדוגו
+Likud: טליק גואילי
+Likud: אופיר כץ
+
+block: Right column 1 | 754,309.4 | 754,538.2
+Yisrael Beiteinu: אביגדור ליברמן
+Together: יאיר לפיד
+Together: נפתלי בנט
+Yashar: עדי אלטשולר
+Yashar: אורית פרקש הכהן
+Yashar: יורם כהן
+Yashar: גדי איזנקוט
+
+block: Right column 2 | 825.25,251.5 | 825.25,591.3
+Yisrael Beiteinu: רפאל בן שטרית
+Together: לירן אבישר בן חורין
+Together: מירב בן ארי
+Together: קרן טרנר
+Yashar: אושרת גני גונן
+Yashar: תאיר איפרגן
+Yashar: שאול מרידור
+Yashar: חילי טרופר
+Yashar: מתן כהנא
+
+block: Right column 3 | 901,183.4 | 901,651.4
+Yisrael Beiteinu: עודד פורר
+Yisrael Beiteinu: טליה לנקרי
+Together: איתן גינזבורג
+Together: מיכל נגרי
+Together: נעם תיבון
+Yashar: אלקס ריף
+Yashar: דבורה בכר
+Yashar: כמיל אבו רוקן
+Yashar: אלעזר שטרן
+Yashar: ענבר הרוש גיטי
+Yashar: שירה שפירא
+
+block: Right column 4 | 973,110.4 | 973,720.1
+Yisrael Beiteinu: חמד עמאר
+Yisrael Beiteinu: שרון שרעבי
+Yisrael Beiteinu: יוליה מלינובסקי
+Together: רם בן ברק
+Together: ברוריה נעים ארמן
+Together: יונתן שלו
+Together: מירב כהן
+Yashar: יפה טבג'ה
+Yashar: אליסף פרץ
+Yashar: טל אוחנה
+Yashar: ישראל זרי
+Yashar: רועי פולקמן
+Yashar: ענבר יחזקאלי
+
+# The government table: the top row left to right, then each leg from the top.
+block: Government table | 467,342 | 629,342
+Religious Zionist Party: בצלאל סמוטריץ'
+Likud: יריב לוין
+Likud: בנימין נתניהו
+Likud: ישראל כץ
+Likud: אלי כהן
+
+block: Government table, left | 443,367 | 443,719.5
+Likud: גדעון סער
+Likud: יואב קיש
+Likud: ניר ברקת
+Likud: שלמה קרעי
+# מאי גולן (minister, not an MK)
+-
+# עידית סילמן (minister, not an MK)
+-
+Likud: גילה גמליאל
+# אבי דיכטר (minister, not an MK)
+-
+Likud: מכלוף מיקי זוהר
+# זאב אלקין (minister, not an MK)
+-
+-
+
+block: Government table, right | 653,367 | 653,719.5
+Otzma Yehudit: איתמר בן גביר
+Likud: מירי רגב
+Likud: דוד אמסלם
+# אופיר סופר (minister, not an MK)
+-
+Likud: חיים כץ
+Likud: עמיחי שיקלי
+Religious Zionist Party: אורית מלכה סטרוק
+Otzma Yehudit: יצחק שמעון וסרלאוף
+Otzma Yehudit: עמיחי אליהו
+-
+-
+
+# The Speaker's chair.
+block: Speaker | 548,782 | 548,782
+Likud: אמיר אוחנה
