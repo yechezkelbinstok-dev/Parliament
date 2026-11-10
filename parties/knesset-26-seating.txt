@@ -7,7 +7,7 @@
 # Seats: Likud 27, Yashar 21, Together 12, Joint List 11, Ra'am 8, Democrats 8, Yisrael Beiteinu 7,
 # Otzma Yehudit 7, UTJ 7, Shas 6, Religious Zionist Party 5, Zehut 1.
 title: 26th Knesset seating plan
-radius: 13
+radius: 16
 center: 548
 
 # Parties in legend order, with Wikipedia's colours (Module:Political party).
