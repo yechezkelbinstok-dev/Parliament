@@ -17,42 +17,59 @@ MKs are left blank, so every dot sits where its seat really is.
      a 2026 side photo shows lit name displays at its far end, and a 2023 photo
      shows its desk and screens continuing to the near end.
 2. **Geometry**: a parametric 3D model of the hall (bend angles, row positions,
-   seat spacing, platform heights) was fitted jointly with the cameras of four
+   seat spacing, platform heights) was fitted jointly with the cameras of five
    photos taken from different places:
-   - from the Speaker's dais, November 2026 (`U1`),
-   - from the side gallery, February 2026 (`U3`) and 2025 (`U2`),
-   - from the back corner gallery, 2023 (`A`).
+   - from the Speaker's dais, November 2026 (`U1`);
+   - from the side gallery, February 2026 (`U3`) and 2025 (`U2`);
+   - from the press corner at the back right, 2023 (`A`) and at the 26th
+     Knesset's opening session, 10 November 2026 (`P1`, from higher up).
    Seats are located in each photo by their lit name displays or desk screens;
-   every observation is tied to a known seat (`obs*.json`, 274 in all).
+   every observation is tied to a known seat (`obs*.json`, 360 in all).
+   `P1` appears perspective-corrected, so its camera has an off-centre lens
+   model (`cam2.py`).
 3. Units are one MK seat width; no published dimensions were used (none were
    found apart from the 30 m wall behind the Speaker). A dot map needs only
    proportions.
+
+Two more photos from the same back-right corner (2012 and 2020) were left out:
+they repeat a viewpoint already covered twice, and furniture changes since then
+would have to be ruled out first.
 
 ## Results (units: one MK seat width, ±1σ)
 
 | quantity | value |
 |---|---|
-| bend of side rows (back part turns inward) | 13.8° ±0.5, 13.6° ±0.3, 15.1° ±0.3, 15.5° ±0.7 (inner → outer) |
-| front part of side rows | parallel to the hall axis (within ~2°) |
-| side rows' bend points, distance from the axis | 4.48, 6.36, 8.30, 10.17 (±0.04–0.08) |
-| government table: angled section | 14.1° ±0.5 from the axis |
-| government table seat width | 0.695 straight, 0.550 angled, 0.608 head (±0.007) |
-| back rows: distance behind the table head | 2.48, 4.46, 6.42, 8.49 (±0.03–0.05) |
-| back rows: V-shape (each half tilted back) | 5.2° ±0.6, 5.4° ±0.4, 5.0° ±0.3, 6.6° ±0.3 |
-| back-row seat width | 0.990 ±0.009 |
+| bend of side rows (back part turns inward) | 13.8° ±0.5, 14.1° ±0.3, 15.2° ±0.2, 14.9° ±0.3 (inner → outer) |
+| front part of side rows | parallel to the hall axis (within 0.6°) |
+| side rows' bend points, distance from the axis | 4.41, 6.30, 8.20, 10.08 (±0.03–0.06) |
+| government table: angled section | 13.9° ±0.4 from the axis |
+| government table seat width | 0.694 straight, 0.549 angled, 0.598 head (±0.006) |
+| back rows: distance behind the table head | 2.49, 4.45, 6.39, 8.40 (±0.03–0.04) |
+| back rows: V-shape (each half tilted back) | 5.4° ±0.6, 5.4° ±0.4, 5.2° ±0.2, 6.3° ±0.2 |
+| back-row seat width | 0.972 ±0.007 |
 
-The model reproduces the 274 observed seat positions with a median error of
-2.3 px (2048-px images).
+The model reproduces the 360 observed seat positions with a median error of
+2.4 px (2048-px images).
 
 ## Checks
 
-- **Hold-out tests** (`robust5.py holdout`): leave out one photo's data for one
-  part of the hall, refit, and see how far the map moves. Worst case 0.17 seat
-  widths; the last back row, the outer rows and the government table each move
-  0.01–0.13.
-- **Symmetry** (`robust5.py asym`, using `model5.py`): fitting the left
-  and right sides separately gives the same geometry within about 1° and
-  0.15 seat widths wherever both sides are observed.
+- **Leave one photo out** (`robust6.py`): refit without each photo in turn and
+  measure how far the map moves.
+
+  | photo left out | median move | max move |
+  |---|---|---|
+  | dais, 2026 | 0.036 | 0.069 |
+  | side gallery, Feb 2026 | 0.122 | 0.223 |
+  | side gallery, 2025 | 0.015 | 0.022 |
+  | back-right corner, 2023 | 0.085 | 0.208 |
+  | back-right corner, Nov 2026 | 0.070 | 0.130 |
+
+  Hiding the back rows in both back-corner photos moves the map by at most 0.19.
+  The government table has to be seen from the side: with only the dais photo's
+  view of it, its depth cannot be pinned down. Three side photos see it.
+- **Symmetry** (`sym6.py`, using `model5.py`): fitting the left and right sides
+  separately, matching seats agree to a median of 0.10 seat widths (max 0.24),
+  and the bend angles to within 1.3°.
 
 ## Assumptions
 
@@ -63,8 +80,13 @@ The model reproduces the 274 observed seat positions with a median error of
 
 ## Files
 
+The scripts were run in a working folder next to the photos, which are not
+included here (they belong to their photographers); the fitted results are in
+`fit.json`.
+
 - `model2.py`, `model3.py`, `model4.py`, `model5.py` – the hall model
-- `fitN.py` – joint fit of model and cameras; `robust5.py` – hold-out tests and uncertainties
-- `obs.json`, `obs_A.json`, `obs_U2.json`, `obs_extraB.json` – seat observations
+- `cam2.py` – camera model; `joint6.py` – joint fit of model and cameras
+- `robust6.py`, `sym6.py` – leave-one-out and symmetry tests
+- `obs.json`, `obs_A.json`, `obs_U2.json`, `obs_extraB.json`, `obs_P1.json` – seat observations
 - `fit.json` – fitted parameters and cameras
 - `names2026.py`, `parties.json`, `makesvg.py` – build the dot map from the fit
