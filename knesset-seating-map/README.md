@@ -2,8 +2,10 @@
 
 `knesset-26-seating.svg` (with a `.png` render) is a dot map of the Knesset plenary hall whose
 seat positions were **measured from photographs**, not copied from a schematic.
-It shows the 120 MKs of the 26th Knesset; empty seats and ministers who are not
-MKs are left blank, so every dot sits where its seat really is.
+It shows every seat in the hall: the 120 MKs of the 26th Knesset in their
+parties' colours, ministers who are not MKs in dark grey and empty seats in
+light grey, as on Wikipedia's diagram of the Spanish Congress. Every dot sits
+where its seat really is. The total counts MKs only.
 
 The total is written the way the Wikipedia arch diagrams write it: bold, a tenth
 of the image's width, in the open middle that the seats wrap around. An arch
@@ -165,4 +167,5 @@ included here (they belong to their photographers); the fitted results are in
 - `speaker.py` – the Speaker's position, from marks in the photos and the fitted cameras
 - `names2026.py`, `parties.json`, `makesvg.py` – build the dot map from the fit:
   `python3 makesvg.py` in `code/` rewrites `knesset-26-seating.svg` from `fit.json`
-  (`--no-number` leaves out the total); the PNG is a CairoSVG render
+  (`--no-number` leaves out the total, `--members-only` the grey seats); the PNG
+  is a CairoSVG render

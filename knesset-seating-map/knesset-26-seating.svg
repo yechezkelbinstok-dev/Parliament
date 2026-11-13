@@ -158,4 +158,38 @@
         <title>Zehut (1)</title>
         <circle cx="300.52" cy="433.29" r="10.93"><title>משה פייגלין (Zehut)</title></circle>
     </g>
+    <g style="fill:#808080" id="Ministers-not-MKs">
+        <title>Ministers who are not MKs (5)</title>
+        <circle cx="379.19" cy="665.48" r="10.93"><title>זאב אלקין (minister, not an MK)</title></circle>
+        <circle cx="379.59" cy="607.13" r="10.93"><title>אבי דיכטר (minister, not an MK)</title></circle>
+        <circle cx="379.98" cy="548.77" r="10.93"><title>עידית סילמן (minister, not an MK)</title></circle>
+        <circle cx="383.97" cy="515.03" r="10.93"><title>מאי גולן (minister, not an MK)</title></circle>
+        <circle cx="621.17" cy="492.99" r="10.93"><title>אופיר סופר (minister, not an MK)</title></circle>
+    </g>
+    <g style="fill:#cccccc" id="Empty-seats">
+        <title>Empty seats (23)</title>
+        <circle cx="122.04" cy="552.45" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="44.18" cy="693.21" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="43.82" cy="651.21" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="43.46" cy="609.21" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="43.10" cy="567.21" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="42.74" cy="525.22" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="42.38" cy="483.22" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="42.00" cy="438.52" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="47.80" cy="393.48" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="59.49" cy="350.34" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="70.48" cy="309.80" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="81.47" cy="269.26" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="92.45" cy="228.72" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="103.44" cy="188.19" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="192.52" cy="70.99" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="233.79" cy="66.84" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="275.06" cy="62.70" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="570.66" cy="46.14" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="777.01" cy="66.84" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="818.28" cy="70.99" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="378.99" cy="694.66" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="631.81" cy="694.66" r="10.93"><title>Empty seat</title></circle>
+        <circle cx="631.61" cy="665.48" r="10.93"><title>Empty seat</title></circle>
+    </g>
 </svg>

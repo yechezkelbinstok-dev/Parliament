@@ -6,6 +6,9 @@
 The total is written like on the Wikipedia arch diagrams (bold, a tenth of the
 width unless --size is given) where the horseshoe opens toward the Speaker, just
 below the front ends of the rows; --no-number leaves it out.
+Seats without an MK are drawn as on the Spanish Congress diagram: ministers who are
+not MKs dark grey, empty seats light grey (the total counts MKs only);
+--members-only leaves them out.
 """
 import numpy as np, json, html, argparse, itertools
 from model6 import *
@@ -15,6 +18,7 @@ ap=argparse.ArgumentParser()
 ap.add_argument('--params',default='fit.json'); ap.add_argument('--out',default='../knesset-26-seating.svg')
 ap.add_argument('--no-number',action='store_true',help='leave out the total')
 ap.add_argument('--size',type=float,help='text size in px (default: a tenth of the width)')
+ap.add_argument('--members-only',action='store_true',help='leave out empty seats and ministers who are not MKs')
 a=ap.parse_args()
 NM=[s[0] for s in SPEC]
 if a.params.endswith('.json'): q=json.load(open(a.params))['params']; q={k:q[k] for k in NM}
@@ -49,6 +53,12 @@ groups={p['id']:[] for p in parties}
 for el,i,x,y,name in seats:
     if name in who: groups[who[name]['id']].append((x,y,f"{name} ({who[name]['title'].rsplit(' (',1)[0]})"))
 meta={p['id']:(p['color'],p['title']) for p in parties}
+# seats without an MK (not counted in the total)
+others={'Ministers-not-MKs':('#808080','Ministers who are not MKs',[]),'Empty-seats':('#cccccc','Empty seats',[])}
+for el,i,x,y,name in seats:
+    if name in who: continue
+    if name: others['Ministers-not-MKs'][2].append((x,y,f'{name} (minister, not an MK)'))
+    else: others['Empty-seats'][2].append((x,y,'Empty seat'))
 L=[f'<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{W:.0f}" height="{H:.0f}" viewBox="0 0 {W:.2f} {H:.2f}">',
    '    <!-- Seat positions measured from photographs of the Knesset plenum (2023-2026) fitted with a 3D model;',
    '         occupants from the Knesset seating chart updated 10.11.2026. Speaker at the bottom, coalition on the left. -->']
@@ -63,6 +73,13 @@ for gid,items in groups.items():
     for x,y,t in items:
         L.append(f'        <circle cx="{X(x):.2f}" cy="{Y(y):.2f}" r="{R:.2f}"><title>{html.escape(t)}</title></circle>')
     L.append('    </g>')
+if not a.members_only:
+    for gid,(col,title,items) in others.items():
+        if not items: continue
+        L.append(f'    <g style="fill:{col}" id="{gid}">'); L.append(f'        <title>{html.escape(title)} ({len(items)})</title>')
+        for x,y,t in items:
+            L.append(f'        <circle cx="{X(x):.2f}" cy="{Y(y):.2f}" r="{R:.2f}"><title>{html.escape(t)}</title></circle>')
+        L.append('    </g>')
 L.append('</svg>')
 open(a.out,'w').write('\n'.join(L)+'\n')
 print('wrote',a.out,f'{W:.0f}x{H:.0f}', {k:len(v) for k,v in groups.items()})
