@@ -36,7 +36,9 @@ scale: it is the floor in front of the Speaker's dais.
    Seats are located in each photo by their lit name displays or desk screens;
    every observation is tied to a known seat (`obs*.json`, 413 in all). Screens
    partly hidden behind someone's head were left out, since only part of them
-   shows. `P1` and `N26` appear perspective-corrected, so their cameras have an
+   shows. One `P1` observation had been tied to the wrong screen (B4.5 to the
+   upper half of B4.6's screen, 25 px from where the model puts it) and was
+   corrected. `P1` and `N26` appear perspective-corrected, so their cameras have an
    off-centre lens model (`cam2.py`). `A` is cropped (1600 × 1157, not the 3:2
    of a whole frame), so it gets the same lens model, with its image centre
    allowed to move only as far as the crop could have moved it (70 px across,
@@ -46,8 +48,8 @@ scale: it is the floor in front of the Speaker's dais.
    the front run toward the back, the first seat of the back run toward the
    front, by about 0.05 seat widths each). The corner desks are wedge-shaped.
    The model (`model6.py`) has one shared parameter for this: each of the two
-   seats sits 0.064 ±0.005 seat widths closer to the bend. On the original five
-   photos it lowers the median error from 2.37 to 1.99 px, and their value
+   seats sits 0.064 ±0.004 seat widths closer to the bend. On the original five
+   photos it lowers the median error from 2.28 to 1.97 px, and their value
    (0.063) matches the one with all six photos.
 4. Units are one MK seat width; no published dimensions were used (none were
    found apart from the 30 m wall behind the Speaker). A dot map needs only
@@ -63,23 +65,23 @@ switched off, so only the back rows can be located in it.
 
 | quantity | value |
 |---|---|
-| bend of side rows (back part turns inward) | 13.7° ±0.5, 14.1° ±0.3, 15.1° ±0.3, 15.2° ±0.3 (inner → outer) |
+| bend of side rows (back part turns inward) | 13.8° ±0.4, 14.1° ±0.3, 15.1° ±0.3, 15.2° ±0.3 (inner → outer) |
 | front part of side rows | parallel to the hall axis (within 0.5°) |
-| side rows' bend points, distance from the axis | 4.45, 6.37, 8.31, 10.23 (±0.06, 0.08, 0.11, 0.13) |
-| corner seats, closer to the bend than the pitch | 0.064 ±0.005 |
+| side rows' bend points, distance from the axis | 4.46, 6.38, 8.32, 10.24 (±0.05, 0.07, 0.10, 0.12) |
+| corner seats, closer to the bend than the pitch | 0.064 ±0.004 |
 | government table: angled section | 14.4° ±0.4 from the axis |
-| government table seat width | 0.695 straight, 0.542 angled, 0.603 head (±0.004–0.009) |
-| back rows: distance behind the table head | 2.50, 4.46, 6.40, 8.36 (±0.02–0.04) |
-| back rows: V-shape (each half tilted back) | 5.3° ±0.6, 5.3° ±0.3, 5.2° ±0.2, 5.8° ±0.3 |
-| back-row seat width | 0.986 ±0.013 |
+| government table seat width | 0.695 straight, 0.542 angled, 0.604 head (±0.004–0.008) |
+| back rows: distance behind the table head | 2.50, 4.46, 6.40, 8.35 (±0.02–0.04) |
+| back rows: V-shape (each half tilted back) | 5.3° ±0.6, 5.3° ±0.3, 5.2° ±0.2, 5.7° ±0.3 |
+| back-row seat width | 0.988 ±0.012 |
 
 The model reproduces the 413 observed seat positions with a median error of
 2.0 px (2048-px images).
 
 The side rows' distance from the axis is the least certain part. It rests on
 the photos that look along the hall (`U1`, `A`, `P1`), and they disagree a
-little: without `P1` the outer rows come 0.46 closer to the axis, without `U1`
-0.23 further out. The earlier five-photo fit gave the outer row 10.08 ±0.06,
+little: without `P1` the outer rows come 0.47 closer to the axis, without `U1`
+0.19 further out. The earlier five-photo fit gave the outer row 10.08 ±0.06,
 but that precision came from treating `A` as a whole frame with a centred lens.
 
 ## The Speaker
@@ -97,7 +99,7 @@ Across the hall (x):
   the emblem: x = −0.08 ±0.05.
 - At the opening session two chairs stood side by side at the top of the dais.
   Triangulated from `P1` and `N26` without assuming anything about the axis,
-  the two people seated there were at x = +0.50 and −0.55: placed evenly
+  the two people seated there were at x = +0.50 and −0.54: placed evenly
   either side of the axis (midpoint −0.02).
 - The Knesset's own panorama of the hall shows the Speaker's chair alone at the
   centre of the dais's top tier, and the official seating chart has the Speaker
@@ -121,19 +123,19 @@ The dot is drawn at x = 0, y = −10.1.
 
   | photo left out | median move | max move |
   |---|---|---|
-  | dais, 2026 (`U1`) | 0.099 | 0.245 |
-  | right side gallery, Feb 2026 (`U3`) | 0.094 | 0.169 |
-  | right side gallery, 2025 (`U2`) | 0.045 | 0.108 |
-  | back-right corner, 2023 (`A`) | 0.030 | 0.069 |
-  | back-right corner, Nov 2026 (`P1`) | 0.202 | 0.494 |
-  | left side gallery, Nov 2026 (`N26`) | 0.024 | 0.043 |
+  | dais, 2026 (`U1`) | 0.086 | 0.209 |
+  | right side gallery, Feb 2026 (`U3`) | 0.075 | 0.138 |
+  | right side gallery, 2025 (`U2`) | 0.038 | 0.092 |
+  | back-right corner, 2023 (`A`) | 0.030 | 0.070 |
+  | back-right corner, Nov 2026 (`P1`) | 0.209 | 0.504 |
+  | left side gallery, Nov 2026 (`N26`) | 0.024 | 0.044 |
 
   The large moves are the side rows' distance from the axis (see Results). The
   corner-seat parameter stays between 0.059 and 0.066 whichever photo is left
   out. The government table has to be seen from the side: with only the dais
   photo's view of it, its depth cannot be pinned down. Four side photos see it.
 - **Symmetry** (`sym7.py`, using `model6s.py`): fitting the left and right sides
-  separately, matching seats agree to a median of 0.074 seat widths (max 0.19),
+  separately, matching seats agree to a median of 0.072 seat widths (max 0.19),
   and the bend angles to within 1.0°.
 
 ## Assumptions
