@@ -21,7 +21,7 @@ if a.params.endswith('.json'): q=json.load(open(a.params))['params']; q={k:q[k] 
 else: v=np.load(a.params); q=dict(zip(NM,v[:len(NM)]))
 OFF=0.80          # chair centre behind the desk front, in seat-pitch units
 S=42.0; R=0.25*S  # px per unit, dot radius
-SPEAKER_Y=-10.0
+SPEAKER_Y=-10.15     # measured in speaker.py: Speaker's head, on the axis (U3), agreeing with U2
 seats=[]
 for el,n in COUNTS.items():
     for i in range(n):

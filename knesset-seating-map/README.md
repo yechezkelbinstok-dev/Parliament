@@ -59,6 +59,25 @@ would have to be ruled out first.
 The model reproduces the 360 observed seat positions with a median error of
 2.4 px (2048-px images).
 
+## The Speaker
+
+No seat observation covers the Speaker, so the Speaker's place was measured
+separately (`speaker.py`) with the fitted cameras:
+
+- The Knesset emblem on the front of the dais, marked in three photos (`A`,
+  `P1`, `U3`), triangulates to x = 0.02, y = −8.9: the dais is centred on the
+  hall's axis, and the three cameras agree at that end of the hall (misfit
+  ≤ 3 px).
+- The Speaker's head, seated in the Speaker's chair in `U3` (February 2026),
+  lies at y = −10.15 on the axis (±0.03 for a 3 px marking error; ±0.13 if he
+  sat 0.3 seat widths off the axis). The top of his chair back is at −10.5.
+- In `U2` (2025), which looks along the dais, the three people seated there
+  have their heads at y = −10.0 to −10.2, whichever chair each is in.
+
+The dot is drawn at y = −10.15 on the axis, where the Speaker sits. Before
+this was measured it was placed at −10.0, roughly where the dais photo
+(`U1`, camera at y = −10.45) was taken: 0.15 seat widths off.
+
 ## Checks
 
 - **Leave one photo out** (`robust6.py`): refit without each photo in turn and
@@ -84,7 +103,8 @@ The model reproduces the 360 observed seat positions with a median error of
 - Left/right mirror symmetry (supported by the test above).
 - Chairs are drawn 0.8 seat widths behind the desk front (estimated, not
   measured; ±0.2 would move every dot by the same amount).
-- The Speaker's dot is placed at the photographer's position on the dais.
+- The Speaker's chair is on the hall's axis, like the emblem on the dais front;
+  the dot is the Speaker's seated head, the counterpart of an MK's chair.
 
 ## Files
 
@@ -99,6 +119,7 @@ included here (they belong to their photographers); the fitted results are in
 - `robust6.py`, `sym6.py` – leave-one-out and symmetry tests
 - `obs.json`, `obs_A.json`, `obs_U2.json`, `obs_extraB.json`, `obs_P1.json` – seat observations
 - `fit.json` – fitted parameters and cameras
+- `speaker.py` – the Speaker's position, from marks in the photos and the fitted cameras
 - `names2026.py`, `parties.json`, `makesvg.py` – build the dot map from the fit:
   `python3 makesvg.py` in `code/` rewrites `knesset-26-seating.svg` from `fit.json`
   (`--no-number` leaves out the total); the PNG is a CairoSVG render
