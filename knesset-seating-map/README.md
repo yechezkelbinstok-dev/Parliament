@@ -68,6 +68,11 @@ separately (`speaker.py`) with the fitted cameras:
   `P1`, `U3`), triangulates to x = 0.02, y = −8.9: the dais is centred on the
   hall's axis, and the three cameras agree at that end of the hall (misfit
   ≤ 3 px).
+- The Knesset's own panorama of the hall shows the Speaker's chair alone at
+  the centre of the dais's top tier, directly behind the emblem, and the
+  official seating chart has the Speaker in the middle of the dais with a seat
+  on each side: the chair is on the axis. (At the opening session in `P1`, two
+  chairs stood side by side there instead.)
 - The Speaker's head, seated in the Speaker's chair in `U3` (February 2026),
   lies at y = −10.15 on the axis (±0.03 for a 3 px marking error; ±0.13 if he
   sat 0.3 seat widths off the axis). The top of his chair back is at −10.5.
@@ -103,8 +108,8 @@ this was measured it was placed at −10.0, roughly where the dais photo
 - Left/right mirror symmetry (supported by the test above).
 - Chairs are drawn 0.8 seat widths behind the desk front (estimated, not
   measured; ±0.2 would move every dot by the same amount).
-- The Speaker's chair is on the hall's axis, like the emblem on the dais front;
-  the dot is the Speaker's seated head, the counterpart of an MK's chair.
+- The Speaker's dot is where the Speaker's head is when seated, which is above
+  the chair; an MK's dot is the chair itself, estimated from the desk.
 
 ## Files
 
