@@ -8,8 +8,9 @@ MKs are left blank, so every dot sits where its seat really is.
 The total is written the way the Wikipedia arch diagrams write it: bold, a tenth
 of the image's width, in the open middle that the seats wrap around. An arch
 opens at the bottom, so its number sits there, level with the lowest seats; here
-the horseshoe opens toward the Speaker, so the number sits in that opening, level
-with the front ends of the rows. The space between the rows and the Speaker is to
+the horseshoe opens toward the Speaker, so the number sits in that opening, just
+below the front ends of the rows: the top of the digits is level with the end
+of the longest row. The space between the rows and the Speaker is to
 scale: it is the floor in front of the Speaker's dais.
 
 ## How it was measured
@@ -100,4 +101,4 @@ included here (they belong to their photographers); the fitted results are in
 - `fit.json` – fitted parameters and cameras
 - `names2026.py`, `parties.json`, `makesvg.py` – build the dot map from the fit:
   `python3 makesvg.py` in `code/` rewrites `knesset-26-seating.svg` from `fit.json`
-  (`--number gap` or `--number none` move or drop the total); the PNG is a CairoSVG render
+  (`--no-number` leaves out the total); the PNG is a CairoSVG render

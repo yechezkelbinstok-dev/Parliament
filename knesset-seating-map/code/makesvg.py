@@ -1,13 +1,11 @@
 """Build the dot map from the fitted hall model.
 
-    python3 makesvg.py [--params fit.json] [--out FILE.svg] [--number PLACE]
+    python3 makesvg.py [--params fit.json] [--out FILE.svg] [--no-number] [--size PX]
 
 --params takes fit.json (default) or a raw parameter vector saved as .npy.
---number writes the total, styled and sized like the Wikipedia arch diagrams:
-    mouth   (default) where the horseshoe opens toward the Speaker, level with the
-            front ends of the rows, as the total sits in the open middle of an arch
-    gap     halfway between the front ends of the rows and the Speaker
-    none    no number
+The total is written like on the Wikipedia arch diagrams (bold, a tenth of the
+width unless --size is given) where the horseshoe opens toward the Speaker, just
+below the front ends of the rows; --no-number leaves it out.
 """
 import numpy as np, json, html, argparse, itertools
 from model4 import *
@@ -15,7 +13,7 @@ from model4 import _seg
 from names2026 import SEATS, SPEAKER
 ap=argparse.ArgumentParser()
 ap.add_argument('--params',default='fit.json'); ap.add_argument('--out',default='../knesset-26-seating.svg')
-ap.add_argument('--number',default='mouth',choices=['mouth','gap','none'])
+ap.add_argument('--no-number',action='store_true',help='leave out the total')
 ap.add_argument('--size',type=float,help='text size in px (default: a tenth of the width)')
 a=ap.parse_args()
 NM=[s[0] for s in SPEC]
@@ -43,8 +41,7 @@ for p in parties:
 shown=[s for s in seats if s[4] in who and s[0]!='SP']   # drawn dots (ministers who are not MKs get none)
 front=min(s[3] for s in shown)                         # frontmost MK's dot (nearest the Speaker)
 arm=min(s[3] for s in shown if s[0] in ('GL','GR'))    # front ends of the table's arms
-if a.number=='mouth': ny=min(front,arm-R/S-0.3-CAP)    # level with the frontmost dots, as on an arch, below the table's arms
-elif a.number=='gap': ny=(front-R/S+SPEAKER_Y+R/S)/2-CAP/2
+ny=min(front-CAP,arm-R/S-0.3-CAP)   # baseline: top of the digits level with the frontmost dot, clear of the table's arms
 W=(x1-x0)*S; H=(y1-y0)*S
 def X(x): return (x-x0)*S
 def Y(y): return (y1-y)*S          # back of hall at top, Speaker at bottom
@@ -55,7 +52,7 @@ meta={p['id']:(p['color'],p['title']) for p in parties}
 L=[f'<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{W:.0f}" height="{H:.0f}" viewBox="0 0 {W:.2f} {H:.2f}">',
    '    <!-- Seat positions measured from photographs of the Knesset plenum (2023-2026) fitted with a 3D model;',
    '         occupants from the Knesset seating chart updated 10.11.2026. Speaker at the bottom, coalition on the left. -->']
-if a.number!='none':
+if not a.no_number:
     total=sum(len(v) for v in groups.values())
     L.append(f'    <text x="{X(0):.2f}" y="{Y(ny):.2f}" style="font-size:{FS}px;font-weight:bold;text-align:center;text-anchor:middle;font-family:sans-serif">{total}</text>')
 for gid,items in groups.items():
