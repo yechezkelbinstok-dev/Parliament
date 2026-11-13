@@ -3,14 +3,14 @@ from scipy.optimize import least_squares
 mode=sys.argv[1]   # 'holdout' or 'asym'
 M=importlib.import_module('model5' if mode=='asym' else 'model4')
 from model4 import project
-PH=['U1','U3','A']; SIZE={'U1':(2048,1366),'U3':(2048,1366),'A':(1600,1157)}
-OBS=json.load(open('obs.json'))+json.load(open('obs_A.json'))
+PH=['U1','U3','A','U2']; SIZE={'U1':(2048,1366),'U3':(2048,1366),'A':(1600,1157),'U2':(2048,1366)}
+OBS=json.load(open('obs.json'))+json.load(open('obs_A.json'))+json.load(open('obs_U2.json'))+json.load(open('obs_extraB.json'))
 import model4
-NM4=[s[0] for s in model4.SPEC]; vcur=np.load('cur_v.npy'); q4=dict(zip(NM4,vcur[:len(NM4)])); cams=[vcur[len(NM4)+8*i:len(NM4)+8*i+8] for i in range(3)]
+NM4=[s[0] for s in model4.SPEC]; vcur=np.load('fit5_v.npy'); q4=dict(zip(NM4,vcur[:len(NM4)])); cams=[vcur[len(NM4)+8*i:len(NM4)+8*i+8] for i in range(4)]
 NM=[s[0] for s in M.SPEC]; lo=np.array([s[2] for s in M.SPEC]); hi=np.array([s[3] for s in M.SPEC])
 x0=np.array([q4[n] if n in q4 else q4[n[:-1]] for n in NM])
 camlo=np.array([-10,-10,-10,-300,-300,-300,150,-0.5]); camhi=-camlo; camhi[6]=8000
-L=np.concatenate([lo]+[camlo]*3); Hh=np.concatenate([hi]+[camhi]*3); v0=np.concatenate([x0]+cams)
+L=np.concatenate([lo]+[camlo]*4); Hh=np.concatenate([hi]+[camhi]*4); v0=np.concatenate([x0]+cams)
 def unpack(v): return dict(zip(NM,v[:len(NM)])),{p:v[len(NM)+8*i:len(NM)+8*i+8] for i,p in enumerate(PH)}
 def resid(v,obs):
     q,c=unpack(v); out=[]
@@ -26,11 +26,20 @@ def plan(q):
     return {(el,i):M._seg(el,i,q)[0] for el,n in M.COUNTS.items() for i in range(n)}
 if mode=='holdout':
     S0=plan(unpack(v0)[0])
-    tests={'side view of back rows + far table arm (2026 side photo)':lambda o:o['photo']=='U3' and o['el'] in ('B1','B2','GL'),
+    tests={'far table arm + back rows in the 2026 side photo':lambda o:o['photo']=='U3' and o['el'] in ('B1','B2','GL'),
+           'all government-table data from the 2025 side photo':lambda o:o['photo']=='U2' and o['el'] in ('GL','GH'),
+           'last back row seen from the dais':lambda o:o['photo']=='U1' and o['el']=='B4',
+           'last back row in the 2026 side photo':lambda o:o['photo']=='U3' and o['el']=='B4',
+           'outermost far row L4 in the 2026 side photo':lambda o:o['photo']=='U3' and o['el']=='L4',
+           'outermost far row L4 in the 2025 side photo':lambda o:o['photo']=='U2' and o['el']=='L4',
+           'x':lambda o:False}
+    tests.pop('x')
+    _old={'side view of back rows + far table arm (2026 side photo)':lambda o:o['photo']=='U3' and o['el'] in ('B1','B2','GL'),
            'back rows in the 2023 back-corner photo':lambda o:o['photo']=='A' and o['el'][0]=='B',
            'back rows seen from the dais':lambda o:o['photo']=='U1' and o['el'][0]=='B',
            'right-hand rows seen from the dais':lambda o:o['photo']=='U1' and o['el'][0]=='R',
            'far-side rows L2-L4 (2026 side photo)':lambda o:o['photo']=='U3' and o['el'] in ('L2','L3','L4')}
+    tests.update({'back rows in the 2023 back-corner photo':_old['back rows in the 2023 back-corner photo'],'back rows seen from the dais':_old['back rows seen from the dais']})
     for name,f in tests.items():
         tr=[o for o in OBS if not f(o)]; te=[o for o in OBS if f(o)]
         v=fit(tr); e=np.linalg.norm(resid(v,te).reshape(-1,2),axis=1)
@@ -51,3 +60,12 @@ else:
         for i in range(M.COUNTS[el]):
             a=S0[(el,i)]; b=S0[(er,i)]; mm.append(np.linalg.norm(a-np.array([-b[0],b[1]])))
     print('left vs mirrored right: median %.2f, max %.2f seat-widths'%(np.median(mm),np.max(mm)))
+
+if mode=='holdout':
+    v=v0; r=resid(v,OBS); J=least_squares(lambda x:resid(x,OBS),v,bounds=(L,Hh),max_nfev=1).jac
+    s2=np.sum(r**2)/(len(r)-len(v)); cov=np.linalg.pinv(J.T@J)*s2; se=np.sqrt(np.diag(cov))
+    q,_=unpack(v)
+    print('FINAL parameter +- 1 sigma')
+    for i,n in enumerate(NM):
+        ang=n[:2] in ('g1','g2','aF','aK','ps')
+        print(f'{n:5s} {np.degrees(v[i]) if ang else v[i]:8.3f} +- {np.degrees(se[i]) if ang else se[i]:.3f}')

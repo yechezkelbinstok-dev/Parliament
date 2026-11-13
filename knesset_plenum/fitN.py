@@ -5,12 +5,13 @@ PH=sys.argv[1].split(','); out=sys.argv[2]
 obs=json.load(open('obs.json'))
 for p in PH:
     if p not in ('U1','U3'): obs+=json.load(open(f'obs_{p}.json'))
+obs+=json.load(open('obs_extraB.json'))
 obs=[o for o in obs if o['photo'] in PH]
 SIZE={'U1':(2048,1366),'U3':(2048,1366),'A':(1600,1157),'C':(1650,700),'N1':(550,375),'N2':(739,415),'U2':(2048,1366)}
 NM=[s[0] for s in SPEC]; lo=np.array([s[2] for s in SPEC]); hi=np.array([s[3] for s in SPEC])
 camlo=np.array([-10,-10,-10,-300,-300,-300,150,-0.5]); camhi=-camlo; camhi[6]=8000
-v3=np.load('fit3_v.npy'); q3=v3[:len(NM)]
-cam0={'U1':v3[len(NM):len(NM)+8],'U3':v3[len(NM)+8:len(NM)+16]}
+v3=np.load('fit4_v.npy'); q3=v3[:len(NM)]
+cam0={p:v3[len(NM)+8*i:len(NM)+8*i+8] for i,p in enumerate(['U1','U3','A','U2'])}
 for p in PH:
     if p not in cam0: cam0[p]=np.array(json.load(open(f'cam_{p}.json')))
 def unpack(v): return dict(zip(NM,v[:len(NM)])),{p:v[len(NM)+8*i:len(NM)+8*i+8] for i,p in enumerate(PH)}
