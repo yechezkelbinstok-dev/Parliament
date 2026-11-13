@@ -42,7 +42,7 @@ FS=round(a.size or (x1-x0)*S*36/360); CAP=0.72*FS/S   # text size in px; height 
 parties=json.load(open('parties.json')); who={}
 for p in parties:
     for n in p['names']: who[n]=p
-shown=[s for s in seats if s[4] in who and s[0]!='SP']   # drawn dots (ministers who are not MKs get none)
+shown=[s for s in seats if s[0]!='SP' and (s[4] in who or not a.members_only)]   # drawn dots, grey seats included
 front=min(s[3] for s in shown)                         # frontmost MK's dot (nearest the Speaker)
 arm=min(s[3] for s in shown if s[0] in ('GL','GR'))    # front ends of the table's arms
 ny=min(front-CAP,arm-R/S-0.3-CAP)   # baseline: top of the digits level with the frontmost dot, clear of the table's arms
