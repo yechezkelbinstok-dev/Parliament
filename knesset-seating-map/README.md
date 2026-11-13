@@ -1,6 +1,6 @@
 # Knesset plenum: measured seating layout
 
-`diagrams/knesset-26-seating.svg` is a dot map of the Knesset plenary hall whose
+`knesset-26-seating.svg` (with a `.png` render) is a dot map of the Knesset plenary hall whose
 seat positions were **measured from photographs**, not copied from a schematic.
 It shows the 120 MKs of the 26th Knesset; empty seats and ministers who are not
 MKs are left blank, so every dot sits where its seat really is.
@@ -79,6 +79,8 @@ The model reproduces the 360 observed seat positions with a median error of
 - The Speaker's dot is placed at the photographer's position on the dais.
 
 ## Files
+
+The code and data are in `code/`.
 
 The scripts were run in a working folder next to the photos, which are not
 included here (they belong to their photographers); the fitted results are in
