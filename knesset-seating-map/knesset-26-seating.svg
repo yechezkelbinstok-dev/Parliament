@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="997" height="888" viewBox="0 0 997.16 887.96">
     <!-- Seat positions measured from photographs of the Knesset plenum (2023-2026) fitted with a 3D model;
          occupants from the Knesset seating chart updated 10.11.2026. Speaker at the bottom, coalition on the left. -->
+    <text x="498.58" y="735.30" style="font-size:100px;font-weight:bold;text-align:center;text-anchor:middle;font-family:sans-serif">120</text>
     <g style="fill:#1f5aa5" id="Likud">
         <title>Likud (27)</title>
         <circle cx="281.34" cy="652.35" r="11.07"><title>אופיר כץ (Likud)</title></circle>

@@ -5,6 +5,13 @@ seat positions were **measured from photographs**, not copied from a schematic.
 It shows the 120 MKs of the 26th Knesset; empty seats and ministers who are not
 MKs are left blank, so every dot sits where its seat really is.
 
+The total is written the way the Wikipedia arch diagrams write it: bold, a tenth
+of the image's width, in the open middle that the seats wrap around. An arch
+opens at the bottom, so its number sits there, level with the lowest seats; here
+the horseshoe opens toward the Speaker, so the number sits in that opening, level
+with the front ends of the rows. The space between the rows and the Speaker is to
+scale: it is the floor in front of the Speaker's dais.
+
 ## How it was measured
 
 1. **Structure** (which seats exist, how many per row) comes from the Knesset's
@@ -91,4 +98,6 @@ included here (they belong to their photographers); the fitted results are in
 - `robust6.py`, `sym6.py` – leave-one-out and symmetry tests
 - `obs.json`, `obs_A.json`, `obs_U2.json`, `obs_extraB.json`, `obs_P1.json` – seat observations
 - `fit.json` – fitted parameters and cameras
-- `names2026.py`, `parties.json`, `makesvg.py` – build the dot map from the fit
+- `names2026.py`, `parties.json`, `makesvg.py` – build the dot map from the fit:
+  `python3 makesvg.py` in `code/` rewrites `knesset-26-seating.svg` from `fit.json`
+  (`--number gap` or `--number none` move or drop the total); the PNG is a CairoSVG render
