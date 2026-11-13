@@ -8,8 +8,8 @@ width unless --size is given) where the horseshoe opens toward the Speaker, just
 below the front ends of the rows; --no-number leaves it out.
 """
 import numpy as np, json, html, argparse, itertools
-from model4 import *
-from model4 import _seg
+from model6 import *
+from model6 import _seg
 from names2026 import SEATS, SPEAKER
 ap=argparse.ArgumentParser()
 ap.add_argument('--params',default='fit.json'); ap.add_argument('--out',default='../knesset-26-seating.svg')
@@ -21,7 +21,7 @@ if a.params.endswith('.json'): q=json.load(open(a.params))['params']; q={k:q[k] 
 else: v=np.load(a.params); q=dict(zip(NM,v[:len(NM)]))
 OFF=0.80          # chair centre behind the desk front, in seat-pitch units
 S=42.0; R=0.25*S  # px per unit, dot radius
-SPEAKER_Y=-10.15     # measured in speaker.py: Speaker's head, on the axis (U3), agreeing with U2
+SPEAKER_Y=-10.1      # measured in speaker.py: on the axis (x=0), where the Speaker sits
 seats=[]
 for el,n in COUNTS.items():
     for i in range(n):

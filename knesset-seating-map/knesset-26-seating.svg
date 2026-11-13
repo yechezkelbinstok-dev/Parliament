@@ -1,161 +1,161 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="997" height="894" viewBox="0 0 997.16 894.26">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1010" height="891" viewBox="0 0 1009.85 890.79">
     <!-- Seat positions measured from photographs of the Knesset plenum (2023-2026) fitted with a 3D model;
          occupants from the Knesset seating chart updated 10.11.2026. Speaker at the bottom, coalition on the left. -->
-    <text x="498.58" y="767.93" style="font-size:100px;font-weight:bold;text-align:center;text-anchor:middle;font-family:sans-serif">120</text>
+    <text x="504.92" y="766.35" style="font-size:101px;font-weight:bold;text-align:center;text-anchor:middle;font-family:sans-serif">120</text>
     <g style="fill:#1f5aa5" id="Likud">
         <title>Likud (27)</title>
-        <circle cx="281.34" cy="652.35" r="11.07"><title>אופיר כץ (Likud)</title></circle>
-        <circle cx="280.93" cy="610.35" r="11.07"><title>טליק גואילי (Likud)</title></circle>
-        <circle cx="280.52" cy="568.35" r="11.07"><title>יעקב ברדוגו (Likud)</title></circle>
-        <circle cx="280.11" cy="526.35" r="11.07"><title>אלמוג כהן (Likud)</title></circle>
-        <circle cx="201.34" cy="667.22" r="11.07"><title>אלישע מדן (Likud)</title></circle>
-        <circle cx="201.18" cy="625.22" r="11.07"><title>דוד פטר (Likud)</title></circle>
-        <circle cx="201.02" cy="583.22" r="11.07"><title>משה סעדה (Likud)</title></circle>
-        <circle cx="200.86" cy="541.22" r="11.07"><title>חוה אתי עטייה (Likud)</title></circle>
-        <circle cx="200.69" cy="499.22" r="11.07"><title>בועז ביסמוט (Likud)</title></circle>
-        <circle cx="120.48" cy="681.54" r="11.07"><title>דוד ביטן (Likud)</title></circle>
-        <circle cx="120.47" cy="639.54" r="11.07"><title>אלי גולדשמידט (Likud)</title></circle>
-        <circle cx="120.45" cy="597.54" r="11.07"><title>ארז תדמור (Likud)</title></circle>
-        <circle cx="373.69" cy="639.62" r="11.07"><title>מכלוף מיקי זוהר (Likud)</title></circle>
-        <circle cx="374.21" cy="581.36" r="11.07"><title>גילה גמליאל (Likud)</title></circle>
-        <circle cx="383.87" cy="496.31" r="11.07"><title>שלמה קרעי (Likud)</title></circle>
-        <circle cx="389.40" cy="473.91" r="11.07"><title>ניר ברקת (Likud)</title></circle>
-        <circle cx="394.92" cy="451.51" r="11.07"><title>יואב קיש (Likud)</title></circle>
-        <circle cx="400.45" cy="429.11" r="11.07"><title>גדעון סער (Likud)</title></circle>
-        <circle cx="622.69" cy="552.23" r="11.07"><title>עמיחי שיקלי (Likud)</title></circle>
-        <circle cx="618.82" cy="518.71" r="11.07"><title>חיים כץ (Likud)</title></circle>
-        <circle cx="607.77" cy="473.91" r="11.07"><title>דוד אמסלם (Likud)</title></circle>
-        <circle cx="602.24" cy="451.51" r="11.07"><title>מירי רגב (Likud)</title></circle>
-        <circle cx="473.48" cy="392.36" r="11.07"><title>יריב לוין (Likud)</title></circle>
-        <circle cx="498.58" cy="392.36" r="11.07"><title>בנימין נתניהו (Likud)</title></circle>
-        <circle cx="523.68" cy="392.36" r="11.07"><title>ישראל כץ (Likud)</title></circle>
-        <circle cx="548.78" cy="392.36" r="11.07"><title>אלי כהן (Likud)</title></circle>
-        <circle cx="498.58" cy="852.26" r="11.07"><title>אמיר אוחנה (Likud)</title></circle>
+        <circle cx="284.87" cy="650.01" r="10.92"><title>אופיר כץ (Likud)</title></circle>
+        <circle cx="284.72" cy="608.01" r="10.92"><title>טליק גואילי (Likud)</title></circle>
+        <circle cx="284.58" cy="566.02" r="10.92"><title>יעקב ברדוגו (Likud)</title></circle>
+        <circle cx="284.43" cy="521.32" r="10.92"><title>אלמוג כהן (Likud)</title></circle>
+        <circle cx="203.15" cy="664.53" r="10.92"><title>אלישע מדן (Likud)</title></circle>
+        <circle cx="203.27" cy="622.53" r="10.92"><title>דוד פטר (Likud)</title></circle>
+        <circle cx="203.39" cy="580.53" r="10.92"><title>משה סעדה (Likud)</title></circle>
+        <circle cx="203.52" cy="538.53" r="10.92"><title>חוה אתי עטייה (Likud)</title></circle>
+        <circle cx="203.65" cy="493.83" r="10.92"><title>בועז ביסמוט (Likud)</title></circle>
+        <circle cx="121.80" cy="678.89" r="10.92"><title>דוד ביטן (Likud)</title></circle>
+        <circle cx="121.90" cy="636.89" r="10.92"><title>אלי גולדשמידט (Likud)</title></circle>
+        <circle cx="121.99" cy="594.89" r="10.92"><title>ארז תדמור (Likud)</title></circle>
+        <circle cx="379.06" cy="636.71" r="10.92"><title>מכלוף מיקי זוהר (Likud)</title></circle>
+        <circle cx="379.45" cy="578.36" r="10.92"><title>גילה גמליאל (Likud)</title></circle>
+        <circle cx="389.28" cy="493.41" r="10.92"><title>שלמה קרעי (Likud)</title></circle>
+        <circle cx="394.93" cy="471.36" r="10.92"><title>ניר ברקת (Likud)</title></circle>
+        <circle cx="400.58" cy="449.32" r="10.92"><title>יואב קיש (Likud)</title></circle>
+        <circle cx="406.24" cy="427.27" r="10.92"><title>גדעון סער (Likud)</title></circle>
+        <circle cx="630.20" cy="549.18" r="10.92"><title>עמיחי שיקלי (Likud)</title></circle>
+        <circle cx="626.22" cy="515.46" r="10.92"><title>חיים כץ (Likud)</title></circle>
+        <circle cx="614.92" cy="471.36" r="10.92"><title>דוד אמסלם (Likud)</title></circle>
+        <circle cx="609.26" cy="449.32" r="10.92"><title>מירי רגב (Likud)</title></circle>
+        <circle cx="479.60" cy="390.99" r="10.92"><title>יריב לוין (Likud)</title></circle>
+        <circle cx="504.92" cy="390.99" r="10.92"><title>בנימין נתניהו (Likud)</title></circle>
+        <circle cx="530.25" cy="390.99" r="10.92"><title>ישראל כץ (Likud)</title></circle>
+        <circle cx="555.58" cy="390.99" r="10.92"><title>אלי כהן (Likud)</title></circle>
+        <circle cx="504.92" cy="848.79" r="10.92"><title>אמיר אוחנה (Likud)</title></circle>
     </g>
     <g style="fill:#62B9F2" id="Yashar">
         <title>Yashar (21)</title>
-        <circle cx="715.82" cy="652.35" r="11.07"><title>גדי איזנקוט (Yashar)</title></circle>
-        <circle cx="716.23" cy="610.35" r="11.07"><title>יורם כהן (Yashar)</title></circle>
-        <circle cx="716.64" cy="568.35" r="11.07"><title>אורית פרקש הכהן (Yashar)</title></circle>
-        <circle cx="717.05" cy="526.35" r="11.07"><title>עדי אלטשולר (Yashar)</title></circle>
-        <circle cx="795.82" cy="667.22" r="11.07"><title>מתן כהנא (Yashar)</title></circle>
-        <circle cx="795.98" cy="625.22" r="11.07"><title>חילי טרופר (Yashar)</title></circle>
-        <circle cx="796.15" cy="583.22" r="11.07"><title>שאול מרידור (Yashar)</title></circle>
-        <circle cx="796.31" cy="541.22" r="11.07"><title>תאיר איפרגן (Yashar)</title></circle>
-        <circle cx="796.47" cy="499.22" r="11.07"><title>אושרת גני גונן (Yashar)</title></circle>
-        <circle cx="876.68" cy="681.54" r="11.07"><title>שירה שפירא (Yashar)</title></circle>
-        <circle cx="876.70" cy="639.54" r="11.07"><title>ענבר הרוש גיטי (Yashar)</title></circle>
-        <circle cx="876.71" cy="597.54" r="11.07"><title>אלעזר שטרן (Yashar)</title></circle>
-        <circle cx="876.72" cy="555.54" r="11.07"><title>כמיל אבו רוקן (Yashar)</title></circle>
-        <circle cx="876.74" cy="513.54" r="11.07"><title>דבורה בכר (Yashar)</title></circle>
-        <circle cx="876.75" cy="471.54" r="11.07"><title>אלקס ריף (Yashar)</title></circle>
-        <circle cx="952.88" cy="695.93" r="11.07"><title>ענבר יחזקאלי (Yashar)</title></circle>
-        <circle cx="953.26" cy="653.93" r="11.07"><title>רועי פולקמן (Yashar)</title></circle>
-        <circle cx="953.64" cy="611.93" r="11.07"><title>ישראל זרי (Yashar)</title></circle>
-        <circle cx="954.02" cy="569.93" r="11.07"><title>טל אוחנה (Yashar)</title></circle>
-        <circle cx="954.40" cy="527.94" r="11.07"><title>אליסף פרץ (Yashar)</title></circle>
-        <circle cx="954.78" cy="485.94" r="11.07"><title>יפה טבג&#x27;ה (Yashar)</title></circle>
+        <circle cx="724.98" cy="650.01" r="10.92"><title>גדי איזנקוט (Yashar)</title></circle>
+        <circle cx="725.12" cy="608.01" r="10.92"><title>יורם כהן (Yashar)</title></circle>
+        <circle cx="725.27" cy="566.02" r="10.92"><title>אורית פרקש הכהן (Yashar)</title></circle>
+        <circle cx="725.42" cy="521.32" r="10.92"><title>עדי אלטשולר (Yashar)</title></circle>
+        <circle cx="806.70" cy="664.53" r="10.92"><title>מתן כהנא (Yashar)</title></circle>
+        <circle cx="806.58" cy="622.53" r="10.92"><title>חילי טרופר (Yashar)</title></circle>
+        <circle cx="806.45" cy="580.53" r="10.92"><title>שאול מרידור (Yashar)</title></circle>
+        <circle cx="806.33" cy="538.53" r="10.92"><title>תאיר איפרגן (Yashar)</title></circle>
+        <circle cx="806.20" cy="493.83" r="10.92"><title>אושרת גני גונן (Yashar)</title></circle>
+        <circle cx="888.04" cy="678.89" r="10.92"><title>שירה שפירא (Yashar)</title></circle>
+        <circle cx="887.95" cy="636.89" r="10.92"><title>ענבר הרוש גיטי (Yashar)</title></circle>
+        <circle cx="887.86" cy="594.89" r="10.92"><title>אלעזר שטרן (Yashar)</title></circle>
+        <circle cx="887.77" cy="552.89" r="10.92"><title>כמיל אבו רוקן (Yashar)</title></circle>
+        <circle cx="887.67" cy="510.89" r="10.92"><title>דבורה בכר (Yashar)</title></circle>
+        <circle cx="887.57" cy="466.19" r="10.92"><title>אלקס ריף (Yashar)</title></circle>
+        <circle cx="965.73" cy="693.63" r="10.92"><title>ענבר יחזקאלי (Yashar)</title></circle>
+        <circle cx="966.08" cy="651.63" r="10.92"><title>רועי פולקמן (Yashar)</title></circle>
+        <circle cx="966.43" cy="609.63" r="10.92"><title>ישראל זרי (Yashar)</title></circle>
+        <circle cx="966.78" cy="567.63" r="10.92"><title>טל אוחנה (Yashar)</title></circle>
+        <circle cx="967.13" cy="525.64" r="10.92"><title>אליסף פרץ (Yashar)</title></circle>
+        <circle cx="967.48" cy="483.64" r="10.92"><title>יפה טבג&#x27;ה (Yashar)</title></circle>
     </g>
     <g style="fill:#2A2A78" id="Together">
         <title>Together (12)</title>
-        <circle cx="711.27" cy="476.61" r="11.07"><title>נפתלי בנט (Together)</title></circle>
-        <circle cx="701.23" cy="435.82" r="11.07"><title>יאיר לפיד (Together)</title></circle>
-        <circle cx="790.41" cy="449.53" r="11.07"><title>קרן טרנר (Together)</title></circle>
-        <circle cx="780.17" cy="408.79" r="11.07"><title>מירב בן ארי (Together)</title></circle>
-        <circle cx="769.92" cy="368.06" r="11.07"><title>לירן אבישר בן חורין (Together)</title></circle>
-        <circle cx="870.08" cy="421.45" r="11.07"><title>נעם תיבון (Together)</title></circle>
-        <circle cx="859.06" cy="380.92" r="11.07"><title>מיכל נגרי (Together)</title></circle>
-        <circle cx="848.04" cy="340.39" r="11.07"><title>איתן גינזבורג (Together)</title></circle>
-        <circle cx="955.16" cy="443.94" r="11.07"><title>מירב כהן (Together)</title></circle>
-        <circle cx="948.81" cy="393.69" r="11.07"><title>יונתן שלו (Together)</title></circle>
-        <circle cx="937.99" cy="353.11" r="11.07"><title>ברוריה נעים ארמן (Together)</title></circle>
-        <circle cx="927.17" cy="312.52" r="11.07"><title>רם בן ברק (Together)</title></circle>
+        <circle cx="720.17" cy="477.14" r="10.92"><title>נפתלי בנט (Together)</title></circle>
+        <circle cx="709.56" cy="433.72" r="10.92"><title>יאיר לפיד (Together)</title></circle>
+        <circle cx="800.69" cy="449.71" r="10.92"><title>קרן טרנר (Together)</title></circle>
+        <circle cx="789.82" cy="406.35" r="10.92"><title>מירב בן ארי (Together)</title></circle>
+        <circle cx="779.61" cy="365.61" r="10.92"><title>לירן אבישר בן חורין (Together)</title></circle>
+        <circle cx="881.60" cy="421.53" r="10.92"><title>נעם תיבון (Together)</title></circle>
+        <circle cx="869.95" cy="378.38" r="10.92"><title>מיכל נגרי (Together)</title></circle>
+        <circle cx="858.99" cy="337.84" r="10.92"><title>איתן גינזבורג (Together)</title></circle>
+        <circle cx="967.85" cy="438.94" r="10.92"><title>מירב כהן (Together)</title></circle>
+        <circle cx="962.04" cy="393.90" r="10.92"><title>יונתן שלו (Together)</title></circle>
+        <circle cx="950.34" cy="350.76" r="10.92"><title>ברוריה נעים ארמן (Together)</title></circle>
+        <circle cx="939.35" cy="310.23" r="10.92"><title>רם בן ברק (Together)</title></circle>
     </g>
     <g style="fill:#01B2AC" id="Joint-List">
         <title>Joint List (11)</title>
-        <circle cx="562.71" cy="293.65" r="11.07"><title>אחמד טיבי (Joint List)</title></circle>
-        <circle cx="603.37" cy="297.46" r="11.07"><title>יוסף ג&#x27;בארין (Joint List)</title></circle>
-        <circle cx="603.40" cy="215.26" r="11.07"><title>בכר עוואודה (Joint List)</title></circle>
-        <circle cx="644.05" cy="219.12" r="11.07"><title>פאתן גטאס (Joint List)</title></circle>
-        <circle cx="603.31" cy="133.30" r="11.07"><title>מהא כרכבי סבאח (Joint List)</title></circle>
-        <circle cx="643.98" cy="137.02" r="11.07"><title>יוסף עטאונה (Joint List)</title></circle>
-        <circle cx="684.65" cy="140.74" r="11.07"><title>עופר כסיף (Joint List)</title></circle>
-        <circle cx="603.76" cy="51.02" r="11.07"><title>האיתם זחאלקה (Joint List)</title></circle>
-        <circle cx="644.35" cy="55.53" r="11.07"><title>חסן אלנסאסרה (Joint List)</title></circle>
-        <circle cx="684.94" cy="60.03" r="11.07"><title>נהאיה ושאחי (Joint List)</title></circle>
-        <circle cx="725.53" cy="64.54" r="11.07"><title>אחמד דראושה (Joint List)</title></circle>
+        <circle cx="569.86" cy="291.65" r="10.92"><title>אחמד טיבי (Joint List)</title></circle>
+        <circle cx="611.10" cy="295.45" r="10.92"><title>יוסף ג&#x27;בארין (Joint List)</title></circle>
+        <circle cx="611.14" cy="213.43" r="10.92"><title>בכר עוואודה (Joint List)</title></circle>
+        <circle cx="652.37" cy="217.29" r="10.92"><title>פאתן גטאס (Joint List)</title></circle>
+        <circle cx="611.09" cy="131.64" r="10.92"><title>מהא כרכבי סבאח (Joint List)</title></circle>
+        <circle cx="652.33" cy="135.41" r="10.92"><title>יוסף עטאונה (Joint List)</title></circle>
+        <circle cx="693.57" cy="139.19" r="10.92"><title>עופר כסיף (Joint List)</title></circle>
+        <circle cx="611.34" cy="50.41" r="10.92"><title>האיתם זחאלקה (Joint List)</title></circle>
+        <circle cx="652.53" cy="54.62" r="10.92"><title>חסן אלנסאסרה (Joint List)</title></circle>
+        <circle cx="693.73" cy="58.82" r="10.92"><title>נהאיה ושאחי (Joint List)</title></circle>
+        <circle cx="734.93" cy="63.03" r="10.92"><title>אחמד דראושה (Joint List)</title></circle>
     </g>
     <g style="fill:#15793D" id="Raam">
         <title>Ra&#x27;am (8)</title>
-        <circle cx="434.45" cy="293.65" r="11.07"><title>מנסור עבאס (Ra&#x27;am)</title></circle>
-        <circle cx="434.42" cy="211.39" r="11.07"><title>יואב סגלוביץ&#x27; (Ra&#x27;am)</title></circle>
-        <circle cx="475.08" cy="207.53" r="11.07"><title>ווליד טאהא (Ra&#x27;am)</title></circle>
-        <circle cx="393.85" cy="133.30" r="11.07"><title>ואליד אלהואשלה (Ra&#x27;am)</title></circle>
-        <circle cx="434.52" cy="129.59" r="11.07"><title>אימאן ח&#x27;טיב יאסין (Ra&#x27;am)</title></circle>
-        <circle cx="393.40" cy="51.02" r="11.07"><title>יאסר חוג&#x27;יראת (Ra&#x27;am)</title></circle>
-        <circle cx="433.99" cy="46.51" r="11.07"><title>איברהים אל טורי (Ra&#x27;am)</title></circle>
-        <circle cx="474.58" cy="42.00" r="11.07"><title>עבד אלכרים מסרי (Ra&#x27;am)</title></circle>
+        <circle cx="439.98" cy="291.65" r="10.92"><title>מנסור עבאס (Ra&#x27;am)</title></circle>
+        <circle cx="439.94" cy="209.57" r="10.92"><title>יואב סגלוביץ&#x27; (Ra&#x27;am)</title></circle>
+        <circle cx="481.18" cy="205.71" r="10.92"><title>ווליד טאהא (Ra&#x27;am)</title></circle>
+        <circle cx="398.76" cy="131.64" r="10.92"><title>ואליד אלהואשלה (Ra&#x27;am)</title></circle>
+        <circle cx="440.00" cy="127.86" r="10.92"><title>אימאן ח&#x27;טיב יאסין (Ra&#x27;am)</title></circle>
+        <circle cx="398.51" cy="50.41" r="10.92"><title>יאסר חוג&#x27;יראת (Ra&#x27;am)</title></circle>
+        <circle cx="439.71" cy="46.21" r="10.92"><title>איברהים אל טורי (Ra&#x27;am)</title></circle>
+        <circle cx="480.91" cy="42.00" r="10.92"><title>עבד אלכרים מסרי (Ra&#x27;am)</title></circle>
     </g>
     <g style="fill:#2A38D7" id="The-Democrats">
         <title>The Democrats (8)</title>
-        <circle cx="475.11" cy="289.83" r="11.07"><title>נעמה לזימי (The Democrats)</title></circle>
-        <circle cx="522.05" cy="289.83" r="11.07"><title>יאיר גולן (The Democrats)</title></circle>
-        <circle cx="522.09" cy="207.53" r="11.07"><title>אפרת רייטן מרום (The Democrats)</title></circle>
-        <circle cx="562.74" cy="211.39" r="11.07"><title>גלעד קריב (The Democrats)</title></circle>
-        <circle cx="475.19" cy="125.87" r="11.07"><title>עמרי רונן (The Democrats)</title></circle>
-        <circle cx="521.98" cy="125.87" r="11.07"><title>גבי לסקי (The Democrats)</title></circle>
-        <circle cx="562.64" cy="129.59" r="11.07"><title>יאיא (יאיר) פינק (The Democrats)</title></circle>
-        <circle cx="522.59" cy="42.00" r="11.07"><title>מיכל רוזין (The Democrats)</title></circle>
+        <circle cx="481.22" cy="287.85" r="10.92"><title>נעמה לזימי (The Democrats)</title></circle>
+        <circle cx="528.62" cy="287.85" r="10.92"><title>יאיר גולן (The Democrats)</title></circle>
+        <circle cx="528.67" cy="205.71" r="10.92"><title>אפרת רייטן מרום (The Democrats)</title></circle>
+        <circle cx="569.91" cy="209.57" r="10.92"><title>גלעד קריב (The Democrats)</title></circle>
+        <circle cx="481.24" cy="124.09" r="10.92"><title>עמרי רונן (The Democrats)</title></circle>
+        <circle cx="528.61" cy="124.09" r="10.92"><title>גבי לסקי (The Democrats)</title></circle>
+        <circle cx="569.85" cy="127.86" r="10.92"><title>יאיא (יאיר) פינק (The Democrats)</title></circle>
+        <circle cx="528.94" cy="42.00" r="10.92"><title>מיכל רוזין (The Democrats)</title></circle>
     </g>
     <g style="fill:#23C2EB" id="Yisrael-Beiteinu">
         <title>Yisrael Beiteinu (7)</title>
-        <circle cx="691.19" cy="395.04" r="11.07"><title>אביגדור ליברמן (Yisrael Beiteinu)</title></circle>
-        <circle cx="759.67" cy="327.33" r="11.07"><title>רפאל בן שטרית (Yisrael Beiteinu)</title></circle>
-        <circle cx="837.03" cy="299.86" r="11.07"><title>טליה לנקרי (Yisrael Beiteinu)</title></circle>
-        <circle cx="826.01" cy="259.33" r="11.07"><title>עודד פורר (Yisrael Beiteinu)</title></circle>
-        <circle cx="916.35" cy="271.94" r="11.07"><title>יוליה מלינובסקי (Yisrael Beiteinu)</title></circle>
-        <circle cx="905.53" cy="231.36" r="11.07"><title>שרון שרעבי (Yisrael Beiteinu)</title></circle>
-        <circle cx="894.71" cy="190.78" r="11.07"><title>חמד עמאר (Yisrael Beiteinu)</title></circle>
+        <circle cx="699.58" cy="392.92" r="10.92"><title>אביגדור ליברמן (Yisrael Beiteinu)</title></circle>
+        <circle cx="769.40" cy="324.87" r="10.92"><title>רפאל בן שטרית (Yisrael Beiteinu)</title></circle>
+        <circle cx="848.04" cy="297.29" r="10.92"><title>טליה לנקרי (Yisrael Beiteinu)</title></circle>
+        <circle cx="837.09" cy="256.74" r="10.92"><title>עודד פורר (Yisrael Beiteinu)</title></circle>
+        <circle cx="928.35" cy="269.69" r="10.92"><title>יוליה מלינובסקי (Yisrael Beiteinu)</title></circle>
+        <circle cx="917.36" cy="229.15" r="10.92"><title>שרון שרעבי (Yisrael Beiteinu)</title></circle>
+        <circle cx="906.37" cy="188.62" r="10.92"><title>חמד עמאר (Yisrael Beiteinu)</title></circle>
     </g>
     <g style="fill:#FF4500" id="Otzma-Yehudit">
         <title>Otzma Yehudit (7)</title>
-        <circle cx="285.90" cy="476.61" r="11.07"><title>טלי גוטליב (Otzma Yehudit)</title></circle>
-        <circle cx="206.75" cy="449.53" r="11.07"><title>לימור סון הר מלך (Otzma Yehudit)</title></circle>
-        <circle cx="217.00" cy="408.79" r="11.07"><title>יצחק קרויזר (Otzma Yehudit)</title></circle>
-        <circle cx="120.43" cy="513.54" r="11.07"><title>חנמאל דורפמן (Otzma Yehudit)</title></circle>
-        <circle cx="623.47" cy="639.62" r="11.07"><title>עמיחי אליהו (Otzma Yehudit)</title></circle>
-        <circle cx="623.21" cy="610.49" r="11.07"><title>יצחק שמעון וסרלאוף (Otzma Yehudit)</title></circle>
-        <circle cx="596.72" cy="429.11" r="11.07"><title>איתמר בן גביר (Otzma Yehudit)</title></circle>
+        <circle cx="289.67" cy="477.14" r="10.92"><title>טלי גוטליב (Otzma Yehudit)</title></circle>
+        <circle cx="209.16" cy="449.71" r="10.92"><title>לימור סון הר מלך (Otzma Yehudit)</title></circle>
+        <circle cx="220.03" cy="406.35" r="10.92"><title>יצחק קרויזר (Otzma Yehudit)</title></circle>
+        <circle cx="122.17" cy="510.89" r="10.92"><title>חנמאל דורפמן (Otzma Yehudit)</title></circle>
+        <circle cx="630.79" cy="636.71" r="10.92"><title>עמיחי אליהו (Otzma Yehudit)</title></circle>
+        <circle cx="630.59" cy="607.53" r="10.92"><title>יצחק שמעון וסרלאוף (Otzma Yehudit)</title></circle>
+        <circle cx="603.61" cy="427.27" r="10.92"><title>איתמר בן גביר (Otzma Yehudit)</title></circle>
     </g>
     <g style="fill:#003366" id="United-Torah-Judaism">
         <title>United Torah Judaism (7)</title>
-        <circle cx="393.79" cy="297.46" r="11.07"><title>יעקב אשר (United Torah Judaism)</title></circle>
-        <circle cx="353.11" cy="219.12" r="11.07"><title>יצחק גולדקנופ (United Torah Judaism)</title></circle>
-        <circle cx="393.77" cy="215.26" r="11.07"><title>יצחק פינדרוס (United Torah Judaism)</title></circle>
-        <circle cx="312.52" cy="140.74" r="11.07"><title>מאיר פרוש (United Torah Judaism)</title></circle>
-        <circle cx="353.18" cy="137.02" r="11.07"><title>משה רוזנטל (United Torah Judaism)</title></circle>
-        <circle cx="312.23" cy="60.03" r="11.07"><title>אליקים שטארק (United Torah Judaism)</title></circle>
-        <circle cx="352.81" cy="55.53" r="11.07"><title>יהודה ווייספיש (United Torah Judaism)</title></circle>
+        <circle cx="398.75" cy="295.45" r="10.92"><title>יעקב אשר (United Torah Judaism)</title></circle>
+        <circle cx="357.48" cy="217.29" r="10.92"><title>יצחק גולדקנופ (United Torah Judaism)</title></circle>
+        <circle cx="398.71" cy="213.43" r="10.92"><title>יצחק פינדרוס (United Torah Judaism)</title></circle>
+        <circle cx="316.28" cy="139.19" r="10.92"><title>מאיר פרוש (United Torah Judaism)</title></circle>
+        <circle cx="357.52" cy="135.41" r="10.92"><title>משה רוזנטל (United Torah Judaism)</title></circle>
+        <circle cx="316.11" cy="58.82" r="10.92"><title>אליקים שטארק (United Torah Judaism)</title></circle>
+        <circle cx="357.31" cy="54.62" r="10.92"><title>יהודה ווייספיש (United Torah Judaism)</title></circle>
     </g>
     <g style="fill:#000000" id="Shas">
         <title>Shas (6)</title>
-        <circle cx="305.97" cy="395.04" r="11.07"><title>ינון אזולאי (Shas)</title></circle>
-        <circle cx="237.49" cy="327.33" r="11.07"><title>מיכאל מלכיאלי (Shas)</title></circle>
-        <circle cx="138.10" cy="380.92" r="11.07"><title>יואב בן צור (Shas)</title></circle>
-        <circle cx="149.12" cy="340.39" r="11.07"><title>חיים ביטון (Shas)</title></circle>
-        <circle cx="160.14" cy="299.86" r="11.07"><title>אוריאל בוסו (Shas)</title></circle>
-        <circle cx="171.15" cy="259.33" r="11.07"><title>יוסף טייב (Shas)</title></circle>
+        <circle cx="310.27" cy="392.92" r="10.92"><title>ינון אזולאי (Shas)</title></circle>
+        <circle cx="240.45" cy="324.87" r="10.92"><title>מיכאל מלכיאלי (Shas)</title></circle>
+        <circle cx="139.90" cy="378.38" r="10.92"><title>יואב בן צור (Shas)</title></circle>
+        <circle cx="150.85" cy="337.84" r="10.92"><title>חיים ביטון (Shas)</title></circle>
+        <circle cx="161.80" cy="297.29" r="10.92"><title>אוריאל בוסו (Shas)</title></circle>
+        <circle cx="172.76" cy="256.74" r="10.92"><title>יוסף טייב (Shas)</title></circle>
     </g>
     <g style="fill:#4F9298" id="Religious-Zionist-Party">
         <title>Religious Zionist Party (5)</title>
-        <circle cx="227.24" cy="368.06" r="11.07"><title>שמחה רוטמן (Religious Zionist Party)</title></circle>
-        <circle cx="120.41" cy="471.54" r="11.07"><title>צבי מור (Religious Zionist Party)</title></circle>
-        <circle cx="127.09" cy="421.45" r="11.07"><title>איתמר איתם (Religious Zionist Party)</title></circle>
-        <circle cx="622.95" cy="581.36" r="11.07"><title>אורית מלכה סטרוק (Religious Zionist Party)</title></circle>
-        <circle cx="448.38" cy="392.36" r="11.07"><title>בצלאל סמוטריץ&#x27; (Religious Zionist Party)</title></circle>
+        <circle cx="230.24" cy="365.61" r="10.92"><title>שמחה רוטמן (Religious Zionist Party)</title></circle>
+        <circle cx="122.27" cy="466.19" r="10.92"><title>צבי מור (Religious Zionist Party)</title></circle>
+        <circle cx="128.25" cy="421.53" r="10.92"><title>איתמר איתם (Religious Zionist Party)</title></circle>
+        <circle cx="630.39" cy="578.36" r="10.92"><title>אורית מלכה סטרוק (Religious Zionist Party)</title></circle>
+        <circle cx="454.27" cy="390.99" r="10.92"><title>בצלאל סמוטריץ&#x27; (Religious Zionist Party)</title></circle>
     </g>
     <g style="fill:#6AC7DF" id="Zehut">
         <title>Zehut (1)</title>
-        <circle cx="295.94" cy="435.82" r="11.07"><title>משה פייגלין (Zehut)</title></circle>
+        <circle cx="300.29" cy="433.72" r="10.92"><title>משה פייגלין (Zehut)</title></circle>
     </g>
 </svg>
